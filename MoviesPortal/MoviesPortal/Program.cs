@@ -6,12 +6,12 @@ var _movieStore = new MovieStore();
 var exit = false;
 while (!exit)
 {
-    AddMovie();
+    AddNewMovie();
 }
 
 
 
-void AddMovie()
+void AddNewMovie()
 {
     var newMovie = new Movie()
     {
