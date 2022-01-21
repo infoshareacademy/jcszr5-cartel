@@ -39,6 +39,7 @@ namespace MoviesPortal
             foreach (var option in selectionOptions)
             {
                 Console.WriteLine($"{index}. {option}");
+                index++;
             }
         }
         public void ListBrowseOptions()
@@ -47,6 +48,7 @@ namespace MoviesPortal
             foreach (var option in browseOptions)
             {
                 Console.WriteLine($"{index}. {option}");
+                index++;
             }
         }
         public void ListSearchOptions()
@@ -54,7 +56,8 @@ namespace MoviesPortal
             var index = 1;
             foreach (var option in searchOptions)
             {
-                Console.WriteLine($"{index}. {option}");
+                Console.WriteLine($"{index}. {option}"); 
+                index++;
             }
         }
 
