@@ -61,6 +61,82 @@ namespace MoviesPortal
             }
         }
 
+        public void GetUserChoiceInBrowseMenu()
+        {
+            Console.WriteLine("\n Choose option by type correct number:");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                {
+                    //list films by title
+                    Console.WriteLine("your movies will be here, sorted by title");
+                    break;
+                }
+                case "2":
+                {
+                    //list films by genre
+                    Console.WriteLine("your movies will be here, sorted by genre");
+                    break;
+                    }
+                case "3":
+                {
+                    //list films by actor
+                    Console.WriteLine("your movies will be here, sorted by actor");
+                    break;
+                    }
+                case "4"://back to main menu
+                {
+                    InitializeUserMenu();
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("Please type correct number (from 1 to 4)");
+                    GetUserChoiceInBrowseMenu();
+                    break;
+                }
+            }
+
+        }
+        public void GetUserChoiceInSearchMenu()
+        {
+            Console.WriteLine("\n Choose option by type correct number:");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                {
+                    //search films by title
+                    Console.WriteLine("Tutaj będzie wyszukiwarka");
+                    break;
+                }
+                case "2":
+                {
+                    //search films by genre
+                    Console.WriteLine("Tutaj będzie wyszukiwarka");
+                    break;
+                }
+                case "3":
+                {
+                    //search films by actor
+                    Console.WriteLine("Tutaj będzie wyszukiwarka");
+                    break;
+                }
+                case "4"://back to main menu
+                {
+                    InitializeUserMenu();
+                    break;
+                }
+                default:
+                {
+                    Console.WriteLine("Please type correct number (from 1 to 4)");
+                    GetUserChoiceInSearchMenu();
+                    break;
+                }
+            }
+
+        }
         public void GetUserChoiceInMainMenu()
         {
             Console.WriteLine("\n Choose option by type correct number:");
@@ -70,11 +146,13 @@ namespace MoviesPortal
                 case "1":
                 {
                     ListBrowseOptions();
+                    GetUserChoiceInBrowseMenu();
                     break;
                 }
                 case "2":
                 {
                     ListSearchOptions();
+                    GetUserChoiceInSearchMenu();
                     break;
                 }
                 case "3":
@@ -92,7 +170,7 @@ namespace MoviesPortal
                     }
                     else
                     {
-                        GetUserChoiceInMainMenu();
+                        InitializeUserMenu();
                     }
                     break;
                 }
@@ -106,7 +184,7 @@ namespace MoviesPortal
 
         }
 
-        public void InitializeUserMenu()
+        public void InitializeUserMenu() 
         {
             ListMainOptions();
             GetUserChoiceInMainMenu();
