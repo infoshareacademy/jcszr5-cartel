@@ -1,3 +1,4 @@
+
 ﻿using MoviesPortal;
 
 UserMenu menu = new UserMenu();
@@ -7,13 +8,14 @@ var _iOHelper = new IOHelper();
 var _movieStore = new MovieStore();
 
 //TODO Menu
-var exit = false;
-while (!exit)
-{
-    AddNewMovie();
-}
+//var exit = false;
+//while (!exit)
+//{
+//    AddNewMovie();
+//}
 
-
+LoginPanel loginPanel = new LoginPanel();
+loginPanel.ChooseOption();
 
 void AddNewMovie()
 {
