@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.Menu 
 {
-    internal class AdminMenu : IMenu
+    internal class AdminMenu :IMenu
     {
         public List<string> SelectionOptions
         {
@@ -24,17 +24,81 @@ namespace MoviesPortal.Menu
         }
         public void ListMainOptions()
         {
-            throw new NotImplementedException();
+            var index = 1;
+            Console.WriteLine("=======================================");
+            foreach (var option in SelectionOptions)
+            {
+                Console.WriteLine($"{index}. {option}");
+                index++;
+            }
+            Console.WriteLine("=======================================");
         }
 
         public void GetUserChoiceInMainMenu()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("\n Choose option by type correct number:");
+            string choice = Console.ReadLine();
+            switch (choice)
+            {
+                case "1":
+                {
+                    
+                    break;
+                }
+                case "2":
+                {
+                    
+                    break;
+                }
+                case "3":
+                {
+                    
+                    break;
+                }
+                case "4":
+                {
+
+                    break;
+                }
+                case "5":
+                {
+                    
+                    break;
+                }
+                case "6":
+                {
+                    
+                    break;
+                }
+                case "7":
+                {
+                    Console.Clear();
+                    Console.WriteLine("Are You sure? (y/n)");
+                    string decision = Console.ReadLine();
+                    if (decision == "y")
+                    {
+                        Environment.Exit(0);
+                    }
+                    else
+                    {
+                        InitializeMenu();
+                    }
+                    break;
+                        
+                }
+                default:
+                {
+                    Console.WriteLine("Please type correct number (from 1 to 7)");
+                    GetUserChoiceInMainMenu();
+                    break;
+                }
+            }
         }
 
         public void InitializeMenu()
         {
-            throw new NotImplementedException();
+            ListMainOptions();
+            GetUserChoiceInMainMenu();
         }
     }
 }

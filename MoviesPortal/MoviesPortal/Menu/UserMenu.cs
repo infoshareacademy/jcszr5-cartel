@@ -177,7 +177,7 @@ namespace MoviesPortal
                     //TODO list films for kids
                     break;
                 }
-                case "4":
+                case "4": //exit option
                 {
                     Console.WriteLine("Are You sure? (y/n)");
                     string decision = Console.ReadLine();
