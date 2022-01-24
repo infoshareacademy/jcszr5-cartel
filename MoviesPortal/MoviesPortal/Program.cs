@@ -2,7 +2,7 @@
 ﻿using MoviesPortal;
 
 UserMenu menu = new UserMenu();
-menu.InitializeUserMenu();
+menu.InitializeMenu();
 
 var _iOHelper = new IOHelper();
 var _movieStore = new MovieStore();

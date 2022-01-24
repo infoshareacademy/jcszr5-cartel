@@ -4,18 +4,33 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using MoviesPortal.Menu;
 
 namespace MoviesPortal
 {
-    public class UserMenu
+    public class UserMenu : IMenu
     {
-        public List<string> selectionOptions = new List<string>()
+
+        public List<string> SelectionOptions
         {
-            "Browse Movies",
-            "Search Movies",
-            "For Kids",
-            "Exit"
-        };
+            get
+            {
+                return new List<string>() {
+                    "Browse Movies",
+                    "Search Movies",
+                    "For Kids",
+                    "Exit" };
+            }
+        }
+
+
+        // public List<string> selectionOptions = new List<string>()
+        // {
+        //     "Browse Movies",
+        //     "Search Movies",
+        //     "For Kids",
+        //     "Exit"
+        // };
 
         public List<string> browseOptions = new List<string>()
         {
@@ -33,10 +48,12 @@ namespace MoviesPortal
             "Back to menu"
         };
 
+        
+
         public void ListMainOptions()
         {
             var index = 1;
-            foreach (var option in selectionOptions)
+            foreach (var option in SelectionOptions)
             {
                 Console.WriteLine($"{index}. {option}");
                 index++;
@@ -87,7 +104,7 @@ namespace MoviesPortal
                     }
                 case "4"://back to main menu
                 {
-                    InitializeUserMenu();
+                    InitializeMenu();
                     break;
                 }
                 default:
@@ -125,7 +142,7 @@ namespace MoviesPortal
                 }
                 case "4"://back to main menu
                 {
-                    InitializeUserMenu();
+                    InitializeMenu();
                     break;
                 }
                 default:
@@ -170,7 +187,7 @@ namespace MoviesPortal
                     }
                     else
                     {
-                        InitializeUserMenu();
+                        InitializeMenu();
                     }
                     break;
                 }
@@ -184,7 +201,7 @@ namespace MoviesPortal
 
         }
 
-        public void InitializeUserMenu() 
+        public void InitializeMenu() 
         {
             ListMainOptions();
             GetUserChoiceInMainMenu();
