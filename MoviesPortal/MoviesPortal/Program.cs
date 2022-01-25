@@ -1,8 +1,11 @@
 
 ﻿using MoviesPortal;
+ using MoviesPortal.Menu;
 
-UserMenu menu = new UserMenu();
-menu.InitializeUserMenu();
+ IMenu adminMenu = new AdminMenu();
+ IMenu userMenu = new UserMenu();
+
+adminMenu.InitializeMenu();
 
 var _iOHelper = new IOHelper();
 var _movieStore = new MovieStore();
