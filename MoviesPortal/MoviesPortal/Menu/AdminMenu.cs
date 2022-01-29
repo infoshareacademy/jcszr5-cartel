@@ -8,6 +8,7 @@ namespace MoviesPortal.Menu
 {
     internal class AdminMenu :IMenu
     {
+        public IOHelper ioHelper = new IOHelper();
         public List<string> SelectionOptions
         {
             get
@@ -41,37 +42,25 @@ namespace MoviesPortal.Menu
             switch (choice)
             {
                 case "1":
-                {
-                    
+                        ioHelper.AddNewMovie();
                     break;
-                }
-                case "2":
-                {
-                    
-                    break;
-                }
-                case "3":
-                {
-                    
-                    break;
-                }
-                case "4":
-                {
 
+                case "2":
                     break;
-                }
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+  
                 case "5":
-                {
-                    
                     break;
-                }
+
                 case "6":
-                {
-                    
                     break;
-                }
+
                 case "7":
-                {
                     Console.Clear();
                     Console.WriteLine("Are You sure? (y/n)");
                     string decision = Console.ReadLine();
@@ -84,8 +73,7 @@ namespace MoviesPortal.Menu
                         InitializeMenu();
                     }
                     break;
-                        
-                }
+
                 default:
                 {
                     Console.WriteLine("Please type correct number (from 1 to 7)");
