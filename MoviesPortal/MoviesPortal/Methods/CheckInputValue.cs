@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MoviesPortal
+﻿namespace MoviesPortal.Methods
 {
-    internal class MethToCheckInputValue
+    public class CheckInputValue
     {
-        public static bool CheckThatInputLoginMeetTheRequirements(string input)
+        public static bool CheckInputLogin(string input)
         {
             bool output;
             bool isSpecial = false;
@@ -24,7 +18,7 @@ namespace MoviesPortal
                 }
             }
 
-            // Check how many
+            // Check how many letters
             foreach (char c in input)
             {
                 if (char.IsLetter(c))
@@ -32,8 +26,6 @@ namespace MoviesPortal
                     charsCounter++;
                 }
             }
-
-            // if input value is string then output = true, else output = false
             if (isSpecial == true)
             {
                 Console.WriteLine("[!] Input value contains a special character.");
@@ -46,7 +38,7 @@ namespace MoviesPortal
                     Console.WriteLine("[!] Input value contains a space, please input correct value.");
                     output = false;
                 }
-                else if (IsNullOrEmpty(input) == true)
+                else if (string.IsNullOrEmpty(input) == true)
                 {
                     Console.WriteLine("[!] Input value is only enter, please input correct value.");
                     output = false;
@@ -75,9 +67,7 @@ namespace MoviesPortal
             return output;
         }
 
-        public static bool IsNullOrEmpty(string value) => String.IsNullOrEmpty(value);
-
-        public static bool CheckThatInputPasswordMeetTheRequirements(string input)
+        public static bool CheckInputPassword(string input)
         {
             bool output;
             bool isSpecial = false;
@@ -130,7 +120,7 @@ namespace MoviesPortal
                     Console.WriteLine($"[!] Input value {input} not contains lower letter.");
                     output = false;
                 }
-                else if (IsNullOrEmpty(input) == true)
+                else if (string.IsNullOrEmpty(input) == true)
                 {
                     Console.WriteLine("[!] Input value is only enter, please input correct value.");
                     output = false;
@@ -163,5 +153,6 @@ namespace MoviesPortal
 
             return output;
         }
+
     }
 }
