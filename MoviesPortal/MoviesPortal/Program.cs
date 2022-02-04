@@ -8,9 +8,6 @@ using MoviesPortal.Menu;
 
 adminMenu.InitializeMenu();
 
-var _iOHelper = new IOHelper();
-
-
 LoginPanel loginPanel = new LoginPanel();
 loginPanel.ChooseOption();
 
