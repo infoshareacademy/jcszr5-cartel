@@ -13,7 +13,7 @@ namespace MoviesPortal.Data
 
             var json = JsonConvert.SerializeObject(user, Formatting.Indented);
             // to improve
-            File.AppendAllText(@"..\..\..\Database\usersNEW.json", Environment.NewLine + json);
+            File.WriteAllText(@"..\..\..\Database\users.json", json);
 
             Console.WriteLine($"User: {login} was added to database!");
         }
