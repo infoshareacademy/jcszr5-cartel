@@ -31,6 +31,7 @@ namespace MoviesPortal
                         IUserWriter regularUserWrite = new RegularUserService();
                         regularUserWrite.AddUser();
                         isChoosed = true;
+                        ChooseOption();
                         break;
 
                     case ConsoleKey.D3: // Load to admin account
