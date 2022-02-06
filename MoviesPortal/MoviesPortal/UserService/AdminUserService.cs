@@ -17,6 +17,7 @@ namespace MoviesPortal.UserService
             // Check input admin password with DB
             ValidateUser validateUser = new ValidateUser();
             validateUser.ValidateUserPassword(login);
+            LoginTyper.LoginType = "admin";
         }
     }
 }

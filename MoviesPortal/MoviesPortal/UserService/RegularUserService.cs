@@ -17,6 +17,7 @@ namespace MoviesPortal.UserService
             // Check input user password with DB
             ValidateUser validateUser = new ValidateUser();
             validateUser.ValidateUserPassword(login);
+            LoginTyper.LoginType = "user";
         }
 
         public void AddUser()
