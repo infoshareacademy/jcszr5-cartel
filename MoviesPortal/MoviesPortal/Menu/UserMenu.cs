@@ -24,14 +24,6 @@ namespace MoviesPortal
         }
 
 
-        // public List<string> selectionOptions = new List<string>()
-        // {
-        //     "Browse Movies",
-        //     "Search Movies",
-        //     "For Kids",
-        //     "Exit"
-        // };
-
         public List<string> browseOptions = new List<string>()
         {
             "By Title",
@@ -52,30 +44,36 @@ namespace MoviesPortal
 
         public void ListMainOptions()
         {
+            Console.WriteLine("\n========================================");
             var index = 1;
             foreach (var option in SelectionOptions)
             {
                 Console.WriteLine($"{index}. {option}");
                 index++;
             }
+            Console.WriteLine("\n========================================");
         }
         public void ListBrowseOptions()
         {
+            Console.WriteLine("\n========================================");
             var index = 1;
             foreach (var option in browseOptions)
             {
                 Console.WriteLine($"{index}. {option}");
                 index++;
             }
+            Console.WriteLine("\n========================================");
         }
         public void ListSearchOptions()
         {
+            Console.WriteLine("\n========================================");
             var index = 1;
             foreach (var option in searchOptions)
             {
                 Console.WriteLine($"{index}. {option}"); 
                 index++;
             }
+            Console.WriteLine("\n========================================");
         }
 
         public void GetUserChoiceInBrowseMenu()
