@@ -8,11 +8,9 @@ namespace MoviesPortal.BusinessLayer
 {
     public class MoviesService
     {
-        MovieStore _movieStore = new MovieStore();
-
         public void AddNewMovie(Movie newMovie)
         {
-            _movieStore.AddMovie(newMovie);
+            MovieStore.AddMovie(newMovie);
         }
 
     }
