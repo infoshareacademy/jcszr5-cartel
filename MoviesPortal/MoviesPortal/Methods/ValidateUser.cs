@@ -1,4 +1,5 @@
-﻿namespace MoviesPortal.Methods
+﻿using System.Threading;
+namespace MoviesPortal.Methods
 {
     public class ValidateUser
     {
@@ -50,9 +51,11 @@
                 {
                     if (password == input)
                     {
+                        Console.Clear();
                         Console.WriteLine($"[+] Inputted password matches with that in database.");
                         isMatch = true;
-
+                        Thread.Sleep(3000);
+                        Console.Clear();
                     }
                     else
                     {
