@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.DataLayer.Models
 {
-    internal class Director
+    public class Director : Person    
     {
+        public Director(string name, string surName) : base(name, surName)
+        {
+
+        }
     }
 }

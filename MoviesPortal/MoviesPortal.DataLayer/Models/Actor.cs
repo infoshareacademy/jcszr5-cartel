@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.DataLayer.Models
 {
-    internal class Actor
+    public class Actor : Person
     {
+        public Actor(string name, string surName) : base(name, surName)
+        {
+        }
     }
 }

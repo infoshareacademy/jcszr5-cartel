@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.DataLayer
 {
-    internal class DirectorsAgent
+    public class ActorsAgent
     {
-        static List<Director> _directors = new List<Director>();
+        static List<Actor>  _actors = new List<Actor>();
 
-        public static void AddActors(Director newDirector)
+        public static void AddActors(Actor newActor)
         {
-            _directors.Add(newDirector);
+            _actors.Add(newActor);
         }
     }
 }

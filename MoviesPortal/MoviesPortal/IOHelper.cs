@@ -1,4 +1,5 @@
 ﻿using MoviesPortal.BusinessLayer;
+using System.Globalization;
 
 public class IOHelper
 {
@@ -54,6 +55,24 @@ public class IOHelper
             Console.WriteLine("Film indystry existed roughly since 1900 y till now. Enter the correct year of production of the film");
             GetProductionYearFromUser(message);
         }
+        return result;
+    }
+
+    public DateTime GetDateTimeFromUser(string message)
+    {
+        string format = "dd/MM/yyyy";
+        DateTime result;
+
+        while (!DateTime.TryParseExact(
+            GetStringFromUser($"{message} [{format}]"),
+            format,
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
+            out result))
+        {
+            Console.WriteLine("Not an valid date. Try again...");
+        }
+
         return result;
     }
 
