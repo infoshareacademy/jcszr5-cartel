@@ -4,7 +4,7 @@ using System.Globalization;
 public class IOHelper
 {
 
-    MoviesService _moviesService = new MoviesService();
+    MovieStoreService _movieStoreService = new MovieStoreService();
 
     public string GetStringFromUser(string message)
     {
@@ -91,7 +91,7 @@ public class IOHelper
             // - add actor => adding new person,
             // - add actor from the list of persons in the system
         };
-        _moviesService.AddNewMovie(newMovie);
+        _movieStoreService.AddNewMovie(newMovie);
     }
 
     List<Person> AddPersonsList(string message)

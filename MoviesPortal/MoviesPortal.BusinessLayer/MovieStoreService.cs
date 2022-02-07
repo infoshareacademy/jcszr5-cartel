@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.BusinessLayer
 {
-    public class MoviesService
+    public class MovieStoreService
     {
         public void AddNewMovie(Movie newMovie)
         {
