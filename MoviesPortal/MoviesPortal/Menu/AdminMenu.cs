@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace MoviesPortal.Menu 
 {
     internal class AdminMenu :IMenu
@@ -45,7 +46,8 @@ namespace MoviesPortal.Menu
             switch (choice)
             {
                 case "1":
-                        ProgramService.AddNewMovie();
+                    ProgramService.AddNewMovie();
+                    SuccessMonit.DisplaySuccessAdnotation();
                     break;
 
                 case "2":
@@ -57,6 +59,7 @@ namespace MoviesPortal.Menu
                 case "4":
                     CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
                     ProgramService.AddPerson("", creativeRole.ToString(), creativeRole);
+                    SuccessMonit.DisplaySuccessAdnotation();
                     break;
   
                 case "5":
@@ -90,6 +93,7 @@ namespace MoviesPortal.Menu
                     break;
                 }
             }
+            InitializeMenu();
         }
 
         public void InitializeMenu()
