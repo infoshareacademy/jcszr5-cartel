@@ -8,7 +8,7 @@
         _movies.Add(newMovie);
     }
 
-    public List<Movie> GetMovies()
+    public static List<Movie> GetMovies()
     {
         return _movies.ToList();
     }

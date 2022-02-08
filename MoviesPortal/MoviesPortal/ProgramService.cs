@@ -10,34 +10,34 @@ namespace MoviesPortal
 {
     internal class ProgramService
     {
-        IOHelper _iOHelper = new();
-        MovieStoreService _movieStoreService = new();
-        CreativePersonAgencyService _creativePersonAgencyService = new();
+        IOHelper IOHelper = new();
+        MovieStoreService MovieStoreService = new();
+        CreativePersonAgencyService CreativePersonAgencyService = new();
 
         public void AddNewMovie()
         {
             var newMovie = new Movie()
             {
-                Title = _iOHelper.GetStringFromUser("Enter movie title: "),
+                Title = IOHelper.GetStringFromUser("Enter movie title: "),
                 Director = AddPersonsList("director", CreativeRole.Director),
-                Genre = _iOHelper.GetMovieGenre("Enter genre of the movie: "),
-                ProductionYear = _iOHelper.GetProductionYearFromUser("Enter year of production: "),
-                Description = _iOHelper.GetStringFromUser("Enter short description of the movie: "),
-                IsForKids = _iOHelper.GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
+                Genre = IOHelper.GetMovieGenre("Enter genre of the movie: "),
+                ProductionYear = IOHelper.GetProductionYearFromUser("Enter year of production: "),
+                Description = IOHelper.GetStringFromUser("Enter short description of the movie: "),
+                IsForKids = IOHelper.GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
                 ActorList = AddPersonsList("actor", CreativeRole.Actor)
             };
-            _movieStoreService.AddNewMovie(newMovie);
+            MovieStoreService.AddNewMovie(newMovie);
         }
 
         List<CreativePerson> AddPersonsList(string message, CreativeRole role)
         {
             List<CreativePerson> persons = new List<CreativePerson>();
             var index = "";
-            while (_iOHelper.GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
+            while (IOHelper.GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
             {
                 var person = AddPerson(index, message, role);
                 persons.Add(person);
-                _creativePersonAgencyService.AddCreativePerson(person);
+                CreativePersonAgencyService.AddCreativePerson(person);
                 index = "another";
             }
             return persons;
@@ -45,11 +45,31 @@ namespace MoviesPortal
 
         public CreativePerson AddPerson(string index, string message, CreativeRole role)
         {
-            var name = _iOHelper.GetStringFromUser($"Enter name of {index} {message}: ");
-            var surName = _iOHelper.GetStringFromUser($"Enter surname of {message}: ");
-            var dateOfBirth = _iOHelper.GetDateTimeFromUser($"Enter date of bith of {message}");
+            var name = IOHelper.GetStringFromUser($"Enter name of {index} {message}: ");
+            var surName = IOHelper.GetStringFromUser($"Enter surname of {message}: ");
+            var dateOfBirth = IOHelper.GetDateTimeFromUser($"Enter date of bith of {message}");
             var person = new CreativePerson(name, surName, dateOfBirth, role);
             return person;
+        }
+
+        public void PrintAllMovies()
+        {
+            var movies = MovieStoreService.GetAllMovies();
+            if (movies.Count == 0)
+            {
+                Console.WriteLine($"There are no movies in database!");
+                return;
+            }
+            else
+            {
+                var index = 1;
+                foreach (var movie in movies)
+                {
+                    Console.WriteLine($"{index}. tile: \"{movie.Title}\",  production year: {movie.ProductionYear}, director{movie.Director} \n");
+                    index++;
+                }
+            }
+            
         }
     }
 }

@@ -22,6 +22,7 @@ namespace MoviesPortal.Menu
                     "Add Actor/Director",
                     "Edit Actor/Director",
                     "Delete Actor/Director",
+                    "Print all movies from database",
                     "Exit" };
             }
         }
@@ -65,6 +66,10 @@ namespace MoviesPortal.Menu
                     break;
 
                 case "7":
+                    ProgramService.PrintAllMovies();
+                    break;
+
+                case "8":
                     Console.Clear();
                     Console.WriteLine("Are You sure? (y/n)");
                     string decision = Console.ReadLine();
