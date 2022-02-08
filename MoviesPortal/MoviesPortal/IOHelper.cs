@@ -1,9 +1,11 @@
 ﻿using MoviesPortal.BusinessLayer;
+using MoviesPortal.DataLayer;
+using System.Globalization;
 
 public class IOHelper
 {
 
-    MoviesService _moviesService = new MoviesService();
+    MovieStoreService _movieStoreService = new MovieStoreService();
 
     public string GetStringFromUser(string message)
     {
@@ -57,43 +59,55 @@ public class IOHelper
         return result;
     }
 
-    public void AddNewMovie()
+    public DateTime GetDateTimeFromUser(string message)
     {
-        var newMovie = new Movie()
-        {
-            Title = GetStringFromUser("Enter movie title: "),
-            Director = AddPersonsList("director"),
-            Genre = GetStringFromUser("Enter movie genre (action, adventure, animated, comedy, drama, fantasy, historical, horror, sciFi, thriller, western"),
-            ProductionYear = GetProductionYearFromUser("Enter year of production: "),
-            Description = GetStringFromUser("Enter short description of the movie: "),
-            IsForKids = GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
-            ActorList = AddPersonsList("actor")
-            //TODO:
-            // - add actor => adding new person,
-            // - add actor from the list of persons in the system
-        };
-        _moviesService.AddNewMovie(newMovie);
-    }
+        string format = "dd/MM/yyyy";
+        DateTime result;
 
-    List<Person> AddPersonsList(string message)
-    {
-        List<Person> persons = new List<Person>();
-        var index = "";
-        while (GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
+        while (!DateTime.TryParseExact(
+            GetStringFromUser($"{message} [{format}]"),
+            format,
+            CultureInfo.InvariantCulture,
+            DateTimeStyles.None,
+            out result))
         {
-            var person = AddPerson(index, message);
-            persons.Add(person);
-            index = "another";
+            Console.WriteLine("Not an valid date. Try again...");
         }
-        return persons;
+        return result;
     }
 
-    public Person AddPerson(string index, string message)
+    public Genre GetMovieGenre(string message)
+        {
+            var correctValues = "";
+
+            foreach (var genre in (Genre[])Enum.GetValues(typeof(Genre)))
+            {
+                correctValues += $"{genre}, ";
+            }
+
+            object result;
+            while (!Enum.TryParse(typeof(Genre), GetStringFromUser($"{message} ({correctValues}):"), out result))
+            {
+                Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
+            }
+            return (Genre)result;
+        }
+
+    public CreativeRole GetCreativePersoneRole(string message)
     {
-        var name = GetStringFromUser($"Enter name of {index} {message}: ");
-        var surName = GetStringFromUser($"Enter surname of {message}: ");
-        var person = new Person(name, surName);
-        return person;
+        var correctValues = "";
+
+        foreach (var role in (CreativeRole[])Enum.GetValues(typeof(CreativeRole)))
+        {
+            correctValues += $"{role}, ";
+        }
+
+        object result;
+        while (!Enum.TryParse(typeof(CreativeRole), GetStringFromUser($"{message} ({correctValues}):"), out result))
+        {
+            Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
+        }
+        return (CreativeRole)result;
     }
 
-}
+}Crativ
