@@ -13,5 +13,9 @@ namespace MoviesPortal.BusinessLayer
             MovieStore.AddMovie(newMovie);
         }
 
+        public List<Movie> GetAllMovies()
+        {
+            return MovieStore.GetMovies();
+        }
     }
 }
