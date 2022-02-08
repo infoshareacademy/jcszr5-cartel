@@ -1,4 +1,5 @@
 ﻿using MoviesPortal.BusinessLayer;
+using MoviesPortal.DataLayer;
 using System.Globalization;
 
 public class IOHelper
@@ -72,47 +73,41 @@ public class IOHelper
         {
             Console.WriteLine("Not an valid date. Try again...");
         }
-
         return result;
     }
 
-    public void AddNewMovie()
-    {
-        var newMovie = new Movie()
+    public Genre GetMovieGenre(string message)
         {
-            Title = GetStringFromUser("Enter movie title: "),
-            Director = AddPersonsList("director"),
-            Genre = GetStringFromUser("Enter movie genre (action, adventure, animated, comedy, drama, fantasy, historical, horror, sciFi, thriller, western"),
-            ProductionYear = GetProductionYearFromUser("Enter year of production: "),
-            Description = GetStringFromUser("Enter short description of the movie: "),
-            IsForKids = GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
-            ActorList = AddPersonsList("actor")
-            //TODO:
-            // - add actor => adding new person,
-            // - add actor from the list of persons in the system
-        };
-        _movieStoreService.AddNewMovie(newMovie);
-    }
+            var correctValues = "";
 
-    List<Person> AddPersonsList(string message)
-    {
-        List<Person> persons = new List<Person>();
-        var index = "";
-        while (GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
-        {
-            var person = AddPerson(index, message);
-            persons.Add(person);
-            index = "another";
+            foreach (var genre in (Genre[])Enum.GetValues(typeof(Genre)))
+            {
+                correctValues += $"{genre}, ";
+            }
+
+            object result;
+            while (!Enum.TryParse(typeof(Genre), GetStringFromUser($"{message} ({correctValues}):"), out result))
+            {
+                Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
+            }
+            return (Genre)result;
         }
-        return persons;
-    }
 
-    public Person AddPerson(string index, string message)
+    public CreativeRole GetCreativePersoneRole(string message)
     {
-        var name = GetStringFromUser($"Enter name of {index} {message}: ");
-        var surName = GetStringFromUser($"Enter surname of {message}: ");
-        var person = new Person(name, surName);
-        return person;
+        var correctValues = "";
+
+        foreach (var role in (CreativeRole[])Enum.GetValues(typeof(CreativeRole)))
+        {
+            correctValues += $"{role}, ";
+        }
+
+        object result;
+        while (!Enum.TryParse(typeof(CreativeRole), GetStringFromUser($"{message} ({correctValues}):"), out result))
+        {
+            Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
+        }
+        return (CreativeRole)result;
     }
 
-}
+}Crativ

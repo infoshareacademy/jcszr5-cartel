@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoviesPortal.DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,7 @@ namespace MoviesPortal.Menu
 {
     internal class AdminMenu :IMenu
     {
+        public ProgramService ProgramService = new ProgramService();
         public IOHelper ioHelper = new IOHelper();
         public List<string> SelectionOptions
         {
@@ -42,7 +44,7 @@ namespace MoviesPortal.Menu
             switch (choice)
             {
                 case "1":
-                        ioHelper.AddNewMovie();
+                        ProgramService.AddNewMovie();
                     break;
 
                 case "2":
@@ -52,6 +54,8 @@ namespace MoviesPortal.Menu
                     break;
 
                 case "4":
+                    CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
+                    ProgramService.AddPerson("", creativeRole.ToString(), creativeRole);
                     break;
   
                 case "5":
