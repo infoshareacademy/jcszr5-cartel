@@ -17,5 +17,10 @@ namespace MoviesPortal.BusinessLayer
         {
             return MovieStore.GetMovies();
         }
+
+        public void DeleteMovie(int movieIndex)
+        {
+            MovieStore.DeleteMovie(movieIndex);
+        }
     }
 }

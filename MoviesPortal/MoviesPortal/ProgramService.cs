@@ -23,17 +23,20 @@ namespace MoviesPortal
                 Genre = IOHelper.GetMovieGenre("Enter genre of the movie: "),
                 ProductionYear = IOHelper.GetProductionYearFromUser("Enter year of production: "),
                 Description = IOHelper.GetStringFromUser("Enter short description of the movie: "),
-                IsForKids = IOHelper.GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
+                IsForKids = IOHelper.GetUserBinaryChoice("Is the movie alloved for children? ( Y / N ): "), 
                 ActorList = AddPersonsList("actor", CreativeRole.Actor)
             };
             MovieStoreService.AddNewMovie(newMovie);
+            Console.Clear();
+            Console.WriteLine("Succes! New movie succesfully added!\n" );
+            Thread.Sleep(1500);
         }
 
         List<CreativePerson> AddPersonsList(string message, CreativeRole role)
         {
             List<CreativePerson> persons = new List<CreativePerson>();
             var index = "";
-            while (IOHelper.GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
+            while(IOHelper.GetUserBinaryChoice($"Do you want to add {index} {message}? ( Y / N)"))
             {
                 var person = AddPerson(index, message, role);
                 persons.Add(person);

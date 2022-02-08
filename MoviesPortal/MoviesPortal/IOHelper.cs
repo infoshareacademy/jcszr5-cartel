@@ -110,4 +110,27 @@ public class IOHelper
         return (CreativeRole)result;
     }
 
+    public bool GetUserBinaryChoice(string message)
+    {
+       while(true)
+        {
+            string userChoice = GetStringFromUser(message);
+
+            if (userChoice == "Y" || userChoice == "y")
+            {
+                return true;
+            }
+            else if (userChoice == "N" || userChoice == "n")
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("not a valid choice! Try again.");
+                continue;
+            }
+        }
+        
+    }
+
 }
