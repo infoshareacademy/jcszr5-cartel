@@ -109,5 +109,4 @@ public class IOHelper
         }
         return (CreativeRole)result;
     }
-
-}Crativ
+}
