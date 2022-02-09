@@ -15,10 +15,14 @@ namespace MoviesPortal.BusinessLayer
             CreativePersonAgency.AddCreativePerson(creativePerson);
         }
 
-        public List<CreativePerson> GetCreativePerson(CreativeRole role)
+        public List<CreativePerson> GetCreativePersonsListByRole(CreativeRole role)
         {
-            return CreativePersonAgency.GetCreativePersonList(role);
+            return CreativePersonAgency.GetCreativePersonsList(role);
         }
 
+        public void DeleteCreativePerson(CreativePerson personToDelete)
+        {
+            CreativePersonAgency.DeletePerson(personToDelete);
+        }
     }
 }

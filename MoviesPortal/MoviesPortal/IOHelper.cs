@@ -64,14 +64,11 @@ public class IOHelper
         string format = "dd/MM/yyyy";
         DateTime result;
 
-        while (!DateTime.TryParseExact(
-            GetStringFromUser($"{message} [{format}]"),
-            format,
-            CultureInfo.InvariantCulture,
-            DateTimeStyles.None,
-            out result))
+        while (!DateTime.TryParseExact(GetStringFromUser($"{message} [{format}]"), format, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out result) || result > DateTime.Now)
         {
-            Console.WriteLine("Not an valid date. Try again...");
+            Console.WriteLine("Not an valid date. Try again...\n");
+            Thread.Sleep(1500);
         }
         return result;
     }

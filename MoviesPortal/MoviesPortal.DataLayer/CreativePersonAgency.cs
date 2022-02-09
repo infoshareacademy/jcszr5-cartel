@@ -12,8 +12,17 @@ namespace MoviesPortal.DataLayer
             CreativePersonList.Add(person);
         }
 
+        public static void DeletePerson(CreativePerson personToDelate)
+        {
+            CreativePersonList.Remove(personToDelate);
+            Console.WriteLine($"{personToDelate.Role} - {personToDelate.Name}  {personToDelate.SurName}  has been sucessfully removed");
+            Thread.Sleep(2000);
+            Console.Clear();
+        }
 
-        public  static List<CreativePerson> GetCreativePersonList(CreativeRole role)
+
+
+        public  static List<CreativePerson> GetCreativePersonsList(CreativeRole role)
         {
             List<CreativePerson> creativePerson = new();
 

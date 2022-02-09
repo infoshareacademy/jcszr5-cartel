@@ -13,6 +13,7 @@ namespace MoviesPortal.Menu
     {
         public ProgramService ProgramService = new();
         public MovieStoreService MovieStoreService = new();
+        public CreativePersonAgencyService CreativePersonAgencyService = new();
         public IOHelper ioHelper = new IOHelper();
         public List<string> SelectionOptions
         {
@@ -25,7 +26,8 @@ namespace MoviesPortal.Menu
                     "Add Actor/Director",
                     "Edit Actor/Director",
                     "Delete Actor/Director",
-                    "Print all movies from database",
+                    "Print a list of all movies from database",
+                    "Print a list f all Actors/Directors from database",
                     "Exit" };
             }
         }
@@ -68,7 +70,7 @@ namespace MoviesPortal.Menu
                     Console.Clear();
                     CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
                     ProgramService.AddPerson("", creativeRole.ToString(), creativeRole);
-                    Console.WriteLine($"Succes! New {creativeRole.ToString()} succesfully added!");
+                    Console.WriteLine($"Succes! New {creativeRole} succesfully added!");
                     Thread.Sleep(1500);
                     Console.Clear();
                     break;
@@ -77,6 +79,10 @@ namespace MoviesPortal.Menu
                     break;
 
                 case "6":
+                    Console.Clear();
+                    CreativeRole creativeRoleToDelete = ioHelper.GetCreativePersoneRole($"From which profession do you want to delete?: ");
+                    ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToDelete);
+                    ProgramService.DeleteCreativePerson(creativeRoleToDelete);
                     break;
 
                 case "7":
@@ -87,6 +93,12 @@ namespace MoviesPortal.Menu
                     break;
 
                 case "8":
+                    CreativeRole creativeRoleToList = ioHelper.GetCreativePersoneRole($"From which profession do you want to list?: ");
+                    ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToList);
+                    Thread.Sleep(1500);
+                    break;
+
+                case "9":
                     Console.Clear();
                     Console.WriteLine("Are You sure? (y/n)");
                     string decision = Console.ReadLine();
