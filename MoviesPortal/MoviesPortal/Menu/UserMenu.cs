@@ -5,6 +5,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using MoviesPortal.Menu;
+using MoviesPortal.BusinessLayer.SearchEngine;
+using MoviesPortal.DataLayer;
 
 namespace MoviesPortal
 {
@@ -116,20 +118,22 @@ namespace MoviesPortal
         }
         public void GetUserChoiceInSearchMenu()
         {
+            IOHelper iOHelper = new();
+            
             Console.WriteLine("\n Choose option by type correct number:");
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine();            
             switch (choice)
             {
                 case "1":
                 {
-                    //search films by title
-                    Console.WriteLine("Tutaj będzie wyszukiwarka");
+                        ISearch byTitle = new ByTitle();
+                        var searchResults = byTitle.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
                     break;
                 }
                 case "2":
                 {
-                    //search films by genre
-                    Console.WriteLine("Tutaj będzie wyszukiwarka");
+                        ISearch byGenre = new ByGenre();
+                        var searchResults = byGenre.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
                     break;
                 }
                 case "3":

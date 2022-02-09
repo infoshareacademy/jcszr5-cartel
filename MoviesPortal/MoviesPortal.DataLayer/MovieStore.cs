@@ -1,4 +1,4 @@
-﻿public class Movie
+﻿public class MovieStore
 {
 
     private static List<Movie> _movies = new List<Movie>();

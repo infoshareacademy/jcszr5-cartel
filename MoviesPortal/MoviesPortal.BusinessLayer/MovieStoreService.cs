@@ -10,17 +10,17 @@ namespace MoviesPortal.BusinessLayer
     {
         public void AddNewMovie(Movie newMovie)
         {
-            Movie.AddMovie(newMovie);
+            MovieStore.AddMovie(newMovie);
         }
 
         public List<Movie> GetAllMovies()
         {
-            return Movie.GetMovies();
+            return MovieStore.GetMovies();
         }
 
         public void DeleteMovie(int movieIndex)
         {
-            Movie.DeleteMovie(movieIndex);
+            MovieStore.DeleteMovie(movieIndex);
         }
     }
 }

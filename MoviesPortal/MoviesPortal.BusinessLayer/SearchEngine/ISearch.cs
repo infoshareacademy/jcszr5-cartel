@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.BusinessLayer.SearchEngine
 {
-    internal interface ISearch
+    public interface ISearch
     {
         List<Movie> Search(string input);
     }
