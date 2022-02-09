@@ -10,8 +10,4 @@
     <ProjectReference Include="..\MoviesPortal.DataLayer\MoviesPortal.DataLayer.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="SearchEngine\" />
-  </ItemGroup>
-
 </Project>

@@ -114,7 +114,7 @@ namespace MoviesPortal.Menu
 
                 default:
                 {
-                    Console.WriteLine("Please type correct number (from 1 to 7)");
+                    Console.WriteLine("Please type correct number (from 1 to 9)");
                     GetUserChoiceInMainMenu();
                     break;
                 }
