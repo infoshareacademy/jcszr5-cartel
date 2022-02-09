@@ -33,8 +33,8 @@ namespace MoviesPortal.DataLayer.Models
             Name = name;
             Password = password;
             UserRole = Role.User;
-            Id = nrOfInstances;
             nrOfInstances++;
+            Id = nrOfInstances;
         }
 
         public void GetUserDetails()

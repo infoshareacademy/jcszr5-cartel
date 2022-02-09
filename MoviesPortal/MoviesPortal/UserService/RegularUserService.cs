@@ -24,7 +24,6 @@ namespace MoviesPortal.UserService
         {
             // Read BD with users accounts from json file
             var database = ReadData.ReadUsersFromFile();
-            int id = database.Count();
 
             // Check input user login with DB and if no exist is - create
             string login = ValidateUser.CreateUserLogin(database);
@@ -34,7 +33,7 @@ namespace MoviesPortal.UserService
 
             // Write to DB new account parameters = id, login and password
             WriteData writeData = new WriteData();
-            writeData.WriteUserToFile(id, login, password);
+            writeData.WriteUserToFile(login, password);
         }
     }
 }

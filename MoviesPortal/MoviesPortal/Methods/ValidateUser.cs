@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using MoviesPortal.DataLayer.Models;
+using System.Threading;
 namespace MoviesPortal.Methods
 {
     public class ValidateUser
@@ -71,11 +72,12 @@ namespace MoviesPortal.Methods
 
         public static string CreateUserLogin(List<User> Users)
         {
-            bool isMatch = false;
+            bool isMatch;
             string input;
 
             do
             {
+                isMatch = false;
                 Console.WriteLine(">>> Create your new login!\n(if you type 'help' you will see the rules with should contains your login).");
                 input = Console.ReadLine();
 
