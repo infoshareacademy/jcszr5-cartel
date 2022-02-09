@@ -64,14 +64,11 @@ public class IOHelper
         string format = "dd/MM/yyyy";
         DateTime result;
 
-        while (!DateTime.TryParseExact(
-            GetStringFromUser($"{message} [{format}]"),
-            format,
-            CultureInfo.InvariantCulture,
-            DateTimeStyles.None,
-            out result))
+        while (!DateTime.TryParseExact(GetStringFromUser($"{message} [{format}]"), format, CultureInfo.InvariantCulture,
+                DateTimeStyles.None, out result) || result > DateTime.Now)
         {
-            Console.WriteLine("Not an valid date. Try again...");
+            Console.WriteLine("Not an valid date. Try again...\n");
+            Thread.Sleep(1500);
         }
         return result;
     }
@@ -108,6 +105,29 @@ public class IOHelper
             Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
         }
         return (CreativeRole)result;
+    }
+
+    public bool GetUserBinaryChoice(string message)
+    {
+       while(true)
+        {
+            string userChoice = GetStringFromUser(message);
+
+            if (userChoice == "Y" || userChoice == "y")
+            {
+                return true;
+            }
+            else if (userChoice == "N" || userChoice == "n")
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("not a valid choice! Try again.");
+                continue;
+            }
+        }
+        
     }
 
 }

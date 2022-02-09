@@ -23,21 +23,23 @@ namespace MoviesPortal
                 Genre = IOHelper.GetMovieGenre("Enter genre of the movie: "),
                 ProductionYear = IOHelper.GetProductionYearFromUser("Enter year of production: "),
                 Description = IOHelper.GetStringFromUser("Enter short description of the movie: "),
-                IsForKids = IOHelper.GetBoolFromUser("Is the movie alloved for children? (true/false): "),  //TODO change to Y/N
+                IsForKids = IOHelper.GetUserBinaryChoice("Is the movie alloved for children? ( Y / N ): "), 
                 ActorList = AddPersonsList("actor", CreativeRole.Actor)
             };
             MovieStoreService.AddNewMovie(newMovie);
+            Console.Clear();
+            Console.WriteLine("Succes! New movie succesfully added!\n" );
+            Thread.Sleep(1500);
         }
 
         List<CreativePerson> AddPersonsList(string message, CreativeRole role)
         {
             List<CreativePerson> persons = new List<CreativePerson>();
             var index = "";
-            while (IOHelper.GetBoolFromUser($"Do you want to add {index} {message}? (true/false)"))
+            while(IOHelper.GetUserBinaryChoice($"Do you want to add {index} {message}? ( Y / N)"))
             {
                 var person = AddPerson(index, message, role);
                 persons.Add(person);
-                CreativePersonAgencyService.AddCreativePerson(person);
                 index = "another";
             }
             return persons;
@@ -49,6 +51,7 @@ namespace MoviesPortal
             var surName = IOHelper.GetStringFromUser($"Enter surname of {message}: ");
             var dateOfBirth = IOHelper.GetDateTimeFromUser($"Enter date of bith of {message}");
             var person = new CreativePerson(name, surName, dateOfBirth, role);
+            CreativePersonAgencyService.AddCreativePerson(person);
             return person;
         }
 
@@ -70,6 +73,38 @@ namespace MoviesPortal
                 }
             }
             
+        }
+
+        public void PrintAllCreativePersonsListByRole(CreativeRole creativeRoleToDelete)
+        {
+            List<CreativePerson> creativePersonsByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+            if(creativePersonsByRole.Count == 0)
+            {
+                Console.WriteLine($"There is no {creativeRoleToDelete} in database!");
+                Thread.Sleep(1500);
+                return;
+            }
+            int index = 1;
+            Console.WriteLine($"\n List of all {creativeRoleToDelete}s in database:\n");
+            foreach(CreativePerson person in creativePersonsByRole)
+            {
+                Console.WriteLine($"{index}. {person.Name}  {person.SurName} {person.DateOfBirth}");
+                index++;
+            }
+            Console.WriteLine("\n");
+        }
+
+        public void DeleteCreativePerson(CreativeRole creativeRoleToDelete)
+        {
+            List<CreativePerson> creativePersonsByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+            if (creativePersonsByRole.Count > 0)
+            {
+                int indexOfPersonToDelate = IOHelper.GetIntFromUser($"Enter index number of {creativeRoleToDelete} you want to delate") -1 ;
+                var CreativePersonListByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+                var personToDelate = CreativePersonListByRole[indexOfPersonToDelate];
+                CreativePersonAgencyService.DeleteCreativePerson(personToDelate);
+            }
+            return;  
         }
     }
 }
