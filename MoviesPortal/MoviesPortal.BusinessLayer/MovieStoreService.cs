@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.Json;
+using MoviesPortal.DataLayer.Models;
+
 
 namespace MoviesPortal.BusinessLayer
 {
     public class MovieStoreService
     {
+        private string moviesPath = Config.moviesDbPath;
+
         public void AddNewMovie(Movie newMovie)
         {
             MovieStore.AddMovie(newMovie);
@@ -21,6 +26,36 @@ namespace MoviesPortal.BusinessLayer
         public void DeleteMovie(int movieIndex)
         {
             MovieStore.DeleteMovie(movieIndex);
+        }
+        /// <summary>
+        /// Saves contents of Movie Store to Json
+        /// </summary>
+        public void SaveMoviesToJson()
+        {
+            IList<Movie> moviesToSave = MovieStore.GetMovies();
+            var json = JsonSerializer.Serialize(moviesToSave);
+            File.WriteAllText(moviesPath, json);
+        }
+
+        /// <summary>
+        /// Clears contents of Movies Store and replaces it with loaded movies from Json
+        /// </summary>
+        public void LoadMoviesFromJson()
+        {
+            MovieStore.ClearStoreContent();
+            string jsonFromFile = File.ReadAllText(moviesPath);
+            List<Movie> moviesFromFile = JsonSerializer.Deserialize<List<Movie>>(jsonFromFile);
+            if (moviesFromFile.Count > 0)
+            {
+                foreach (var movie in moviesFromFile)
+                {
+                    MovieStore.AddMovie(movie);
+                }
+            }
+            else
+            {
+                Console.WriteLine("There is nothing to load");
+            }
         }
     }
 }
