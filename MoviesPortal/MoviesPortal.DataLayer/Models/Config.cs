@@ -9,5 +9,6 @@ namespace MoviesPortal.DataLayer.Models
     public class Config
     {
         public const string moviesDbPath  = @"..\..\..\Database\moviesDB.json";
+        public const string creativePersonsDbPath = @"..\..\..\Database\moviesDB.json";
     }
 }
