@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoviesPortal.DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,11 @@ namespace MoviesPortal.BusinessLayer
         public void DeleteMovie(int movieIndex)
         {
             MovieStore.DeleteMovie(movieIndex);
+        }
+
+        public List<Movie> GetMoviesByGenre(Genre movieGenre)
+        {
+            return MovieStore.GetMoviesByGenre(movieGenre);
         }
     }
 }
