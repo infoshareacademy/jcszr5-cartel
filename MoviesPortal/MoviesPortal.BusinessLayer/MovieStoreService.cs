@@ -28,15 +28,13 @@ namespace MoviesPortal.BusinessLayer
         {
             MovieStore.DeleteMovie(movieIndex);
         }
-<<<<<<< HEAD
+
 
         public List<Movie> GetMoviesByGenre(Genre movieGenre)
         {
             return MovieStore.GetMoviesByGenre(movieGenre);
-=======
-        /// <summary>
-        /// Saves contents of Movie Store to Json
-        /// </summary>
+        }
+
         public void SaveMoviesToJson()
         {
             IList<Movie> moviesToSave = MovieStore.GetMovies();
@@ -44,9 +42,7 @@ namespace MoviesPortal.BusinessLayer
             File.WriteAllText(moviesPath, json);
         }
 
-        /// <summary>
-        /// Clears contents of Movies Store and replaces it with loaded movies from Json
-        /// </summary>
+
         public void LoadMoviesFromJson()
         {
             MovieStore.ClearStoreContent();
@@ -63,7 +59,6 @@ namespace MoviesPortal.BusinessLayer
             {
                 Console.WriteLine("There is nothing to load");
             }
->>>>>>> e1e9ff2d34e965a4babdd5f5ad5f56a7fe22d4ad
         }
     }
 }
