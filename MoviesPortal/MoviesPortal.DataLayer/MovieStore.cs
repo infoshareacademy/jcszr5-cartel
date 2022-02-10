@@ -13,6 +13,11 @@
         return _movies.ToList();
     }
 
+    public static void ClearStoreContent()
+    {
+        _movies.Clear();
+    }
+
     public static void DeleteMovie(int movieIndex)
     {
         var movie = _movies[movieIndex].Title.ToString();
