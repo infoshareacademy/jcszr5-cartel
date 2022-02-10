@@ -109,14 +109,23 @@ namespace MoviesPortal
 
         public void PrintMoviesByGenre(Genre movieGenre)
         {
-            Console.WriteLine($"\nMovies of {movieGenre} genre:");
             int index = 1;
             List<Movie> moviesByGenreList = _movieStoreService.GetMoviesByGenre(movieGenre);
-            foreach (Movie movie in moviesByGenreList)
+            if (moviesByGenreList.Count == 0)
             {
-                Console.WriteLine($"{index}. \"{movie.Title}\" director: {movie.Director} prod. {movie.ProductionYear} \n");
-                index++;
+                Console.WriteLine($"There are no movies in database!");
+                return;
             }
+            else
+            {
+                Console.WriteLine($"\nMovies of {movieGenre} genre:");
+                foreach (Movie movie in moviesByGenreList)
+                {
+                    Console.WriteLine($"{index}. \"{movie.Title}\" director: {movie.Director} prod. {movie.ProductionYear} \n");
+                    index++;
+                }
+            }
+          
         }
     }
 }
