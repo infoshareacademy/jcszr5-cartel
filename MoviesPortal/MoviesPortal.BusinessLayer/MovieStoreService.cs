@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MoviesPortal.DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,9 +28,13 @@ namespace MoviesPortal.BusinessLayer
         {
             MovieStore.DeleteMovie(movieIndex);
         }
-        /// <summary>
-        /// Saves contents of Movie Store to Json
-        /// </summary>
+
+
+        public List<Movie> GetMoviesByGenre(Genre movieGenre)
+        {
+            return MovieStore.GetMoviesByGenre(movieGenre);
+        }
+
         public void SaveMoviesToJson()
         {
             var writeIndentedOption = new JsonSerializerOptions { WriteIndented = true }; //formatuj plik Json
@@ -38,9 +43,7 @@ namespace MoviesPortal.BusinessLayer
             File.WriteAllText(moviesPath, json);
         }
 
-        /// <summary>
-        /// Clears contents of Movies Store and replaces it with loaded movies from Json
-        /// </summary>
+
         public void LoadMoviesFromJson()
         {
             MovieStore.ClearStoreContent();

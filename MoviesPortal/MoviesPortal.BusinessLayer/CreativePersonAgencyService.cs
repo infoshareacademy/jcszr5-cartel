@@ -24,5 +24,6 @@ namespace MoviesPortal.BusinessLayer
         {
             CreativePersonAgency.DeletePerson(personToDelete);
         }
+
     }
 }

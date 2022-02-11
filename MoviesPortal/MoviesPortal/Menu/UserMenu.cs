@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using MoviesPortal.DataLayer;
 using MoviesPortal.Menu;
 using MoviesPortal.BusinessLayer.SearchEngine;
 using MoviesPortal.DataLayer;
@@ -12,6 +13,8 @@ namespace MoviesPortal
 {
     public class UserMenu : IMenu
     {
+        IOHelper _iOHelper = new();
+        ProgramService _programService = new(); 
 
         public List<string> SelectionOptions
         {
@@ -93,7 +96,9 @@ namespace MoviesPortal
                 case "2":
                 {
                     //list films by genre
-                    Console.WriteLine("your movies will be here, sorted by genre");
+                    Genre userChoiceGenre = _iOHelper.GetMovieGenre("Chose movie genre you are looking for: ");
+                    _programService.PrintMoviesByGenre(userChoiceGenre);
+                        Thread.Sleep(1500);
                     break;
                     }
                 case "3":

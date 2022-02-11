@@ -10,23 +10,23 @@ namespace MoviesPortal
 {
     internal class ProgramService
     {
-        IOHelper IOHelper = new();
-        MovieStoreService MovieStoreService = new();
-        CreativePersonAgencyService CreativePersonAgencyService = new();
+        IOHelper _iOHelper = new();
+        MovieStoreService _movieStoreService = new();
+        CreativePersonAgencyService _creativePersonAgencyService = new();
 
         public void AddNewMovie()
         {
             var newMovie = new Movie()
             {
-                Title = IOHelper.GetStringFromUser("Enter movie title: "),
+                Title = _iOHelper.GetStringFromUser("Enter movie title: "),
                 Director = AddPersonsList("director", CreativeRole.Director),
-                Genre = IOHelper.GetMovieGenre("Enter genre of the movie: "),
-                ProductionYear = IOHelper.GetProductionYearFromUser("Enter year of production: "),
-                Description = IOHelper.GetStringFromUser("Enter short description of the movie: "),
-                IsForKids = IOHelper.GetUserBinaryChoice("Is the movie alloved for children? ( Y / N ): "), 
+                Genre = _iOHelper.GetMovieGenre("Enter genre of the movie: "),
+                ProductionYear = _iOHelper.GetProductionYearFromUser("Enter year of production: "),
+                Description = _iOHelper.GetStringFromUser("Enter short description of the movie: "),
+                IsForKids = _iOHelper.GetUserBinaryChoice("Is the movie alloved for children? ( Y / N ): "), 
                 ActorList = AddPersonsList("actor", CreativeRole.Actor)
             };
-            MovieStoreService.AddNewMovie(newMovie);
+            _movieStoreService.AddNewMovie(newMovie);
             Console.Clear();
             Console.WriteLine("Succes! New movie succesfully added!\n" );
             Thread.Sleep(1500);
@@ -36,7 +36,7 @@ namespace MoviesPortal
         {
             List<CreativePerson> persons = new List<CreativePerson>();
             var index = "";
-            while(IOHelper.GetUserBinaryChoice($"Do you want to add {index} {message}? ( Y / N)"))
+            while(_iOHelper.GetUserBinaryChoice($"Do you want to add {index} {message}? ( Y / N)"))
             {
                 var person = AddPerson(index, message, role);
                 persons.Add(person);
@@ -47,17 +47,17 @@ namespace MoviesPortal
 
         public CreativePerson AddPerson(string index, string message, CreativeRole role)
         {
-            var name = IOHelper.GetStringFromUser($"Enter name of {index} {message}: ");
-            var surName = IOHelper.GetStringFromUser($"Enter surname of {message}: ");
-            var dateOfBirth = IOHelper.GetDateTimeFromUser($"Enter date of bith of {message}");
+            var name = _iOHelper.GetStringFromUser($"Enter name of {index} {message}: ");
+            var surName = _iOHelper.GetStringFromUser($"Enter surname of {message}: ");
+            var dateOfBirth = _iOHelper.GetDateTimeFromUser($"Enter date of bith of {message}");
             var person = new CreativePerson(name, surName, dateOfBirth, role);
-            CreativePersonAgencyService.AddCreativePerson(person);
+            _creativePersonAgencyService.AddCreativePerson(person);
             return person;
         }
 
         public void PrintAllMovies()
         {
-            var movies = MovieStoreService.GetAllMovies();
+            var movies = _movieStoreService.GetAllMovies();
             if (movies.Count == 0)
             {
                 Console.WriteLine($"There are no movies in database!");
@@ -77,7 +77,7 @@ namespace MoviesPortal
 
         public void PrintAllCreativePersonsListByRole(CreativeRole creativeRoleToDelete)
         {
-            List<CreativePerson> creativePersonsByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+            List<CreativePerson> creativePersonsByRole = _creativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
             if(creativePersonsByRole.Count == 0)
             {
                 Console.WriteLine($"There is no {creativeRoleToDelete} in database!");
@@ -96,15 +96,36 @@ namespace MoviesPortal
 
         public void DeleteCreativePerson(CreativeRole creativeRoleToDelete)
         {
-            List<CreativePerson> creativePersonsByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+            List<CreativePerson> creativePersonsByRole = _creativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
             if (creativePersonsByRole.Count > 0)
             {
-                int indexOfPersonToDelate = IOHelper.GetIntFromUser($"Enter index number of {creativeRoleToDelete} you want to delate") -1 ;
-                var CreativePersonListByRole = CreativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
+                int indexOfPersonToDelate = _iOHelper.GetIntFromUser($"Enter index number of {creativeRoleToDelete} you want to delate") -1 ;
+                var CreativePersonListByRole = _creativePersonAgencyService.GetCreativePersonsListByRole(creativeRoleToDelete);
                 var personToDelate = CreativePersonListByRole[indexOfPersonToDelate];
-                CreativePersonAgencyService.DeleteCreativePerson(personToDelate);
+                _creativePersonAgencyService.DeleteCreativePerson(personToDelate);
             }
             return;  
+        }
+
+        public void PrintMoviesByGenre(Genre movieGenre)
+        {
+            int index = 1;
+            List<Movie> moviesByGenreList = _movieStoreService.GetMoviesByGenre(movieGenre);
+            if (moviesByGenreList.Count == 0)
+            {
+                Console.WriteLine($"There are no movies in database!");
+                return;
+            }
+            else
+            {
+                Console.WriteLine($"\nMovies of {movieGenre} genre:");
+                foreach (Movie movie in moviesByGenreList)
+                {
+                    Console.WriteLine($"{index}. \"{movie.Title}\" director: {movie.Director} prod. {movie.ProductionYear} \n");
+                    index++;
+                }
+            }
+          
         }
     }
 }

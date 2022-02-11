@@ -107,6 +107,24 @@ public class IOHelper
         return (CreativeRole)result;
     }
 
+    public Genre GetMovieGenreFromUser(string message)
+    {
+        var correctValues = "";
+
+        foreach (var genre in (Genre[])Enum.GetValues(typeof(Genre)))
+        {
+            correctValues += $"{genre}, ";
+        }
+
+        object result;
+        while (!Enum.TryParse(typeof(Genre), GetStringFromUser($"{message} ({correctValues}):"), out result))
+        {
+            Console.WriteLine("Not a correct value - use one from the brackets. Try again...");
+        }
+        return (Genre)result;
+    }
+
+
     public bool GetUserBinaryChoice(string message)
     {
        while(true)

@@ -1,4 +1,6 @@
-﻿public class MovieStore
+﻿using MoviesPortal.DataLayer;
+
+public class MovieStore
 {
 
     private static List<Movie> _movies = new List<Movie>();
@@ -24,5 +26,22 @@
         _movies.RemoveAt(movieIndex);
         Console.WriteLine($"The movie \"{movie}\" has been succesfully delated. ");
         Thread.Sleep(2000);
+    }
+
+    public static List<Movie> GetMoviesByGenre(Genre genre)
+    {
+        List<Movie> moviesByGenre = new();
+        foreach (Movie movie in _movies)
+        {
+            if (movie.Genre == genre)
+            {
+                moviesByGenre.Add(movie);
+            }
+            else
+            {
+                continue;
+            }
+        }
+        return moviesByGenre;
     }
 }
