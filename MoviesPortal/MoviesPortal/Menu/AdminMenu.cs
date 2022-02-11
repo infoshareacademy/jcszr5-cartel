@@ -53,6 +53,8 @@ namespace MoviesPortal.Menu
                     Console.Clear();
                     Console.WriteLine($"Adding new movie to database: \n");
                     ProgramService.AddNewMovie();
+                    MovieStoreService database = new();
+                    database.SaveMoviesToJson();
                     break;
 
                 case "2":

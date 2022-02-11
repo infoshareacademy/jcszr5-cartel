@@ -7,7 +7,7 @@ using MoviesPortal.BusinessLayer;
 
 namespace MoviesPortal.BusinessLayer.SearchEngine
 {
-    public class ByGenre : ISearch
+    public class ByGenre : ISearch, IPrinter
     {
 
 
@@ -30,6 +30,16 @@ namespace MoviesPortal.BusinessLayer.SearchEngine
                 //results = null;
             }
             return results; //possible null reference. Only god know what will happen
+        }
+
+        void IPrinter.PrintMovies()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPrinter.ShowDescription()
+        {
+            throw new NotImplementedException();
         }
     }
 }

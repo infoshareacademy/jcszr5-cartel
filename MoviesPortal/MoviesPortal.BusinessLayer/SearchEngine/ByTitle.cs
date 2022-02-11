@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.BusinessLayer.SearchEngine
 {
-    public class ByTitle : ISearch
+    public class ByTitle : ISearch, IPrinter
     {
 
         private List<Movie> movies;
@@ -29,6 +29,16 @@ namespace MoviesPortal.BusinessLayer.SearchEngine
                 //results = null;
             }
             return results; //possible null reference. Only god know what will happen
+        }
+
+        void IPrinter.PrintMovies()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPrinter.ShowDescription()
+        {
+            throw new NotImplementedException();
         }
     }
     

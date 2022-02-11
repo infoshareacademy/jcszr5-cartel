@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MoviesPortal.BusinessLayer.SearchEngine
 {
-    internal class ByActor : ISearch
+    internal class ByActor : ISearch, IPrinter
     {
         private List<Movie> movies;
         public List<Movie> Search(string input)
@@ -28,6 +28,16 @@ namespace MoviesPortal.BusinessLayer.SearchEngine
             }
             
             return results; //possible null reference. Only god know what will happen
+        }
+
+        void IPrinter.PrintMovies()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IPrinter.ShowDescription()
+        {
+            throw new NotImplementedException();
         }
     }
 }

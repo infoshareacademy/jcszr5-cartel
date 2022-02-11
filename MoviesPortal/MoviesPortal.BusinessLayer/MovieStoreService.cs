@@ -32,8 +32,9 @@ namespace MoviesPortal.BusinessLayer
         /// </summary>
         public void SaveMoviesToJson()
         {
+            var writeIndentedOption = new JsonSerializerOptions { WriteIndented = true }; //formatuj plik Json
             IList<Movie> moviesToSave = MovieStore.GetMovies();
-            var json = JsonSerializer.Serialize(moviesToSave);
+            var json = JsonSerializer.Serialize(moviesToSave, writeIndentedOption); //ustaliłem formatowanie pliku, żeby nie zapisywał wszystkiego w jednej lini. (Mateusz)
             File.WriteAllText(moviesPath, json);
         }
 
