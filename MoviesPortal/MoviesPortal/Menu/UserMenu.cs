@@ -126,14 +126,16 @@ namespace MoviesPortal
             {
                 case "1":
                 {
-                        ISearch byTitle = new ByTitle();
+                        ByTitle byTitle = new ByTitle();
                         var searchResults = byTitle.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
+                        byTitle.PrintMovies(searchResults);
                     break;
                 }
                 case "2":
                 {
-                        ISearch byGenre = new ByGenre();
+                        ByGenre byGenre = new ByGenre();
                         var searchResults = byGenre.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
+                        byGenre.PrintMovies(searchResults);
                     break;
                 }
                 case "3":
@@ -153,7 +155,11 @@ namespace MoviesPortal
                     GetUserChoiceInSearchMenu();
                     break;
                 }
+                    
             }
+            Console.Clear();
+            ListSearchOptions();
+            GetUserChoiceInSearchMenu();
 
         }
         public void GetUserChoiceInMainMenu()

@@ -11,10 +11,10 @@ namespace MoviesPortal.BusinessLayer.SearchEngine
         /// <summary>
         /// Show found movies, allows to navigate between movies
         /// </summary>
-        void PrintMovies();
+        public void PrintMovies(List<Movie> MovieList);
         /// <summary>
         /// allows to show description of selected movie
         /// </summary>
-        void ShowDescription();
+        public void ShowDescription(Movie movie);
     }
 }
