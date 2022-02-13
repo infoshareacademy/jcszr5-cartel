@@ -10,7 +10,14 @@
     "Title": "Rambo 2",
     "ProductionYear": 1985,
     "Genre": 0,
-    "Description": "John Rambo, w zamian za wyjście z więzienia, zgadza się na odszukanie amerykańskich jeńców wojennych przetrzymywanych na terenie Wietnamu.",
+    "Description": "John Rambo, w zamian za wyj\u015Bcie z wi\u0119zienia, zgadza si\u0119 na odszukanie ameryka\u0144skich je\u0144c\u00F3w wojennych przetrzymywanych na terenie Wietnamu.",
     "IsForKids": false
+  },
+  {
+    "Title": "Harry Potter",
+    "ProductionYear": 200000,
+    "Genre": 5,
+    "Description": "Film o czarodzieju",
+    "IsForKids": true
   }
 ]
