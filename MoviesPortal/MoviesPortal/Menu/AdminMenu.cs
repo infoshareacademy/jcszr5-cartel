@@ -15,7 +15,7 @@ namespace MoviesPortal.Menu
         ProgramService _programService = new();
         MovieStoreService MovieStoreService = new();
         CreativePersonAgencyService _creativePersonAgencyService = new();
-        IOHelper _ioHelper = new IOHelper();
+        IOHelper ioHelper = new IOHelper();
         public List<string> SelectionOptions
         {
             get
@@ -87,7 +87,7 @@ namespace MoviesPortal.Menu
                         case 0:
                             Console.Clear();
                             Console.WriteLine($"Adding new movie to database: \n");
-                            ProgramService.AddNewMovie();
+                            _programService.AddNewMovie();
                             break;
 
                         case 1:
@@ -95,7 +95,7 @@ namespace MoviesPortal.Menu
 
                         case 2:
                             Console.Clear();
-                            ProgramService.PrintAllMovies();
+                            _programService.PrintAllMovies();
                             var movieIndexUserChoice = ioHelper.GetIntFromUser($"Enter index number of a movie you wont to delete: ");
                             var movieIndex = movieIndexUserChoice - 1;
                             MovieStoreService.DeleteMovie(movieIndex);
@@ -104,7 +104,7 @@ namespace MoviesPortal.Menu
                         case 3:
                             Console.Clear();
                             CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
-                            ProgramService.AddPerson("", creativeRole.ToString(), creativeRole);
+                            _programService.AddPerson("", creativeRole.ToString(), creativeRole);
                             Console.WriteLine($"Succes! New {creativeRole} succesfully added!");
                             Thread.Sleep(1500);
                             Console.Clear();
@@ -116,20 +116,20 @@ namespace MoviesPortal.Menu
                         case 5:
                             Console.Clear();
                             CreativeRole creativeRoleToDelete = ioHelper.GetCreativePersoneRole($"From which profession do you want to delete?: ");
-                            ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToDelete);
-                            ProgramService.DeleteCreativePerson(creativeRoleToDelete);
+                            _programService.PrintAllCreativePersonsListByRole(creativeRoleToDelete);
+                            _programService.DeleteCreativePerson(creativeRoleToDelete);
                             break;
 
                         case 6:
                             Console.Clear();
                             Console.WriteLine("List of all movies in database: \n");
-                            ProgramService.PrintAllMovies();
+                            _programService.PrintAllMovies();
                             Thread.Sleep(2000);
                             break;
 
                         case 7:
                             CreativeRole creativeRoleToList = ioHelper.GetCreativePersoneRole($"From which profession do you want to list?: ");
-                            ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToList);
+                            _programService.PrintAllCreativePersonsListByRole(creativeRoleToList);
                             Thread.Sleep(1500);
                             break;
 
