@@ -1,5 +1,6 @@
 ﻿using MoviesPortal.Data;
 using MoviesPortal.DataLayer.Models;
+using System.Security;
 using System.Threading;
 namespace MoviesPortal.Methods
 {
@@ -16,6 +17,7 @@ namespace MoviesPortal.Methods
                 Console.WriteLine(">>> Input your login:");
                 input = Console.ReadLine();
                 
+
                 if (CheckInputValue.CheckInputLogin(input))
                 {
                     foreach (var item in Users)
@@ -49,12 +51,12 @@ namespace MoviesPortal.Methods
             {
                 isMatch = false;
                 Console.WriteLine(">>> Input your password:");
-                input = Console.ReadLine();
+                var inputPassword = MaskInputString();                
+                input = new System.Net.NetworkCredential(string.Empty, inputPassword).Password;
 
-                
-                    if (CheckInputValue.CheckInputPassword(input))
+                if (CheckInputValue.CheckInputPassword(input))
                     {
-                        if (password == input)
+                        if (password == input)//
                         {
                             Console.Clear();
                             Console.WriteLine($"[+] Inputted password matches with that in database.");
@@ -136,7 +138,8 @@ namespace MoviesPortal.Methods
             do
             {
                 Console.WriteLine(">>> Create your password!\n(if you type 'help' you will see the rules with should contains your login).");
-                input = Console.ReadLine();
+                var inputPassword = MaskInputString();
+                input = new System.Net.NetworkCredential(string.Empty, inputPassword).Password;
 
                 if (input == "help")
                 {
@@ -162,6 +165,34 @@ namespace MoviesPortal.Methods
             } while (isMatch);
 
             return password;
+        }
+
+        public static SecureString MaskInputString()
+        {
+            SecureString pass = new SecureString();
+            ConsoleKeyInfo keyInfo;
+
+            do
+            {
+                keyInfo = Console.ReadKey(true);
+                if (!char.IsControl(keyInfo.KeyChar))
+                {
+                    pass.AppendChar(keyInfo.KeyChar);
+                    Console.Write("*");
+                }
+                else if (keyInfo.Key == ConsoleKey.Backspace)
+                {
+                    if (pass.Length > 0)
+                    {
+                        pass.RemoveAt(pass.Length - 1);
+                        Console.Write("\b \b");
+                    }                    
+                }
+            }
+            while (keyInfo.Key != ConsoleKey.Enter);
+            { 
+                return pass;
+            }
         }
     }
 }
