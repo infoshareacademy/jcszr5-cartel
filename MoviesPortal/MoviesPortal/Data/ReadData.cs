@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using MoviesPortal.DataLayer.Models;
+using System.Text.Json;
 
 namespace MoviesPortal.Data
 {
@@ -6,17 +7,17 @@ namespace MoviesPortal.Data
     {
         public static List<User> ReadUsersFromFile()
         {
-            string jsonFromFile = File.ReadAllText(@"..\..\..\Database\users.json");
+            string jsonFromFile = File.ReadAllText(@"..\..\..\..\MoviesPortal.DataLayer\Database\users.json");
             List<User> Users = JsonSerializer.Deserialize<List<User>>(jsonFromFile);
-            Console.WriteLine("Database successfully loaded!");
+            //Console.WriteLine("Database successfully loaded!");
             return Users;
 
         }
         public static List<User> ReadAdminsFromFile()
         {
-            string jsonFromFile = File.ReadAllText(@"..\..\..\Database\admins.json");
+            string jsonFromFile = File.ReadAllText(@"..\..\..\..\MoviesPortal.DataLayer\Database\admins.json");
             List<User> Users = JsonSerializer.Deserialize<List<User>>(jsonFromFile);
-            Console.WriteLine("Database successfully loaded!");
+           // Console.WriteLine("Database successfully loaded!");
             return Users;
         }
     }

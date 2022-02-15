@@ -8,9 +8,7 @@ using System.Threading.Tasks;
 namespace MoviesPortal.Menu
 {
     internal static class MenuInitializer
-    {
-        
-
+    {       
         public static void InitializeMenu()
         {
             IMenu adminMenu = new AdminMenu();

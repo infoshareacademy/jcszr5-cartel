@@ -1,11 +1,11 @@
 [
   {    
-    "Id": "1",
+    "Id": 1,
     "Name": "admin456",
     "Password": "Haslo123!"
   },
   {
-    "Id": "2",
+    "Id": 2,
     "Name": "admin123",
     "Password": "Password23."
   }

@@ -21,7 +21,7 @@ namespace MoviesPortal.DataLayer.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public Role UserRole { get; set; }
+        public Role UserRole { get; set; }                
 
         public User()
         {
@@ -33,10 +33,11 @@ namespace MoviesPortal.DataLayer.Models
             Name = name;
             Password = password;
             UserRole = Role.User;
-            Id = nrOfInstances;
             nrOfInstances++;
+            Id = nrOfInstances;           
         }
 
+       
         public void GetUserDetails()
         {
             Console.WriteLine("ID:{0, -6} Name: {1,-10} Password : {2,-10} Role: {3,-10}", Id, Name, Password, UserRole);

@@ -1,4 +1,5 @@
 ﻿using MoviesPortal.BusinessLayer;
+using MoviesPortal.Data;
 using MoviesPortal.DataLayer;
 using System;
 using System.Collections.Generic;
@@ -20,16 +21,15 @@ namespace MoviesPortal.Menu
             get
             {
                 return new List<string>() {
-                    "Add Movies",
-                    "Edit Movies",
-                    "Delete Movie",
-                    "Add Actor/Director",
-                    "Edit Actor/Director",
-                    "Delete Actor/Director",
-                    "Print a list of all movies from database",
-                    "Browse a list of movies by genre",
-                    "Print a list of all Actors/Directors from database",
-                    "Exit" };
+                    ">> Add Movies",
+                    ">> Edit Movies",
+                    ">> Delete Movie",
+                    ">> Add Actor/Director",
+                    ">> Edit Actor/Director",
+                    ">> Delete Actor/Director",
+                    ">> Print a list of all movies from database",
+                    ">> Print a list f all Actors/Directors from database",
+                    ">> Back to main menu" };
             }
         }
         public void ListMainOptions()
@@ -46,93 +46,106 @@ namespace MoviesPortal.Menu
 
         public void GetUserChoiceInMainMenu()
         {
-            Console.WriteLine("\n Choose option by type correct number:");
-            string choice = Console.ReadLine();
-            switch (choice)
+            int currentLine = 0;
+            int counter;
+            ConsoleKeyInfo key;
+            while (true)
             {
-                case "1":
-                    Console.Clear();
-                    ProgramService service = new();
-                    Console.WriteLine($"Adding new movie to database: \n");
-                    service.AddNewMovie();
-                    MovieStoreService database = new();
-                    database.SaveMoviesToJson();
-                    break;
 
-                case "2":
-                    break;
-
-                case "3":
-                    Console.Clear();
-                    _programService.PrintAllMovies();
-                    var movieIndexUserChoice = _ioHelper.GetIntFromUser($"Enter index number of a movie you wont to delete: ");
-                    var movieIndex = movieIndexUserChoice - 1;
-                    MovieStoreService.DeleteMovie(movieIndex);
-                    break;
-
-                case "4":
-                    Console.Clear();
-                    CreativeRole creativeRole = _ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
-                    _programService.AddPerson("", creativeRole.ToString(), creativeRole);
-                    Console.WriteLine($"Succes! New {creativeRole} succesfully added!");
-                    Thread.Sleep(1500);
-                    Console.Clear();
-                    break;
-
-                case "5":
-                    break;
-
-                case "6":
-                    Console.Clear();
-                    CreativeRole creativeRoleToDelete = _ioHelper.GetCreativePersoneRole($"From which profession do you want to delete?: ");
-                    _programService.PrintAllCreativePersonsListByRole(creativeRoleToDelete);
-                    _programService.DeleteCreativePerson(creativeRoleToDelete);
-                    break;
-
-                case "7":
-                    Console.Clear();
-                    Console.WriteLine("List of all movies in database: \n");
-                    _programService.PrintAllMovies();
-                    Thread.Sleep(2000);
-                    break;
-
-                case "8":
-                    //list films by genre
-                    Genre userChoiceGenre = _ioHelper.GetMovieGenre("Chose movie genre you are looking for: ");
-                    _programService.PrintMoviesByGenre(userChoiceGenre);
-                    Thread.Sleep(1500);
-                    break;
-
-
-
-                case "9":
-                    CreativeRole creativeRoleToList = _ioHelper.GetCreativePersoneRole($"From which profession do you want to list?: ");
-                    _programService.PrintAllCreativePersonsListByRole(creativeRoleToList);
-                    Thread.Sleep(1500);
-                    break;
-
-                case "10":
-                    Console.Clear();
-                    Console.WriteLine("Are You sure? (y/n)");
-                    string decision = Console.ReadLine();
-                    if (decision == "y")
-                    {
-                        Environment.Exit(0);
-                    }
-                    else
-                    {
-                        InitializeMenu();
-                    }
-                    break;
-
-                default:
+                LoggedUser.WhoIsLogged();
+                Console.WriteLine("Choose option by type correct number:");
+                for (counter = 0; counter < SelectionOptions.Count; counter++)
                 {
-                    Console.WriteLine("Please type correct number (from 1 to 9)");
-                    GetUserChoiceInMainMenu();
-                    break;
+                    if (currentLine == counter)
+                    {
+                        Console.WriteLine($"{SelectionOptions[counter]}", Console.BackgroundColor = ConsoleColor.White, Console.ForegroundColor = ConsoleColor.Black);
+                    }
+                    else //other lines
+                    {
+                        Console.WriteLine($"{SelectionOptions[counter]}", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+                    }
+                }
+
+                Console.WriteLine("", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+
+                key = Console.ReadKey(true);
+
+                if (key.Key.ToString() == "DownArrow")
+                {
+                    currentLine++;
+                    if (currentLine > SelectionOptions.Count - 1) currentLine = 0;
+                }
+                else if (key.Key.ToString() == "UpArrow")
+                {
+                    currentLine--;
+                    if (currentLine < 0) currentLine = SelectionOptions.Count - 1;
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    switch (currentLine)
+                    {
+                        case 0:
+                            Console.Clear();
+                            Console.WriteLine($"Adding new movie to database: \n");
+                            ProgramService.AddNewMovie();
+                            break;
+
+                        case 1:
+                            break;
+
+                        case 2:
+                            Console.Clear();
+                            ProgramService.PrintAllMovies();
+                            var movieIndexUserChoice = ioHelper.GetIntFromUser($"Enter index number of a movie you wont to delete: ");
+                            var movieIndex = movieIndexUserChoice - 1;
+                            MovieStoreService.DeleteMovie(movieIndex);
+                            break;
+
+                        case 3:
+                            Console.Clear();
+                            CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
+                            ProgramService.AddPerson("", creativeRole.ToString(), creativeRole);
+                            Console.WriteLine($"Succes! New {creativeRole} succesfully added!");
+                            Thread.Sleep(1500);
+                            Console.Clear();
+                            break;
+
+                        case 4:
+                            break;
+
+                        case 5:
+                            Console.Clear();
+                            CreativeRole creativeRoleToDelete = ioHelper.GetCreativePersoneRole($"From which profession do you want to delete?: ");
+                            ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToDelete);
+                            ProgramService.DeleteCreativePerson(creativeRoleToDelete);
+                            break;
+
+                        case 6:
+                            Console.Clear();
+                            Console.WriteLine("List of all movies in database: \n");
+                            ProgramService.PrintAllMovies();
+                            Thread.Sleep(2000);
+                            break;
+
+                        case 7:
+                            CreativeRole creativeRoleToList = ioHelper.GetCreativePersoneRole($"From which profession do you want to list?: ");
+                            ProgramService.PrintAllCreativePersonsListByRole(creativeRoleToList);
+                            Thread.Sleep(1500);
+                            break;
+
+                        case 8:                            
+                            LoginPanel.MainPanel();
+                            break;
+
+                        default:
+                            {
+                                Console.WriteLine("Please type correct number (from 1 to 7)");
+                                GetUserChoiceInMainMenu();
+                                break;
+                            }
+                    }
                 }
             }
-            InitializeMenu();
         }
 
         public void InitializeMenu()
