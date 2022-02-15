@@ -14,7 +14,7 @@ namespace MoviesPortal
 {
     public class UserMenu : IMenu
     {
-        IOHelper _iOHelper = new();
+        IOHelper iOHelper = new();
         ProgramService _programService = new(); 
 
         public List<string> SelectionOptions
@@ -196,14 +196,16 @@ namespace MoviesPortal
                     {
                         case 0:
                             {
-                                //search films by title
-                                Console.WriteLine("Tutaj będzie wyszukiwarka");
+                                ByTitle byTitle = new ByTitle();
+                                var searchResults = byTitle.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
+                                byTitle.PrintMovies(searchResults);
                                 break;
                             }
                         case 1:
                             {
-                                //search films by genre
-                                Console.WriteLine("Tutaj będzie wyszukiwarka");
+                                ByGenre byGenre = new ByGenre();
+                                var searchResults = byGenre.Search(iOHelper.GetStringFromUser("What are You looking for? Type below:"));
+                                byGenre.PrintMovies(searchResults);
                                 break;
                             }
                         case 2:
