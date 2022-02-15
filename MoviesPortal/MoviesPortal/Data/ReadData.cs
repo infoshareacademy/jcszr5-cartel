@@ -9,7 +9,7 @@ namespace MoviesPortal.Data
         {
             string jsonFromFile = File.ReadAllText(@"..\..\..\..\MoviesPortal.DataLayer\Database\users.json");
             List<User> Users = JsonSerializer.Deserialize<List<User>>(jsonFromFile);
-            Console.WriteLine("Database successfully loaded!");
+            //Console.WriteLine("Database successfully loaded!");
             return Users;
 
         }
@@ -17,7 +17,7 @@ namespace MoviesPortal.Data
         {
             string jsonFromFile = File.ReadAllText(@"..\..\..\..\MoviesPortal.DataLayer\Database\admins.json");
             List<User> Users = JsonSerializer.Deserialize<List<User>>(jsonFromFile);
-            Console.WriteLine("Database successfully loaded!");
+           // Console.WriteLine("Database successfully loaded!");
             return Users;
         }
     }

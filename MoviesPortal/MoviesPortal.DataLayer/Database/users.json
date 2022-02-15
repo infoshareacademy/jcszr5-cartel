@@ -22,17 +22,5 @@
     "Name": "matthew",
     "Password": "ktmEXC450!",
     "UserRole": 0
-  },
-  {
-    "Id": 5,
-    "Name": "dkorecki",
-    "Password": "1234Qwer!",
-    "UserRole": 0
-  },
-  {
-    "Id": 6,
-    "Name": "lwinowicz5",
-    "Password": "Haslo1242!",
-    "UserRole": 0
   }
 ]

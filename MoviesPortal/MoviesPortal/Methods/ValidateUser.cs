@@ -1,4 +1,5 @@
-﻿using MoviesPortal.DataLayer.Models;
+﻿using MoviesPortal.Data;
+using MoviesPortal.DataLayer.Models;
 using System.Threading;
 namespace MoviesPortal.Methods
 {
@@ -6,32 +7,33 @@ namespace MoviesPortal.Methods
     {
         public static string ValidateUserLogin(List<User> Users)
         {
-            bool isMatch = false;
+            bool isMatch;
             string input;
             string password = "";
-
             do
             {
+                isMatch = false;
                 Console.WriteLine(">>> Input your login:");
                 input = Console.ReadLine();
-
+                
                 if (CheckInputValue.CheckInputLogin(input))
                 {
                     foreach (var item in Users)
                     {
                         if (input == item.Name)
                         {
-                            Console.WriteLine($"[+] Inputted login matches with that in database.");
                             password = item.Password;
+                            LoggedUser.UserName = input;
                             isMatch = true;
                             break;
                         }
                     }
-
+                    
                     if (isMatch != true)
                     {
-                        Console.WriteLine($"[!] Inputted login no matches with that in database. Try again.");
+                        Console.WriteLine("[!] Inputted login no matches with that in database. Try again.");
                     }
+                    
                 }
 
             } while (!isMatch);
@@ -41,30 +43,34 @@ namespace MoviesPortal.Methods
 
         public void ValidateUserPassword(string password)
         {
-            bool isMatch = false;
+            bool isMatch;
             string input;
             do
             {
+                isMatch = false;
                 Console.WriteLine(">>> Input your password:");
                 input = Console.ReadLine();
 
-                if (CheckInputValue.CheckInputPassword(input))
-                {
-                    if (password == input)
+                
+                    if (CheckInputValue.CheckInputPassword(input))
                     {
-                        Console.Clear();
-                        Console.WriteLine($"[+] Inputted password matches with that in database.");
-                        isMatch = true;
-                        Thread.Sleep(3000);
-                        Console.Clear();
-                    }
-                    else
-                    {
-                        Console.WriteLine($"[!] Inputted password no matches with that in database. Try again.");
-                        isMatch = false;
-                    }
+                        if (password == input)
+                        {
+                            Console.Clear();
+                            Console.WriteLine($"[+] Inputted password matches with that in database.");
+                            isMatch = true;
+                            Thread.Sleep(1000);
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            Console.WriteLine($"[!] Inputted password no matches with that in database. Try again.");
+                            isMatch = false;
 
-                }
+                        }
+
+                    }
+                
 
             } while (!isMatch);
 
@@ -86,6 +92,7 @@ namespace MoviesPortal.Methods
                     Console.WriteLine("Your new login should:\n+ min 5 letters,\n+ lenght min 7, max 15 symbols,\n+ can contains stings and integers,\n- no spaces," +
                         "\n- no special symbols,\n- no only integers.\nPress any button to back to login creator");
                     Console.ReadKey();
+                    LoggedUser.WhoIsLogged();
                     isMatch = true;
 
                 }
@@ -104,7 +111,7 @@ namespace MoviesPortal.Methods
 
                     if (isMatch == false)
                     {
-                        Console.WriteLine($"[+] Inputted login no matches with that in database. Now create your password.");
+                        //Console.WriteLine($"[+] Inputted login no matches with that in database. Now create your password.");
                         isMatch = false;
                     }
                 }
@@ -136,6 +143,7 @@ namespace MoviesPortal.Methods
                     Console.WriteLine("Your password should:\n+ min 4 letters,\n+ lenght min 8, max 20 symbols,\n+ min 2 digits,\n+ min 1 special symbol\n+ min 1 upper and lower letter,\n- no spaces," +
                        "\n- no only integers.\nPress any button to back to password creator");
                     Console.ReadKey();
+                    LoggedUser.WhoIsLogged();
                     isMatch = true;
                 }
                 else if (CheckInputValue.CheckInputPassword(input) == true)

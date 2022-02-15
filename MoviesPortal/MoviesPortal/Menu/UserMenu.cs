@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using MoviesPortal.Data;
+using MoviesPortal.DataLayer.Models;
 using MoviesPortal.Menu;
 
 namespace MoviesPortal
@@ -16,192 +18,287 @@ namespace MoviesPortal
             get
             {
                 return new List<string>() {
-                    "Browse Movies",
-                    "Search Movies",
-                    "For Kids",
-                    "Exit" };
+                    ">> Browse Movies",
+                    ">> Search Movies",
+                    ">> For Kids",
+                    ">> Back to main menu" };
             }
         }
 
-
         public List<string> browseOptions = new List<string>()
         {
-            "By Title",
-            "By Genre",
-            "By Actor",
-            "Back to menu"
+            ">> By Title",
+            ">> By Genre",
+            ">> By Actor",
+            ">> Back to menu"
         };
 
         public List<string> searchOptions = new List<string>()
         {
-            "By Title",
-            "By Genre",
-            "By Actor",
-            "Back to menu"
+            ">> By Title",
+            ">> By Genre",
+            ">> By Actor",
+            ">> Back to menu"
         };
-
-        
 
         public void ListMainOptions()
         {
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
             var index = 1;
             foreach (var option in SelectionOptions)
             {
                 Console.WriteLine($"{index}. {option}");
                 index++;
             }
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
         }
         public void ListBrowseOptions()
         {
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
             var index = 1;
             foreach (var option in browseOptions)
             {
                 Console.WriteLine($"{index}. {option}");
                 index++;
             }
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
         }
         public void ListSearchOptions()
         {
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
             var index = 1;
             foreach (var option in searchOptions)
             {
-                Console.WriteLine($"{index}. {option}"); 
+                Console.WriteLine($"{index}. {option}");
                 index++;
             }
-            Console.WriteLine("\n========================================");
+            Console.WriteLine("========================================");
         }
-
         public void GetUserChoiceInBrowseMenu()
         {
-            Console.WriteLine("\n Choose option by type correct number:");
-            string choice = Console.ReadLine();
-            switch (choice)
+            int currentLine = 0;
+            int counter;
+            ConsoleKeyInfo key;
+            while (true)
             {
-                case "1":
+
+                LoggedUser.WhoIsLogged();
+                Console.WriteLine("Choose option by type correct number:");
+                for (counter = 0; counter < browseOptions.Count; counter++) //list all movies, but format selected line by arrows
                 {
-                    //list films by title
-                    Console.WriteLine("your movies will be here, sorted by title");
-                    break;
-                }
-                case "2":
-                {
-                    //list films by genre
-                    Console.WriteLine("your movies will be here, sorted by genre");
-                    break;
+                    if (currentLine == counter)
+                    {
+                        Console.WriteLine($"{browseOptions[counter]}", Console.BackgroundColor = ConsoleColor.White, Console.ForegroundColor = ConsoleColor.Black);
                     }
-                case "3":
-                {
-                    //list films by actor
-                    Console.WriteLine("your movies will be here, sorted by actor");
-                    break;
+                    else //other lines
+                    {
+                        Console.WriteLine($"{browseOptions[counter]}", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
                     }
-                case "4"://back to main menu
-                {
-                    InitializeMenu();
-                    break;
                 }
-                default:
+
+                Console.WriteLine("", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+
+                key = Console.ReadKey(true);
+
+                if (key.Key.ToString() == "DownArrow")
                 {
-                    Console.WriteLine("Please type correct number (from 1 to 4)");
-                    GetUserChoiceInBrowseMenu();
-                    break;
+                    currentLine++;
+                    if (currentLine > browseOptions.Count - 1) currentLine = 0;
+                }
+                else if (key.Key.ToString() == "UpArrow")
+                {
+                    currentLine--;
+                    if (currentLine < 0) currentLine = browseOptions.Count - 1;
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    switch (currentLine)
+                    {
+                        case 0:
+                            {
+                                //list films by title
+                                Console.WriteLine("your movies will be here, sorted by title");
+                                break;
+                            }
+                        case 1:
+                            {
+                                //list films by genre
+                                Console.WriteLine("your movies will be here, sorted by genre");
+                                break;
+                            }
+                        case 2:
+                            {
+                                //list films by actor
+                                Console.WriteLine("your movies will be here, sorted by actor");
+                                break;
+                            }
+                        case 3://back to main menu
+                            {
+
+                                InitializeMenu();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Please type correct number (from 1 to 4)");
+                                GetUserChoiceInBrowseMenu();
+                                break;
+                            }
+                    }
                 }
             }
-
         }
         public void GetUserChoiceInSearchMenu()
         {
-            Console.WriteLine("\n Choose option by type correct number:");
-            string choice = Console.ReadLine();
-            switch (choice)
+
+
+            int currentLine = 0;
+            int counter;
+            ConsoleKeyInfo key;
+            while (true)
             {
-                case "1":
+
+                LoggedUser.WhoIsLogged();
+                Console.WriteLine("Choose option by type correct number:");
+                for (counter = 0; counter < searchOptions.Count; counter++) //list all movies, but format selected line by arrows
                 {
-                    //search films by title
-                    Console.WriteLine("Tutaj będzie wyszukiwarka");
-                    break;
+                    if (currentLine == counter)
+                    {
+                        Console.WriteLine($"{searchOptions[counter]}", Console.BackgroundColor = ConsoleColor.White, Console.ForegroundColor = ConsoleColor.Black);
+                    }
+                    else //other lines
+                    {
+                        Console.WriteLine($"{searchOptions[counter]}", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+                    }
                 }
-                case "2":
+
+                Console.WriteLine("", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+
+                key = Console.ReadKey(true);
+
+                if (key.Key.ToString() == "DownArrow")
                 {
-                    //search films by genre
-                    Console.WriteLine("Tutaj będzie wyszukiwarka");
-                    break;
+                    currentLine++;
+                    if (currentLine > searchOptions.Count - 1) currentLine = 0;
                 }
-                case "3":
+                else if (key.Key.ToString() == "UpArrow")
                 {
-                    //search films by actor
-                    Console.WriteLine("Tutaj będzie wyszukiwarka");
-                    break;
+                    currentLine--;
+                    if (currentLine < 0) currentLine = searchOptions.Count - 1;
                 }
-                case "4"://back to main menu
+                else if (key.Key == ConsoleKey.Enter)
                 {
-                    InitializeMenu();
-                    break;
-                }
-                default:
-                {
-                    Console.WriteLine("Please type correct number (from 1 to 4)");
-                    GetUserChoiceInSearchMenu();
-                    break;
+                    switch (currentLine)
+                    {
+                        case 0:
+                            {
+                                //search films by title
+                                Console.WriteLine("Tutaj będzie wyszukiwarka");
+                                break;
+                            }
+                        case 1:
+                            {
+                                //search films by genre
+                                Console.WriteLine("Tutaj będzie wyszukiwarka");
+                                break;
+                            }
+                        case 2:
+                            {
+                                //search films by actor
+                                Console.WriteLine("Tutaj będzie wyszukiwarka");
+                                break;
+                            }
+                        case 3://back to main menu
+                            {
+                                InitializeMenu();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Please type correct number (from 1 to 4)");
+                                GetUserChoiceInSearchMenu();
+                                break;
+                            }
+                    }
                 }
             }
-
         }
         public void GetUserChoiceInMainMenu()
-        {
-            Console.WriteLine("\n Choose option by type correct number:");
-            string choice = Console.ReadLine();
-            switch (choice)
+        {           
+            int currentLine = 0;
+            int counter;
+            ConsoleKeyInfo key;            
+            while (true)
             {
-                case "1":
+
+                LoggedUser.WhoIsLogged();
+                Console.WriteLine("Choose option by type correct number:");
+                for (counter = 0; counter < SelectionOptions.Count; counter++) //list all movies, but format selected line by arrows
                 {
-                    ListBrowseOptions();
-                    GetUserChoiceInBrowseMenu();
-                    break;
-                }
-                case "2":
-                {
-                    ListSearchOptions();
-                    GetUserChoiceInSearchMenu();
-                    break;
-                }
-                case "3":
-                {
-                    //TODO list films for kids
-                    break;
-                }
-                case "4": //exit option
-                {
-                    Console.WriteLine("Are You sure? (y/n)");
-                    string decision = Console.ReadLine();
-                    if (decision=="y")
+                    if (currentLine == counter) //selected line
                     {
-                        Environment.Exit(0);
+                        Console.WriteLine($"{SelectionOptions[counter]}", Console.BackgroundColor = ConsoleColor.White, Console.ForegroundColor = ConsoleColor.Black);
                     }
-                    else
+                    else //other lines
                     {
-                        InitializeMenu();
+                        Console.WriteLine($"{SelectionOptions[counter]}", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
                     }
-                    break;
                 }
-                default:
+                
+                Console.WriteLine("", Console.BackgroundColor = ConsoleColor.Black, Console.ForegroundColor = ConsoleColor.White);
+
+                key = Console.ReadKey(true);
+
+                if (key.Key.ToString() == "DownArrow")
                 {
-                    Console.WriteLine("Please type correct number (from 1 to 4)");
-                    GetUserChoiceInMainMenu();
-                    break;
+                    currentLine++;
+                    if (currentLine > SelectionOptions.Count - 1) currentLine = 0;
+                }
+                else if (key.Key.ToString() == "UpArrow")
+                {
+                    currentLine--;
+                    if (currentLine < 0) currentLine = SelectionOptions.Count - 1;
+                }
+                else if (key.Key == ConsoleKey.Enter)
+                {
+                    switch (currentLine)
+                    {
+                        case 0:
+                            {
+                                ListBrowseOptions();
+                                GetUserChoiceInBrowseMenu();
+                                break;
+                            }
+                        case 1:
+                            {
+                                ListSearchOptions();
+                                GetUserChoiceInSearchMenu();
+                                break;
+                            }
+                        case 2:
+                            {
+                                //TODO list films for kids
+                                break;
+                            }
+                        case 3: //back to main panel
+                            {                             
+                                LoginPanel.MainPanel();
+                                break;
+                            }
+                        default:
+                            {
+                                Console.WriteLine("Please type correct number (from 1 to 4)");
+                                GetUserChoiceInMainMenu();
+                                break;
+                            }
+                    }
                 }
             }
 
         }
 
         public void InitializeMenu() 
-        {
-            ListMainOptions();
+        {            
             GetUserChoiceInMainMenu();
         }
     }
