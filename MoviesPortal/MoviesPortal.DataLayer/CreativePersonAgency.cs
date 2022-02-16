@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using System.Text.Encodings.Web;
+using System.Text.Json;
 using MoviesPortal.DataLayer.Models;
 
 namespace MoviesPortal.DataLayer
@@ -12,6 +13,7 @@ namespace MoviesPortal.DataLayer
         public static void AddCreativePerson(CreativePerson person)
         {
             CreativePersonList.Add(person);
+            
         }
 
         public static void DeletePerson(CreativePerson personToDelete)
@@ -54,7 +56,9 @@ namespace MoviesPortal.DataLayer
         public void SaveCreativePersonsListToJson()
         {
             IList<CreativePerson> listToSave = CreativePersonList;
-            var json = JsonSerializer.Serialize(listToSave);
+            var writeIndentedOption = new JsonSerializerOptions { WriteIndented = true }; //formatuj plik Json
+
+            var json = JsonSerializer.Serialize(listToSave, writeIndentedOption);
             File.WriteAllText(creativesPath, json);
         }
 
@@ -65,18 +69,18 @@ namespace MoviesPortal.DataLayer
         {
             MovieStore.ClearStoreContent();
             string jsonFromFile = File.ReadAllText(creativesPath);
-            List<CreativePerson> peoplesFromFile = JsonSerializer.Deserialize<List<CreativePerson>>(jsonFromFile);
-            if (peoplesFromFile.Count > 0)
-            {
-                foreach (var person in peoplesFromFile)
-                {
-                    AddCreativePerson(person);
-                }
-            }
-            else
-            {
-                Console.WriteLine("There is nothing to load");
-            }
+            CreativePersonList = JsonSerializer.Deserialize<List<CreativePerson>>(jsonFromFile);
+            //if (peoplesFromFile.Count > 0)
+            //{
+            //    foreach (var person in peoplesFromFile)
+            //    {
+            //        AddCreativePerson(person);
+            //    }
+            //}
+            //else
+            //{
+            //    Console.WriteLine("There is nothing to load");
+            //}
         }
     }
 }

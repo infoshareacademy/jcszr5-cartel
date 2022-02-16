@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.Json;
 using MoviesPortal.DataLayer.Models;
-
+using System.Text.Encodings.Web;
 
 namespace MoviesPortal.BusinessLayer
 {
@@ -37,7 +37,7 @@ namespace MoviesPortal.BusinessLayer
 
         public void SaveMoviesToJson()
         {
-            var writeIndentedOption = new JsonSerializerOptions { WriteIndented = true }; //formatuj plik Json
+            var writeIndentedOption = new JsonSerializerOptions { WriteIndented = true, Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping }; //formatuj plik Json
             IList<Movie> moviesToSave = MovieStore.GetMovies();
             var json = JsonSerializer.Serialize(moviesToSave, writeIndentedOption); //ustaliłem formatowanie pliku, żeby nie zapisywał wszystkiego w jednej lini. (Mateusz)
             File.WriteAllText(moviesPath, json);
@@ -46,8 +46,8 @@ namespace MoviesPortal.BusinessLayer
 
         public void LoadMoviesFromJson()
         {
-            MovieStore.ClearStoreContent();
-            string jsonFromFile = File.ReadAllText(moviesPath);
+            MovieStore.ClearStoreContent();            
+            string jsonFromFile = File.ReadAllText(moviesPath);             
             List<Movie> moviesFromFile = JsonSerializer.Deserialize<List<Movie>>(jsonFromFile);
             if (moviesFromFile.Count > 0)
             {

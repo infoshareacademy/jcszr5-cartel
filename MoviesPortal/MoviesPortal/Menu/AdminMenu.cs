@@ -110,6 +110,8 @@ namespace MoviesPortal.Menu
                             Console.Clear();
                             CreativeRole creativeRole = ioHelper.GetCreativePersoneRole($"Which profession do you want to add?: ");
                             _programService.AddPerson("", creativeRole.ToString(), creativeRole);
+                            CreativePersonAgency agency = new();
+                            agency.SaveCreativePersonsListToJson();
                             Console.WriteLine($"Succes! New {creativeRole} succesfully added!");
                             Thread.Sleep(1500);
                             Console.Clear();
