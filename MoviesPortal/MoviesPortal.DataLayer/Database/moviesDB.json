@@ -19,5 +19,12 @@
     "Genre": 5,
     "Description": "Film o czarodzieju",
     "IsForKids": true
+  },
+  {
+    "Title": "Top Gun",
+    "ProductionYear": 1986,
+    "Genre": 4,
+    "Description": "Top Gun - film akcji z domieszk\u0105 dramatu produkcji ameryka\u0144skiej w re\u017Cyserii Tony\u0027ego Scotta. Film wszed\u0142 na ekrany kin w 1986 roku. Opowiada on o szkole lotniczej Top Gun w Stanach Zjednoczonych oraz o \u017Cyciowych i zawodowych zmaganiach pilot\u00F3w marynarki wojennej",
+    "IsForKids": false
   }
 ]
