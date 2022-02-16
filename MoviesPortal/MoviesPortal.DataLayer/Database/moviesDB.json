@@ -26,5 +26,306 @@
     "Genre": 4,
     "Description": "Top Gun - film akcji z domieszk\u0105 dramatu produkcji ameryka\u0144skiej w re\u017Cyserii Tony\u0027ego Scotta. Film wszed\u0142 na ekrany kin w 1986 roku. Opowiada on o szkole lotniczej Top Gun w Stanach Zjednoczonych oraz o \u017Cyciowych i zawodowych zmaganiach pilot\u00F3w marynarki wojennej",
     "IsForKids": false
+  },
+  {
+    "Title": "Harry Potter i Komnata Tajemnic",
+    "ProductionYear": 2002,
+    "Genre": 5,
+    "Description": "W Hogwarcie dochodzi do tajemniczych ataków na uczniów. Tymczasem Harry'ego przeœladuje dziwny g³os, którego nikt, poza nim, nie s³yszy.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i wiêzieñ Azkabanu",
+    "ProductionYear": 2004,
+    "Genre": 5,
+    "Description": "Z wiêzienia ucieka Syriusz Black, Harry nie mo¿e ju¿ czuæ siê bezpiecznie w szkole.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i Czara Ognia",
+    "ProductionYear": 2005,
+    "Genre": 5,
+    "Description": "Harry Potter musi wzi¹æ udzia³ w Turnieju Trójmagicznym, kiedy jego nazwisko zostaje wybrane przez tajemnicz¹ Czarê Ognia.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i Zakon Feniksa",
+    "ProductionYear": 2007,
+    "Genre": 5,
+    "Description": "Harry i jego przyjaciele zak³adaj¹ tajne stowarzyszenie 'Gwardiê Dumbledore'a', aby przygotowaæ siê do starcia z Voldemortem.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i Ksi¹¿ê Pó³krwi",
+    "ProductionYear": 2009,
+    "Genre": 5,
+    "Description": "Harry, by ostatecznie pokonaæ Voldemorta, musi poznaæ jego przesz³oœæ.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i Insygnia Œmierci: Czêœæ I",
+    "ProductionYear": 2010,
+    "Genre": 5,
+    "Description": "Harry, Ron i Hermiona wyruszaj¹ odnaleŸæ horkruksy, dziêki którym Voldemort zapewni³ sobie nieœmiertelnoœæ. Musz¹ je wszystkie zniszczyæ, by go pokonaæ. ",
+    "IsForKids": true
+  },
+  {
+    "Title": "Harry Potter i Insygnia Œmierci: Czêœæ II",
+    "ProductionYear": 2011,
+    "Genre": 5,
+    "Description": "M³ody czarodziej musi zniszczyæ wszystkie horkruksy, aby ostatecznie pokonaæ Voldemorta.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ IV - Nowa nadzieja",
+    "ProductionYear": 1977,
+    "Genre": 8,
+    "Description": "Z³owrogie Imperium zaw³adnê³o galaktyk¹. Uwiêzionej przez Dartha Vadera ksiê¿niczce Lei z nieoczekiwan¹ pomoc¹ przyjd¹ kosmiczny przemytnik Han Solo i m³ody Luke Skywalker.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ VI - Imperium kontratakuje",
+    "ProductionYear": 1980,
+    "Genre": 8,
+    "Description": "Imperator rozkazuje swojemu uczniowi Darthowi Vaderowi odnalezienie Luke'a Skywalkera, by zmusiæ go do przejœcia na ciemn¹ stronê Mocy.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ VI - Powrót Jedi",
+    "ProductionYear": 1983,
+    "Genre": 8,
+    "Description": "Luke Skywalker i ksiê¿niczka Leia wyruszaj¹ na ratunek porwanemu Hanowi Solo. Zbli¿a siê ostateczna bitwa rebeliantów z Imperium.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ I - Mroczne widmo",
+    "ProductionYear": 1999,
+    "Genre": 8,
+    "Description": "Dwaj rycerze Jedi wyruszaj¹ z misj¹ ocalenia planety Naboo przed inwazj¹ wojsk Federacji Handlowej. Trafiaj¹ na pustynny glob, gdzie pomo¿e im ma³y Anakin Skywalker.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ II - Atak klonów",
+    "ProductionYear": 2002,
+    "Genre": 8,
+    "Description": "Demokratyczne rz¹dy Republiki s¹ zagro¿one przez podstêpnego hrabiego Dooku. Tymczasem Anakin Skywalker ³amie regu³y zakonu Jedi i zakochuje siê.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ III - Zemsta Sithów",
+    "ProductionYear": 2005,
+    "Genre": 8,
+    "Description": "Wojny Klonów dobiegaj¹ koñca, jednak w galaktyce roœnie moc z³owrogich Sithów. Czy Anakin Skywalker oprze siê zakusom ciemnej strony Mocy?",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ VII - Przebudzenie Mocy",
+    "ProductionYear": 2015,
+    "Genre": 8,
+    "Description": "Najwy¿szy Porz¹dek, który powsta³ na gruzach pokonanego 30 lat wczeœniej z³owrogiego Imperium, próbuje podbiæ resztê galaktyki. Przeciwstawiaj¹ mu siê jedynie cz³onkowie Ruchu Oporu.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars historie: £otr 1.",
+    "ProductionYear": 2016,
+    "Genre": 8,
+    "Description": "Historia grupy rebeliantów zjednoczonych w œmia³ej misji polegaj¹cej na kradzie¿y planów imperialnej Gwiazdy Œmierci.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ VIII Ostatni Jedi",
+    "ProductionYear": 2017,
+    "Genre": 8,
+    "Description": "Rey odnajduje Luke'a Skywalkera, by namówiæ go na powrót i walkê z Najwy¿szym Porz¹dkiem. Tymczasem Rebelianci próbuj¹ uciec przed flot¹ wroga.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars historie: Han Solo",
+    "ProductionYear": 2018,
+    "Genre": 8,
+    "Description": "M³ody Han Solo, przemierzaj¹c galaktykê, staje siê przemytnikiem.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Wars: Czêœæ IX Skywalker. Odrodzenie",
+    "ProductionYear": 2019,
+    "Genre": 8,
+    "Description": "Cz³onkowie organizacji Ruchu Oporu ponownie stawiaj¹ czo³a Najwy¿szemu Porz¹dkowi.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Trek",
+    "ProductionYear": 2009,
+    "Genre": 8,
+    "Description": "Pocz¹tki za³ogi USS Enterprise. James Kirk i Spock ³¹cz¹ si³y, by ocaliæ swoich przyjació³ przed œmiertelnym niebezpieczeñstwem.",
+    "IsForKids": true
+  },
+  {
+    "Title": "W ciemnoœæ. Star Trek",
+    "ProductionYear": 2013,
+    "Genre": 8,
+    "Description": "Za³oga USS Enterprise planuje pojmanie bezwzglêdnego terrorysty, zanim zniszczy on ich organizacjê od wewn¹trz.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Star Trek: W nieznane",
+    "ProductionYear": 2016,
+    "Genre": 8,
+    "Description": "Kapitan Kirk wraz z za³og¹ USS Enterprise odbywa piêcioletni¹ misjê, podczas której natyka siê na z³owrog¹ kosmiczn¹ rasê dowodzon¹ przez demonicznego Kralla.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Siedem",
+    "ProductionYear": 1995,
+    "Genre": 9,
+    "Description": "Dwóch policjantów stara siê z³apaæ seryjnego mordercê wybieraj¹cego swoje ofiary wed³ug specjalnego klucza - siedmiu grzechów g³ównych.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Gra",
+    "ProductionYear": 1997,
+    "Genre": 9,
+    "Description": "W dniu 48. urodzin Nicholas Van Orton zostaje zaproszony do tajemniczej gry, która odmienia jego monotonne ¿ycie.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Fight Club",
+    "ProductionYear": 1999,
+    "Genre": 9,
+    "Description": "you know the first rule ...",
+    "IsForKids": false
+  },
+  {
+    "Title": "Azyl",
+    "ProductionYear": 2002,
+    "Genre": 9,
+    "Description": "Do domu Meg wkraczaj¹ z³odzieje. Kobieta wraz z córk¹ chroni siê przed nimi w ma³ym pomieszczeniu zamykanym od wewn¹trz.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Zodiak",
+    "ProductionYear": 2007,
+    "Genre": 9,
+    "Description": "San Francisco terroryzuje seryjny morderca Zodiak. Grupa reporterów postanawia odkryæ to¿samoœæ z³oczyñcy.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Ciekawy przypadek Benjamina Buttona",
+    "ProductionYear": 2008,
+    "Genre": 5,
+    "Description": "Historia Benjamina Buttona, który zamiast starzeæ siê - m³odnia³.",
+    "IsForKids": true
+  },
+  {
+    "Title": "The Social Network",
+    "ProductionYear": 2010,
+    "Genre": 9,
+    "Description": "Historia powstania Facebooka. Komputerowy geniusz z Harvardu zak³ada stronê thefacebook.com, która nieoczekiwanie bije rekordy popularnoœci.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Dziewczyna z tatua¿em",
+    "ProductionYear": 2011,
+    "Genre": 9,
+    "Description": "Ekranizacja powieœci Stiega Larssona. Dziennikarz oskar¿ony o znies³awienie otrzymuje zlecenie zbadania zaginiêcia przed 40 laty 16-letniej Harriet Vanger.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Zaginiona dziewczyna",
+    "ProductionYear": 2014,
+    "Genre": 9,
+    "Description": "Po przeprowadzce Amy i Nick prze¿ywaj¹ kryzys. Gdy w dniu rocznicy œlubu kobieta znika bez œladu, jej m¹¿ staje siê g³ównym podejrzanym.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Mój s¹siad Totoro",
+    "ProductionYear": 1988,
+    "Genre": 2,
+    "Description": "Dwie dziewczynki wraz z ojcem przeprowadzaj¹ siê na wieœ. Poznaj¹ tam magiczne stworzenia zamieszkuj¹ce pobliski las.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Spirited Away: W krainie Bogów",
+    "ProductionYear": 2001,
+    "Genre": 2,
+    "Description": "Ma³a Chihiro wyrusza w pe³n¹ niebezpieczeñstw podró¿, aby ocaliæ swoich rodziców.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Ksiê¿niczka Mononoke",
+    "ProductionYear": 1997,
+    "Genre": 2,
+    "Description": "Ksi¹¿ê ma³ej wioski zostaje przeklêty przez demona. Wyrusza w podró¿, by poprosiæ legendarnego boga zwierz¹t o zdjêcie uroku.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Skazani na Shawshank",
+    "ProductionYear": 1994,
+    "Genre": 4,
+    "Description": "Adaptacja opowiadania Stephena Kinga. Nies³usznie skazany na do¿ywocie bankier, stara siê przetrwaæ w brutalnym, wiêziennym œwiecie.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Nietykalni",
+    "ProductionYear": 2011,
+    "Genre": 3,
+    "Description": "Sparali¿owany milioner zatrudnia do opieki m³odego ch³opaka z przedmieœcia, który w³aœnie wyszed³ z wiêzienia.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Nietykalni",
+    "ProductionYear": 1987,
+    "Genre": 4,
+    "Description": "Chicago, rok 1931, czas prohibicji i rz¹dów Ala Capone. Przyby³y do miasta agent Eliot Ness wraz z grupk¹ 'Nietykalnych' walczy z nielegalnym handlem alkoholem.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Zielona mila",
+    "ProductionYear": 1999,
+    "Genre": 4,
+    "Description": "Emerytowany stra¿nik wiêzienny opowiada przyjació³ce o niezwyk³ym mê¿czyŸnie, którego skazano na œmieræ za zabójstwo dwóch 9-letnich dziewczynek.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Dwunastu gniewnych ludzi",
+    "ProductionYear": 1957,
+    "Genre": 4,
+    "Description": "Dwunastu przysiêg³ych ma wydaæ wyrok w procesie o morderstwo. Jeden z nich ma w¹tpliwoœci dotycz¹ce winy oskar¿onego.",
+    "IsForKids": false
+  },
+  {
+    "Title": "Forrest Gump",
+    "ProductionYear": 1994,
+    "Genre": 4,
+    "Description": "Historia ¿ycia Forresta, ch³opca o niskim ilorazie inteligencji z niedow³adem koñczyn, który staje siê miliarderem i bohaterem wojny w Wietnamie.",
+    "IsForKids": true
+  },
+  {
+    "Title": "Lot nad kuku³czym gniazdem",
+    "ProductionYear": 1975,
+    "Genre": 4,
+    "Description": "Historia z³odzieja, szulera i chuligana, który, by unikn¹æ wiêzienia, udaje niepoczytalnoœæ. Trafia do szpitala dla umys³owo chorych, gdzie tward¹ rêk¹ rz¹dzi siostra Ratched.",
+    "IsForKids": false
+  },
+  {
+    "Title": "W³adca Pierœcieni: Powrót króla",
+    "ProductionYear": 2003,
+    "Genre": 5,
+    "Description": "Zwieñczenie filmowej trylogii wg powieœci Tolkiena. Aragorn jednoczy si³y Œródziemia, szykuj¹c siê do bitwy, która ma odwróciæ uwagê Saurona od pod¹¿aj¹cych w kierunku Góry Przeznaczenia hobbitów.",
+    "IsForKids": true
+  },
+  {
+    "Title": "W³adca Pierœcieni: Dwie wie¿e",
+    "ProductionYear": 2002,
+    "Genre": 5,
+    "Description": "Dru¿yna Pierœcienia zostaje rozbita, lecz zdesperowany Frodo za wszelk¹ cenê chce wype³niæ powierzone mu zadanie. Aragorn z towarzyszami przygotowuje siê, by odeprzeæ atak hord Sarumana.",
+    "IsForKids": true
+  },
+  {
+    "Title": "W³adca Pierœcieni: Dru¿yna Pierœcienia",
+    "ProductionYear": 2001,
+    "Genre": 5,
+    "Description": "Podró¿ hobbita z Shire i jego oœmiu towarzyszy, której celem jest zniszczenie potê¿nego pierœcienia po¿¹danego przez Czarnego W³adcê - Saurona.",
+    "IsForKids": true
   }
 ]
