@@ -9,6 +9,7 @@ using MoviesPortal.DataLayer.Models;
 using MoviesPortal.Menu;
 using MoviesPortal.BusinessLayer.SearchEngine;
 using MoviesPortal.DataLayer;
+using MoviesPortal.BusinessLayer;
 
 namespace MoviesPortal
 {
@@ -80,6 +81,10 @@ namespace MoviesPortal
         }
         public void GetUserChoiceInBrowseMenu()
         {
+            List<Movie> movies = new();
+            MovieStoreService movieStoreService = new();
+            movieStoreService.LoadMoviesFromJson(); //załaduj z pliku JSON do zmiennej MovieStore
+            movies = MovieStore.GetMovies(); //zapisz w liscie movies wszystkie filmy
             int currentLine = 0;
             int counter;
             ConsoleKeyInfo key;
@@ -118,22 +123,22 @@ namespace MoviesPortal
                 {
                     switch (currentLine)
                     {
-                        case 0:
+                        case 0://list films by title
                             {
-                                //list films by title
-                                Console.WriteLine("your movies will be here, sorted by title");
+                                NavigationHelper.NavigateBetweenMovieTitles(movies);
+                                GetUserChoiceInBrowseMenu();
                                 break;
                             }
-                        case 1:
+                        case 1://list films by genre
                             {
-                                //list films by genre
-                                Console.WriteLine("your movies will be here, sorted by genre");
+                                NavigationHelper.NavigateBetweenMovieGenres(movies);
+                                GetUserChoiceInBrowseMenu();
                                 break;
                             }
-                        case 2:
+                        case 2://list films by actor
                             {
-                                //list films by actor
-                                Console.WriteLine("your movies will be here, sorted by actor");
+                                
+                                GetUserChoiceInBrowseMenu();
                                 break;
                             }
                         case 3://back to main menu
