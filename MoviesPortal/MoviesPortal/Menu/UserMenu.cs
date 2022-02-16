@@ -288,7 +288,12 @@ namespace MoviesPortal
                             }
                         case 2:
                             {
-                                //TODO list films for kids
+                                List<Movie> movies = new();
+                                MovieStoreService movieStoreService = new();
+                                movieStoreService.LoadMoviesFromJson(); //załaduj z pliku JSON do zmiennej MovieStore
+                                movies = MovieStore.GetMovies(); //zapisz w liscie movies wszystkie filmy
+                                var moviesForKids = movies.Where(m => m.IsForKids == true).ToList();
+                                NavigationHelper.NavigateBetweenMovieTitles(moviesForKids);
                                 break;
                             }
                         case 3: //back to main panel
