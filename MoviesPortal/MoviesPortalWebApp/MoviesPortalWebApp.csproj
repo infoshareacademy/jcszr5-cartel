@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MoviesPortal.BusinessLayer\MoviesPortal.BusinessLayer.csproj" />
+  </ItemGroup>
+
 </Project>

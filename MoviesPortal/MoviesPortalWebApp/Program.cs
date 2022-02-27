@@ -1,7 +1,11 @@
+using MoviesPortal.DataLayer.Test;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<ICarService, CarService>();
 
 var app = builder.Build();
 
