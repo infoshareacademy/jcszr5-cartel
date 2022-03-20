@@ -8,7 +8,7 @@ using DataAccess.Models.Enums;
 
 namespace DataAccess.Models
 {
-    internal class DbCreativePersonModel
+    public class DbCreativePersonModel
     {
         public string Name { get; set; }
         public string SurName { get; set; }
