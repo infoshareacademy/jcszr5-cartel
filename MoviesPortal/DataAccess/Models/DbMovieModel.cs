@@ -22,6 +22,7 @@ namespace DataAccess.Models
         public bool IsForKids { get; set; }
 
 
-        public IList<DbCreativePersonModel> ActorList = new List<DbCreativePersonModel>(); 
+        public IList<DbCreativePersonModel> ActorList = new List<DbCreativePersonModel>();
 
     }
+}
