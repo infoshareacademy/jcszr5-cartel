@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess.Models;
+﻿using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
 {
     public class MoviePortalContext : DbContext
     {
 
-        public MoviePortalContext() : base("MoviePortalContext")
+        public MoviePortalContext(DbContextOptions<MoviePortalContext> options) : base(options)
         {
         }
         public DbSet<DbMovieModel> Movies { get; set; }
