@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DataAccess.Models.Enums;
+﻿using DataAccess.Models.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
 {
     public class DbMovieModel
     {
+        [Key]
+        public int Id { get; set; }
         public string Title { get; set; }
 
-        public IList<DbCreativePersonModel> Director = new List<DbCreativePersonModel>();
+        public virtual IList<DbCreativePersonModel> CreativePersons { get; set; }
 
         public int ProductionYear { get; set; }
 
@@ -21,8 +19,7 @@ namespace DataAccess.Models
 
         public bool IsForKids { get; set; }
 
-
-        public IList<DbCreativePersonModel> ActorList = new List<DbCreativePersonModel>();
+        
 
     }
 }
