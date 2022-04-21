@@ -1,4 +1,5 @@
-﻿using DataAccess.Models.Enums;
+﻿using DataAccess.Models.EntityAssigments;
+using DataAccess.Models.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
@@ -9,7 +10,7 @@ namespace DataAccess.Models
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public virtual IList<DbCreativePersonModel> CreativePersons { get; set; }
+        public virtual ICollection<DbCreativePersonModel> CreativePersons { get; set; }
 
         public int ProductionYear { get; set; }
 
@@ -18,6 +19,8 @@ namespace DataAccess.Models
         public string Description { get; set; }
 
         public bool IsForKids { get; set; }
+
+        public virtual ICollection<MovieCreativePerson> MovieCreativeRoles { get; set; }
 
         
 
