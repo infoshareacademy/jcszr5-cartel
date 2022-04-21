@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MoviePortalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
+//builder.Services.AddTransient<>
 
 var app = builder.Build();
 
