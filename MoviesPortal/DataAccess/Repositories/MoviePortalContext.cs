@@ -1,8 +1,9 @@
 ﻿using DataAccess.Models;
+using DataAccess.Models.EntityAssigments;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using FluentValidation;
+
 
 namespace DataAccess.Repositories
 {
@@ -18,6 +19,7 @@ namespace DataAccess.Repositories
         }
         public DbSet<DbMovieModel> Movies { get; set; }
         public DbSet<DbCreativePersonModel> CreativePersons { get; set; }
+        public DbSet<MovieCreativePerson> Movie_CreativePersons { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -41,9 +43,34 @@ namespace DataAccess.Repositories
                 .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
             movieModel.Property(p => p.ProductionYear).HasColumnName("Release Date")                
                 .HasMaxLength(DateTime.Now.Year);
-            //todo other properties
+            movieModel.HasMany(p => p.CreativePersons)
+                .WithMany(p => p.Movies)
+                .UsingEntity<MovieCreativePerson>(
+                    j => j.HasOne(mc => mc.CreativePerson).WithMany(c => c.MovieCreativePersons).HasForeignKey("CreativePersonId"),
+                    j => j.HasOne(mc => mc.Movie).WithMany(m => m.MovieCreativeRoles).HasForeignKey("MovieId"));
+                    
+            var creativePersonModel = modelBuilder.Entity<DbCreativePersonModel>();
+            creativePersonModel.HasKey(x => x.Id);
+            creativePersonModel.Property(x => x.Id).HasColumnName("Id")
+                .HasDefaultValue(0);
+            creativePersonModel.Property(p => p.DateOfBirth)
+                .HasColumnType("date")
+                .IsRequired(false);
+            creativePersonModel.Property(p => p.Name)
+                .HasColumnName("Name").HasMaxLength(20)
+                .IsRequired();
+            creativePersonModel.Property(p => p.SurName)
+                .HasColumnName("Surname").HasMaxLength(20)
+                .IsRequired();
+            creativePersonModel.Property(p => p.Role).IsRequired();
+            
+                    
 
-                
+
+
+
+
+
         }
     }
 }

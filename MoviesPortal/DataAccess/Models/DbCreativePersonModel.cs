@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using DataAccess.Models.EntityAssigments;
 using DataAccess.Models.Enums;
 
 namespace DataAccess.Models
@@ -18,14 +19,10 @@ namespace DataAccess.Models
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
         public CreativeRole Role { get; set; }
-        public virtual IList<DbMovieModel> StarredInMovies { get; set; }
+        public virtual ICollection<DbMovieModel> Movies { get; set; }
+        public virtual ICollection<MovieCreativePerson> MovieCreativePersons { get; set; }
 
-        //public DbCreativePersonModel(string name, string surName, DateTime birthDate, CreativeRole role)
-        //{
-        //    Name = name;
-        //    SurName = surName;
-        //    DateOfBirth = birthDate;
-        //    Role = role;
-        //}
+
+        
     }
 }

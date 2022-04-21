@@ -26,23 +26,27 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("int")
+                        .HasDefaultValue(0)
+                        .HasColumnName("Id");
 
                     b.Property<DateTime?>("DateOfBirth")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("Name");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
 
                     b.Property<string>("SurName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasColumnName("Surname");
 
                     b.HasKey("Id");
 
@@ -53,13 +57,16 @@ namespace DataAccess.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                        .HasColumnType("int")
+                        .HasDefaultValue(0)
+                        .HasColumnName("Id");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)")
+                        .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
 
                     b.Property<int>("Genre")
                         .HasColumnType("int");
@@ -68,45 +75,62 @@ namespace DataAccess.Migrations
                         .HasColumnType("bit");
 
                     b.Property<int>("ProductionYear")
-                        .HasColumnType("int");
+                        .HasMaxLength(2022)
+                        .HasColumnType("int")
+                        .HasColumnName("Release Date");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Movies");
                 });
 
-            modelBuilder.Entity("DbCreativePersonModelDbMovieModel", b =>
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieCreativePerson", b =>
                 {
-                    b.Property<int>("CreativePersonsId")
+                    b.Property<int>("CreativePersonId")
                         .HasColumnType("int");
 
-                    b.Property<int>("StarredInMoviesId")
+                    b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("CreativePersonsId", "StarredInMoviesId");
+                    b.HasKey("CreativePersonId", "MovieId");
 
-                    b.HasIndex("StarredInMoviesId");
+                    b.HasIndex("MovieId");
 
-                    b.ToTable("DbCreativePersonModelDbMovieModel");
+                    b.ToTable("Movie_CreativePersons");
                 });
 
-            modelBuilder.Entity("DbCreativePersonModelDbMovieModel", b =>
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieCreativePerson", b =>
                 {
-                    b.HasOne("DataAccess.Models.DbCreativePersonModel", null)
-                        .WithMany()
-                        .HasForeignKey("CreativePersonsId")
+                    b.HasOne("DataAccess.Models.DbCreativePersonModel", "CreativePerson")
+                        .WithMany("MovieCreativePersons")
+                        .HasForeignKey("CreativePersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataAccess.Models.DbMovieModel", null)
-                        .WithMany()
-                        .HasForeignKey("StarredInMoviesId")
+                    b.HasOne("DataAccess.Models.DbMovieModel", "Movie")
+                        .WithMany("MovieCreativeRoles")
+                        .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("CreativePerson");
+
+                    b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.DbCreativePersonModel", b =>
+                {
+                    b.Navigation("MovieCreativePersons");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.DbMovieModel", b =>
+                {
+                    b.Navigation("MovieCreativeRoles");
                 });
 #pragma warning restore 612, 618
         }
