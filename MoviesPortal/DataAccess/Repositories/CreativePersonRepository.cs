@@ -1,5 +1,6 @@
 ﻿using DataAccess.Models;
 using DataAccess.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,29 +11,48 @@ namespace DataAccess.Repositories
 {
     public class CreativePersonRepository : ICreativePersonRepository
     {
-        public Task Create(DbCreativePersonModel creativePerson)
+        private readonly MoviePortalContext _context;
+
+        public CreativePersonRepository(MoviePortalContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task Delete(int id)
+        public async Task Create(DbCreativePersonModel creativePerson)
         {
-            throw new NotImplementedException();
+            _context.CreativePersons.Add(creativePerson);
+            await _context.SaveChangesAsync();
         }
 
-        public Task Edit(int id, DbCreativePersonModel creativePerson)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.CreativePersons.FindAsync(id);
+            _context.CreativePersons.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<ICollection<DbCreativePersonModel>> GetAll()
+        public async Task Edit(int id, DbCreativePersonModel creativePerson)
         {
-            throw new NotImplementedException();
+            var creativePersonOld = _context.CreativePersons.Find(id);
+            if(creativePersonOld != null)
+            {
+                creativePersonOld.Name = creativePerson.Name;
+                creativePersonOld.SurName = creativePerson.SurName;
+                creativePersonOld.DateOfBirth = creativePerson.DateOfBirth;
+                creativePersonOld.Movies = creativePerson.Movies;
+                creativePersonOld.Role = creativePerson.Role;
+            }
+            await _context.SaveChangesAsync();
         }
 
-        public Task<DbCreativePersonModel> GetById(int id)
+        public async Task<ICollection<DbCreativePersonModel>> GetAll()
         {
-            throw new NotImplementedException();
+            return await _context.CreativePersons.ToArrayAsync();
+        }
+
+        public async Task<DbCreativePersonModel> GetById(int id)
+        {
+            return await _context.CreativePersons.FindAsync(id);
         }
     }
 }
