@@ -1,5 +1,6 @@
 ﻿using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
+using DataAccess.Repositories.SampleData;
 using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -46,8 +47,12 @@ namespace DataAccess.Repositories
             movieModel.HasMany(p => p.CreativePersons)
                 .WithMany(p => p.Movies)
                 .UsingEntity<MovieCreativePerson>(
-                    j => j.HasOne(mc => mc.CreativePerson).WithMany(c => c.MovieCreativePersons).HasForeignKey("CreativePersonId"),
-                    j => j.HasOne(mc => mc.Movie).WithMany(m => m.MovieCreativeRoles).HasForeignKey("MovieId"));
+                    j => j.HasOne(mc => mc.CreativePerson)
+                    .WithMany(c => c.MovieCreativePersons)
+                    .HasForeignKey("CreativePersonId"),
+                    j => j.HasOne(mc => mc.Movie)
+                    .WithMany(m => m.MovieCreativeRoles)
+                    .HasForeignKey("MovieId"));
                     
             var creativePersonModel = modelBuilder.Entity<DbCreativePersonModel>();
             creativePersonModel.HasKey(x => x.Id);
@@ -63,14 +68,28 @@ namespace DataAccess.Repositories
                 .HasColumnName("Surname").HasMaxLength(20)
                 .IsRequired();
             creativePersonModel.Property(p => p.Role).IsRequired();
+
+            //Seeding some data
+
+            var movie_CreativePersons = modelBuilder.Entity<MovieCreativePerson>();
+
+            movieModel.HasData(Movie.sampleMovie);
+            creativePersonModel.HasData(Actor.sampleActor, Actor.sampleDirector);
             
-                    
-
-
-
-
-
+            //Relations
+            movie_CreativePersons.HasData(
+                new MovieCreativePerson
+                {
+                    MovieId = 1,
+                    CreativePersonId = 1
+                },
+                new MovieCreativePerson
+                {
+                    MovieId= 1,
+                    CreativePersonId=2                
+                });
 
         }
+
     }
 }
