@@ -10,19 +10,23 @@ using DataAccess.Models.Enums;
 
 namespace DataAccess.Models
 {
-    public class DbCreativePersonModel
+    public class CreativePersonModel
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string SurName { get; set; }
+        public string? PhotographyPath { get; set; }
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
         public CreativeRole Role { get; set; }
-        public virtual ICollection<DbMovieModel> Movies { get; set; }
+        public virtual ICollection<MovieModel> Movies { get; set; }
         public virtual ICollection<MovieCreativePerson> MovieCreativePersons { get; set; }
+        public virtual ICollection<TvSeriesModel> TvSeries { get; set; }
+        public virtual ICollection<TvSeriesCreativePerson> TvSeriesCreativePersons { get; set; }
 
 
-        
+
+
     }
 }

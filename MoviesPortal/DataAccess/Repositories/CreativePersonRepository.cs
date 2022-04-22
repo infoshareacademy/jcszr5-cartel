@@ -18,7 +18,7 @@ namespace DataAccess.Repositories
             _context = context;
         }
 
-        public async Task Create(DbCreativePersonModel creativePerson)
+        public async Task Create(CreativePersonModel creativePerson)
         {
             _context.CreativePersons.Add(creativePerson);
             await _context.SaveChangesAsync();
@@ -31,7 +31,7 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, DbCreativePersonModel creativePerson)
+        public async Task Edit(int id, CreativePersonModel creativePerson)
         {
             var creativePersonOld = _context.CreativePersons.Find(id);
             if(creativePersonOld != null)
@@ -45,12 +45,12 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<DbCreativePersonModel>> GetAll()
+        public async Task<ICollection<CreativePersonModel>> GetAll()
         {
             return await _context.CreativePersons.ToArrayAsync();
         }
 
-        public async Task<DbCreativePersonModel> GetById(int id)
+        public async Task<CreativePersonModel> GetById(int id)
         {
             return await _context.CreativePersons.FindAsync(id);
         }

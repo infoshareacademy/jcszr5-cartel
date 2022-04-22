@@ -9,10 +9,10 @@ namespace DataAccess.Repositories.Interfaces
 {
     internal interface ICreativePersonRepository
     {
-        public Task Create(DbCreativePersonModel creativePerson);
+        public Task Create(CreativePersonModel creativePerson);
         public Task Delete(int id);
-        public Task Edit(int id, DbCreativePersonModel creativePerson);
-        public Task<ICollection<DbCreativePersonModel>> GetAll();
-        public Task<DbCreativePersonModel> GetById(int id);
+        public Task Edit(int id, CreativePersonModel creativePerson);
+        public Task<ICollection<CreativePersonModel>> GetAll();
+        public Task<CreativePersonModel> GetById(int id);
     }
 }

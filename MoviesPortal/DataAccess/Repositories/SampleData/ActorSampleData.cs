@@ -3,9 +3,9 @@ using DataAccess.Models.Enums;
 
 namespace DataAccess.Repositories.SampleData
 {
-    public static class Actor
+    public static class ActorSampleData
     {
-        public static DbCreativePersonModel sampleActor = new DbCreativePersonModel()
+        public static CreativePersonModel sampleActor = new CreativePersonModel()
         {
             Id = 1,
             Name = "Sylvester",
@@ -13,7 +13,7 @@ namespace DataAccess.Repositories.SampleData
             Role = CreativeRole.Actor,            
 
         };
-        public static DbCreativePersonModel sampleDirector = new DbCreativePersonModel()
+        public static CreativePersonModel sampleDirector = new CreativePersonModel()
         {
             Id = 2,
             Name = "Ted",
