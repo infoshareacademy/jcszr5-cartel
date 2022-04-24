@@ -40,6 +40,9 @@ namespace DataAccess.Repositories
                 movie.Description = dbMovieModel.Description;
                 movie.Genres = dbMovieModel.Genres;
                 movie.CreativePersons = dbMovieModel.CreativePersons;
+                movie.IsForKids = dbMovieModel.IsForKids;
+                movie.PosterPath = dbMovieModel.PosterPath;
+                movie.TrailerUrl = dbMovieModel.TrailerUrl;
             }
             await _context.SaveChangesAsync();
         }
