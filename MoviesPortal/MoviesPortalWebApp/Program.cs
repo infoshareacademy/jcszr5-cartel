@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 
 using DataAccess.Repositories;
-
+using DataAccess.Repositories.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +10,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MoviePortalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
-//builder.Services.AddTransient<>
+builder.Services.AddTransient<ITvSeriesRepository, TvSeriesRepository>();
+builder.Services.AddTransient<IEpisodeRepository, EpisodeRepository>();
+builder.Services.AddTransient<ISeasonRepository, SeasonRepository>();
+builder.Services.AddTransient<ICreativePersonRepository, CreativePersonRepository>();
 
 var app = builder.Build();
 
