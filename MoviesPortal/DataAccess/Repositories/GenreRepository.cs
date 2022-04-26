@@ -19,7 +19,7 @@ namespace DataAccess.Repositories
         }
         public async Task Create(GenreModel genreModel)
         {
-            _context.Genres.Add(genreModel);
+            _context.Genres.Add(genreModel);            
             await _context.SaveChangesAsync();
         }
 

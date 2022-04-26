@@ -125,6 +125,7 @@ namespace DataAccess.Repositories
             movieModel.HasData(MovieSampleData.sampleMovie);
             creativePersonModel.HasData(ActorSampleData.sampleActor, ActorSampleData.sampleDirector);
             
+            
             //Relations
             movie_CreativePersons.HasData(
                 new MovieCreativePerson

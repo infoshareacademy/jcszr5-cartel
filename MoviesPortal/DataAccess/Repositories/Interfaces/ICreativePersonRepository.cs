@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Interfaces
 {
-    internal interface ICreativePersonRepository
+    public interface ICreativePersonRepository
     {
         public Task Create(CreativePersonModel creativePerson);
         public Task Delete(int id);
