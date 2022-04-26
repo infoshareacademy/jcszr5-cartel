@@ -11,34 +11,36 @@ namespace BusinessLogic.Services
 {
     public class TvSeriesService : ITvSeriesService
     {
-        private readonly ITvSeriesRepository tvSeriesRepository;
-        private readonly ICreativePersonRepository creativePersonRepository;
-        private readonly ISeasonRepository seasonRepository;
-        private readonly IEpisodeRepository episodeRepository;
-        private readonly IGenreRepository genreRepository;
+        private readonly ITvSeriesRepository tvSeriesRepository;        
 
-        public TvSeriesService(ITvSeriesRepository tvSeriesRepository, ICreativePersonRepository creativePersonRepository, IGenreRepository genreRepository, IEpisodeRepository episodeRepository, ISeasonRepository seasonRepository)
+        public TvSeriesService(ITvSeriesRepository tvSeriesRepository)
         {
-            this.tvSeriesRepository = tvSeriesRepository;
-            this.creativePersonRepository = creativePersonRepository;
-            this.genreRepository = genreRepository;
-            this.episodeRepository = episodeRepository;
-            this.seasonRepository = seasonRepository;
+            this.tvSeriesRepository = tvSeriesRepository;            
         }
 
-        public Task CreateNewSeries(TvSeriesModel tvSeries)
+        public async Task CreateNewSeries(TvSeriesModel tvSeries)
         {
-            throw new NotImplementedException();
+            await tvSeriesRepository.Create(tvSeries);            
         }
 
-        public Task DeleteSeries(int id)
+        public async Task DeleteSeries(int id)
         {
-            throw new NotImplementedException();
+            await tvSeriesRepository.Delete(id);
         }
 
-        public Task<TvSeriesModel> GetById(int id)
+        public async Task Edit(int id, TvSeriesModel tvSeries)
         {
-            throw new NotImplementedException();
+            await tvSeriesRepository.Edit(id, tvSeries);
+        }
+
+        public async Task<ICollection<TvSeriesModel>> GetAll()
+        {
+            return await tvSeriesRepository.GetAll();
+        }
+
+        public async Task<TvSeriesModel> GetById(int id)
+        {
+            return await tvSeriesRepository.GetById(id);
         }
     }
 }

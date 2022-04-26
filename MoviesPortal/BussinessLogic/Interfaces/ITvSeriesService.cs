@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Interfaces
 {
-    internal interface ITvSeriesService
+    public interface ITvSeriesService
     {
         public Task CreateNewSeries(TvSeriesModel tvSeries);
         public Task DeleteSeries(int id);
         public Task <TvSeriesModel>GetById(int id);
+        public Task <ICollection<TvSeriesModel>> GetAll();
+        public Task Edit(int id, TvSeriesModel tvSeries);
     }
 }
