@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220426125840_test")]
-    partial class test
+    [Migration("20220430182233_newDB")]
+    partial class newDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,13 +103,21 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieGenre", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("GenreId", "MovieId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("MovieId");
 
@@ -198,7 +206,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Genre = "Action"
+                            Genre = "action"
                         },
                         new
                         {
@@ -296,6 +304,7 @@ namespace DataAccess.Migrations
                             Id = 1,
                             Description = "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.",
                             IsForKids = false,
+                            PosterPath = "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg",
                             ProductionYear = 1982,
                             Title = "Rambo"
                         });

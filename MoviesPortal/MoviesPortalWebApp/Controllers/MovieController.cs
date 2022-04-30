@@ -54,6 +54,7 @@ namespace MoviesPortalWebApp.Controllers
             {
                 EditMovie model = new EditMovie();
                 List<int> genresIds = new List<int>();
+                List<int> personsIds = new List<int>();
 
                 if (Id.HasValue)
                 {
@@ -61,10 +62,14 @@ namespace MoviesPortalWebApp.Controllers
                     var movie = await _movieService.GetMovieIdByAsync(Id);
                     // get movie genres and add each genresIds into genresIds list
                     movie.Genres.ToList().ForEach(x => genresIds.Add(x.Id));
+                    movie.CreativePersons.ToList().ForEach(x => personsIds.Add(x.Id));
                     // mapping
                     var vm = _mapper.Map<EditMovie>(movie);
                     //bind model 
-                    model.selectedGenres = _context.Genres.Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+                    model.selectedGenres = _context.Genres
+                        .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+                    model.selectedPersons = _context.CreativePersons
+                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName, x.Role), Value = x.Id.ToString() }).ToList();
                     model.Id = vm.Id;
                     model.Title = vm.Title;
                     model.Description = vm.Description;
@@ -73,13 +78,17 @@ namespace MoviesPortalWebApp.Controllers
                     model.TrailerUrl = vm.TrailerUrl;
                     model.IsForKids = vm.IsForKids;
                     model.GenresIds = genresIds.ToArray(); ;
+                    model.PersonsIds = personsIds.ToArray(); ;
                 }
                 else
                 {
                     var movie = new MovieModel();
                     model = _mapper.Map<EditMovie>(movie);
-                    model.selectedGenres = _context.Genres.Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
-                }
+                    model.selectedGenres = _context.Genres
+                        .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+                    model.selectedPersons = _context.CreativePersons
+                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName, x.Role), Value = x.Id.ToString() }).ToList();
+            }
                 return View(model);
             }
 
@@ -88,13 +97,17 @@ namespace MoviesPortalWebApp.Controllers
             {
                 MovieModel newMovie = new MovieModel();
                 List<MovieGenre> movieGenres = new List<MovieGenre>();
+                List<MovieCreativePerson> movieCreativePersons = new List<MovieCreativePerson>();
 
-                if (model.Id > 0)
+            if (model.Id > 0)
                 {
                     newMovie = await _movieService.GetMovieIdByAsync(model.Id);
 
                     newMovie.MovieGenres.ToList().ForEach(result => movieGenres.Add(result));
+                    newMovie.MovieCreativePersons.ToList().ForEach(result => movieCreativePersons.Add(result));
+
                     _context.Movie_Genre.RemoveRange(movieGenres);
+                    _context.Movie_CreativePerson.RemoveRange(movieCreativePersons);
                     _context.SaveChanges();
 
                     newMovie.Title = model.Title;
@@ -116,6 +129,18 @@ namespace MoviesPortalWebApp.Controllers
                         }
 
                         newMovie.MovieGenres = movieGenres;
+                    }
+
+                    if (model.PersonsIds.Length > 0)
+                    {
+                        movieCreativePersons = new List<MovieCreativePerson>();
+
+                        foreach (var personId in model.PersonsIds)
+                        {
+                            movieCreativePersons.Add(new MovieCreativePerson { CreativePersonId = personId, MovieId = model.Id });
+                        }
+
+                        newMovie.MovieCreativePersons = movieCreativePersons;
                     }
 
                     _context.SaveChanges();
@@ -141,6 +166,18 @@ namespace MoviesPortalWebApp.Controllers
                         }
 
                         newMovie.MovieGenres = movieGenres;
+                    }
+
+                    if (model.PersonsIds.Length > 0)
+                    {
+                        movieCreativePersons = new List<MovieCreativePerson>();
+
+                        foreach (var personId in model.PersonsIds)
+                        {
+                            movieCreativePersons.Add(new MovieCreativePerson { CreativePersonId = personId, MovieId = model.Id });
+                        }
+
+                        newMovie.MovieCreativePersons = movieCreativePersons;
                     }
 
                     _context.Movies.Add(newMovie);

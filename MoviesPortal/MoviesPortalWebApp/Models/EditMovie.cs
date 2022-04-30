@@ -19,8 +19,10 @@ namespace MoviesPortalWebApp.Models
         public bool IsForKids { get; set; }
 
         public List<SelectListItem> selectedGenres { get; set; }
+        public int[] GenresIds { get; set; } 
 
-        public int[] GenresIds { get; set; }
+        public List<SelectListItem> selectedPersons { get; set; }
+        public int[] PersonsIds { get; set; }
 
     }
 }
