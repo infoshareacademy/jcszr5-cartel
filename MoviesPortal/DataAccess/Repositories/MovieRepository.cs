@@ -15,15 +15,15 @@ namespace DataAccess.Repositories
         public MovieRepository(MoviePortalContext context)
         {
             _context = context;
-        }        
+        }
 
         public async Task Create(MovieModel dbMovieModel)
-        {            
+        {
             _context.Movies.Add(dbMovieModel);
             await _context.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteMovieByIdAsync(int id)
         {
             var movie = _context.Movies.FirstOrDefault(x => x.Id == id);
             _context.Movies.Remove(movie);
@@ -47,16 +47,24 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<MovieModel>> GetAll()
+        public async Task<ICollection<MovieModel>> GetAllMoviesAsync()
         {
-            var result = await _context.Movies.ToArrayAsync();
+            var result = await _context.Movies
+                .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
+                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.CreativePerson)
+                .ToArrayAsync();
             return result;
         }
 
-        public async Task<MovieModel> GetById(int id)
+        public async Task<MovieModel> GetMovieIdByAsync(int? id)
         {
-            var result = await _context.Movies.FindAsync(id);
+            var result = await _context.Movies
+                .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
+                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.CreativePerson)
+                .FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }
+
+
     }
 }

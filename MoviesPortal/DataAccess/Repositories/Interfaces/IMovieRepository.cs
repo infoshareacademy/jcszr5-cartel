@@ -10,9 +10,9 @@ namespace DataAccess.Repositories
     public interface IMovieRepository
     {
         public Task Create(MovieModel dbMovieModel);
-        public Task Delete(int id);
+        public Task DeleteMovieByIdAsync(int id);
         public Task Edit(int id, MovieModel dbMovieModel);
-        public Task<ICollection<MovieModel>> GetAll();
-        public Task<MovieModel> GetById(int id);
+        public Task<ICollection<MovieModel>> GetAllMoviesAsync();
+        public Task<MovieModel> GetMovieIdByAsync(int? id);
     }
 }

@@ -16,11 +16,14 @@ builder.Services.AddTransient<ITvSeriesRepository, TvSeriesRepository>();
 builder.Services.AddTransient<IEpisodeRepository, EpisodeRepository>();
 builder.Services.AddTransient<ISeasonRepository, SeasonRepository>();
 builder.Services.AddTransient<ICreativePersonRepository, CreativePersonRepository>();
+builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<ITvSeriesService, TvSeriesService>();
+builder.Services.AddTransient<IMovieService, MovieService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
