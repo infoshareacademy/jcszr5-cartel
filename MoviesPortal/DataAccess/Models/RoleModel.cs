@@ -14,6 +14,6 @@ namespace DataAccess.Models
         public int RoleId { get; set; }
         public string RoleName { get; set; }
         public ICollection<CreativePersonModel> CreativePersons { get; set; }
-        public virtual ICollection<RoleCreativePerson> RoleCreativePersons { get; set; }
+        public virtual ICollection<RoleCreativeMovie> RoleCreativePersons { get; set; }
     }
 }

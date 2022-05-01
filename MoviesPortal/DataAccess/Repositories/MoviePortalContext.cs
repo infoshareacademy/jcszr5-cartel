@@ -31,6 +31,7 @@ namespace DataAccess.Repositories
         public DbSet<MovieGenre> Movie_Genre { get; set; }
         public DbSet<TvSeriesCreativePerson> TvSeries_CreativePerson { get; set; }
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }        
+        public DbSet<RoleCreativeMovie> Role_CreativeP_Movie { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -81,7 +82,7 @@ namespace DataAccess.Repositories
                 .HasColumnName("Surname").HasMaxLength(20)
                 .IsRequired();
             creativePersonModel.HasMany(c => c.Roles).WithMany(r => r.CreativePersons)
-                .UsingEntity<RoleCreativePerson>(
+                .UsingEntity<RoleCreativeMovie>(
                 j => j.HasOne(c =>c.Role).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("RoleId"),
                 j => j.HasOne(r => r.CreativePerson).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("CreativePersonId"));
             
