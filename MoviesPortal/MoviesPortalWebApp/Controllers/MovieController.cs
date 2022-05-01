@@ -69,7 +69,7 @@ namespace MoviesPortalWebApp.Controllers
                     model.selectedGenres = _context.Genres
                         .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
                     model.selectedPersons = _context.CreativePersons
-                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName, x.Role), Value = x.Id.ToString() }).ToList();
+                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
                     model.Id = vm.Id;
                     model.Title = vm.Title;
                     model.Description = vm.Description;
@@ -87,7 +87,7 @@ namespace MoviesPortalWebApp.Controllers
                     model.selectedGenres = _context.Genres
                         .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
                     model.selectedPersons = _context.CreativePersons
-                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName, x.Role), Value = x.Id.ToString() }).ToList();
+                        .Select(x => new SelectListItem { Text = string.Format("{0} {1} ({2})", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
             }
                 return View(model);
             }

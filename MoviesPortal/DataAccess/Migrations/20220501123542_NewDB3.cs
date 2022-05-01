@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class newDB : Migration
+    public partial class NewDB3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,8 +17,7 @@ namespace DataAccess.Migrations
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PhotographyPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: true),
-                    Role = table.Column<int>(type: "int", nullable: false)
+                    DateOfBirth = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -48,11 +47,26 @@ namespace DataAccess.Migrations
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, defaultValue: "Nie dodano jeszcze żadnego opisu."),
                     PosterPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TrailerUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BackgroundPoster = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImdbRatio = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsForKids = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movies", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Roles",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    RoleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Roles", x => x.RoleId);
                 });
 
             migrationBuilder.CreateTable(
@@ -66,7 +80,9 @@ namespace DataAccess.Migrations
                     Start_Year = table.Column<int>(type: "int", nullable: false),
                     End_Year = table.Column<int>(type: "int", nullable: false),
                     PosterPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    TrailerUrl = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TrailerUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    BackgroundPoster = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImdbRatio = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -120,6 +136,30 @@ namespace DataAccess.Migrations
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RoleCreativePerson",
+                columns: table => new
+                {
+                    RoleId = table.Column<int>(type: "int", nullable: false),
+                    CreativePersonId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RoleCreativePerson", x => new { x.CreativePersonId, x.RoleId });
+                    table.ForeignKey(
+                        name: "FK_RoleCreativePerson_CreativePersons_CreativePersonId",
+                        column: x => x.CreativePersonId,
+                        principalTable: "CreativePersons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RoleCreativePerson_Roles_RoleId",
+                        column: x => x.RoleId,
+                        principalTable: "Roles",
+                        principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -214,11 +254,11 @@ namespace DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "CreativePersons",
-                columns: new[] { "Id", "DateOfBirth", "Name", "PhotographyPath", "Role", "Surname" },
+                columns: new[] { "Id", "DateOfBirth", "Name", "PhotographyPath", "Surname" },
                 values: new object[,]
                 {
-                    { 1, null, "Sylvester", null, 1, "Stallone" },
-                    { 2, null, "Ted", null, 0, "Kotcheff" }
+                    { 1, null, "Sylvester", null, "Stallone" },
+                    { 2, null, "Ted", null, "Kotcheff" }
                 });
 
             migrationBuilder.InsertData(
@@ -241,8 +281,17 @@ namespace DataAccess.Migrations
 
             migrationBuilder.InsertData(
                 table: "Movies",
-                columns: new[] { "Id", "Description", "IsForKids", "PosterPath", "Release Date", "Title", "TrailerUrl" },
-                values: new object[] { 1, "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.", false, "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg", 1982, "Rambo", null });
+                columns: new[] { "Id", "BackgroundPoster", "Description", "ImdbRatio", "IsForKids", "PosterPath", "Release Date", "Title", "TrailerUrl" },
+                values: new object[] { 1, null, "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.", null, false, "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg", 1982, "Rambo", null });
+
+            migrationBuilder.InsertData(
+                table: "Roles",
+                columns: new[] { "RoleId", "RoleName" },
+                values: new object[,]
+                {
+                    { 1, "Actor" },
+                    { 2, "Director" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Movie_CreativePerson",
@@ -275,6 +324,11 @@ namespace DataAccess.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RoleCreativePerson_RoleId",
+                table: "RoleCreativePerson",
+                column: "RoleId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Seasons_TvSeriesId",
                 table: "Seasons",
                 column: "TvSeriesId");
@@ -302,6 +356,9 @@ namespace DataAccess.Migrations
                 name: "Movie_Genre");
 
             migrationBuilder.DropTable(
+                name: "RoleCreativePerson");
+
+            migrationBuilder.DropTable(
                 name: "TvSeries_CreativePerson");
 
             migrationBuilder.DropTable(
@@ -312,6 +369,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Movies");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "CreativePersons");

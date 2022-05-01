@@ -19,6 +19,8 @@ namespace DataAccess.Models
         public string Description { get; set; }
         public string? PosterPath { get; set; }
         public string? TrailerUrl { get; set; }
+        public string? BackgroundPoster { get; set; }
+        public string? ImdbRatio { get; set; }
 
         public bool IsForKids { get; set; }
 

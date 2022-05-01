@@ -24,12 +24,13 @@ namespace DataAccess.Repositories
         public DbSet<SeasonModel> Seasons { get; set; }
         public DbSet<EpisodeModel> Episodes { get; set; }
         public DbSet<GenreModel> Genres { get; set; }
+        public DbSet<RoleModel> Roles { get; set; }
 
         //Assigment tables (for many-to-many relations)
         public DbSet<MovieCreativePerson> Movie_CreativePerson { get; set; }
         public DbSet<MovieGenre> Movie_Genre { get; set; }
         public DbSet<TvSeriesCreativePerson> TvSeries_CreativePerson { get; set; }
-        public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
+        public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,6 +64,7 @@ namespace DataAccess.Repositories
                 .UsingEntity<MovieGenre>(
                     j => j.HasOne(mg => mg.Genre).WithMany(g => g.MovieGenres).HasForeignKey("GenreId"),
                     j => j.HasOne(mg => mg.Movie).WithMany(g => g.MovieGenres).HasForeignKey("MovieId"));
+            
 
 
             var creativePersonModel = modelBuilder.Entity<CreativePersonModel>();
@@ -78,7 +80,11 @@ namespace DataAccess.Repositories
             creativePersonModel.Property(p => p.SurName)
                 .HasColumnName("Surname").HasMaxLength(20)
                 .IsRequired();
-            creativePersonModel.Property(p => p.Role).IsRequired();
+            creativePersonModel.HasMany(c => c.Roles).WithMany(r => r.CreativePersons)
+                .UsingEntity<RoleCreativePerson>(
+                j => j.HasOne(c =>c.Role).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("RoleId"),
+                j => j.HasOne(r => r.CreativePerson).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("CreativePersonId"));
+            
 
 
             var genreModel = modelBuilder.Entity<GenreModel>();
@@ -131,14 +137,29 @@ namespace DataAccess.Repositories
                 new MovieCreativePerson
                 {
                     MovieId = 1,
-                    CreativePersonId = 1
-                },
+                    CreativePersonId = 1,
+                    
+                },               
                 new MovieCreativePerson
                 {
                     MovieId= 1,
-                    CreativePersonId=2                
+                    CreativePersonId=2,  
+                    
                 });
             genreModel.HasData(GenreSampleData.sampleGenres);
+
+            var Roles = modelBuilder.Entity<RoleModel>();
+            Roles.HasData(
+                new RoleModel
+                {
+                    RoleId = 1,
+                    RoleName = "Actor"
+                },
+                new RoleModel
+                {
+                    RoleId = 2,
+                    RoleName = "Director"
+                });
         }
 
     }

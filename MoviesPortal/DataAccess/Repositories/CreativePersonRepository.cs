@@ -40,7 +40,7 @@ namespace DataAccess.Repositories
                 creativePersonOld.SurName = creativePerson.SurName;
                 creativePersonOld.DateOfBirth = creativePerson.DateOfBirth;
                 creativePersonOld.Movies = creativePerson.Movies;
-                creativePersonOld.Role = creativePerson.Role;
+                
             }
             await _context.SaveChangesAsync();
         }
