@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class NewDB3 : Migration
+    public partial class NewDbWithData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +13,8 @@ namespace DataAccess.Migrations
                 name: "CreativePersons",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     PhotographyPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -41,7 +42,8 @@ namespace DataAccess.Migrations
                 name: "Movies",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false, defaultValue: 0),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     ReleaseDate = table.Column<int>(name: "Release Date", type: "int", maxLength: 2022, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, defaultValue: "Nie dodano jeszcze żadnego opisu."),
@@ -76,7 +78,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false, defaultValue: "Nie dodano jeszcze żadnego opisu."),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false, defaultValue: "Nie dodano jeszcze żadnego opisu."),
                     Start_Year = table.Column<int>(type: "int", nullable: false),
                     End_Year = table.Column<int>(type: "int", nullable: false),
                     PosterPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -140,23 +142,30 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "RoleCreativePerson",
+                name: "Role_CreativeP_Movie",
                 columns: table => new
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false),
-                    CreativePersonId = table.Column<int>(type: "int", nullable: false)
+                    CreativePersonId = table.Column<int>(type: "int", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_RoleCreativePerson", x => new { x.CreativePersonId, x.RoleId });
+                    table.PrimaryKey("PK_Role_CreativeP_Movie", x => new { x.CreativePersonId, x.RoleId });
                     table.ForeignKey(
-                        name: "FK_RoleCreativePerson_CreativePersons_CreativePersonId",
+                        name: "FK_Role_CreativeP_Movie_CreativePersons_CreativePersonId",
                         column: x => x.CreativePersonId,
                         principalTable: "CreativePersons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_RoleCreativePerson_Roles_RoleId",
+                        name: "FK_Role_CreativeP_Movie_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Role_CreativeP_Movie_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
@@ -238,7 +247,7 @@ namespace DataAccess.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: true),
                     SeasonId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -324,8 +333,13 @@ namespace DataAccess.Migrations
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RoleCreativePerson_RoleId",
-                table: "RoleCreativePerson",
+                name: "IX_Role_CreativeP_Movie_MovieId",
+                table: "Role_CreativeP_Movie",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Role_CreativeP_Movie_RoleId",
+                table: "Role_CreativeP_Movie",
                 column: "RoleId");
 
             migrationBuilder.CreateIndex(
@@ -356,7 +370,7 @@ namespace DataAccess.Migrations
                 name: "Movie_Genre");
 
             migrationBuilder.DropTable(
-                name: "RoleCreativePerson");
+                name: "Role_CreativeP_Movie");
 
             migrationBuilder.DropTable(
                 name: "TvSeries_CreativePerson");

@@ -27,8 +27,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("date");
@@ -125,7 +126,10 @@ namespace DataAccess.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<int>("MovieId")
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TvSeriesId")
                         .HasColumnType("int");
 
                     b.HasKey("CreativePersonId", "RoleId");
@@ -133,6 +137,8 @@ namespace DataAccess.Migrations
                     b.HasIndex("MovieId");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("TvSeriesId");
 
                     b.ToTable("Role_CreativeP_Movie");
                 });
@@ -177,8 +183,8 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasColumnName("Description");
 
                     b.Property<int>("SeasonId")
@@ -278,8 +284,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BackgroundPoster")
                         .HasColumnType("nvarchar(max)");
@@ -395,8 +402,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
 
                     b.Property<int>("EndYear")
@@ -474,9 +481,7 @@ namespace DataAccess.Migrations
 
                     b.HasOne("DataAccess.Models.MovieModel", "Movie")
                         .WithMany("RoleCreativeMovie")
-                        .HasForeignKey("MovieId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("MovieId");
 
                     b.HasOne("DataAccess.Models.RoleModel", "Role")
                         .WithMany("RoleCreativePersons")
@@ -484,11 +489,17 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DataAccess.Models.TvSeriesModel", "TvSeries")
+                        .WithMany("RoleCreativeMovie")
+                        .HasForeignKey("TvSeriesId");
+
                     b.Navigation("CreativePerson");
 
                     b.Navigation("Movie");
 
                     b.Navigation("Role");
+
+                    b.Navigation("TvSeries");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -588,6 +599,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.TvSeriesModel", b =>
                 {
+                    b.Navigation("RoleCreativeMovie");
+
                     b.Navigation("Seasons");
 
                     b.Navigation("TvSeriesCreativePersons");

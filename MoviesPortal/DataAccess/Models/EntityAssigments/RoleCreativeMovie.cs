@@ -10,10 +10,12 @@ namespace DataAccess.Models.EntityAssigments
     {
         public int RoleId { get; set; }
         public int CreativePersonId { get; set; }
-        public int MovieId { get; set; }
+        public int? MovieId { get; set; }
+        public int? TvSeriesId { get; set; }
         public RoleModel Role { get; set; }
         public CreativePersonModel CreativePerson { get; set; }
         public MovieModel Movie { get; set; }
+        public TvSeriesModel TvSeries { get; set; }
 
     }
 }

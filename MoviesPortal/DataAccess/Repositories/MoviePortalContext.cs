@@ -45,8 +45,7 @@ namespace DataAccess.Repositories
             var movieModel = modelBuilder.Entity<MovieModel>();
 
             movieModel.HasKey(x => x.Id);
-            movieModel.Property(x => x.Id).HasColumnName("Id")
-                .HasDefaultValue(0)
+            movieModel.Property(x => x.Id).HasColumnName("Id")                
                 .IsRequired();
             movieModel.Property(p => p.Title).IsRequired()
                 .HasMaxLength(50);
@@ -70,8 +69,8 @@ namespace DataAccess.Repositories
 
             var creativePersonModel = modelBuilder.Entity<CreativePersonModel>();
             creativePersonModel.HasKey(x => x.Id);
-            creativePersonModel.Property(x => x.Id).HasColumnName("Id")
-                .HasDefaultValue(0);
+            creativePersonModel.Property(x => x.Id).HasColumnName("Id");
+                
             creativePersonModel.Property(p => p.DateOfBirth)
                 .HasColumnType("date")
                 .IsRequired(false);
@@ -98,7 +97,7 @@ namespace DataAccess.Repositories
             episodeModel.HasKey(x => x.Id);
             episodeModel.Property(x => x.Id).HasColumnName("Id");
             episodeModel.Property(x => x.Title).HasColumnName("Title").HasMaxLength(50);
-            episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(200);
+            episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(1000);
 
             var seasonModel = modelBuilder.Entity<SeasonModel>();
             seasonModel.HasKey(x => x.Id);
@@ -109,7 +108,7 @@ namespace DataAccess.Repositories
             tvSeriesModel.HasKey(x => x.Id);
             tvSeriesModel.Property(x => x.Id).HasColumnName("Id").IsRequired();
             tvSeriesModel.Property(p => p.Title).IsRequired().HasMaxLength(50);
-            tvSeriesModel.Property(p => p.Description).IsRequired().HasMaxLength(200).HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
+            tvSeriesModel.Property(p => p.Description).IsRequired().HasMaxLength(1000).HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
             tvSeriesModel.Property(p => p.StartYear).HasColumnName("Start_Year");
             tvSeriesModel.Property(p => p.EndYear).HasColumnName("End_Year");
             tvSeriesModel.HasMany(p => p.CreativePersons)

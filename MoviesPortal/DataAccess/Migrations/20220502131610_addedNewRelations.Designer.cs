@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220501123542_NewDB3")]
-    partial class NewDB3
+    [Migration("20220502131610_addedNewRelations")]
+    partial class addedNewRelations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("date");
@@ -119,7 +120,7 @@ namespace DataAccess.Migrations
                     b.ToTable("Movie_Genre");
                 });
 
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativePerson", b =>
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
                 {
                     b.Property<int>("CreativePersonId")
                         .HasColumnType("int");
@@ -127,11 +128,21 @@ namespace DataAccess.Migrations
                     b.Property<int>("RoleId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TvSeriesId")
+                        .HasColumnType("int");
+
                     b.HasKey("CreativePersonId", "RoleId");
+
+                    b.HasIndex("MovieId");
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("RoleCreativePerson");
+                    b.HasIndex("TvSeriesId");
+
+                    b.ToTable("Role_CreativeP_Movie");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -174,8 +185,8 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasColumnName("Description");
 
                     b.Property<int>("SeasonId")
@@ -275,8 +286,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BackgroundPoster")
                         .HasColumnType("nvarchar(max)");
@@ -392,8 +404,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
 
                     b.Property<int>("EndYear")
@@ -461,7 +473,7 @@ namespace DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativePerson", b =>
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
                 {
                     b.HasOne("DataAccess.Models.CreativePersonModel", "CreativePerson")
                         .WithMany("RoleCreativePersons")
@@ -469,15 +481,27 @@ namespace DataAccess.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DataAccess.Models.MovieModel", "Movie")
+                        .WithMany("RoleCreativeMovie")
+                        .HasForeignKey("MovieId");
+
                     b.HasOne("DataAccess.Models.RoleModel", "Role")
                         .WithMany("RoleCreativePersons")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("DataAccess.Models.TvSeriesModel", "TvSeries")
+                        .WithMany("RoleCreativeMovie")
+                        .HasForeignKey("TvSeriesId");
+
                     b.Navigation("CreativePerson");
 
+                    b.Navigation("Movie");
+
                     b.Navigation("Role");
+
+                    b.Navigation("TvSeries");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -561,6 +585,8 @@ namespace DataAccess.Migrations
                     b.Navigation("MovieCreativePersons");
 
                     b.Navigation("MovieGenres");
+
+                    b.Navigation("RoleCreativeMovie");
                 });
 
             modelBuilder.Entity("DataAccess.Models.RoleModel", b =>
@@ -575,6 +601,8 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.TvSeriesModel", b =>
                 {
+                    b.Navigation("RoleCreativeMovie");
+
                     b.Navigation("Seasons");
 
                     b.Navigation("TvSeriesCreativePersons");

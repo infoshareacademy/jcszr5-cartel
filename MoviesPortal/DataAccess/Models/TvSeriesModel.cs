@@ -23,5 +23,6 @@ namespace DataAccess.Models
         public virtual ICollection<CreativePersonModel> CreativePersons { get; set; }
         public virtual ICollection<TvSeriesCreativePerson> TvSeriesCreativePersons { get; set; }
         public virtual ICollection<TvSeriesGenre> TvSeriesGenres { get; set; }
+        public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
     }
 }

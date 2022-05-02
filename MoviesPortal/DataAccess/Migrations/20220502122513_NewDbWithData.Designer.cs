@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220501180942_NewDB4")]
-    partial class NewDB4
+    [Migration("20220502122513_NewDbWithData")]
+    partial class NewDbWithData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("date");
@@ -179,8 +180,8 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasColumnName("Description");
 
                     b.Property<int>("SeasonId")
@@ -280,8 +281,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BackgroundPoster")
                         .HasColumnType("nvarchar(max)");
@@ -397,8 +399,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
 
                     b.Property<int>("EndYear")
