@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class NewDbWithData : Migration
+    public partial class Db : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -147,7 +147,8 @@ namespace DataAccess.Migrations
                 {
                     RoleId = table.Column<int>(type: "int", nullable: false),
                     CreativePersonId = table.Column<int>(type: "int", nullable: false),
-                    MovieId = table.Column<int>(type: "int", nullable: false)
+                    MovieId = table.Column<int>(type: "int", nullable: true),
+                    TvSeriesId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -162,14 +163,18 @@ namespace DataAccess.Migrations
                         name: "FK_Role_CreativeP_Movie_Movies_MovieId",
                         column: x => x.MovieId,
                         principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Role_CreativeP_Movie_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
                         principalColumn: "RoleId",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Role_CreativeP_Movie_TvSeries_TvSeriesId",
+                        column: x => x.TvSeriesId,
+                        principalTable: "TvSeries",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -341,6 +346,11 @@ namespace DataAccess.Migrations
                 name: "IX_Role_CreativeP_Movie_RoleId",
                 table: "Role_CreativeP_Movie",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Role_CreativeP_Movie_TvSeriesId",
+                table: "Role_CreativeP_Movie",
+                column: "TvSeriesId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Seasons_TvSeriesId",
