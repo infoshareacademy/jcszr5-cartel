@@ -42,9 +42,6 @@ namespace DataAccess.Migrations
                     b.Property<string>("PhotographyPath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("int");
-
                     b.Property<string>("SurName")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -60,14 +57,12 @@ namespace DataAccess.Migrations
                         {
                             Id = 1,
                             Name = "Sylvester",
-                            Role = 1,
                             SurName = "Stallone"
                         },
                         new
                         {
                             Id = 2,
                             Name = "Ted",
-                            Role = 0,
                             SurName = "Kotcheff"
                         });
                 });
@@ -101,17 +96,45 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieGenre", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("GenreId", "MovieId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("GenreId");
 
                     b.HasIndex("MovieId");
 
                     b.ToTable("Movie_Genre");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
+                {
+                    b.Property<int>("CreativePersonId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CreativePersonId", "RoleId");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("Role_CreativeP_Movie");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -196,7 +219,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
-                            Genre = "Action"
+                            Genre = "action"
                         },
                         new
                         {
@@ -258,12 +281,18 @@ namespace DataAccess.Migrations
                         .HasDefaultValue(0)
                         .HasColumnName("Id");
 
+                    b.Property<string>("BackgroundPoster")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
                         .HasMaxLength(200)
                         .HasColumnType("nvarchar(200)")
                         .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
+
+                    b.Property<string>("ImdbRatio")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsForKids")
                         .HasColumnType("bit");
@@ -294,8 +323,38 @@ namespace DataAccess.Migrations
                             Id = 1,
                             Description = "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.",
                             IsForKids = false,
+                            PosterPath = "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg",
                             ProductionYear = 1982,
                             Title = "Rambo"
+                        });
+                });
+
+            modelBuilder.Entity("DataAccess.Models.RoleModel", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+
+                    b.HasData(
+                        new
+                        {
+                            RoleId = 1,
+                            RoleName = "Actor"
+                        },
+                        new
+                        {
+                            RoleId = 2,
+                            RoleName = "Director"
                         });
                 });
 
@@ -330,6 +389,9 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<string>("BackgroundPoster")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -340,6 +402,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("EndYear")
                         .HasColumnType("int")
                         .HasColumnName("End_Year");
+
+                    b.Property<string>("ImdbRatio")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PosterPath")
                         .HasColumnType("nvarchar(max)");
@@ -397,6 +462,33 @@ namespace DataAccess.Migrations
                     b.Navigation("Genre");
 
                     b.Navigation("Movie");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
+                {
+                    b.HasOne("DataAccess.Models.CreativePersonModel", "CreativePerson")
+                        .WithMany("RoleCreativePersons")
+                        .HasForeignKey("CreativePersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Models.MovieModel", "Movie")
+                        .WithMany("RoleCreativeMovie")
+                        .HasForeignKey("MovieId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Models.RoleModel", "Role")
+                        .WithMany("RoleCreativePersons")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CreativePerson");
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("Role");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -463,6 +555,8 @@ namespace DataAccess.Migrations
                 {
                     b.Navigation("MovieCreativePersons");
 
+                    b.Navigation("RoleCreativePersons");
+
                     b.Navigation("TvSeriesCreativePersons");
                 });
 
@@ -478,6 +572,13 @@ namespace DataAccess.Migrations
                     b.Navigation("MovieCreativePersons");
 
                     b.Navigation("MovieGenres");
+
+                    b.Navigation("RoleCreativeMovie");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.RoleModel", b =>
+                {
+                    b.Navigation("RoleCreativePersons");
                 });
 
             modelBuilder.Entity("DataAccess.Models.SeasonModel", b =>

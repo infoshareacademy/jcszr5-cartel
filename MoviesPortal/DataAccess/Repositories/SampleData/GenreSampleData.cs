@@ -14,7 +14,7 @@ namespace DataAccess.Repositories.SampleData
             new GenreModel()
             {
                 Id = 1,
-                Genre = "Action"                
+                Genre = "action"
             },
             new GenreModel()
             {

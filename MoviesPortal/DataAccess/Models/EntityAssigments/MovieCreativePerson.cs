@@ -10,7 +10,10 @@ namespace DataAccess.Models.EntityAssigments
     {
         public int MovieId { get; set; }
         public int CreativePersonId { get; set; }
+        
         public MovieModel Movie { get; set; }
         public CreativePersonModel CreativePerson { get; set; }
+        
+
     }
 }

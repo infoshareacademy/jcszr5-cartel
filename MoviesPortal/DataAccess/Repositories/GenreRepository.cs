@@ -19,7 +19,7 @@ namespace DataAccess.Repositories
         }
         public async Task Create(GenreModel genreModel)
         {
-            _context.Genres.Add(genreModel);            
+            _context.Genres.Add(genreModel);
             await _context.SaveChangesAsync();
         }
 
@@ -37,10 +37,13 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<GenreModel>> GetAll() => await _context.Genres.ToListAsync();
-        
+        public async Task<ICollection<GenreModel>> GetAll()
+        { 
+            return await _context.Genres.ToListAsync();
+
+        }        
 
         public async Task<GenreModel> GetById(int id) => await _context.Genres.FirstOrDefaultAsync(x => x.Id == id);
 
-    }
+        }
 }

@@ -10,7 +10,7 @@ namespace DataAccess.Repositories.SampleData
             Id = 1,
             Name = "Sylvester",
             SurName = "Stallone",
-            Role = CreativeRole.Actor,            
+                        
 
         };
         public static CreativePersonModel sampleDirector = new CreativePersonModel()
@@ -18,7 +18,7 @@ namespace DataAccess.Repositories.SampleData
             Id = 2,
             Name = "Ted",
             SurName = "Kotcheff",
-            Role = CreativeRole.Director,
+            
 
         };
     }

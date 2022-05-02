@@ -10,7 +10,9 @@ namespace DataAccess.Models.EntityAssigments
     {
         public int TvSeriesId { get; set; }
         public int GenreId { get; set; }
+        
         public TvSeriesModel TvSeries { get; set; }
         public GenreModel Genre { get; set; }
+        
     }
 }
