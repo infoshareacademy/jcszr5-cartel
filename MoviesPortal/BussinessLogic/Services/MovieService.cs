@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.Models;
+using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
 
 namespace BusinessLogic.Services
@@ -11,16 +12,19 @@ namespace BusinessLogic.Services
         public Task<MovieModel> GetMovieIdByAsync(int? id);
 
         public Task DeleteMovieByIdAsync(int id);
-}
+
+    }
 
     public class MovieService : IMovieService
     {
         private readonly IMovieRepository _movieRepository;
-        
-        public MovieService(IMovieRepository movieRepository, IMapper mapper)
+
+        private readonly MoviePortalContext _context;
+
+        public MovieService(IMovieRepository movieRepository, IMapper mapper, MoviePortalContext context)
         {
             _movieRepository = movieRepository;
-            
+            _context = context;
         }
 
         public async Task<ICollection<MovieModel>> GetAllMoviesAsync()
@@ -39,8 +43,5 @@ namespace BusinessLogic.Services
         {
             await _movieRepository.DeleteMovieByIdAsync(id);
         }
-
-       
-
     }
 }

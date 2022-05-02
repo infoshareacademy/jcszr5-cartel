@@ -27,8 +27,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("date");
@@ -56,26 +57,86 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            DateOfBirth = new DateTime(1946, 7, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Sylvester",
+                            PhotographyPath = "https://i.pinimg.com/originals/be/8f/3d/be8f3dfb132eb1b867379235d75a37b1.jpg",
                             SurName = "Stallone"
                         },
                         new
                         {
                             Id = 2,
+                            DateOfBirth = new DateTime(1977, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Tom",
+                            PhotographyPath = "https://i.pinimg.com/originals/9d/73/d6/9d73d68e972ef3fd416f38c780e901ff.jpg",
+                            SurName = "Hardy"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateOfBirth = new DateTime(1983, 8, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Chris",
+                            PhotographyPath = "https://i.pinimg.com/originals/13/62/b3/1362b30b97ed513559b4f28a5a3823f2.png",
+                            SurName = "Hemsworth"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateOfBirth = new DateTime(1976, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cillian",
+                            PhotographyPath = "https://i.pinimg.com/originals/01/aa/d4/01aad42f699f2bc8d0225047e7b23e03.jpg",
+                            SurName = "Murphy"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateOfBirth = new DateTime(1975, 8, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Taika",
+                            PhotographyPath = "https://i.pinimg.com/originals/74/e4/a5/74e4a59cb0e2a110166fd2eef714ad37.jpg",
+                            SurName = "Waititi"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DateOfBirth = new DateTime(1931, 4, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Ted",
+                            PhotographyPath = "https://tce-live2.s3.amazonaws.com/media/media/74b70c1f-c4c4-4b77-9c6f-114cb1d62fdb.jpg",
                             SurName = "Kotcheff"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DateOfBirth = new DateTime(1970, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Christopher",
+                            PhotographyPath = "https://i.pinimg.com/originals/6e/76/07/6e76076e9b218373ff054e57e6c307db.jpg",
+                            SurName = "Nolan"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DateOfBirth = new DateTime(1969, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Cate",
+                            PhotographyPath = "https://i.pinimg.com/originals/d5/23/75/d52375bb559b121f8221877db8b653a8.jpg",
+                            SurName = "Blanchett"
                         });
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieCreativePerson", b =>
                 {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("CreativePersonId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("CreativePersonId", "MovieId");
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreativePersonId");
 
                     b.HasIndex("MovieId");
 
@@ -84,13 +145,51 @@ namespace DataAccess.Migrations
                     b.HasData(
                         new
                         {
+                            Id = 1,
                             CreativePersonId = 1,
                             MovieId = 1
                         },
                         new
                         {
-                            CreativePersonId = 2,
+                            Id = 2,
+                            CreativePersonId = 6,
                             MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreativePersonId = 3,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreativePersonId = 5,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreativePersonId = 8,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreativePersonId = 2,
+                            MovieId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreativePersonId = 4,
+                            MovieId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreativePersonId = 7,
+                            MovieId = 3
                         });
                 });
 
@@ -119,22 +218,95 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
                 {
-                    b.Property<int>("CreativePersonId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("CreativePersonId")
                         .HasColumnType("int");
 
                     b.Property<int>("MovieId")
                         .HasColumnType("int");
 
-                    b.HasKey("CreativePersonId", "RoleId");
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreativePersonId");
 
                     b.HasIndex("MovieId");
 
                     b.HasIndex("RoleId");
 
                     b.ToTable("Role_CreativeP_Movie");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreativePersonId = 1,
+                            MovieId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreativePersonId = 6,
+                            MovieId = 1,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreativePersonId = 3,
+                            MovieId = 2,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreativePersonId = 5,
+                            MovieId = 2,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreativePersonId = 5,
+                            MovieId = 2,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreativePersonId = 8,
+                            MovieId = 2,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreativePersonId = 2,
+                            MovieId = 3,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreativePersonId = 4,
+                            MovieId = 3,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreativePersonId = 7,
+                            MovieId = 3,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
@@ -177,8 +349,8 @@ namespace DataAccess.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Description")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasColumnName("Description");
 
                     b.Property<int>("SeasonId")
@@ -278,8 +450,9 @@ namespace DataAccess.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasDefaultValue(0)
                         .HasColumnName("Id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("BackgroundPoster")
                         .HasColumnType("nvarchar(max)");
@@ -321,11 +494,38 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 1,
+                            BackgroundPoster = "https://i.ytimg.com/vi/IAqLKlxY3Eo/maxresdefault.jpg",
                             Description = "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.",
+                            ImdbRatio = "7.7",
                             IsForKids = false,
                             PosterPath = "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg",
                             ProductionYear = 1982,
-                            Title = "Rambo"
+                            Title = "Rambo",
+                            TrailerUrl = "https://www.youtube.com/watch?v=IAqLKlxY3Eo"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BackgroundPoster = "https://c4.wallpaperflare.com/wallpaper/21/588/836/thor-ragnarok-4k-download-hd-for-desktop-wallpaper-preview.jpg",
+                            Description = "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.",
+                            ImdbRatio = "7.9",
+                            IsForKids = true,
+                            PosterPath = "https://preview.redd.it/hz8qlbfo4gr11.jpg?auto=webp&s=04d74ee2edec633bb566bb4801392f29fa5db299",
+                            ProductionYear = 2017,
+                            Title = "Thor: Ragnarok",
+                            TrailerUrl = "https://www.youtube.com/watch?v=v7MGUNV8MxU"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BackgroundPoster = "https://images7.alphacoders.com/855/thumb-1920-855790.jpg",
+                            Description = "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
+                            ImdbRatio = "7.8",
+                            IsForKids = false,
+                            PosterPath = "https://cdn.inprnt.com/thumbs/31/86/31865375aaa94c92ffef48c96dbd9024.jpg?response-cache-control=max-age=2628000",
+                            ProductionYear = 2017,
+                            Title = "Dunkirk",
+                            TrailerUrl = "https://www.youtube.com/watch?v=F-eMt3SrfFU"
                         });
                 });
 
@@ -395,8 +595,8 @@ namespace DataAccess.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
                         .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
 
                     b.Property<int>("EndYear")

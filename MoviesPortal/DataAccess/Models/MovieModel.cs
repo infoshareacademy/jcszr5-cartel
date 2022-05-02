@@ -1,5 +1,6 @@
 ﻿using DataAccess.Models.EntityAssigments;
 using DataAccess.Models.Enums;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
@@ -27,8 +28,6 @@ namespace DataAccess.Models
         public virtual ICollection<MovieCreativePerson> MovieCreativePersons { get; set; }
         public virtual ICollection<MovieGenre> MovieGenres { get; set; }
         public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
-
-        
 
     }
 }

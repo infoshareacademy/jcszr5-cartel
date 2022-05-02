@@ -18,7 +18,7 @@ namespace DataAccess.Repositories
             _context = context;
         }
 
-        public async Task Create(CreativePersonModel creativePerson)
+        public async Task CreateAsync(CreativePersonModel creativePerson)
         {
             _context.CreativePersons.Add(creativePerson);
             await _context.SaveChangesAsync();
@@ -31,13 +31,14 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, CreativePersonModel creativePerson)
+        public async Task EditAsync(int id, CreativePersonModel creativePerson)
         {
             var creativePersonOld = _context.CreativePersons.Find(id);
             if(creativePersonOld != null)
             {
                 creativePersonOld.Name = creativePerson.Name;
                 creativePersonOld.SurName = creativePerson.SurName;
+                creativePersonOld.PhotographyPath = creativePerson.PhotographyPath;
                 creativePersonOld.DateOfBirth = creativePerson.DateOfBirth;
                 creativePersonOld.Movies = creativePerson.Movies;
                 
@@ -45,14 +46,19 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<CreativePersonModel>> GetAll()
+        public async Task<ICollection<CreativePersonModel>> GetAllCreativePersons()
         {
             return await _context.CreativePersons.ToArrayAsync();
         }
 
-        public async Task<CreativePersonModel> GetById(int id)
+        public async Task<CreativePersonModel> GetCreativePersonsById(int id)
         {
-            return await _context.CreativePersons.FindAsync(id);
+            var person = await _context.CreativePersons
+                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.Movie)
+                .Include(r => r.RoleCreativePersons).ThenInclude(r => r.Role)               
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return person;
         }
+
     }
 }
