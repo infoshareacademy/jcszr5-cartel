@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MoviesPortalWebApp.Models.Movie>
+﻿@model IEnumerable<MoviesPortalWebApp.Models.MovieVM>
 
 @{
     ViewData["Title"] = "Index";
@@ -7,7 +7,7 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Edit">Create New</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -21,7 +21,9 @@
              <th>
                 @Html.DisplayNameFor(model => model.PosterPath)
             </th>
-           
+            <th>
+                @Html.DisplayNameFor(model => model.MovieGenres)
+            </th>          
             <th></th>
         </tr>
     </thead>
@@ -40,6 +42,9 @@
                         <img src="@item.PosterPath" width="60%" alt="@item.Title">
                </div>             
            </td>
+           <td>
+                @string.Join(", ", item.MovieGenres.Select(g => g.Genre.Genre))
+            </td>     
             <td>
                 @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
                 @Html.ActionLink("Details", "Details", new {  id=item.Id  }) |

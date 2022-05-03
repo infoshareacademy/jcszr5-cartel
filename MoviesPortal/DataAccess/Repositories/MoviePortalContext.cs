@@ -30,8 +30,8 @@ namespace DataAccess.Repositories
         public DbSet<MovieCreativePerson> Movie_CreativePerson { get; set; }
         public DbSet<MovieGenre> Movie_Genre { get; set; }
         public DbSet<TvSeriesCreativePerson> TvSeries_CreativePerson { get; set; }
-        public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }        
-        public DbSet<RoleCreativeMovie> Role_CreativeP_Movie { get; set; }        
+        public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
+        public DbSet<RoleCreativeMovie> Role_CreativeP_Movie { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -46,14 +46,13 @@ namespace DataAccess.Repositories
 
             movieModel.HasKey(x => x.Id);
             movieModel.Property(x => x.Id).HasColumnName("Id")
-                .HasDefaultValue(0)
                 .IsRequired();
             movieModel.Property(p => p.Title).IsRequired()
                 .HasMaxLength(50);
             movieModel.Property(p => p.Description).IsRequired()
                 .HasMaxLength(200)
                 .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
-            movieModel.Property(p => p.ProductionYear).HasColumnName("Release Date")                
+            movieModel.Property(p => p.ProductionYear).HasColumnName("Release Date")
                 .HasMaxLength(DateTime.Now.Year);
             movieModel.HasMany(p => p.CreativePersons)
                 .WithMany(p => p.Movies)
@@ -65,13 +64,13 @@ namespace DataAccess.Repositories
                 .UsingEntity<MovieGenre>(
                     j => j.HasOne(mg => mg.Genre).WithMany(g => g.MovieGenres).HasForeignKey("GenreId"),
                     j => j.HasOne(mg => mg.Movie).WithMany(g => g.MovieGenres).HasForeignKey("MovieId"));
-            
+
 
 
             var creativePersonModel = modelBuilder.Entity<CreativePersonModel>();
             creativePersonModel.HasKey(x => x.Id);
-            creativePersonModel.Property(x => x.Id).HasColumnName("Id")
-                .HasDefaultValue(0);
+            creativePersonModel.Property(x => x.Id).HasColumnName("Id");
+
             creativePersonModel.Property(p => p.DateOfBirth)
                 .HasColumnType("date")
                 .IsRequired(false);
@@ -83,9 +82,9 @@ namespace DataAccess.Repositories
                 .IsRequired();
             creativePersonModel.HasMany(c => c.Roles).WithMany(r => r.CreativePersons)
                 .UsingEntity<RoleCreativeMovie>(
-                j => j.HasOne(c =>c.Role).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("RoleId"),
+                j => j.HasOne(c => c.Role).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("RoleId"),
                 j => j.HasOne(r => r.CreativePerson).WithMany(rc => rc.RoleCreativePersons).HasForeignKey("CreativePersonId"));
-            
+
 
 
             var genreModel = modelBuilder.Entity<GenreModel>();
@@ -98,7 +97,7 @@ namespace DataAccess.Repositories
             episodeModel.HasKey(x => x.Id);
             episodeModel.Property(x => x.Id).HasColumnName("Id");
             episodeModel.Property(x => x.Title).HasColumnName("Title").HasMaxLength(50);
-            episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(200);
+            episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(1000);
 
             var seasonModel = modelBuilder.Entity<SeasonModel>();
             seasonModel.HasKey(x => x.Id);
@@ -109,7 +108,7 @@ namespace DataAccess.Repositories
             tvSeriesModel.HasKey(x => x.Id);
             tvSeriesModel.Property(x => x.Id).HasColumnName("Id").IsRequired();
             tvSeriesModel.Property(p => p.Title).IsRequired().HasMaxLength(50);
-            tvSeriesModel.Property(p => p.Description).IsRequired().HasMaxLength(200).HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
+            tvSeriesModel.Property(p => p.Description).IsRequired().HasMaxLength(1000).HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
             tvSeriesModel.Property(p => p.StartYear).HasColumnName("Start_Year");
             tvSeriesModel.Property(p => p.EndYear).HasColumnName("End_Year");
             tvSeriesModel.HasMany(p => p.CreativePersons)
@@ -127,26 +126,184 @@ namespace DataAccess.Repositories
 
             //Seeding some data
 
+            var movie_CreativePersons_role = modelBuilder.Entity<RoleCreativeMovie>();
             var movie_CreativePersons = modelBuilder.Entity<MovieCreativePerson>();
+            var movieGenre = modelBuilder.Entity<MovieGenre>();
 
-            movieModel.HasData(MovieSampleData.sampleMovie);
-            creativePersonModel.HasData(ActorSampleData.sampleActor, ActorSampleData.sampleDirector);
-            
-            
+            movieModel.HasData(MovieSampleData.sampleMovies);
+            creativePersonModel.HasData(ActorSampleData.sampleActors/*, ActorSampleData.sampleDirector*/);
+
+
+            //Relations
+            movie_CreativePersons_role.HasData(
+                new RoleCreativeMovie
+                {
+                    Id = 1,
+                    RoleId = 1,
+                    CreativePersonId = 1,
+                    MovieId = 1,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 2,
+                    RoleId = 2,
+                    CreativePersonId = 6,
+                    MovieId = 1,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 3,
+                    RoleId = 1,
+                    CreativePersonId = 3,
+                    MovieId = 2,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 4,
+                    RoleId = 1,
+                    CreativePersonId = 5,
+                    MovieId = 2,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 5,
+                    RoleId = 2,
+                    CreativePersonId = 5,
+                    MovieId = 2,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 6,
+                    RoleId = 1,
+                    CreativePersonId = 8,
+                    MovieId = 2,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 7,
+                    RoleId = 1,
+                    CreativePersonId = 2,
+                    MovieId = 3,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 8,
+                    RoleId = 1,
+                    CreativePersonId = 4,
+                    MovieId = 3,
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 9,
+                    RoleId = 2,
+                    CreativePersonId = 7,
+                    MovieId = 3,
+                }
+             );
+
+
             //Relations
             movie_CreativePersons.HasData(
                 new MovieCreativePerson
                 {
-                    MovieId = 1,
+                    Id = 1,
                     CreativePersonId = 1,
-                    
-                },               
+                    MovieId = 1,
+
+                },
                 new MovieCreativePerson
                 {
-                    MovieId= 1,
-                    CreativePersonId=2,  
-                    
+                    Id = 2,
+                    CreativePersonId = 6,
+                    MovieId = 1,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 3,
+                    CreativePersonId = 3,
+                    MovieId = 2,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 4,
+                    CreativePersonId = 5,
+                    MovieId = 2,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 5,
+                    CreativePersonId = 8,
+                    MovieId = 2,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 6,
+                    CreativePersonId = 2,
+                    MovieId = 3,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 7,
+                    CreativePersonId = 4,
+                    MovieId = 3,
+                },
+                new MovieCreativePerson
+                {
+                    Id = 8,
+                    CreativePersonId = 7,
+                    MovieId = 3,
+                }
+                );
+
+            //Relations
+            movieGenre.HasData(
+                new MovieGenre
+                {
+                    Id = 1,
+                    GenreId = 1,
+                    MovieId = 1,
+
+                },
+                new MovieGenre
+                {
+                    Id = 2,
+                    GenreId = 5,
+                    MovieId = 1,
+                },
+                new MovieGenre
+                {
+                    Id = 3,
+                    GenreId = 2,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 4,
+                    GenreId = 4,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 5,
+                    GenreId = 9,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 6,
+                    GenreId = 7,
+                    MovieId = 3,
+                },
+                new MovieGenre
+                {
+                    Id = 7,
+                    GenreId = 5,
+                    MovieId = 3,
                 });
+
+
+
             genreModel.HasData(GenreSampleData.sampleGenres);
 
             var Roles = modelBuilder.Entity<RoleModel>();
@@ -161,6 +318,9 @@ namespace DataAccess.Repositories
                     RoleId = 2,
                     RoleName = "Director"
                 });
+
+
+
         }
 
     }

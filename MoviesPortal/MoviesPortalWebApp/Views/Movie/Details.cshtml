@@ -1,10 +1,9 @@
-﻿@using DataAccess.Models.Enums
-@model MoviesPortalWebApp.Models.Movie
+﻿@model MoviesPortalWebApp.Models.MovieVM
 
 @{
     ViewData["Title"] = "Details";
-    var directors = Model.MovieCreativePersons.Where(d => d.CreativePerson.Role == CreativeRole.Director).ToList();
-    var cast = Model.MovieCreativePersons.Where(a => a.CreativePerson.Role == CreativeRole.Actor).ToList();
+    var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
+    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
 }
 
 <h1>Details</h1>
@@ -32,6 +31,12 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PosterPath)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PosterPath)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.TrailerUrl)
         </dt>
         <dd class = "col-sm-10">
@@ -44,16 +49,22 @@
             @Html.DisplayFor(model => model.IsForKids)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImdbRatio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImdbRatio)/10
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.MovieGenres)
         </dt>
         <dd class = "col-sm-10">           
-                @string.Join(", ", Model.MovieGenres.Select(g => g.Genre.Genre))            
-        </dd>
+                @string.Join(", ", Model.MovieGenres.Select(g => g.Genre.Genre))
+        </dd>      
 
         <dt class = "col-sm-2">
             @if(directors.Count == 1)
             {
-                <p>Director/: </p>
+                <p>Director: </p>
             }
             else if(directors.Count > 1)
             {
@@ -64,7 +75,7 @@
 
             @if(directors.Count == 1)
             {
-                 <a asp-controller="CreativePerson" asp-action="View" asp-route-id="@directors.Single().CreativePersonId" class="custom-link">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a>
+                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="custom-link">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a>
             }
             else if(directors.Count > 1)
             {
@@ -72,7 +83,7 @@
                     @foreach (var director in directors)
                     {
                         <span>
-                            <a asp-controller="CreativePerson" asp-action="View" asp-route-id="@director.CreativePersonId" class="custom-link">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.CreativePersonId" class="custom-link">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
                        </span>
                     }
 
@@ -80,7 +91,7 @@
             }
            
         </dd>
-        
+
         <dt class = "col-sm-2">
             <p>Cast: </p>
         </dt>
@@ -90,16 +101,17 @@
                     @foreach (var person in cast)
                     {
                         <span>
-                            <a asp-controller="CreativePerson" asp-action="View" asp-route-id="@person.CreativePersonId" class="custom-link">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.CreativePersonId" class="custom-link">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
                        </span>
                     }
 
                 </p>
         </dd>
 
+
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
     <a asp-action="Index">Back to List</a>
 </div>
