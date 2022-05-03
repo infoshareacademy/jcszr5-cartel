@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class up : Migration
+    public partial class @new : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -305,7 +305,7 @@ namespace DataAccess.Migrations
                 {
                     { 1, "https://i.ytimg.com/vi/IAqLKlxY3Eo/maxresdefault.jpg", "John Rambo, były komandos, weteran wojny w Wietnamie, naraża się policjantom z pewnego miasteczka. Ci nie wiedzą, jak groźnym przeciwnikiem jest ten włóczęga.", "7.7", false, "https://i.ebayimg.com/images/g/GB4AAOSwd1tdqF8D/s-l400.jpg", 1982, "Rambo", "https://www.youtube.com/watch?v=IAqLKlxY3Eo" },
                     { 2, "https://c4.wallpaperflare.com/wallpaper/21/588/836/thor-ragnarok-4k-download-hd-for-desktop-wallpaper-preview.jpg", "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.", "7.9", true, "https://preview.redd.it/hz8qlbfo4gr11.jpg?auto=webp&s=04d74ee2edec633bb566bb4801392f29fa5db299", 2017, "Thor: Ragnarok", "https://www.youtube.com/watch?v=v7MGUNV8MxU" },
-                    { 3, "https://images7.alphacoders.com/855/thumb-1920-855790.jpg", "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.", "7.8", false, "https://cdn.inprnt.com/thumbs/31/86/31865375aaa94c92ffef48c96dbd9024.jpg?response-cache-control=max-age=2628000", 2017, "Dunkirk", "https://www.youtube.com/watch?v=F-eMt3SrfFU" }
+                    { 3, "https://images7.alphacoders.com/855/thumb-1920-855790.jpg", "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.", "7.8", false, "https://i.pinimg.com/originals/17/5c/e9/175ce930a9e1e42c4c0315d4933fc2d1.jpg", 2017, "Dunkirk", "https://www.youtube.com/watch?v=F-eMt3SrfFU" }
                 });
 
             migrationBuilder.InsertData(
@@ -330,6 +330,20 @@ namespace DataAccess.Migrations
                     { 6, 2, 3 },
                     { 7, 4, 3 },
                     { 8, 7, 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Movie_Genre",
+                columns: new[] { "Id", "GenreId", "MovieId" },
+                values: new object[,]
+                {
+                    { 1, 1, 1 },
+                    { 2, 5, 1 },
+                    { 3, 2, 2 },
+                    { 4, 4, 2 },
+                    { 5, 9, 2 },
+                    { 6, 7, 3 },
+                    { 7, 5, 3 }
                 });
 
             migrationBuilder.InsertData(

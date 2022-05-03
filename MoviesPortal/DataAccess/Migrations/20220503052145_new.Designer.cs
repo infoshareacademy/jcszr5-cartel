@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220502191916_up")]
-    partial class up
+    [Migration("20220503052145_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -216,6 +216,50 @@ namespace DataAccess.Migrations
                     b.HasIndex("MovieId");
 
                     b.ToTable("Movie_Genre");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            GenreId = 1,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            GenreId = 5,
+                            MovieId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            GenreId = 2,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            GenreId = 4,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            GenreId = 9,
+                            MovieId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            GenreId = 7,
+                            MovieId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            GenreId = 5,
+                            MovieId = 3
+                        });
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
@@ -524,7 +568,7 @@ namespace DataAccess.Migrations
                             Description = "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
                             ImdbRatio = "7.8",
                             IsForKids = false,
-                            PosterPath = "https://cdn.inprnt.com/thumbs/31/86/31865375aaa94c92ffef48c96dbd9024.jpg?response-cache-control=max-age=2628000",
+                            PosterPath = "https://i.pinimg.com/originals/17/5c/e9/175ce930a9e1e42c4c0315d4933fc2d1.jpg",
                             ProductionYear = 2017,
                             Title = "Dunkirk",
                             TrailerUrl = "https://www.youtube.com/watch?v=F-eMt3SrfFU"

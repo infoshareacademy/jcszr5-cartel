@@ -79,9 +79,9 @@ namespace MoviesPortalWebApp.Controllers
                         List<MovieGenre> movieGenres = new List<MovieGenre>();
                         List<MovieCreativePerson> movieActors = new List<MovieCreativePerson>();
                         List<RoleCreativeMovie> movieActorsRole = new List<RoleCreativeMovie>();
-                     
+
                         movie.Title = model.Title;
-                        movie.Id = _context.Movies.Max(x => x.Id) + 1;
+                        //movie.Id = _context.Movies.Max(x => x.Id) + 1;
                         movie.Description = model.Description;
                         movie.ProductionYear = model.ProductionYear;
                         movie.PosterPath = model.PosterPath;
@@ -140,21 +140,23 @@ namespace MoviesPortalWebApp.Controllers
                 {
                     // get movie              
                     var movie = await _movieService.GetMovieIdByAsync(Id);
+
                     // get movie genres and add each genresIds into genresIds list
-                    movie.Genres.ToList().ForEach(x => genresIds.Add(x.Id));
-                    movie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Actor").ToList().ForEach(x => actorsIds.Add(x.Id));
-                    movie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Director").ToList().ForEach(x => directorsIds.Add(x.Id));
-                    // mapping
-                    var vm = _mapper.Map<MovieVM>(movie);
+                   movie.Genres.ToList().ForEach(x => genresIds.Add(x.Id));
+                   movie.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList().ForEach(x => actorsIds.Add(x.CreativePersonId));
+                   movie.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList().ForEach(x => directorsIds.Add(x.CreativePersonId));
+
+                   var vm = _mapper.Map<MovieVM>(movie);
+
                     //bind model 
                     model.selectedGenres = _context.Genres
-                        .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+                            .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
 
                     model.selectedActors = _context.CreativePersons
-                       .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+                            .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
                     model.selectedDirectors = _context.CreativePersons
-                       .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+                            .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
 
                     model.Id = vm.Id;
@@ -164,9 +166,10 @@ namespace MoviesPortalWebApp.Controllers
                     model.PosterPath = vm.PosterPath;
                     model.TrailerUrl = vm.TrailerUrl;
                     model.IsForKids = vm.IsForKids;
-                    model.GenresIds = genresIds.ToArray(); ;
-                    model.ActorsIds = actorsIds.ToArray(); ;
-                    model.DirectorsIds = directorsIds.ToArray(); ;
+                    model.GenresIds = genresIds.ToArray();
+                    model.ActorsIds = actorsIds.ToArray();
+                    model.DirectorsIds = directorsIds.ToArray();
+
                 }
                 
                 return View(model);
@@ -177,40 +180,84 @@ namespace MoviesPortalWebApp.Controllers
             {
                 MovieModel newMovie = new MovieModel();
                 List<MovieGenre> movieGenres = new List<MovieGenre>();
+                List<RoleCreativeMovie> movieCP = new List<RoleCreativeMovie>();
+                List<RoleCreativeMovie> movieD = new List<RoleCreativeMovie>();
 
 
             if (model.Id > 0)
-            {
-                newMovie = await _movieService.GetMovieIdByAsync(model.Id);
-
-                newMovie.MovieGenres.ToList().ForEach(result => movieGenres.Add(result));
-
-                _context.Movie_Genre.RemoveRange(movieGenres);
-                _context.SaveChanges();
-
-                newMovie.Title = model.Title;
-                newMovie.Id = model.Id;
-                newMovie.Description = model.Description;
-                newMovie.ProductionYear = model.ProductionYear;
-                newMovie.PosterPath = model.PosterPath;
-                newMovie.TrailerUrl = model.TrailerUrl;
-                newMovie.IsForKids = model.IsForKids;
-
-                if (model.GenresIds.Length > 0)
                 {
+                    newMovie = await _movieService.GetMovieIdByAsync(model.Id);
 
-                    movieGenres = new List<MovieGenre>();
+                    newMovie.MovieGenres.ToList().ForEach(result => movieGenres.Add(result));
+                    newMovie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Actor").ToList().ForEach(result => movieCP.Add(result));
+                    newMovie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Director").ToList().ForEach(result => movieD.Add(result));
 
-                    foreach (var genreId in model.GenresIds)
+                    _context.Movie_Genre.RemoveRange(movieGenres);
+                    _context.Role_CreativeP_Movie.RemoveRange(movieCP);
+                    _context.Role_CreativeP_Movie.RemoveRange(movieD);
+                    _context.SaveChanges();
+
+                    newMovie.Title = model.Title;
+                    newMovie.Id = model.Id;
+                    newMovie.Description = model.Description;
+                    newMovie.ProductionYear = model.ProductionYear;
+                    newMovie.PosterPath = model.PosterPath;
+                    newMovie.TrailerUrl = model.TrailerUrl;
+                    newMovie.IsForKids = model.IsForKids;
+
+                    if (model.GenresIds.Length > 0)
                     {
-                        movieGenres.Add(new MovieGenre { GenreId = genreId, MovieId = model.Id });
+
+                        movieGenres = new List<MovieGenre>();
+
+                        foreach (var genreId in model.GenresIds)
+                        {
+                            movieGenres.Add(new MovieGenre { GenreId = genreId, MovieId = model.Id });
+                        }
+
+                        newMovie.MovieGenres = movieGenres;
                     }
 
-                    newMovie.MovieGenres = movieGenres;
+                if (model.ActorsIds.Length > 0)
+                {
+
+                    movieCP = new List<RoleCreativeMovie>();
+
+                    foreach (var actId in model.ActorsIds)
+                    {
+                        movieCP.Add(new RoleCreativeMovie { CreativePersonId = actId, MovieId = model.Id , RoleId = 1});
+                    }
+
+                    foreach (var drId in model.DirectorsIds)
+                    {
+                        movieCP.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
+                    }
+
+                    newMovie.RoleCreativeMovie = movieCP;
+                    
                 }
-               
+
+
+                //if (model.ActorsIds.Length > 0)
+                //{
+                //    foreach (var actorId in model.ActorsIds)
+                //    {
+                //        movieCP.Add(new MovieCreativePerson { CreativePersonId = actorId, MovieId = model.Id });
+                //        //movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = actorId, MovieId = model.Id, RoleId = 1 });
+                //    }
+
+                //    //foreach (var drId in model.DirectorsIds)
+                //    //{
+                //    //    movieCP.Add(new MovieCreativePerson { CreativePersonId = drId, MovieId = model.Id });
+                //    //    movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
+                //    //}
+
+                //    newMovie.MovieCreativePersons = movieCP;
+                //    //newMovie.RoleCreativeMovie = movieActorsRole;
+                //}
+
                 _context.SaveChanges();
-            }
+                }
 
                 return RedirectToAction("Index");
             }

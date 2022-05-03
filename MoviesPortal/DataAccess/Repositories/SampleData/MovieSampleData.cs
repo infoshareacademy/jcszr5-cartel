@@ -38,7 +38,7 @@ namespace DataAccess.Repositories
                 Title = "Dunkirk",
                 ProductionYear = 2017,
                 Description = "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
-                PosterPath = "https://cdn.inprnt.com/thumbs/31/86/31865375aaa94c92ffef48c96dbd9024.jpg?response-cache-control=max-age=2628000",
+                PosterPath = "https://i.pinimg.com/originals/17/5c/e9/175ce930a9e1e42c4c0315d4933fc2d1.jpg",
                 TrailerUrl = "https://www.youtube.com/watch?v=F-eMt3SrfFU",
                 BackgroundPoster = "https://images7.alphacoders.com/855/thumb-1920-855790.jpg",
                 ImdbRatio = "7.8",

@@ -128,6 +128,7 @@ namespace DataAccess.Repositories
 
             var movie_CreativePersons_role = modelBuilder.Entity<RoleCreativeMovie>();
             var movie_CreativePersons = modelBuilder.Entity<MovieCreativePerson>();
+            var movieGenre = modelBuilder.Entity<MovieGenre>();
 
             movieModel.HasData(MovieSampleData.sampleMovies);
             creativePersonModel.HasData(ActorSampleData.sampleActors/*, ActorSampleData.sampleDirector*/);
@@ -140,7 +141,7 @@ namespace DataAccess.Repositories
                     Id = 1,
                     RoleId = 1,
                     CreativePersonId = 1,
-                    MovieId = 1,                    
+                    MovieId = 1,
 
                 },
                 new RoleCreativeMovie
@@ -255,6 +256,54 @@ namespace DataAccess.Repositories
                 }
                 );
 
+            //Relations
+            movieGenre.HasData(
+                new MovieGenre
+                {
+                    Id = 1,
+                    GenreId = 1,
+                    MovieId = 1,
+
+                },
+                new MovieGenre
+                {
+                    Id = 2,
+                    GenreId = 5,
+                    MovieId = 1,
+                },
+                new MovieGenre
+                {
+                    Id = 3,
+                    GenreId = 2,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 4,
+                    GenreId = 4,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 5,
+                    GenreId = 9,
+                    MovieId = 2,
+                },
+                new MovieGenre
+                {
+                    Id = 6,
+                    GenreId = 7,
+                    MovieId = 3,
+                },
+                new MovieGenre
+                {
+                    Id = 7,
+                    GenreId = 5,
+                    MovieId = 3,
+                });
+
+
+
             genreModel.HasData(GenreSampleData.sampleGenres);
 
             var Roles = modelBuilder.Entity<RoleModel>();
@@ -269,6 +318,9 @@ namespace DataAccess.Repositories
                     RoleId = 2,
                     RoleName = "Director"
                 });
+
+
+
         }
 
     }
