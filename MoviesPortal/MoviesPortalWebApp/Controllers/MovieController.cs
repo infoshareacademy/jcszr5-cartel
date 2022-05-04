@@ -77,7 +77,7 @@ namespace MoviesPortalWebApp.Controllers
                 {
                         MovieModel movie = new MovieModel();
                         List<MovieGenre> movieGenres = new List<MovieGenre>();
-                        List<MovieCreativePerson> movieActors = new List<MovieCreativePerson>();
+                        //List<MovieCreativePerson> movieActors = new List<MovieCreativePerson>();
                         List<RoleCreativeMovie> movieActorsRole = new List<RoleCreativeMovie>();
 
                         movie.Title = model.Title;
@@ -105,13 +105,13 @@ namespace MoviesPortalWebApp.Controllers
                         {
                             foreach (var actorId in model.ActorsIds)
                             {
-                                movieActors.Add(new MovieCreativePerson { CreativePersonId = actorId, MovieId = model.Id });
+                                //movieActors.Add(new MovieCreativePerson { CreativePersonId = actorId, MovieId = model.Id });
                                 movieActorsRole.Add(new RoleCreativeMovie{ CreativePersonId =actorId, MovieId = model.Id, RoleId = 1 });                                
                             }
 
                             foreach (var drId in model.DirectorsIds)
                             {
-                                movieActors.Add(new MovieCreativePerson { CreativePersonId = drId, MovieId = model.Id });
+                                //movieActors.Add(new MovieCreativePerson { CreativePersonId = drId, MovieId = model.Id });
                                 movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                             }
 

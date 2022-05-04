@@ -1,10 +1,10 @@
-using Microsoft.EntityFrameworkCore;
-
+using BusinessLogic.Interfaces;
+using BusinessLogic.Services;
+using DataAccess.Models;
+using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
-using BusinessLogic.Services;
-using BusinessLogic.Interfaces;
-using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -98,64 +98,62 @@ if (!tvSeries.Any())
             }
 
         } },
-        //CreativePersons = new List<CreativePersonModel>()
-        //{
-        //    new CreativePersonModel()
-        //    {
-        //        Name = "Craig",
-        //        SurName = "Mazin",
-        //        PhotographyPath ="https://www.imdb.com/name/nm0563301/mediaviewer/rm3352585984/",
-        //        Roles = new List<RoleModel>()
-        //        {
-        //            new RoleModel()
-        //            {
-        //                RoleName = "Director",
-        //            }
-        //        }
-        //    },
-        //    new CreativePersonModel()
-        //    {
-        //        Name = "Jessie",
-        //        SurName = "Buckley",
-        //        PhotographyPath ="https://www.imdb.com/name/nm2976580/mediaviewer/rm3908089857/",
-        //        Roles = new List<RoleModel>()
-        //        {
-        //            new RoleModel()
-        //            {
-        //                RoleName = "Actor",
-        //            }
-        //        }
-        //    },
-        //    new CreativePersonModel()
-        //    {
-        //        Name = "Jared",
-        //        SurName = "Harris",
-        //        PhotographyPath ="https://www.imdb.com/name/nm0364813/mediaviewer/rm3066069249/",
-        //        Roles = new List<RoleModel>()
-        //        {
-        //            new RoleModel()
-        //            {
-        //                RoleName = "Actor",
-        //            }
-        //        }
-        //    },
-        //    new CreativePersonModel()
-        //    {
-        //        Name = "Stellan",
-        //        SurName = "Skarsgard",
-        //        PhotographyPath ="https://www.imdb.com/name/nm0001745/mediaviewer/rm1537180929/",
-        //        Roles = new List<RoleModel>()
-        //        {
-        //            new RoleModel()
-        //            {
-        //                RoleName = "Actor",
-        //            }
-        //        }
-        //    },
-        //}
 
     };
+    var creativesForSeries1 = new List<TvSeries_CreativeP_Role>()
+    {
+        new TvSeries_CreativeP_Role()
+        {
+            TvSeries = series1,
+            CreativePerson = new CreativePersonModel()
+            {
+                Name = "Craig",
+                SurName = "Mazin",
+                PhotographyPath ="https://www.imdb.com/name/nm0563301/mediaviewer/rm3352585984/",
+
+            },
+            RoleId = 2
+        },
+        new TvSeries_CreativeP_Role()
+        {
+            TvSeries = series1,
+            CreativePerson = new CreativePersonModel()
+            {
+                Name = "Jessie",
+                SurName = "Buckley",
+                PhotographyPath ="https://www.imdb.com/name/nm2976580/mediaviewer/rm3908089857/",
+            },
+            RoleId = 1
+        },
+        new TvSeries_CreativeP_Role()
+        {
+            TvSeries = series1,
+            CreativePerson = new CreativePersonModel()
+            {
+                Name = "Jared",
+                SurName = "Harris",
+                PhotographyPath ="https://www.imdb.com/name/nm0364813/mediaviewer/rm3066069249/"
+
+            },
+            RoleId = 1
+        },
+        new TvSeries_CreativeP_Role()
+        {
+            TvSeries = series1,
+            CreativePerson = new CreativePersonModel()
+            {
+                Name = "Stellan",
+                SurName = "Skarsgard",
+                PhotographyPath ="https://www.imdb.com/name/nm0001745/mediaviewer/rm1537180929/",
+
+            },
+            RoleId = 1
+        },
+    };
+
+
     dbContext.TvSeries.Add(series1);
+    dbContext.TvSeries_CreativeP_Role.AddRange(creativesForSeries1);
     dbContext.SaveChanges();
 }
 

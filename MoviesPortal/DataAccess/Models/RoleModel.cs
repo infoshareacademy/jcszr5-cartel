@@ -14,5 +14,6 @@ namespace DataAccess.Models
         public int RoleId { get; set; }
         public string RoleName { get; set; }        
         public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
+        public virtual ICollection<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
     }
 }

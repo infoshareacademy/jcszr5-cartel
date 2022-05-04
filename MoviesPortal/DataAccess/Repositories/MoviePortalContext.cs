@@ -32,6 +32,7 @@ namespace DataAccess.Repositories
         
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
         public DbSet<RoleCreativeMovie> Role_CreativeP_Movie { get; set; }
+        public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -47,7 +48,13 @@ namespace DataAccess.Repositories
             role_CreativeP_Movie.HasOne(i => i.Movie).WithMany(i => i.RoleCreativeMovie).HasForeignKey(i => i.MovieId).IsRequired();
             role_CreativeP_Movie.HasOne(i => i.CreativePerson).WithMany(i => i.RoleCreativeMovie).HasForeignKey(i => i.CreativePersonId).IsRequired();
             role_CreativeP_Movie.HasOne(i => i.Role).WithMany(i => i.RoleCreativeMovie).HasForeignKey(i => i.RoleId).IsRequired();
-            
+
+            var tvSeries_CreativeP_Role = modelBuilder.Entity<TvSeries_CreativeP_Role>();
+            tvSeries_CreativeP_Role.HasKey(k => new { k.TvSeriesId, k.CreativePersonId, k.RoleId });
+            tvSeries_CreativeP_Role.HasOne(i => i.TvSeries).WithMany(i => i.TvSeries_CreativeP_Role).HasForeignKey(i => i.TvSeriesId).IsRequired();
+            tvSeries_CreativeP_Role.HasOne(i => i.CreativePerson).WithMany(i => i.TvSeries_CreativeP_Role).HasForeignKey(i => i.CreativePersonId).IsRequired();
+            tvSeries_CreativeP_Role.HasOne(i => i.Role).WithMany(i => i.TvSeries_CreativeP_Role).HasForeignKey(i => i.RoleId).IsRequired();
+
 
             var movieModel = modelBuilder.Entity<MovieModel>();
 
