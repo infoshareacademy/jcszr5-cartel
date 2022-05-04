@@ -77,11 +77,9 @@ namespace MoviesPortalWebApp.Controllers
                 {
                         MovieModel movie = new MovieModel();
                         List<MovieGenre> movieGenres = new List<MovieGenre>();
-                        //List<MovieCreativePerson> movieActors = new List<MovieCreativePerson>();
                         List<RoleCreativeMovie> movieActorsRole = new List<RoleCreativeMovie>();
 
                         movie.Title = model.Title;
-                        //movie.Id = _context.Movies.Max(x => x.Id) + 1;
                         movie.Description = model.Description;
                         movie.ProductionYear = model.ProductionYear;
                         movie.PosterPath = model.PosterPath;
@@ -105,17 +103,14 @@ namespace MoviesPortalWebApp.Controllers
                         {
                             foreach (var actorId in model.ActorsIds)
                             {
-                                //movieActors.Add(new MovieCreativePerson { CreativePersonId = actorId, MovieId = model.Id });
                                 movieActorsRole.Add(new RoleCreativeMovie{ CreativePersonId =actorId, MovieId = model.Id, RoleId = 1 });                                
                             }
 
                             foreach (var drId in model.DirectorsIds)
                             {
-                                //movieActors.Add(new MovieCreativePerson { CreativePersonId = drId, MovieId = model.Id });
                                 movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                             }
 
-                            //movie.MovieCreativePersons = movieActors;
                             movie.RoleCreativeMovie = movieActorsRole;
                         }
                         
@@ -236,26 +231,6 @@ namespace MoviesPortalWebApp.Controllers
                     newMovie.RoleCreativeMovie = movieCP;
                     
                 }
-
-
-                //if (model.ActorsIds.Length > 0)
-                //{
-                //    foreach (var actorId in model.ActorsIds)
-                //    {
-                //        movieCP.Add(new MovieCreativePerson { CreativePersonId = actorId, MovieId = model.Id });
-                //        //movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = actorId, MovieId = model.Id, RoleId = 1 });
-                //    }
-
-                //    //foreach (var drId in model.DirectorsIds)
-                //    //{
-                //    //    movieCP.Add(new MovieCreativePerson { CreativePersonId = drId, MovieId = model.Id });
-                //    //    movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
-                //    //}
-
-                //    newMovie.MovieCreativePersons = movieCP;
-                //    //newMovie.RoleCreativeMovie = movieActorsRole;
-                //}
-
                 _context.SaveChanges();
                 }
 

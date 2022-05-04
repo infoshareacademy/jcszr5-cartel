@@ -21,6 +21,8 @@ namespace MoviesPortalWebApp.Models
 
         public List<SelectListItem> selectedGenres { get; set; }
         public int[] GenresIds { get; set; }
+       
+        public virtual ICollection<RoleCreativeMovieVM> RoleCreativeMovie { get; set; }
 
         public List<SelectListItem> selectedActors { get; set; }
         public int[] ActorsIds { get; set; }
@@ -28,10 +30,6 @@ namespace MoviesPortalWebApp.Models
         public List<SelectListItem> selectedDirectors { get; set; }
         public int[] DirectorsIds { get; set; }
 
-
-        public virtual ICollection<RoleCreativeMovieVM> RoleCreativeMovie { get; set; }
-
-        public virtual ICollection<MovieCreativePersonVM> MovieCreativePersons{ get; set; }
 
     }
 }

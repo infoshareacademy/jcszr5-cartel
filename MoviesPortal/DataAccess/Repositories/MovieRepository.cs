@@ -52,6 +52,7 @@ namespace DataAccess.Repositories
             var result = await _context.Movies
                 .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
                 .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
+                .Include(cr => cr.RoleCreativeMovie).ThenInclude(cr => cr.Role)
                 .ToArrayAsync();
             return result;
         }

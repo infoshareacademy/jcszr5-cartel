@@ -53,8 +53,8 @@ namespace DataAccess.Repositories
         public async Task<CreativePersonModel> GetCreativePersonsById(int id)
         {
             var person = await _context.CreativePersons
-                .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.Movie)
-                .Include(r => r.RoleCreativeMovie).ThenInclude(r => r.Role)               
+                .Include(cm => cm.RoleCreativeMovie).ThenInclude(cm => cm.Movie)
+                .Include(r => r.RoleCreativeMovie).ThenInclude(r => r.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
             return person;
         }
