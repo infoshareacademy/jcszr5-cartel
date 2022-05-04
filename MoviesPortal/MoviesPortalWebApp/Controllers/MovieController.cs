@@ -115,7 +115,7 @@ namespace MoviesPortalWebApp.Controllers
                                 movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                             }
 
-                            movie.MovieCreativePersons = movieActors;
+                            //movie.MovieCreativePersons = movieActors;
                             movie.RoleCreativeMovie = movieActorsRole;
                         }
                         

@@ -25,16 +25,16 @@ namespace BusinessLogic.AssignationServices
                 await _context.SaveChangesAsync();
             }
         }
-        public async Task AssignCreativePerson(TvSeriesModel tvSeries, int[] personsIds)
-        {
-            foreach (var personId in personsIds)
-            {
-                var assignation = new TvSeriesCreativePerson();
-                assignation.TvSeriesId = tvSeries.Id;
-                assignation.CreativePersonId = personId;
-                await _context.TvSeries_CreativePerson.AddAsync(assignation);
-                await _context.SaveChangesAsync();
-            }
-        }        
+        //public async Task AssignCreativePerson(TvSeriesModel tvSeries, int[] personsIds)
+        //{
+        //    foreach (var personId in personsIds)
+        //    {
+        //        var assignation = new TvSeriesCreativePerson();
+        //        assignation.TvSeriesId = tvSeries.Id;
+        //        assignation.CreativePersonId = personId;
+        //        await _context.TvSeries_CreativePerson.AddAsync(assignation);
+        //        await _context.SaveChangesAsync();
+        //    }
+                
     }
 }

@@ -39,7 +39,7 @@ namespace DataAccess.Repositories
                 movie.ProductionYear = dbMovieModel.ProductionYear;
                 movie.Description = dbMovieModel.Description;
                 movie.Genres = dbMovieModel.Genres;
-                movie.CreativePersons = dbMovieModel.CreativePersons;
+                //movie.CreativePersons = dbMovieModel.CreativePersons;
                 movie.IsForKids = dbMovieModel.IsForKids;
                 movie.PosterPath = dbMovieModel.PosterPath;
                 movie.TrailerUrl = dbMovieModel.TrailerUrl;
@@ -51,7 +51,7 @@ namespace DataAccess.Repositories
         {
             var result = await _context.Movies
                 .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
-                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.CreativePerson)
+                .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .ToArrayAsync();
             return result;
         }
@@ -60,7 +60,7 @@ namespace DataAccess.Repositories
         {
             var result = await _context.Movies
                 .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
-                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.CreativePerson)
+                .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .Include(r => r.RoleCreativeMovie).ThenInclude( r => r.Role)
                 .FirstOrDefaultAsync(x => x.Id == id);
             return result;

@@ -20,8 +20,7 @@ namespace DataAccess.Models
         public string? BackgroundPoster { get; set; }
         public string? ImdbRatio { get; set; }
         public virtual ICollection<SeasonModel> Seasons { get; set; }
-        public virtual ICollection<CreativePersonModel> CreativePersons { get; set; }
-        public virtual ICollection<TvSeriesCreativePerson> TvSeriesCreativePersons { get; set; }
+        public virtual ICollection<CreativePersonModel> CreativePersons { get; set; }        
         public virtual ICollection<TvSeriesGenre> TvSeriesGenres { get; set; }
     }
 }
