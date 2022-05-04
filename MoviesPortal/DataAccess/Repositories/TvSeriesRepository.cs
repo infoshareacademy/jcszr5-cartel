@@ -41,7 +41,7 @@ namespace DataAccess.Repositories
                 series.EndYear = tvSeriesModel.EndYear;
                 series.Description = tvSeriesModel.Description;
                 series.Genres = tvSeriesModel.Genres;
-                series.CreativePersons = tvSeriesModel.CreativePersons;
+                
                 series.PosterPath = tvSeriesModel.PosterPath;
                 series.TrailerUrl = tvSeriesModel.TrailerUrl;
             }

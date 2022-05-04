@@ -39,8 +39,7 @@ namespace DataAccess.Repositories
                 creativePersonOld.Name = creativePerson.Name;
                 creativePersonOld.SurName = creativePerson.SurName;
                 creativePersonOld.PhotographyPath = creativePerson.PhotographyPath;
-                creativePersonOld.DateOfBirth = creativePerson.DateOfBirth;
-                creativePersonOld.Movies = creativePerson.Movies;
+                creativePersonOld.DateOfBirth = creativePerson.DateOfBirth;                
                 
             }
             await _context.SaveChangesAsync();
@@ -54,8 +53,8 @@ namespace DataAccess.Repositories
         public async Task<CreativePersonModel> GetCreativePersonsById(int id)
         {
             var person = await _context.CreativePersons
-                .Include(cp => cp.MovieCreativePersons).ThenInclude(cp => cp.Movie)
-                .Include(r => r.RoleCreativePersons).ThenInclude(r => r.Role)               
+                .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.Movie)
+                .Include(r => r.RoleCreativeMovie).ThenInclude(r => r.Role)               
                 .FirstOrDefaultAsync(x => x.Id == id);
             return person;
         }

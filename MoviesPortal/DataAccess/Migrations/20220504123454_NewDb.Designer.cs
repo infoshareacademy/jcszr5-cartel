@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220503064620_up")]
-    partial class up
+    [Migration("20220504123454_NewDb")]
+    partial class NewDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,36 @@ namespace DataAccess.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CreativePersonModelRoleModel", b =>
+                {
+                    b.Property<int>("CreativePersonsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RolesRoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CreativePersonsId", "RolesRoleId");
+
+                    b.HasIndex("RolesRoleId");
+
+                    b.ToTable("CreativePersonModelRoleModel");
+                });
+
+            modelBuilder.Entity("CreativePersonModelTvSeriesModel", b =>
+                {
+                    b.Property<int>("CreativePersonsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TvSeriesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CreativePersonsId", "TvSeriesId");
+
+                    b.HasIndex("TvSeriesId");
+
+                    b.ToTable("CreativePersonModelTvSeriesModel");
+                });
 
             modelBuilder.Entity("DataAccess.Models.CreativePersonModel", b =>
                 {
@@ -119,79 +149,6 @@ namespace DataAccess.Migrations
                             Name = "Cate",
                             PhotographyPath = "https://i.pinimg.com/originals/d5/23/75/d52375bb559b121f8221877db8b653a8.jpg",
                             SurName = "Blanchett"
-                        });
-                });
-
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieCreativePerson", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("CreativePersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("MovieId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreativePersonId");
-
-                    b.HasIndex("MovieId");
-
-                    b.ToTable("Movie_CreativePerson");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreativePersonId = 1,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreativePersonId = 6,
-                            MovieId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreativePersonId = 3,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreativePersonId = 5,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreativePersonId = 8,
-                            MovieId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreativePersonId = 2,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreativePersonId = 4,
-                            MovieId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreativePersonId = 7,
-                            MovieId = 3
                         });
                 });
 
@@ -355,21 +312,6 @@ namespace DataAccess.Migrations
                         });
                 });
 
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
-                {
-                    b.Property<int>("CreativePersonId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TvSeriesId")
-                        .HasColumnType("int");
-
-                    b.HasKey("CreativePersonId", "TvSeriesId");
-
-                    b.HasIndex("TvSeriesId");
-
-                    b.ToTable("TvSeries_CreativePerson");
-                });
-
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesGenre", b =>
                 {
                     b.Property<int>("GenreId")
@@ -503,6 +445,9 @@ namespace DataAccess.Migrations
                     b.Property<string>("BackgroundPoster")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("CreativePersonModelId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -533,6 +478,8 @@ namespace DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CreativePersonModelId");
 
                     b.ToTable("Movies");
 
@@ -672,23 +619,34 @@ namespace DataAccess.Migrations
                     b.ToTable("TvSeries");
                 });
 
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieCreativePerson", b =>
+            modelBuilder.Entity("CreativePersonModelRoleModel", b =>
                 {
-                    b.HasOne("DataAccess.Models.CreativePersonModel", "CreativePerson")
-                        .WithMany("MovieCreativePersons")
-                        .HasForeignKey("CreativePersonId")
+                    b.HasOne("DataAccess.Models.CreativePersonModel", null)
+                        .WithMany()
+                        .HasForeignKey("CreativePersonsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DataAccess.Models.MovieModel", "Movie")
-                        .WithMany("MovieCreativePersons")
-                        .HasForeignKey("MovieId")
+                    b.HasOne("DataAccess.Models.RoleModel", null)
+                        .WithMany()
+                        .HasForeignKey("RolesRoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CreativePersonModelTvSeriesModel", b =>
+                {
+                    b.HasOne("DataAccess.Models.CreativePersonModel", null)
+                        .WithMany()
+                        .HasForeignKey("CreativePersonsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CreativePerson");
-
-                    b.Navigation("Movie");
+                    b.HasOne("DataAccess.Models.TvSeriesModel", null)
+                        .WithMany()
+                        .HasForeignKey("TvSeriesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.MovieGenre", b =>
@@ -713,7 +671,7 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.RoleCreativeMovie", b =>
                 {
                     b.HasOne("DataAccess.Models.CreativePersonModel", "CreativePerson")
-                        .WithMany("RoleCreativePersons")
+                        .WithMany("RoleCreativeMovie")
                         .HasForeignKey("CreativePersonId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -725,7 +683,7 @@ namespace DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("DataAccess.Models.RoleModel", "Role")
-                        .WithMany("RoleCreativePersons")
+                        .WithMany("RoleCreativeMovie")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -735,25 +693,6 @@ namespace DataAccess.Migrations
                     b.Navigation("Movie");
 
                     b.Navigation("Role");
-                });
-
-            modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesCreativePerson", b =>
-                {
-                    b.HasOne("DataAccess.Models.CreativePersonModel", "CreativePerson")
-                        .WithMany("TvSeriesCreativePersons")
-                        .HasForeignKey("CreativePersonId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Models.TvSeriesModel", "TvSeries")
-                        .WithMany("TvSeriesCreativePersons")
-                        .HasForeignKey("TvSeriesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("CreativePerson");
-
-                    b.Navigation("TvSeries");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.TvSeriesGenre", b =>
@@ -786,6 +725,13 @@ namespace DataAccess.Migrations
                     b.Navigation("Season");
                 });
 
+            modelBuilder.Entity("DataAccess.Models.MovieModel", b =>
+                {
+                    b.HasOne("DataAccess.Models.CreativePersonModel", null)
+                        .WithMany("Movies")
+                        .HasForeignKey("CreativePersonModelId");
+                });
+
             modelBuilder.Entity("DataAccess.Models.SeasonModel", b =>
                 {
                     b.HasOne("DataAccess.Models.TvSeriesModel", "TvSeries")
@@ -799,11 +745,9 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.CreativePersonModel", b =>
                 {
-                    b.Navigation("MovieCreativePersons");
+                    b.Navigation("Movies");
 
-                    b.Navigation("RoleCreativePersons");
-
-                    b.Navigation("TvSeriesCreativePersons");
+                    b.Navigation("RoleCreativeMovie");
                 });
 
             modelBuilder.Entity("DataAccess.Models.GenreModel", b =>
@@ -815,8 +759,6 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.MovieModel", b =>
                 {
-                    b.Navigation("MovieCreativePersons");
-
                     b.Navigation("MovieGenres");
 
                     b.Navigation("RoleCreativeMovie");
@@ -824,7 +766,7 @@ namespace DataAccess.Migrations
 
             modelBuilder.Entity("DataAccess.Models.RoleModel", b =>
                 {
-                    b.Navigation("RoleCreativePersons");
+                    b.Navigation("RoleCreativeMovie");
                 });
 
             modelBuilder.Entity("DataAccess.Models.SeasonModel", b =>
@@ -835,8 +777,6 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Models.TvSeriesModel", b =>
                 {
                     b.Navigation("Seasons");
-
-                    b.Navigation("TvSeriesCreativePersons");
 
                     b.Navigation("TvSeriesGenres");
                 });

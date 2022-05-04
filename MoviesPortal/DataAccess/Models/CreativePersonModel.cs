@@ -18,13 +18,10 @@ namespace DataAccess.Models
         public string SurName { get; set; }
         public string? PhotographyPath { get; set; }
         [DataType(DataType.Date)]
-        public DateTime? DateOfBirth { get; set; }        
-        public virtual ICollection<MovieModel> Movies { get; set; }
-        public virtual ICollection<MovieCreativePerson> MovieCreativePersons { get; set; }
-        public virtual ICollection<TvSeriesModel> TvSeries { get; set; }
-        public virtual ICollection<TvSeriesCreativePerson> TvSeriesCreativePersons { get; set; }
-        public virtual ICollection<RoleModel> Roles { get; set; }
-        public virtual ICollection<RoleCreativeMovie> RoleCreativePersons { get; set; }
+        public DateTime? DateOfBirth { get; set; }
+              
+        public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
+        public virtual ICollection<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
 
 
 
