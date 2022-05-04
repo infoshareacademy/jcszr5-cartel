@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "DetailsUser";
-    var directors = Model.RoleCreativePersons.Where(d => d.Role.RoleName == "Director").ToList();
-    var cast = Model.RoleCreativePersons.Where(d => d.Role.RoleName == "Actor").ToList();
+    var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
+    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
 }
 
 <h1>Details about @Model.Name @Model.SurName</h1>
