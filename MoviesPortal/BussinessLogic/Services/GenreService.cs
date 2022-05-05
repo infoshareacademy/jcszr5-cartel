@@ -7,14 +7,15 @@ using DataAccess.Repositories.Interfaces;
 namespace BusinessLogic.Services
 {
     
-    public class GenreService : IGenreService
+    public class GenreService 
     {
         private readonly IGenreRepository _genreRepository;
-        
-        public GenreService(IGenreRepository genreRepository, IMapper mapper)
+        private readonly ITvSeriesRepository _tvSeriesRepository;
+
+        public GenreService(IGenreRepository genreRepository, IMapper mapper, ITvSeriesRepository tvSeriesRepository)
         {
             _genreRepository = genreRepository;
-            
+            _tvSeriesRepository = tvSeriesRepository;
         }
 
         public Task AddNewGenre(GenreModel genre)
@@ -27,12 +28,14 @@ namespace BusinessLogic.Services
             throw new NotImplementedException();
         }
 
-        public Task<ICollection<GenreModel>> GetAllGenreList()
+        public async Task<List<GenreModel>> GetAllGenresForTvSeries(TvSeriesModel tvSeries)
         {
-            throw new NotImplementedException();
+            var genres = await _tvSeriesRepository.GetById(tvSeries.Id);
+            
+            return genres.Genres.ToList();
         }
 
-        public Task<GenreModel> GetGenreById(int id)
+        public Task<List<string>> GetGenresFromTvSeries(int id)
         {
             throw new NotImplementedException();
         }

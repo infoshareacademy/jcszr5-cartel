@@ -1,4 +1,5 @@
 ﻿using MoviesPortalWebApp.AssigmentsVM;
+using MoviesPortalWebApp.Models.AssigmentsVM;
 using System.ComponentModel.DataAnnotations;
 
 namespace MoviesPortalWebApp.Models
@@ -11,10 +12,11 @@ namespace MoviesPortalWebApp.Models
         public string? PhotographyPath { get; set; }
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
-
+       
         public virtual ICollection<RoleCreativeMovieVM> RoleCreativeMovie { get; set; }
+        public virtual ICollection<RoleVM> Roles { get; set; }
+        public virtual ICollection<MovieCreativePersonVM> MovieCreativePersons { get; set; }
+        public virtual ICollection<TvSeries_CreativeP_RoleVM> TvSeries_CreativeP_Role { get; set; }
 
-        //public virtual ICollection<RoleCreativeMovieVM> RoleCreativePersons { get; set; }
-        //public virtual ICollection<RoleVM> Roles { get; set; }
     }
 }

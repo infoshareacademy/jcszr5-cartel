@@ -48,7 +48,7 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<TvSeriesModel>> GetAll() => await _context.TvSeries.ToListAsync();
+        public async Task<ICollection<TvSeriesModel>> GetAll() => await _context.TvSeries.Include(g => g.TvSeriesGenres).ThenInclude(g => g.Genre).ToArrayAsync();
         
 
         public async Task<TvSeriesModel> GetById(int id) => await _context.TvSeries.FirstOrDefaultAsync(x => x.Id == id);

@@ -23,8 +23,8 @@ namespace MoviesPortalWebApp.Controllers
         // GET: TvSeriesController
         public async Task<ActionResult> Index()
         {
-            var result = await _tvSeriesService.GetAll();
-            var tvSeries = _mapper.Map<IList<TvSeries>>(result);
+            var result = await _tvSeriesService.GetAll();            
+            var tvSeries = _mapper.Map<List<TvSeriesVM>>(result);
             return View(tvSeries);
         }
 
@@ -44,7 +44,7 @@ namespace MoviesPortalWebApp.Controllers
         // POST: TvSeriesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(TvSeries tvSeries)
+        public async Task<ActionResult> Create(TvSeriesVM tvSeries)
         {
             if (ModelState.IsValid)
             {
