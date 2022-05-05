@@ -34,6 +34,8 @@ namespace DataAccess.Repositories
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
         public DbSet<RoleCreativeMovie> Role_CreativeP_Movie { get; set; }
         public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
+        public DbSet<UserFavourities> UserFavourities { get; set; }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -56,6 +58,11 @@ namespace DataAccess.Repositories
             tvSeries_CreativeP_Role.HasOne(i => i.CreativePerson).WithMany(i => i.TvSeries_CreativeP_Role).HasForeignKey(i => i.CreativePersonId).IsRequired();
             tvSeries_CreativeP_Role.HasOne(i => i.Role).WithMany(i => i.TvSeries_CreativeP_Role).HasForeignKey(i => i.RoleId).IsRequired();
 
+            var userFavourities = modelBuilder.Entity<UserFavourities>();
+            userFavourities.HasKey(k => new { k.UserId, k.MovieId, k.TvSeriesId});
+            userFavourities.HasOne(i => i.Identity).WithMany().HasForeignKey(k => k.UserId).IsRequired();
+            userFavourities.HasOne(i => i.Movie).WithMany(i => i.UserFavourities).HasForeignKey(k => k.MovieId).IsRequired();
+            userFavourities.HasOne(i => i.TvSeries).WithMany(i => i.UserFavourities).HasForeignKey(k => k.TvSeriesId).IsRequired();
 
             var movieModel = modelBuilder.Entity<MovieModel>();
 

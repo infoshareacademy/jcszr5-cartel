@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using DataAccess.Models.EntityAssigments;
+using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Models
@@ -7,5 +8,8 @@ namespace DataAccess.Models
     {
         [Display(Name = "Full name")]
         public string FullName { get; set; }
+        public List<UserFavourities> UserFavourities { get; set; }
+
+
     }
 }
