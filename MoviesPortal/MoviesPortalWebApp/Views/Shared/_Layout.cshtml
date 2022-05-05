@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MoviesPortalWebApp</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cartel</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -25,7 +25,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="TvSeries" asp-action="Index">Seriale</a>
-                        </li> 
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="CreativePerson" asp-action="IndexUser">Creative Person</a>
                         </li>
@@ -70,11 +70,64 @@
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
+
+    @*    <div class="container">
+        <main role="main" class="pb-3">*@
+    @RenderBody()
+    @*        </main>
+        </div>*@
+
+    @*	<section id="top_shows" class="clearfix">
+        <div class="wrapper">
+        <header class="clearfix">
+        <h2>Popular Shows</h2>
+        <p class="view_more">View All Shows</p>
+        </header>
+
+        <div class="row">
+        <div class="post">
+        <img src="images/tv_shows/walking-dead.jpg" alt="The Walking Dead">
+        <h3 class="title">The Walking Dead</h3>
+        <p class="post_info">PG13 | Season 4</p>
+        </div>
+
+        <div class="post">
+        <img src="images/tv_shows/game-of-thrones.jpg" alt="Game Of Thrones">
+        <h3 class="title">Game Of Thrones</h3>
+        <p class="post_info">PG13 | Season 6</p>
+        </div>
+
+        <div class="post">
+        <img src="images/tv_shows/breaking-bad.jpg" alt="Breaking Bad">
+        <h3 class="title">Breaking Bad</h3>
+        <p class="post_info">PG13 | Season 5</p>
+        </div>
+
+        <div class="post">
+        <img src="images/tv_shows/empire.jpg" alt="Empire">
+        <h3 class="title">Empire</h3>
+        <p class="post_info">PG13 | Season 2</p>
+        </div>
+
+        <div class="post">
+        <img src="images/tv_shows/master-of-none.jpg" alt="Master of None">
+        <h3 class="title">Master of None</h3>
+        <p class="post_info">PG13 | Season 1</p>
+        </div>
+        </div>
+        </div>
+        </section>*@
+
+    <section id="newsletter">
+        <div class="newsletter_inner">
+            <h2>Get the best Movie &amp; TV Show trailers straight in your inbox each week.</h2>
+            <div class="sign_up_form">
+                <input type="text" placeholder="First Name">
+                <input type="email" placeholder="Email Address">
+                <button class="button">Subscribe</button>
+            </div>
+        </div>
+    </section>
 
     <footer class="border-top footer text-muted">
         <div class="container">
