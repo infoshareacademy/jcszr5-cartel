@@ -76,7 +76,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 9,
                 Name = "Angelina",
                 SurName = "Jolie",
-                PhotographyPath = "https://drive.google.com/file/d/1B0uRX19hxh-vuDe66HTjabCeManc4nAs/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1B0uRX19hxh-vuDe66HTjabCeManc4nAs",
                 DateOfBirth = new DateTime(1975, 6, 4)
             },
             new CreativePersonModel
@@ -84,7 +84,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 10,
                 Name = "Alicia",
                 SurName = "Vikander",
-                PhotographyPath = "https://drive.google.com/file/d/1rLzH3Lwzr33LQzR3wo9k8utsxwNszW-A/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1rLzH3Lwzr33LQzR3wo9k8utsxwNszW-A",
                 DateOfBirth = new DateTime(1988, 10, 3)
             },
             new CreativePersonModel
@@ -92,7 +92,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 11,
                 Name = "Brad",
                 SurName = "Pitt",
-                PhotographyPath = "https://drive.google.com/file/d/1mX8nHLgNfessLVmmGJ860azAjJVi1EPq/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1mX8nHLgNfessLVmmGJ860azAjJVi1EPq",
                 DateOfBirth = new DateTime(1963, 12, 18)
             },
             new CreativePersonModel
@@ -100,7 +100,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 12,
                 Name = "Matt",
                 SurName = "Damon",
-                PhotographyPath = "https://drive.google.com/file/d/1l-meYLM_aRFLbNXcUms5Wns6GUOe7ifB/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1l-meYLM_aRFLbNXcUms5Wns6GUOe7ifB",
                 DateOfBirth = new DateTime(1970, 10, 8)
             },
             new CreativePersonModel
@@ -108,7 +108,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 13,
                 Name = "George",
                 SurName = "Clooney",
-                PhotographyPath = "https://drive.google.com/file/d/1AKoEMsb7lQgDzcuGq2nDsTs360_PcxlI/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1AKoEMsb7lQgDzcuGq2nDsTs360_PcxlI",
                 DateOfBirth = new DateTime(1961, 5, 6)
             },
             new CreativePersonModel
@@ -116,7 +116,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 14,
                 Name = "Tom",
                 SurName = "Hanks",
-                PhotographyPath = "https://drive.google.com/file/d/1yuieDlNZnZaZyNiFVLX8Q2z32V7_s_Ta/view?usp=sharing",
+                PhotographyPath = "https://drive.google.com/uc?id=1yuieDlNZnZaZyNiFVLX8Q2z32V7_s_Ta",
                 DateOfBirth = new DateTime(1956, 7, 9)
             }
         };
