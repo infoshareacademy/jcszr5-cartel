@@ -4,6 +4,9 @@
     ViewData["Title"] = "Details";
     var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
     var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
 
 <h1>Details</h1>
@@ -108,11 +111,14 @@
                 </p>
         </dd>
 
-        
-
+        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        { 
+                <div class="heart">
+                    <i class="fa fa-heart-o"><a class="favourites" href="">ADD TO WATCHLIST</a></i>
+                </div>
+        }
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
     <a asp-action="IndexUser">Back to List</a>
 </div>

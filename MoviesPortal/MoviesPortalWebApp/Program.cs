@@ -4,6 +4,9 @@ using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
+using DataAccess.Repositories.SampleData;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,6 +27,16 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+//Authentication and authorization
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<DataAccess.Repositories.MoviePortalContext>();
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+});
+
+
 var app = builder.Build();
 
 
@@ -41,10 +54,13 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Movie}/{action=IndexUser}/{id?}");
+
+AppDbInitializer.SeedUsersAndRoleAsync(app).Wait();
 
 using var scope = app.Services.CreateScope();
 var dbContext = scope.ServiceProvider.GetService<MoviePortalContext>();

@@ -2,13 +2,14 @@
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.SampleData;
 using FluentAssertions.Common;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
 namespace DataAccess.Repositories
 {
-    public class MoviePortalContext : DbContext
+    public class MoviePortalContext : IdentityDbContext<ApplicationUser>
     {
 
         public MoviePortalContext()
