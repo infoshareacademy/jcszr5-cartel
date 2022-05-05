@@ -15,7 +15,7 @@ namespace MoviesPortalWebApp.Models
        
         public virtual ICollection<RoleCreativeMovieVM> RoleCreativeMovie { get; set; }
         public virtual ICollection<RoleVM> Roles { get; set; }
-        public virtual ICollection<MovieCreativePersonVM> MovieCreativePersons { get; set; }
+        //public virtual ICollection<MovieCreativePersonVM> MovieCreativePersons { get; set; }
         public virtual ICollection<TvSeries_CreativeP_RoleVM> TvSeries_CreativeP_Role { get; set; }
 
     }
