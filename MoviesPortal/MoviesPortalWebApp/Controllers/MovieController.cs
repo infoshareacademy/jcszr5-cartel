@@ -26,7 +26,7 @@ namespace MoviesPortalWebApp.Controllers
         #region User
 
             #region User movies list
-            public async Task<IActionResult> Index()
+            public async Task<IActionResult> IndexUser()
             {
                 var model = await _movieService.GetAllMoviesAsync();
                 var movies = _mapper.Map<IList<MovieVM>>(model);
@@ -35,7 +35,7 @@ namespace MoviesPortalWebApp.Controllers
             #endregion
 
             #region User movie details
-            public async Task<IActionResult> Details(int? id)
+            public async Task<IActionResult> DetailsUser(int? id)
             {
                 var model = await _movieService.GetMovieIdByAsync(id);
                 var movie = _mapper.Map<MovieVM>(model);
@@ -47,14 +47,26 @@ namespace MoviesPortalWebApp.Controllers
 
         #region Admin
 
-            #region Admin movies list
-            #endregion
+        #region Admin movies list
+        public async Task<IActionResult> Index()
+        {
+            var model = await _movieService.GetAllMoviesAsync();
+            var movies = _mapper.Map<IList<MovieVM>>(model);
+            return View(movies);
+        }
+        #endregion
 
-            #region Admin movie details
-            #endregion
+        #region Admin movie details
+        public async Task<IActionResult> Details(int? id)
+        {
+            var model = await _movieService.GetMovieIdByAsync(id);
+            var movie = _mapper.Map<MovieVM>(model);
+            return View(movie);
+        }
+        #endregion
 
-            #region Create
-                public async Task<IActionResult> Create(int? Id)
+        #region Create
+        public async Task<IActionResult> Create(int? Id)
                 {
                         MovieVM model = new MovieVM();
                         List<int> genresIds = new List<int>();

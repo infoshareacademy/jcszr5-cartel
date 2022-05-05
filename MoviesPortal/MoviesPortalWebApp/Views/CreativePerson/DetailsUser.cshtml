@@ -46,7 +46,7 @@
                         @foreach (var person in cast)
                         {
                             <span>
-                                <a asp-controller="Movie" asp-action="Details" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
+                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
                            </span>
                         }
                     </p>
@@ -64,7 +64,7 @@
                         @foreach (var person in directors)
                         {
                             <span>
-                                <a asp-controller="Movie" asp-action="Details" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
+                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
                            </span>
                         }
 
