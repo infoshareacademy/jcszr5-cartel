@@ -22,6 +22,5 @@ namespace DataAccess.Models
         public virtual ICollection<SeasonModel> Seasons { get; set; }
         public virtual ICollection<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }        
         public virtual ICollection<TvSeriesGenre> TvSeriesGenres { get; set; }
-        public List<UserFavourities> UserFavourities { get; set; }
     }
 }
