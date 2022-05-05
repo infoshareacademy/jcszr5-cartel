@@ -110,7 +110,7 @@ namespace DataAccess.Repositories.SampleData
                 SurName = "Clooney",
                 PhotographyPath = "https://drive.google.com/file/d/1AKoEMsb7lQgDzcuGq2nDsTs360_PcxlI/view?usp=sharing",
                 DateOfBirth = new DateTime(1961, 5, 6)
-            }
+            },
             new CreativePersonModel
             {
                 Id = 14,
