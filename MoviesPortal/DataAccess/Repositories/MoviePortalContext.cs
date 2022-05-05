@@ -64,7 +64,7 @@ namespace DataAccess.Repositories
             movieModel.Property(p => p.Title).IsRequired()
                 .HasMaxLength(50);
             movieModel.Property(p => p.Description).IsRequired()
-                .HasMaxLength(200)
+                .HasMaxLength(500)
                 .HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
             movieModel.Property(p => p.ProductionYear).HasColumnName("Release Date")
                 .HasMaxLength(DateTime.Now.Year);            

@@ -70,6 +70,54 @@ namespace DataAccess.Repositories.SampleData
                 SurName = "Blanchett",
                 PhotographyPath = "https://i.pinimg.com/originals/d5/23/75/d52375bb559b121f8221877db8b653a8.jpg",
                 DateOfBirth = new DateTime(1969, 4, 14)
+            },
+            new CreativePersonModel
+            {
+                Id = 9,
+                Name = "Angelina",
+                SurName = "Jolie",
+                PhotographyPath = "https://drive.google.com/file/d/1B0uRX19hxh-vuDe66HTjabCeManc4nAs/view?usp=sharing",
+                DateOfBirth = new DateTime(1975, 6, 4)
+            },
+            new CreativePersonModel
+            {
+                Id = 10,
+                Name = "Alicia",
+                SurName = "Vikander",
+                PhotographyPath = "https://drive.google.com/file/d/1rLzH3Lwzr33LQzR3wo9k8utsxwNszW-A/view?usp=sharing",
+                DateOfBirth = new DateTime(1988, 10, 3)
+            },
+            new CreativePersonModel
+            {
+                Id = 11,
+                Name = "Brad",
+                SurName = "Pitt",
+                PhotographyPath = "https://drive.google.com/file/d/1mX8nHLgNfessLVmmGJ860azAjJVi1EPq/view?usp=sharing",
+                DateOfBirth = new DateTime(1963, 12, 18)
+            },
+            new CreativePersonModel
+            {
+                Id = 12,
+                Name = "Matt",
+                SurName = "Damon",
+                PhotographyPath = "https://drive.google.com/file/d/1l-meYLM_aRFLbNXcUms5Wns6GUOe7ifB/view?usp=sharing",
+                DateOfBirth = new DateTime(1970, 10, 8)
+            },
+            new CreativePersonModel
+            {
+                Id = 13,
+                Name = "George",
+                SurName = "Clooney",
+                PhotographyPath = "https://drive.google.com/file/d/1AKoEMsb7lQgDzcuGq2nDsTs360_PcxlI/view?usp=sharing",
+                DateOfBirth = new DateTime(1961, 5, 6)
+            }
+            new CreativePersonModel
+            {
+                Id = 14,
+                Name = "Tom",
+                SurName = "Hanks",
+                PhotographyPath = "https://drive.google.com/file/d/1yuieDlNZnZaZyNiFVLX8Q2z32V7_s_Ta/view?usp=sharing",
+                DateOfBirth = new DateTime(1956, 7, 9)
             }
         };
         //public static CreativePersonModel sampleDirector = new CreativePersonModel()
@@ -82,3 +130,4 @@ namespace DataAccess.Repositories.SampleData
         //};
     }
 }
+
