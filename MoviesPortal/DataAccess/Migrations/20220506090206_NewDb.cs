@@ -372,6 +372,37 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserFavourities",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: true),
+                    TvSeriesId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFavourities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserFavourities_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_UserFavourities_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_UserFavourities_TvSeries_TvSeriesId",
+                        column: x => x.TvSeriesId,
+                        principalTable: "TvSeries",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Episodes",
                 columns: table => new
                 {
@@ -562,6 +593,21 @@ namespace DataAccess.Migrations
                 name: "IX_TvSeries_Genre_TvSeriesId",
                 table: "TvSeries_Genre",
                 column: "TvSeriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavourities_MovieId",
+                table: "UserFavourities",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavourities_TvSeriesId",
+                table: "UserFavourities",
+                column: "TvSeriesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_UserFavourities_UserId",
+                table: "UserFavourities",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -597,16 +643,13 @@ namespace DataAccess.Migrations
                 name: "TvSeries_Genre");
 
             migrationBuilder.DropTable(
+                name: "UserFavourities");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "AspNetUsers");
-
-            migrationBuilder.DropTable(
                 name: "Seasons");
-
-            migrationBuilder.DropTable(
-                name: "Movies");
 
             migrationBuilder.DropTable(
                 name: "CreativePersons");
@@ -616,6 +659,12 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Genres");
+
+            migrationBuilder.DropTable(
+                name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Movies");
 
             migrationBuilder.DropTable(
                 name: "TvSeries");

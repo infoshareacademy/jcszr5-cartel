@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220505193453_NewDb")]
+    [Migration("20220506090206_NewDb")]
     partial class NewDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -384,6 +384,35 @@ namespace DataAccess.Migrations
                     b.HasIndex("TvSeriesId");
 
                     b.ToTable("TvSeries_Genre");
+                });
+
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavourities", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("TvSeriesId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("TvSeriesId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFavourities");
                 });
 
             modelBuilder.Entity("DataAccess.Models.EpisodeModel", b =>
@@ -898,6 +927,29 @@ namespace DataAccess.Migrations
                     b.Navigation("TvSeries");
                 });
 
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavourities", b =>
+                {
+                    b.HasOne("DataAccess.Models.MovieModel", "Movie")
+                        .WithMany("UserFavourities")
+                        .HasForeignKey("MovieId");
+
+                    b.HasOne("DataAccess.Models.TvSeriesModel", "TvSeries")
+                        .WithMany("UserFavourities")
+                        .HasForeignKey("TvSeriesId");
+
+                    b.HasOne("DataAccess.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("UserFavourities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("TvSeries");
+                });
+
             modelBuilder.Entity("DataAccess.Models.EpisodeModel", b =>
                 {
                     b.HasOne("DataAccess.Models.SeasonModel", "Season")
@@ -971,6 +1023,11 @@ namespace DataAccess.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("DataAccess.Models.ApplicationUser", b =>
+                {
+                    b.Navigation("UserFavourities");
+                });
+
             modelBuilder.Entity("DataAccess.Models.CreativePersonModel", b =>
                 {
                     b.Navigation("RoleCreativeMovie");
@@ -990,6 +1047,8 @@ namespace DataAccess.Migrations
                     b.Navigation("MovieGenres");
 
                     b.Navigation("RoleCreativeMovie");
+
+                    b.Navigation("UserFavourities");
                 });
 
             modelBuilder.Entity("DataAccess.Models.RoleModel", b =>
@@ -1011,6 +1070,8 @@ namespace DataAccess.Migrations
                     b.Navigation("TvSeriesGenres");
 
                     b.Navigation("TvSeries_CreativeP_Role");
+
+                    b.Navigation("UserFavourities");
                 });
 #pragma warning restore 612, 618
         }
