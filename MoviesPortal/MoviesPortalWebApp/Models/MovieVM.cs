@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using DataAccess.Models;
+using DataAccess.Models.EntityAssigments;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.AssigmentsVM;
 using System.ComponentModel.DataAnnotations;
 
@@ -29,7 +31,5 @@ namespace MoviesPortalWebApp.Models
 
         public List<SelectListItem> selectedDirectors { get; set; }
         public int[] DirectorsIds { get; set; }
-
-
     }
 }
