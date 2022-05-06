@@ -1,4 +1,5 @@
 ﻿using DataAccess.Models;
+using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -48,10 +49,22 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<TvSeriesModel>> GetAll() => await _context.TvSeries.Include(g => g.TvSeriesGenres).ThenInclude(g => g.Genre).ToArrayAsync();
+        public async Task<ICollection<TvSeriesModel>> GetAll() => await _context.TvSeries
+            .Include(g =>  g.TvSeriesGenres).ThenInclude(g => g.Genre)
+            .Include(s => s.Seasons)
+            .ToArrayAsync();
         
 
-        public async Task<TvSeriesModel> GetById(int id) => await _context.TvSeries.FirstOrDefaultAsync(x => x.Id == id);
+        public async Task<TvSeriesModel> GetById(int id)
+        {
+            var tvSeries = await _context.TvSeries
+                .Include(g => g.TvSeriesGenres).ThenInclude(g => g.Genre)
+                .Include(c => c.TvSeries_CreativeP_Role).ThenInclude(c => c.CreativePerson)
+                .Include(r => r.TvSeries_CreativeP_Role).ThenInclude(r => r.Role)
+                .Include(s => s.Seasons).ThenInclude(s => s.Episodes)
+                .FirstOrDefaultAsync(x => x.Id == id);
+            return tvSeries;
+        }
         
     }
 }

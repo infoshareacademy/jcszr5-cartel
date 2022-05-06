@@ -34,6 +34,15 @@
                 <p>@item.Description</p><br>
                 <p>Start Year: @item.StartYear , Ended: @item.EndYear</p><br>                
                 <p>Genres: @string.Join(", ", item.TvSeriesGenres.Select(g => g.Genre.Genre))</p>
+                @{
+                var seasons = item.Seasons.ToList();
+                }
+                @foreach(var season in seasons)
+                {
+                <a asp-controller="TvSeries" asp-action="ListEpisodes" asp-route-id="@season.Id" >@season.SeasonNumber  </a>
+                }
+                
+
             </td>
             
             <td>
@@ -49,9 +58,9 @@
                 
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                
+                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
+                
             </td>
         </tr>
 }

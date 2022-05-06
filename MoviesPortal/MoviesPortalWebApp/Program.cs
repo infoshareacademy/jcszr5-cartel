@@ -18,7 +18,9 @@ builder.Services.AddDbContext<MoviePortalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
 builder.Services.AddTransient<ITvSeriesRepository, TvSeriesRepository>();
 builder.Services.AddTransient<IEpisodeRepository, EpisodeRepository>();
+builder.Services.AddTransient<IEpisodeService, EpisodeService>();
 builder.Services.AddTransient<ISeasonRepository, SeasonRepository>();
+builder.Services.AddTransient<ISeasonService, SeasonService>();
 builder.Services.AddTransient<ICreativePersonRepository, CreativePersonRepository>();
 builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<ITvSeriesService, TvSeriesService>();

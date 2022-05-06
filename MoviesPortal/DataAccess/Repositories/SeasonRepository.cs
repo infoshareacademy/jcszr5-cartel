@@ -41,7 +41,7 @@ namespace DataAccess.Repositories
         public async Task<ICollection<SeasonModel>> GetAll() => await _context.Seasons.ToListAsync();
 
 
-        public async Task<SeasonModel> GetById(int id) => await _context.Seasons.FirstOrDefaultAsync(se => se.Id == id);
+        public async Task<SeasonModel> GetById(int id) => await _context.Seasons.Include(e => e.Episodes).FirstOrDefaultAsync(se => se.Id == id);
         
     }
 }
