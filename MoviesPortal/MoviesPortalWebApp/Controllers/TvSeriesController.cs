@@ -2,8 +2,10 @@
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using DataAccess.Models;
+using DataAccess.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.Models;
 using System.Collections;
 
@@ -15,13 +17,15 @@ namespace MoviesPortalWebApp.Controllers
         private readonly ISeasonService _seasonService;
         private readonly IEpisodeService _episodeService;
         private readonly IMapper _mapper;
+        private readonly MoviePortalContext _context;
 
-        public TvSeriesController(ITvSeriesService tvSeriesService, IMapper mapper, IEpisodeService episodeService, ISeasonService seasonService)
+        public TvSeriesController(ITvSeriesService tvSeriesService, IMapper mapper, IEpisodeService episodeService, ISeasonService seasonService, MoviePortalContext context)
         {
             _tvSeriesService = tvSeriesService;
             _mapper = mapper;
             _episodeService = episodeService;
             _seasonService = seasonService;
+            _context = context;
         }
 
         // GET: TvSeriesController
@@ -43,8 +47,20 @@ namespace MoviesPortalWebApp.Controllers
         // GET: TvSeriesController/Create
         public async Task<ActionResult> Create()
         {
-            return View();
+            TvSeriesVM model = new();
+            List<int> genresIds = new List<int>();
+            List<int> actorsIds = new List<int>();
 
+            var series = new TvSeriesModel();
+            model = _mapper.Map<TvSeriesVM>(series);
+            model.selectedGenres = _context.Genres
+                .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+            model.selectedActors = _context.CreativePersons
+               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+            model.selectedDirectors = _context.CreativePersons
+               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+
+            return View(model);
         }
 
         // POST: TvSeriesController/Create
