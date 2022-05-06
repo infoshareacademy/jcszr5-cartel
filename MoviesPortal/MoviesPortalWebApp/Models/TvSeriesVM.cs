@@ -19,5 +19,6 @@ namespace MoviesPortalWebApp.Models
         //public virtual ICollection<SeasonVM> Seasons { get; set; }
         public virtual ICollection<TvSeries_CreativeP_RoleVM> TvSeries_CreativeP_Role { get; set; }
         public virtual ICollection<TvSeriesGenreVM> TvSeriesGenres { get; set; }
+        public virtual ICollection<SeasonVM> Seasons { get; set; }
     }
 }
