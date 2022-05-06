@@ -36,7 +36,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 4,
                 Name = "Cillian",
                 SurName = "Murphy",
-                PhotographyPath = "https://i.pinimg.com/originals/01/aa/d4/01aad42f699f2bc8d0225047e7b23e03.jpg",
+                PhotographyPath = "https://i.pinimg.com/originals/cc/9a/3c/cc9a3cb9e0cd36b322a4491875c16be0.png",
                 DateOfBirth = new DateTime(1976, 5, 25)
             },
             new CreativePersonModel
@@ -60,7 +60,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 7,
                 Name = "Christopher",
                 SurName = "Nolan",
-                PhotographyPath = "https://i.pinimg.com/originals/6e/76/07/6e76076e9b218373ff054e57e6c307db.jpg",
+                PhotographyPath = "https://i.pinimg.com/736x/c7/c4/84/c7c484a0a51dd210405148c1f933ab54.jpg",
                 DateOfBirth = new DateTime(1970, 7, 30)
             },
             new CreativePersonModel
@@ -70,15 +70,256 @@ namespace DataAccess.Repositories.SampleData
                 SurName = "Blanchett",
                 PhotographyPath = "https://i.pinimg.com/originals/d5/23/75/d52375bb559b121f8221877db8b653a8.jpg",
                 DateOfBirth = new DateTime(1969, 4, 14)
+            },
+            new CreativePersonModel
+            {
+                Id = 9,
+                Name = "Tom",
+                SurName = "Hiddleston",
+                PhotographyPath = "https://i.redd.it/r9ytchitgnu01.jpg",
+                DateOfBirth = new DateTime(1981, 2, 9)
+            },
+            new CreativePersonModel
+            {
+                Id = 10,
+                Name = "Idris",
+                SurName = "Elba",
+                PhotographyPath = "https://static.stereogum.com/uploads/2014/09/Idris-Elba.jpg",
+                DateOfBirth = new DateTime(1972, 9, 6)
+            },
+            new CreativePersonModel
+            {
+                Id = 11,
+                Name = "Robert",
+                SurName = "Downey Jr.",
+                PhotographyPath = "https://i.pinimg.com/originals/26/ec/2c/26ec2c71b16085720e0f21f22f074999.jpg",
+                DateOfBirth = new DateTime(1965, 4, 4)
+            },
+            new CreativePersonModel
+            {
+                Id = 12,
+                Name = "Joe",
+                SurName = "Russo",
+                PhotographyPath = "https://m.media-amazon.com/images/M/MV5BMTc2NzY1NTY5OF5BMl5BanBnXkFtZTgwNjY3ODczNjM@._V1_.jpg",
+                DateOfBirth = new DateTime(1971, 7, 18)
+            },
+            new CreativePersonModel
+            {
+                Id = 13,
+                Name = "Anthony",
+                SurName = "Russo",
+                PhotographyPath = "https://m.media-amazon.com/images/M/MV5BMTc2NjM5MTM0Ml5BMl5BanBnXkFtZTgwMTY3ODczNjM@._V1_.jpg",
+                DateOfBirth = new DateTime(1970, 2, 3)
+            },
+            new CreativePersonModel
+            {
+                Id = 14,
+                Name = "Scarlett",
+                SurName = "Johansson",
+                PhotographyPath = "https://t1.pixers.pics/img-1fb6f67c/plakaty-scarlett-johansson.jpg?H4sIAAAAAAAAA3WOXW7EIAyEr0MkEhsCAXKDfdsbRATINm1-ELDtqqcvUdXHyg-esTSeD55HtksAF44SEuyr91uAZd2qy2MKef0ORIiBYjPW60YQqzo_Q3LpjKRlONC251RKQQeum_HL1uRu0wd5KyXmESD3XVxf9V1dLoPbM3BkClCDNNp4KYNwWoUptrnYw9vkWy5ePXbxeFC8pvkjUYhUXQQlrTupSGftKuQ9Phr4p-9XQ03B_QaMgbr0dL8xpianjWNojfPB9FzrwD1DFpZZ4GzczCc5Kzu7Rel-kGbqfgDd0lIaLwEAAA==",
+                DateOfBirth = new DateTime(1984, 11, 22)
+            },
+            new CreativePersonModel
+            {
+                Id = 15,
+                Name = "Chris",
+                SurName = "Evans",
+                PhotographyPath = "https://images.mubicdn.net/images/cast_member/32256/cache-2145-1600710858/image-w856.jpg?size=800x",
+                DateOfBirth = new DateTime(1981, 6, 13)
+            },
+            new CreativePersonModel
+            {
+                Id = 16,
+                Name = "Tom",
+                SurName = "Holland",
+                PhotographyPath = "https://cdn.lifestyleasia.com/wp-content/uploads/sites/7/2022/01/19151605/125891247_439627203697586_8066488800487655769_n.jpg",
+                DateOfBirth = new DateTime(1996, 6, 1)
+            },
+            new CreativePersonModel
+            {
+                Id = 17,
+                Name = "Benedict",
+                SurName = "Cumberbatch",
+                PhotographyPath = "https://images.prismic.io/netflix-queue/8e7ebecd-0a79-4517-93e5-c2828603c6fb_SH21091+NFX+09B_01+IV+RGB.jpg?auto=compress,format&rect=33,0,1013,1350&w=2000&h=2666",
+                DateOfBirth = new DateTime(1976, 7, 19)
+            },
+            new CreativePersonModel
+            {
+                Id = 18,
+                Name = "Paul",
+                SurName = "Bettany",
+                PhotographyPath = "https://pbs.twimg.com/media/CIpuOJoUYAA_U1e.jpg",
+                DateOfBirth = new DateTime(1971, 5, 27)
+            },
+            new CreativePersonModel
+            {
+                Id = 19,
+                Name = "Elizabeth",
+                SurName = "Olsen",
+                PhotographyPath = "https://m.media-amazon.com/images/M/MV5BMTZmYjFmNzItMDk4YS00NWE0LThkZmMtMmRkYzFmODVhOGU1XkEyXkFqcGdeQXVyMTU3NTQyMTg@._V1_.jpg",
+                DateOfBirth = new DateTime(1989, 2, 16)
+            },
+            new CreativePersonModel
+            {
+                Id = 20,
+                Name = "Spike",
+                SurName = "Jonze",
+                PhotographyPath = "https://cdn.gracza.pl/galeria/mdb/o/116997531.jpg",
+                DateOfBirth = new DateTime(1969, 10, 22)
+            },
+            new CreativePersonModel
+            {
+                Id = 21,
+                Name = "Joaquin",
+                SurName = "Phoenix",
+                PhotographyPath = "https://www.interviewmagazine.com/wp-content/uploads/2015/03/img-star---joaquin-phoenix_152859450894-814x1000.jpg",
+                DateOfBirth = new DateTime(1974, 10, 28)
+            },
+            new CreativePersonModel
+            {
+                Id = 22,
+                Name = "Amy",
+                SurName = "Adams",
+                PhotographyPath = "https://i.pinimg.com/originals/8e/09/9b/8e099b26d870e3577e730a9c61e0d355.jpg",
+                DateOfBirth = new DateTime(1974, 8, 20)
+            },
+            new CreativePersonModel
+            {
+                Id = 23,
+                Name = "Christian",
+                SurName = "Bale",
+                PhotographyPath = "https://i.pinimg.com/originals/47/87/fe/4787fe17d62edd2901c0c9b9056a9637.jpg",
+                DateOfBirth = new DateTime(1974, 1, 30)
+            },
+            new CreativePersonModel
+            {
+                Id = 24,
+                Name = "Heath",
+                SurName = "Ledger",
+                PhotographyPath = "https://i.pinimg.com/originals/aa/d2/0c/aad20c5c81fba355f879cec1f18f1bce.jpg",
+                DateOfBirth = new DateTime(1979, 4, 4)
+            },
+            new CreativePersonModel
+            {
+                Id = 25,
+                Name = "Matthew",
+                SurName = "McConaughey",
+                PhotographyPath = "https://i.pinimg.com/originals/e9/7e/f2/e97ef25eb772ba0b04bc9ee6826d1552.jpg",
+                DateOfBirth = new DateTime(1969, 11, 4)
+            },
+            new CreativePersonModel
+            {
+                Id = 26,
+                Name = "Anne",
+                SurName = "Hathaway",
+                PhotographyPath = "https://i.pinimg.com/originals/17/4e/2c/174e2ce83ea42b6fd971a773cbd5c45d.jpg",
+                DateOfBirth = new DateTime(1982, 12, 22)
+            },
+            new CreativePersonModel
+            {
+                Id = 27,
+                Name = "Jessica",
+                SurName = "Chastain",
+                PhotographyPath = "https://i.pinimg.com/originals/1c/04/77/1c04773e360349ccd9983973b98e36a2.jpg",
+                DateOfBirth = new DateTime(1977, 3, 24)
+            },
+            new CreativePersonModel
+            {
+                Id = 28,
+                Name = "Harrison",
+                SurName = "Ford",
+                PhotographyPath = "https://i.pinimg.com/564x/4d/56/69/4d56692bc2b42418dc78693123dc2a31.jpg",
+                DateOfBirth = new DateTime(1942,7,13)
+            },
+            new CreativePersonModel
+            {
+                Id = 29,
+                Name = "Mark",
+                SurName = "Hamill",
+                PhotographyPath = "https://i.pinimg.com/originals/0e/11/75/0e117523130725aae5a4b6e49a7d8787.png",
+                DateOfBirth = new DateTime(1951,9,25)
+            },
+            new CreativePersonModel
+            {
+                Id = 30,
+                Name = "Carrie",
+                SurName = "Fisher",
+                PhotographyPath = "https://i.pinimg.com/originals/b5/db/f8/b5dbf8637c0f5787d26916cc04097d09.jpg",
+                DateOfBirth = new DateTime(1956,10,21)
+            },
+            new CreativePersonModel
+            {
+                Id = 31,
+                Name = "Alec",
+                SurName = "Guinness",
+                PhotographyPath = "https://i.pinimg.com/736x/5c/00/a3/5c00a3d0575ebc6bc6c99c41896d3f37.jpg",
+                DateOfBirth = new DateTime(1914,4,2)
+            },
+            new CreativePersonModel
+            {
+                Id = 32,
+                Name = "James",
+                SurName = "Earl Jones",
+                PhotographyPath = "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F20%2F2022%2F01%2F14%2Fjames-earl-jones-21-2000.jpg",
+                DateOfBirth = new DateTime(1931,2,17)
+            },
+            new CreativePersonModel
+            {
+                Id = 33,
+                Name = "George",
+                SurName = "Lucas",
+                PhotographyPath = "https://i.pinimg.com/originals/4a/a2/8d/4aa28ddad9d7b00ef950ac24a94dca1a.jpg",
+                DateOfBirth = new DateTime(1944,4,14)
+            },
+            new CreativePersonModel
+            {
+                Id = 34,
+                Name = "Irvin",
+                SurName = "Kershner",
+                PhotographyPath = "https://upload.wikimedia.org/wikipedia/en/f/f7/Irvin_Kershner.jpg",
+                DateOfBirth = new DateTime(1923,4,29)
+            },
+            new CreativePersonModel
+            {
+                Id = 35,
+                Name = "Richard",
+                SurName = "Marquand",
+                PhotographyPath = "https://m.media-amazon.com/images/M/MV5BMjgwY2ZkYjEtNzgxZi00ZDIyLWJhZWItZjg1NGQ4OWE5ZTZhXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg",
+                DateOfBirth = new DateTime(1937,9,22)
+            },
+            new CreativePersonModel
+            {
+                Id = 36,
+                Name = "Steven",
+                SurName = "Spielberg",
+                PhotographyPath = "https://media.news9live.com/h-upload/2022/02/26/245321-steven-spielberg-frank-bullitt-steve-mcqueen-bullitt-warner-bros.webp",
+                DateOfBirth = new DateTime(1946,12,18)
+            },
+            new CreativePersonModel
+            {
+                Id = 37,
+                Name = "Karen",
+                SurName = "Allen",
+                PhotographyPath = "https://i.pinimg.com/originals/22/54/7a/22547ac8ae5f59ad0d5fa156127781b4.jpg",
+                DateOfBirth = new DateTime(1951,10,5)
+            },
+            new CreativePersonModel
+            {
+                Id = 38,
+                Name = "John",
+                SurName = "Rhys-Davies",
+                PhotographyPath = "https://www.flowee.cz/images/.thumbnails/images/misa_2020/unor_2020/gimli_box-0467378879.500x546cg.jpg",
+                DateOfBirth = new DateTime(1944,5,5)
+            },
+            new CreativePersonModel
+            {
+                Id = 39,
+                Name = "Sean",
+                SurName = "Connery",
+                PhotographyPath = "https://i.pinimg.com/originals/0e/01/c8/0e01c867c9a1fa680c741f32d1f8878a.jpg",
+                DateOfBirth = new DateTime(1930,8,25)
             }
         };
-        //public static CreativePersonModel sampleDirector = new CreativePersonModel()
-        //{
-        //    Id = 2,
-        //    Name = "Ted",
-        //    SurName = "Kotcheff",
-            
-
-        //};
+      
     }
 }
