@@ -30,10 +30,18 @@ namespace MoviesPortalWebApp.Controllers
         }
 
         // GET: TvSeriesController
-        public async Task<ActionResult> Index()
+        public async Task<ActionResult> Index(string searchString)
         {
-            var result = await _tvSeriesService.GetAll();            
-            var tvSeries = _mapper.Map<List<TvSeriesVM>>(result);
+
+            //var result = await _tvSeriesService.GetAll();
+            var model = from m in _context.TvSeries select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(s => s.Title.Contains(searchString));
+            }
+
+            var tvSeries = _mapper.Map<List<TvSeriesVM>>(model);
             return View(tvSeries);
         }
         public async Task<ActionResult> IndexAdmin()

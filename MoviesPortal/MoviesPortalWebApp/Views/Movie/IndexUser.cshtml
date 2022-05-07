@@ -2,12 +2,25 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
+
+
+
+<form asp-controller="Movie" asp-action="IndexUser">
+    
+    
+    <div class="col-sm-2">
+        <input type="text" class="form-control" name="SearchString" /><input type="submit" class="btn btn-outline-light" value="Search!" />
+        
+    </div>    
+</form>
 
 <section id="top_movies text-light" class="clearfix">
     <div class="wrapper text-light">  
         <div class="movieBox">
             <section class="moviePoster">
+
 
             @foreach(var item in Model)
             {

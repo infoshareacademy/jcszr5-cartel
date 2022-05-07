@@ -6,8 +6,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Tv Series</h1><br />
-
+<h1>Tv Series</h1><br /><br />
+<form asp-controller="TvSeries" asp-action="Index">
+    
+    
+    <div class="col-sm-2">
+        <input type="text" class="form-control" name="SearchString" /><input type="submit" class="btn btn-outline-light" value="Search!" />
+        
+    </div>    
+</form>
 
 <table class="table">
     <thead>
