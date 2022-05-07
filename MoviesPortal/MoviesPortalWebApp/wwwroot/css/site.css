@@ -17,18 +17,66 @@ body {
   margin-bottom: 60px;
 }*/
 
+.navbar-light .navbar-collapse .navbar-nav .home-nav-link {
+    color: coral;
+}
+
+@font-face {
+    font-family: 'Barlow';
+    src: url(~/images/Barlow/Barlow-Light.ttf);
+}
+
 * {
     box-sizing: border-box;
 }
 
-html, body {
-    font-family: 'Open Sans', sans-serif;
+/*html, body {
+    font-family: 'Barlow', sans-serif;*/
+/*    background-color: #0d0d0d;*/
+/*}*/
+
+.loginButton {
+    color: white;
+    border-color: #FF5900;
+    background-color: #FF5900;
+}
+    .loginButton:hover {
+        background-color: #36423d;
+        border-color: black;
+    }
+
+h2.movies{
+    font-size: 1.5rem;
+    padding-top: 3rem;
+    padding-bottom: 1rem;
 }
 
-.clearfix:before, .clearfix:after {
-    content: " ";
-    display: table;
+.bg-white {
+    background-color: rgba(0,0,0,0.2)
 }
+
+.registerButton {
+    color: white;
+    border-color: white;
+}
+    .registerButton:hover {
+        background-color: #36423d;
+        border-color: black;
+    }
+
+.btn-outline-danger {
+    color: #FFFFFF;
+    border-color: #FF5900;
+}
+
+    .btn-outline-danger:hover {
+        background-color: #f39c6e;
+    }
+
+    .clearfix:before, .clearfix:after {
+        content: " ";
+        display: table;
+    }
 
 .clearfix:after {
     clear: both;
@@ -42,6 +90,10 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
+}
+
+.container-fluid {
+    width: 80% !important;
 }
 
 #top_header {
@@ -72,16 +124,18 @@ h1, h2, h3, h4, h5, h6 {
             margin-left: 1em;
         }
 
+
+
 .menu {
     display: none;
 }
 
 #banner {
-    background: url(../images/banner_background.jpg);
+    background: url(../images/1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
-    padding: 6.5em 0;
+    padding: 18em 0;
 }
 
     #banner #banner_content_wrapper {
@@ -215,9 +269,10 @@ h1, h2, h3, h4, h5, h6 {
         }
 
 #newsletter {
-    padding: 5em 0;
+    padding: 3em 0;
     text-align: center;
     background: #2a2a2e;
+    margin-top: 6rem;
 }
 
     #newsletter .newsletter_inner {
@@ -260,6 +315,10 @@ h1, h2, h3, h4, h5, h6 {
             margin-top: 3em;
         }
 
+table .table .whiteText {
+    color: #FFFFFF;
+}
+
 #main_footer {
     padding: 2.5em 0;
     text-align: center;
@@ -296,6 +355,7 @@ h1, h2, h3, h4, h5, h6 {
             #main_footer .links a:hover {
                 color: #73e298;
             }
+
 
 @media only screen and (max-width: 768px) {
     #main_nav {

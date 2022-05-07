@@ -12,60 +12,63 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 </head>
 
+<body class="bg-black">
+    <header class="fixed-top">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black bg-opacity-25 box-shadow mb-3">
 
-
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Cartel</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index"><img class="img-responsive" alt="logo" src="~/images/cartelShort.png" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
-                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="IndexUser">Movies</a>
+                            <a class="nav-link home-nav-link"  asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="TvSeries" asp-action="Index">Seriale</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="IndexUser">Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="CreativePerson" asp-action="IndexUser">Creative Person</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="TvSeries" asp-action="Index">Seriale</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-controller="CreativePerson" asp-action="IndexUser">Creative Person</a>
                         </li>
 
                         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
                         {
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Index" asp-route-id=@UserManager.GetUserId(User)>Favourites</a>
-                        </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="IndexUser">Favourites</a>
+                            </li>
                         }
                         else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="bi bi-gear"></i> Management
-                                    </a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bi bi-gear"></i> Management
+                                </a>
 
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
-                                        <a class="dropdown-item" asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
-                                        <a class="dropdown-item" asp-controller="CreativePerson" asp-action="Index">Creative Person [Admin]</a>
-                                    </div>
-                                </li>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
+                                    <a class="dropdown-item " asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
+                                    <a class="dropdown-item" asp-controller="CreativePerson" asp-action="Index">Creative Person [Admin]</a>
+                                </div>
+                            </li>
 
-                                // to jest do usunięcia gdy będzie można rozwijać to powyżej
-                                <li class="nav-item">
-                                     <a class="nav-link text-dark" asp-area="" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
-                                </li>
-                                <li class="nav-item">
-                                     <a class="nav-link text-dark" asp-area="" asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
-                                </li> 
-                                <li class="nav-item">
-                                     <a class="nav-link text-dark" asp-area="" asp-controller="CreativePerson" asp-action="Index">CreativePerson [Admin]</a>
-                                </li>
+                            // to jest do usunięcia gdy będzie można rozwijać to powyżej
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" asp-area="" asp-controller="CreativePerson" asp-action="Index">Movies [Admin]</a>
+                            </li>
+
 
 
                         }
@@ -135,12 +138,12 @@
         </div>
     </section>
 
-    <footer class="border-top footer text-muted">
+@*    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - MoviesPortalWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
-     <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

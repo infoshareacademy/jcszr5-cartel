@@ -60,7 +60,7 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Movie}/{action=IndexUser}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 AppDbInitializer.SeedUsersAndRoleAsync(app).Wait();
 
@@ -72,10 +72,10 @@ var series1 = new TvSeriesModel()
 {
     Title = "Chernobyl",
     Description = "On April 26, 1986, the Chernobyl Nuclear Power Plant in the Soviet Union suffered a massive explosion. This gripping five-part miniseries tells the powerful and visceral story of the worst man-made accident in history, following the tragedy from the moment of the early-morning explosion through the chaos and loss of life in the ensuing days, weeks and months.",
-    Genres =new List<GenreModel>()
+    Genres = new List<GenreModel>()
         {
             dbContext.Genres.FirstOrDefault(g => g.Genre=="drama"),
-            dbContext.Genres.FirstOrDefault(g => g.Genre=="historical")            
+            dbContext.Genres.FirstOrDefault(g => g.Genre=="historical")
         },
     StartYear = 2019,
     EndYear = 2019,
@@ -132,7 +132,7 @@ var series2 = new TvSeriesModel()
     PosterPath = "https://static.posters.cz/image/1300/plakaty/sherlock-series-4-iconic-i33910.jpg",
     TrailerUrl = "https://www.youtube.com/watch?v=IrBKwzL3K7s",
     ImdbRatio = "9,1",
-    Seasons = new List<SeasonModel>() { 
+    Seasons = new List<SeasonModel>() {
         new SeasonModel()
         {
             SeasonNumber = 1,
@@ -158,7 +158,7 @@ var series2 = new TvSeriesModel()
                     Title = "The Great Game",
                     Description="Mycroft needs Sherlock's help, but a remorseless criminal mastermind puts Sherlock on a distracting crime-solving spree via a series of hostage human bombs through which he speaks."
                 },
-                
+
             }
 
         },
@@ -181,7 +181,7 @@ var series2 = new TvSeriesModel()
                 {
                     Title = "The Reichenbach Fall",
                     Description="Jim Moriarty hatches a mad scheme to turn the whole city against Sherlock."
-                },                
+                },
             }
 
         },
@@ -365,7 +365,7 @@ var creativesForSeries = new List<TvSeries_CreativeP_Role>()
         },
     };
 
-var listOfTvSeries = new List<TvSeriesModel>() { series1, series2};
+var listOfTvSeries = new List<TvSeriesModel>() { series1, series2 };
 
 if (!dbContext.TvSeries.Any())
 {
