@@ -28,8 +28,11 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            
-            <td>
+            <td>                
+            </td>
+            <td>                
+            </td>
+            <td style="color:darkgray">
                 <h2>@Html.DisplayFor(modelItem => item.Title)</h2><br><br>
                 <p>@item.Description</p><br>
                 <p>Start Year: @item.StartYear , Ended: @item.EndYear</p><br>                
@@ -37,6 +40,7 @@
                 @{
                 var seasons = item.Seasons.ToList();
                 }
+                <p>Seasons:  </p>
                 @foreach(var season in seasons)
                 {
                 <a asp-controller="TvSeries" asp-action="ListEpisodes" asp-route-id="@season.Id" >@season.SeasonNumber  </a>
@@ -45,8 +49,7 @@
 
             </td>
             
-            <td>
-                
+            <td>                
             </td>
             <td>
                 <div>
@@ -60,6 +63,10 @@
                 <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
                 <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">Delete</a> 
                 
+            </td>
+            <td>                
+            </td>
+            <td>                
             </td>
         </tr>
 }
