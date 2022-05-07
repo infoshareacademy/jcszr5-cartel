@@ -640,11 +640,11 @@ div.desc {
 }
 
 .registerPanel {
-    padding: 2px;
+    /*padding: 2px;*/
     margin: 30px;
     position: absolute;
     width: 500px;
-    height: 440px;
+    height: 400px;
     top: 50%;
     left: 80%;
     transform: translate(-50%, -50%);
@@ -670,3 +670,78 @@ div.desc {
     opacity: 1;
     padding: 10px;
 }
+
+/* BackgroundPoster */
+
+.BackgroundPoster {
+    height: 90vh;
+    width: 80vw;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Stylowanie opisu na obrazku g³ównym*/
+
+
+.main-informations {
+    position: absolute;
+    color: #fff;
+    padding: 25px 25px;
+    right: 12%;
+    left: 12%;
+    bottom: 12vh;
+    margin-top: 0;
+    border-radius: 20px;
+    background: rgba(0,0,0,0.5);
+    display: inline;
+}
+
+.Title {
+    font-size: 3.1vw;
+}
+
+.vanila {
+    color: rgb(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 2.5vh;
+}
+
+
+.Persons,
+.genre {
+    font-weight: bold;
+    font-size: 2vh;
+}
+
+.vanila-ice {
+    color: rgb(255, 255, 255, 0.7);
+    font-size: 1.2vw;
+}
+
+.inline {
+    display: inline;
+    font-size: 2.5vh;
+}
+
+
+/*fav*/
+
+.fav {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    height: 200px;
+    align-items: center;
+    justify-content: center;
+    color: darkorange;
+    opacity: 0.7;
+    cursor: pointer;
+    font-size: 3vw;
+}
+
+.bi bi-person-badge{
+    color: white;
+}
+

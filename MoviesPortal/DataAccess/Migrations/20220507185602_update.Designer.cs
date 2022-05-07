@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220506174255_MoreMoviesProvided")]
-    partial class MoreMoviesProvided
+    [Migration("20220507185602_update")]
+    partial class update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,7 +234,7 @@ namespace DataAccess.Migrations
                             Id = 14,
                             DateOfBirth = new DateTime(1984, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Scarlett",
-                            PhotographyPath = "https://t1.pixers.pics/img-1fb6f67c/plakaty-scarlett-johansson.jpg?H4sIAAAAAAAAA3WOXW7EIAyEr0MkEhsCAXKDfdsbRATINm1-ELDtqqcvUdXHyg-esTSeD55HtksAF44SEuyr91uAZd2qy2MKef0ORIiBYjPW60YQqzo_Q3LpjKRlONC251RKQQeum_HL1uRu0wd5KyXmESD3XVxf9V1dLoPbM3BkClCDNNp4KYNwWoUptrnYw9vkWy5ePXbxeFC8pvkjUYhUXQQlrTupSGftKuQ9Phr4p-9XQ03B_QaMgbr0dL8xpianjWNojfPB9FzrwD1DFpZZ4GzczCc5Kzu7Rel-kGbqfgDd0lIaLwEAAA==",
+                            PhotographyPath = "https://i.pinimg.com/originals/29/f7/b2/29f7b250f36d1758a7015e062c39b180.jpg",
                             SurName = "Johansson"
                         },
                         new
@@ -338,7 +338,7 @@ namespace DataAccess.Migrations
                             Id = 27,
                             DateOfBirth = new DateTime(1977, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Jessica",
-                            PhotographyPath = "https://i.pinimg.com/originals/1c/04/77/1c04773e360349ccd9983973b98e36a2.jpg",
+                            PhotographyPath = "https://c4.wallpaperflare.com/wallpaper/728/39/584/women-actress-jessica-chastain-white-coat-wallpaper-preview.jpg",
                             SurName = "Chastain"
                         },
                         new
@@ -410,7 +410,7 @@ namespace DataAccess.Migrations
                             Id = 36,
                             DateOfBirth = new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Steven",
-                            PhotographyPath = "https://media.news9live.com/h-upload/2022/02/26/245321-steven-spielberg-frank-bullitt-steve-mcqueen-bullitt-warner-bros.webp",
+                            PhotographyPath = "https://i.pinimg.com/736x/e2/5a/5c/e25a5c78c5077d6e78793fc720eb78cb.jpg",
                             SurName = "Spielberg"
                         },
                         new
@@ -436,6 +436,86 @@ namespace DataAccess.Migrations
                             Name = "Sean",
                             PhotographyPath = "https://i.pinimg.com/originals/0e/01/c8/0e01c867c9a1fa680c741f32d1f8878a.jpg",
                             SurName = "Connery"
+                        },
+                        new
+                        {
+                            Id = 40,
+                            DateOfBirth = new DateTime(1962, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "David",
+                            PhotographyPath = "https://i.pinimg.com/originals/ff/e7/09/ffe709086a975b0f38338fe63182a299.png",
+                            SurName = "Fincher"
+                        },
+                        new
+                        {
+                            Id = 41,
+                            DateOfBirth = new DateTime(1963, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Brad",
+                            PhotographyPath = "https://bi.im-g.pl/im/cd/52/18/z25503949IH,Brad-Pitt-w-New-York-Times.jpg",
+                            SurName = "Pitt"
+                        },
+                        new
+                        {
+                            Id = 42,
+                            DateOfBirth = new DateTime(1969, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Edward",
+                            PhotographyPath = "https://www.interviewmagazine.com/wp-content/uploads/2014/10/img-edward-norton_233002559555.jpg",
+                            SurName = "Norton"
+                        },
+                        new
+                        {
+                            Id = 43,
+                            DateOfBirth = new DateTime(1959, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Kevin",
+                            PhotographyPath = "https://i.pinimg.com/originals/a7/32/c0/a732c0f7d2f7c1d60e07b9794811f3e4.jpg",
+                            SurName = "Spacey"
+                        },
+                        new
+                        {
+                            Id = 44,
+                            DateOfBirth = new DateTime(1937, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Morgan",
+                            PhotographyPath = "https://i.pinimg.com/564x/9f/76/e8/9f76e87c8d4812916c7aec060a88c469--supporting-actor-morgan-freeman.jpg",
+                            SurName = "Freeman"
+                        },
+                        new
+                        {
+                            Id = 45,
+                            DateOfBirth = new DateTime(1983, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jesse",
+                            PhotographyPath = "https://www4.pictures.zimbio.com/gi/Vivarium+Photocall+vnyP7s1-p9zx.jpg",
+                            SurName = "Eisenberg"
+                        },
+                        new
+                        {
+                            Id = 46,
+                            DateOfBirth = new DateTime(1983, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Andrew",
+                            PhotographyPath = "https://data.whicdn.com/images/4749775/original.jpg",
+                            SurName = "Garfield"
+                        },
+                        new
+                        {
+                            Id = 47,
+                            DateOfBirth = new DateTime(1980, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Jake",
+                            PhotographyPath = "https://i.pinimg.com/originals/00/be/20/00be20ddd9db763008a37e6c54e7a801.jpg",
+                            SurName = "Gyllenhaal"
+                        },
+                        new
+                        {
+                            Id = 48,
+                            DateOfBirth = new DateTime(1967, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Mark",
+                            PhotographyPath = "https://i.pinimg.com/550x/e0/3b/17/e03b17c2cbb0f2ad648db40ca5eba9dd.jpg",
+                            SurName = "Ruffalo"
+                        },
+                        new
+                        {
+                            Id = 49,
+                            DateOfBirth = new DateTime(1959, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Name = "Sam",
+                            PhotographyPath = "https://cdn.gracza.pl/galeria/mdb/o/542286000.jpg",
+                            SurName = "Raimi"
                         });
                 });
 
@@ -695,6 +775,72 @@ namespace DataAccess.Migrations
                             Id = 39,
                             GenreId = 9,
                             MovieId = 13
+                        },
+                        new
+                        {
+                            Id = 40,
+                            GenreId = 5,
+                            MovieId = 14
+                        },
+                        new
+                        {
+                            Id = 41,
+                            GenreId = 10,
+                            MovieId = 14
+                        },
+                        new
+                        {
+                            Id = 42,
+                            GenreId = 5,
+                            MovieId = 15
+                        },
+                        new
+                        {
+                            Id = 43,
+                            GenreId = 10,
+                            MovieId = 15
+                        },
+                        new
+                        {
+                            Id = 44,
+                            GenreId = 5,
+                            MovieId = 16
+                        },
+                        new
+                        {
+                            Id = 45,
+                            GenreId = 10,
+                            MovieId = 16
+                        },
+                        new
+                        {
+                            Id = 46,
+                            GenreId = 5,
+                            MovieId = 17
+                        },
+                        new
+                        {
+                            Id = 47,
+                            GenreId = 10,
+                            MovieId = 17
+                        },
+                        new
+                        {
+                            Id = 48,
+                            GenreId = 1,
+                            MovieId = 18
+                        },
+                        new
+                        {
+                            Id = 50,
+                            GenreId = 2,
+                            MovieId = 18
+                        },
+                        new
+                        {
+                            Id = 51,
+                            GenreId = 8,
+                            MovieId = 18
                         });
                 });
 
@@ -1208,6 +1354,125 @@ namespace DataAccess.Migrations
                             CreativePersonId = 20,
                             MovieId = 13,
                             RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 70,
+                            CreativePersonId = 41,
+                            MovieId = 14,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 71,
+                            CreativePersonId = 42,
+                            MovieId = 14,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 72,
+                            CreativePersonId = 40,
+                            MovieId = 14,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 73,
+                            CreativePersonId = 44,
+                            MovieId = 15,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 74,
+                            CreativePersonId = 43,
+                            MovieId = 15,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 75,
+                            CreativePersonId = 41,
+                            MovieId = 15,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 76,
+                            CreativePersonId = 40,
+                            MovieId = 15,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 77,
+                            CreativePersonId = 45,
+                            MovieId = 16,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 78,
+                            CreativePersonId = 46,
+                            MovieId = 16,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 79,
+                            CreativePersonId = 40,
+                            MovieId = 16,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 80,
+                            CreativePersonId = 48,
+                            MovieId = 17,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 81,
+                            CreativePersonId = 11,
+                            MovieId = 17,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 82,
+                            CreativePersonId = 47,
+                            MovieId = 17,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 83,
+                            CreativePersonId = 40,
+                            MovieId = 17,
+                            RoleId = 2
+                        },
+                        new
+                        {
+                            Id = 84,
+                            CreativePersonId = 17,
+                            MovieId = 18,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 85,
+                            CreativePersonId = 19,
+                            MovieId = 18,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            Id = 86,
+                            CreativePersonId = 49,
+                            MovieId = 18,
+                            RoleId = 2
                         });
                 });
 
@@ -1582,6 +1847,66 @@ namespace DataAccess.Migrations
                             ProductionYear = 2013,
                             Title = "Her",
                             TrailerUrl = "https://www.youtube.com/watch?v=ne6p6MfLBxc"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            BackgroundPoster = "https://images.alphacoders.com/204/thumb-1920-204781.jpg",
+                            Description = "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
+                            ImdbRatio = "8.8",
+                            IsForKids = false,
+                            PosterPath = "https://i.pinimg.com/736x/2e/0c/ee/2e0ceec2f8bc16b562a8cec2d4d1b86f.jpg",
+                            ProductionYear = 1999,
+                            Title = "Fight Club",
+                            TrailerUrl = "https://www.youtube.com/watch?v=O1nDozs-LxI"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            BackgroundPoster = "https://c4.wallpaperflare.com/wallpaper/580/168/4/movie-se7en-brad-pitt-wallpaper-preview.jpg",
+                            Description = "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
+                            ImdbRatio = "8.6",
+                            IsForKids = false,
+                            PosterPath = "https://i.pinimg.com/originals/9a/6b/92/9a6b929842b8affe801112608266087b.jpg",
+                            ProductionYear = 1995,
+                            Title = "Se7en",
+                            TrailerUrl = "https://www.youtube.com/watch?v=znmZoVkCjpI"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            BackgroundPoster = "https://www.axn.pl/sites/pl.fern.axn/files/ct_movie_f_primary_image/socialnetwork.jpg",
+                            Description = "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
+                            ImdbRatio = "7.8",
+                            IsForKids = false,
+                            PosterPath = "https://i.pinimg.com/originals/df/1b/a2/df1ba2a4e5d4f8a99a323261df3be7ee.jpg",
+                            ProductionYear = 2010,
+                            Title = "The Social Network",
+                            TrailerUrl = "https://www.youtube.com/watch?v=lB95KLmpLR4"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            BackgroundPoster = "https://www.highonfilms.com/wp-content/uploads/2017/10/zodiac-downey-gyllenhaal.jpg",
+                            Description = "Between 1968 and 1983, a San Francisco cartoonist becomes an amateur detective obsessed with tracking down the Zodiac Killer, an unidentified individual who terrorizes Northern California with a killing spree.",
+                            ImdbRatio = "7.7",
+                            IsForKids = false,
+                            PosterPath = "https://64.media.tumblr.com/0d4d9f32780322b9c0fe71857904d6cf/11a1f8baccb49d40-8b/s540x810/2b46dc8aaa865250e899a5fb42eedf47de4d6823.jpg",
+                            ProductionYear = 2007,
+                            Title = "Zodiac",
+                            TrailerUrl = "https://www.youtube.com/watch?v=yNncHPl1UXg"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            BackgroundPoster = "https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/911c7616-5036-4b64-9039-77ce53af8f52/limited-edition-poster-art-for-doctor-strange-in-the-multiverse-of-madness-from-artist-matt-ferguson.jpg",
+                            Description = "Dr. Stephen Strange casts a forbidden spell that opens the doorway to the multiverse, including alternate versions of himself, whose threat to humanity is too great for the combined forces of Strange, Wong, and Wanda Maximoff.",
+                            ImdbRatio = "7.6",
+                            IsForKids = true,
+                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2019/09/knotek_drstrange.jpg",
+                            ProductionYear = 2022,
+                            Title = "Doctor Strange in the Multiverse of Madness",
+                            TrailerUrl = "https://www.youtube.com/watch?v=aWzlQ2N6qqg"
                         });
                 });
 

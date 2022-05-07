@@ -19,124 +19,75 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
+     
+<img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
-<h1>Details</h1>
+ <div class="main-informations">
+     <div class="genre">@string.Join(" | ", @Model.MovieGenres.Select(g => g.Genre.Genre)).ToUpper()</div>
 
-<div>
-    <h4>Movie</h4>
-    <hr />
-    <dl class="row">       
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Title)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Title)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ProductionYear)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProductionYear)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PosterPath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PosterPath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.TrailerUrl)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.TrailerUrl)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsForKids)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsForKids)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImdbRatio)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImdbRatio)/10
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.MovieGenres)
-        </dt>
-        <dd class = "col-sm-10">           
-                @string.Join(", ", Model.MovieGenres.Select(g => g.Genre.Genre))
-        </dd>
+     <div class="Title">@Model.Title.ToUpper()</div>
 
-        <dt class = "col-sm-2">
-            @if(directors.Count == 1)
+<p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
+<strong>
+      @if(directors.Count == 1)
             {
-                <p>Director: </p>
+               <p class="inline" id="name">Director:</p>
             }
             else if(directors.Count > 1)
             {
-                <p>Directors: </p>
+                <p class="inline" id="name">Directors:</p>
             }
-        </dt>
-        <dd class = "col-sm-10">
-
-            @if(directors.Count == 1)
+</strong>
+<p class="inline"
+         @if(directors.Count == 1)
             {
-                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="custom-link">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a>
+                <span>
+                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="vanila">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a> 
+                 </span>
             }
             else if(directors.Count > 1)
             {
                 <p>
                     @foreach (var director in directors)
-                    {
-                        <span>
-                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.CreativePersonId" class="custom-link">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
-                       </span>
+                    {<span>
+                        <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.CreativePersonId" class="vanila">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
+                       <span class="vanila"> |</span>
+                    </span>
                     }
 
                 </p>
             }
-           
-        </dd>
+            </p>
+          
 
-        <dt class = "col-sm-2">
-            <p>Cast: </p>
-        </dt>
+<p class="inline"><strong>Cast:</strong></p>
+<p class="inline">
 
-        <dd class = "col-sm-10">
-                <p>
-                    @foreach (var person in cast)
+<strong>
+      @foreach (var person in cast)
                     {
                         <span>
-                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.CreativePersonId" class="custom-link">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
-                       </span>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.CreativePersonId" class="vanila">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
+                       <span class="vanila"> |</span>
+                        </span>
                     }
+</strong>
+      </p>
+         <p class="description">
+         <div class="vanila-ice">@Model.Description</div>
+     </p>
 
-                </p>
-        </dd>
 
-        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
             if(listFavourities.Count > 0)
             {
-                <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@fMovieId.Id"><i class="fa fa-heart"></i> REMOVE FROM WATCHLIST</a>
+                <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@fMovieId.Id"><i class="fa fa-heart"></i></a>
             } 
             else
             {
-                <a class="heart" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i> ADD TO WATCHLIST</a>
+                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
             }
         }
-
-        </dl>
-</div>
-<div>
-    <a asp-action="IndexUser">Back to List</a>
 </div>
