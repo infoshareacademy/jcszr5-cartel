@@ -4,51 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>List of movies</h1>
+<section id="top_movies text-light" class="clearfix">
+    <div class="wrapper text-light">  
+        <div class="movieBox">
+            <section class="moviePoster">
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductionYear)
-            </th>
-             <th>
-                @Html.DisplayNameFor(model => model.PosterPath)
-            </th>
-          @*  <th>
-                @Html.DisplayNameFor(model => model.MovieGenres)
-            </th>      *@    
-           
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductionYear)
-            </td>
-            <td>
-              
-               <div class="col-md-6">
+            @foreach(var item in Model)
+            {
+                <div class="gallery">
                     <a href='@Url.Action("DetailsUser", "Movie", new {  id=item.Id  })'>
-                    <img src="@item.PosterPath" width="40%" alt="@item.Title">
+                        <img src="@item.PosterPath" alt="@item.Title">                   
                     </a>
+               <div class="desc">@item.Title</div>
                </div>
-
-
-           </td>
-         @*  <td>
-                @string.Join(", ", item.MovieGenres.Select(g => g.Genre.Genre))
-            </td>     *@
-            
-        </tr>
-}
-    </tbody>
-</table>
+            }
+        </section>
+        </div>
+    </div>
+</section>

@@ -505,3 +505,77 @@ table .table .whiteText {
                 margin-top: 2em;
             }
 }
+
+
+/* Movies */
+.moviePoster {
+    background: black;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+div.gallery {
+    margin: 5px;
+    float: left;
+    width: 200px;
+    height: 400px;
+}
+
+    div.gallery:hover {
+        border: 1px solid black;
+    }
+
+    div.gallery img {
+        width: 200px;
+        height: 300px;
+    }
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+.movieBox {
+    padding: 120px 50px 200px 50px;
+}
+
+/*Creative Persons*/
+
+.moviePerson {
+    background: black;
+    color: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+div.personGallery {
+    margin: 10px;
+    float: left;
+    width: 220px;
+    height: 320px;
+}
+
+    div.personGallery:hover {
+        border: 1px solid black;
+    }
+
+    div.personGallery img {
+        width: 220px;
+        height: 280px;
+        -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+        filter: grayscale(100%);
+    }
+
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+
+.movieBox {
+    padding: 120px 50px 200px 50px;
+}
