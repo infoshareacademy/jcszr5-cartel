@@ -24,20 +24,23 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            
+        @{
+            int index = 1;
+        }
+        @foreach (var item in Model) {
+        
+    <tr>            
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+              @index . @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td>
-                
+            <td>                
             </td>
         </tr>
-}
+         index++;
+        }       
     </tbody>
 </table>
 <div>

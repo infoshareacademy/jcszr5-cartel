@@ -46,6 +46,7 @@
                         }
                         else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                         {
+
                             <li class="nav-item dropdown">
                                 <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" data-bs-toggle="dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="bi bi-gear"></i> Management
@@ -53,7 +54,7 @@
 
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
-                                    <a class="dropdown-item " asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
+                                    <a class="dropdown-item " asp-controller="TvSeries" asp-action="IndexAdmin">TvSeries [Admin]</a>
                                     <a class="dropdown-item" asp-controller="CreativePerson" asp-action="Index">Creative Person [Admin]</a>
                                 </div>
                             </li>
@@ -63,11 +64,12 @@
                                 <a class="nav-link text-light" asp-area="" asp-controller="Movie" asp-action="Index">Movies [Admin]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="TvSeries" asp-action="Index">TvSeries [Admin]</a>
+                                <a class="nav-link text-light" asp-area="" asp-controller="TvSeries" asp-action="IndexAdmin">TvSeries [Admin]</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-light" asp-area="" asp-controller="CreativePerson" asp-action="Index">Movies [Admin]</a>
                             </li>
+
 
 
 
