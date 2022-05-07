@@ -35,12 +35,15 @@
     <tbody>
 @foreach (var item in Model) {
         <tr>
-            
-            <td>
+            <td>             
+            </td>
+            <td>             
+            </td>
+            <td style="color:darkgray">
                 <h2>@Html.DisplayFor(modelItem => item.Title)</h2><br><br>
                 <p>@item.Description</p><br>
                 <p>Start Year: @item.StartYear , Ended: @item.EndYear</p><br>                
-                <p>Genres: @string.Join(", ", item.TvSeriesGenres.Select(g => g.Genre.Genre))</p>
+                <p> @string.Join(", ", item.TvSeriesGenres.Select(g => g.Genre.Genre))</p>
                 @{
                 var seasons = item.Seasons.ToList();
                 }
@@ -54,7 +57,7 @@
             
             <td>
                 <div class="col-md-6">
-                        <img src="@item.PosterPath" width="270px"  alt="@item.Title">
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="@item.PosterPath" width="270px"  alt="@item.Title "></a>
                </div> 
             </td>
             <td>
@@ -64,11 +67,9 @@
                </div> 
                 
             </td>
-            <td>
-                
-                <a asp-action="Details" class="btn btn-primary" asp-route-id="@item.Id">Details</a>
-                
-                
+            <td>              
+            </td>
+            <td>              
             </td>
         </tr>
 }
