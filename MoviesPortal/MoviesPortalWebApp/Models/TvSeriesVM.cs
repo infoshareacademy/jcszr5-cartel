@@ -27,5 +27,6 @@ namespace MoviesPortalWebApp.Models
         public List<SelectListItem> selectedGenres { get; set; }
         public List<SelectListItem> selectedActors { get; set; }
         public List<SelectListItem> selectedDirectors { get; set; }
+        public int NumberOfSeasons { get; set; }
     }
 }
