@@ -138,6 +138,16 @@ h1, h2, h3, h4, h5, h6 {
     padding: 18em 0;
 }
 
+#footerBaner {
+    background: url(../images/fallcon.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    padding: 22em 0;
+    margin-top: 5rem;
+}
+
+
     #banner #banner_content_wrapper {
         width: 900px;
         max-width: 90%;
@@ -271,8 +281,8 @@ h1, h2, h3, h4, h5, h6 {
 #newsletter {
     padding: 3em 0;
     text-align: center;
-    background: #2a2a2e;
-    margin-top: 6rem;
+    background: #000000;
+/*    margin-top: 6rem;*/
 }
 
     #newsletter .newsletter_inner {
@@ -307,8 +317,8 @@ h1, h2, h3, h4, h5, h6 {
             border: none;
             outline: none;
             padding: 1em 4.5em;
-            border-radius: 2em;
-            background: #73e298;
+            border-radius: 0.5em;
+            background: #FF5900;
             color: #FFFFFF;
             font-weight: 700;
             font-size: .9em;
