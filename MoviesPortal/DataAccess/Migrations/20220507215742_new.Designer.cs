@@ -4,6 +4,7 @@ using DataAccess.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    partial class MoviePortalContextModelSnapshot : ModelSnapshot
+    [Migration("20220507215742_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1789,7 +1791,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 9,
-                            BackgroundPoster = "https://c4.wallpaperflare.com/wallpaper/835/919/581/action-adventure-ark-fantasy-wallpaper-preview.jpg",
+                            BackgroundPoster = "https://vistapointe.net/images/raiders-of-the-lost-ark-6.jpg",
                             Description = "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler's Nazis can obtain its awesome powers.",
                             ImdbRatio = "8.4",
                             IsForKids = true,

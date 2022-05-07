@@ -698,6 +698,142 @@ namespace DataAccess.Repositories
                     CreativePersonId = 20,
                     MovieId = 13,
 
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 70,
+                    RoleId = 1,
+                    CreativePersonId = 41,
+                    MovieId = 14,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 71,
+                    RoleId = 1,
+                    CreativePersonId = 42,
+                    MovieId = 14,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 72,
+                    RoleId = 2,
+                    CreativePersonId = 40,
+                    MovieId = 14,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 73,
+                    RoleId = 1,
+                    CreativePersonId = 44,
+                    MovieId = 15,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 74,
+                    RoleId = 1,
+                    CreativePersonId = 43,
+                    MovieId = 15,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 75,
+                    RoleId = 1,
+                    CreativePersonId = 41,
+                    MovieId = 15,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 76,
+                    RoleId = 2,
+                    CreativePersonId = 40,
+                    MovieId = 15,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 77,
+                    RoleId = 1,
+                    CreativePersonId = 45,
+                    MovieId = 16,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 78,
+                    RoleId = 1,
+                    CreativePersonId = 46,
+                    MovieId = 16,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 79,
+                    RoleId = 2,
+                    CreativePersonId = 40,
+                    MovieId = 16,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 80,
+                    RoleId = 1,
+                    CreativePersonId = 48,
+                    MovieId = 17,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 81,
+                    RoleId = 1,
+                    CreativePersonId = 11,
+                    MovieId = 17,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 82,
+                    RoleId = 1,
+                    CreativePersonId = 47,
+                    MovieId = 17,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 83,
+                    RoleId = 2,
+                    CreativePersonId = 40,
+                    MovieId = 17,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 84,
+                    RoleId = 1,
+                    CreativePersonId = 17,
+                    MovieId = 18,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 85,
+                    RoleId = 1,
+                    CreativePersonId = 19,
+                    MovieId = 18,
+
+                },
+                new RoleCreativeMovie
+                {
+                    Id = 86,
+                    RoleId = 2,
+                    CreativePersonId = 49,
+                    MovieId = 18,
+
                 }
              );
 
@@ -940,6 +1076,72 @@ namespace DataAccess.Repositories
                     Id = 39,
                     GenreId = 9,
                     MovieId = 13,
+                },
+                new MovieGenre
+                {
+                    Id = 40,
+                    GenreId = 5,
+                    MovieId = 14,
+                },
+                new MovieGenre
+                {
+                    Id = 41,
+                    GenreId = 10,
+                    MovieId = 14,
+                },
+                new MovieGenre
+                {
+                    Id = 42,
+                    GenreId = 5,
+                    MovieId = 15,
+                },
+                new MovieGenre
+                {
+                    Id = 43,
+                    GenreId = 10,
+                    MovieId = 15,
+                },
+                new MovieGenre
+                {
+                    Id = 44,
+                    GenreId = 5,
+                    MovieId = 16,
+                },
+                new MovieGenre
+                {
+                    Id = 45,
+                    GenreId = 10,
+                    MovieId = 16,
+                },
+                new MovieGenre
+                {
+                    Id = 46,
+                    GenreId = 5,
+                    MovieId = 17,
+                },
+                new MovieGenre
+                {
+                    Id = 47,
+                    GenreId = 10,
+                    MovieId = 17,
+                },
+                new MovieGenre
+                {
+                    Id = 48,
+                    GenreId = 1,
+                    MovieId = 18,
+                },
+                new MovieGenre
+                {
+                    Id =50,
+                    GenreId = 2,
+                    MovieId = 18,
+                },
+                new MovieGenre
+                {
+                    Id = 51,
+                    GenreId = 8,
+                    MovieId = 18,
                 });
 
 

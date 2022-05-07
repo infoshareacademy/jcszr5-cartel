@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class newDB : Migration
+    public partial class update : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -441,7 +441,7 @@ namespace DataAccess.Migrations
                     { 11, new DateTime(1965, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Robert", "https://i.pinimg.com/originals/26/ec/2c/26ec2c71b16085720e0f21f22f074999.jpg", "Downey Jr." },
                     { 12, new DateTime(1971, 7, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Joe", "https://m.media-amazon.com/images/M/MV5BMTc2NzY1NTY5OF5BMl5BanBnXkFtZTgwNjY3ODczNjM@._V1_.jpg", "Russo" },
                     { 13, new DateTime(1970, 2, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anthony", "https://m.media-amazon.com/images/M/MV5BMTc2NjM5MTM0Ml5BMl5BanBnXkFtZTgwMTY3ODczNjM@._V1_.jpg", "Russo" },
-                    { 14, new DateTime(1984, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Scarlett", "https://t1.pixers.pics/img-1fb6f67c/plakaty-scarlett-johansson.jpg?H4sIAAAAAAAAA3WOXW7EIAyEr0MkEhsCAXKDfdsbRATINm1-ELDtqqcvUdXHyg-esTSeD55HtksAF44SEuyr91uAZd2qy2MKef0ORIiBYjPW60YQqzo_Q3LpjKRlONC251RKQQeum_HL1uRu0wd5KyXmESD3XVxf9V1dLoPbM3BkClCDNNp4KYNwWoUptrnYw9vkWy5ePXbxeFC8pvkjUYhUXQQlrTupSGftKuQ9Phr4p-9XQ03B_QaMgbr0dL8xpianjWNojfPB9FzrwD1DFpZZ4GzczCc5Kzu7Rel-kGbqfgDd0lIaLwEAAA==", "Johansson" },
+                    { 14, new DateTime(1984, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Scarlett", "https://i.pinimg.com/originals/29/f7/b2/29f7b250f36d1758a7015e062c39b180.jpg", "Johansson" },
                     { 15, new DateTime(1981, 6, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Chris", "https://images.mubicdn.net/images/cast_member/32256/cache-2145-1600710858/image-w856.jpg?size=800x", "Evans" },
                     { 16, new DateTime(1996, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Tom", "https://cdn.lifestyleasia.com/wp-content/uploads/sites/7/2022/01/19151605/125891247_439627203697586_8066488800487655769_n.jpg", "Holland" },
                     { 17, new DateTime(1976, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Benedict", "https://images.prismic.io/netflix-queue/8e7ebecd-0a79-4517-93e5-c2828603c6fb_SH21091+NFX+09B_01+IV+RGB.jpg?auto=compress,format&rect=33,0,1013,1350&w=2000&h=2666", "Cumberbatch" },
@@ -454,7 +454,7 @@ namespace DataAccess.Migrations
                     { 24, new DateTime(1979, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Heath", "https://i.pinimg.com/originals/aa/d2/0c/aad20c5c81fba355f879cec1f18f1bce.jpg", "Ledger" },
                     { 25, new DateTime(1969, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), "Matthew", "https://i.pinimg.com/originals/e9/7e/f2/e97ef25eb772ba0b04bc9ee6826d1552.jpg", "McConaughey" },
                     { 26, new DateTime(1982, 12, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Anne", "https://i.pinimg.com/originals/17/4e/2c/174e2ce83ea42b6fd971a773cbd5c45d.jpg", "Hathaway" },
-                    { 27, new DateTime(1977, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jessica", "https://i.pinimg.com/originals/1c/04/77/1c04773e360349ccd9983973b98e36a2.jpg", "Chastain" },
+                    { 27, new DateTime(1977, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jessica", "https://c4.wallpaperflare.com/wallpaper/728/39/584/women-actress-jessica-chastain-white-coat-wallpaper-preview.jpg", "Chastain" },
                     { 28, new DateTime(1942, 7, 13, 0, 0, 0, 0, DateTimeKind.Unspecified), "Harrison", "https://i.pinimg.com/564x/4d/56/69/4d56692bc2b42418dc78693123dc2a31.jpg", "Ford" },
                     { 29, new DateTime(1951, 9, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mark", "https://i.pinimg.com/originals/0e/11/75/0e117523130725aae5a4b6e49a7d8787.png", "Hamill" },
                     { 30, new DateTime(1956, 10, 21, 0, 0, 0, 0, DateTimeKind.Unspecified), "Carrie", "https://i.pinimg.com/originals/b5/db/f8/b5dbf8637c0f5787d26916cc04097d09.jpg", "Fisher" },
@@ -463,10 +463,27 @@ namespace DataAccess.Migrations
                     { 33, new DateTime(1944, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), "George", "https://i.pinimg.com/originals/4a/a2/8d/4aa28ddad9d7b00ef950ac24a94dca1a.jpg", "Lucas" },
                     { 34, new DateTime(1923, 4, 29, 0, 0, 0, 0, DateTimeKind.Unspecified), "Irvin", "https://upload.wikimedia.org/wikipedia/en/f/f7/Irvin_Kershner.jpg", "Kershner" },
                     { 35, new DateTime(1937, 9, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Richard", "https://m.media-amazon.com/images/M/MV5BMjgwY2ZkYjEtNzgxZi00ZDIyLWJhZWItZjg1NGQ4OWE5ZTZhXkEyXkFqcGdeQXVyNjUwNzk3NDc@._V1_.jpg", "Marquand" },
-                    { 36, new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Steven", "https://media.news9live.com/h-upload/2022/02/26/245321-steven-spielberg-frank-bullitt-steve-mcqueen-bullitt-warner-bros.webp", "Spielberg" },
+                    { 36, new DateTime(1946, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Steven", "https://i.pinimg.com/736x/e2/5a/5c/e25a5c78c5077d6e78793fc720eb78cb.jpg", "Spielberg" },
                     { 37, new DateTime(1951, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Karen", "https://i.pinimg.com/originals/22/54/7a/22547ac8ae5f59ad0d5fa156127781b4.jpg", "Allen" },
                     { 38, new DateTime(1944, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "John", "https://www.flowee.cz/images/.thumbnails/images/misa_2020/unor_2020/gimli_box-0467378879.500x546cg.jpg", "Rhys-Davies" },
-                    { 39, new DateTime(1930, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sean", "https://i.pinimg.com/originals/0e/01/c8/0e01c867c9a1fa680c741f32d1f8878a.jpg", "Connery" }
+                    { 39, new DateTime(1930, 8, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sean", "https://i.pinimg.com/originals/0e/01/c8/0e01c867c9a1fa680c741f32d1f8878a.jpg", "Connery" },
+                    { 40, new DateTime(1962, 8, 28, 0, 0, 0, 0, DateTimeKind.Unspecified), "David", "https://i.pinimg.com/originals/ff/e7/09/ffe709086a975b0f38338fe63182a299.png", "Fincher" },
+                    { 41, new DateTime(1963, 12, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Brad", "https://bi.im-g.pl/im/cd/52/18/z25503949IH,Brad-Pitt-w-New-York-Times.jpg", "Pitt" },
+                    { 42, new DateTime(1969, 8, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), "Edward", "https://www.interviewmagazine.com/wp-content/uploads/2014/10/img-edward-norton_233002559555.jpg", "Norton" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CreativePersons",
+                columns: new[] { "Id", "DateOfBirth", "Name", "PhotographyPath", "Surname" },
+                values: new object[,]
+                {
+                    { 43, new DateTime(1959, 7, 26, 0, 0, 0, 0, DateTimeKind.Unspecified), "Kevin", "https://i.pinimg.com/originals/a7/32/c0/a732c0f7d2f7c1d60e07b9794811f3e4.jpg", "Spacey" },
+                    { 44, new DateTime(1937, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Morgan", "https://i.pinimg.com/564x/9f/76/e8/9f76e87c8d4812916c7aec060a88c469--supporting-actor-morgan-freeman.jpg", "Freeman" },
+                    { 45, new DateTime(1983, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jesse", "https://www4.pictures.zimbio.com/gi/Vivarium+Photocall+vnyP7s1-p9zx.jpg", "Eisenberg" },
+                    { 46, new DateTime(1983, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified), "Andrew", "https://data.whicdn.com/images/4749775/original.jpg", "Garfield" },
+                    { 47, new DateTime(1980, 12, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jake", "https://i.pinimg.com/originals/00/be/20/00be20ddd9db763008a37e6c54e7a801.jpg", "Gyllenhaal" },
+                    { 48, new DateTime(1967, 11, 22, 0, 0, 0, 0, DateTimeKind.Unspecified), "Mark", "https://i.pinimg.com/550x/e0/3b/17/e03b17c2cbb0f2ad648db40ca5eba9dd.jpg", "Ruffalo" },
+                    { 49, new DateTime(1959, 10, 23, 0, 0, 0, 0, DateTimeKind.Unspecified), "Sam", "https://cdn.gracza.pl/galeria/mdb/o/542286000.jpg", "Raimi" }
                 });
 
             migrationBuilder.InsertData(
@@ -476,14 +493,7 @@ namespace DataAccess.Migrations
                 {
                     { 1, "action" },
                     { 2, "adventure" },
-                    { 3, "animated" }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Genres",
-                columns: new[] { "Id", "Genre" },
-                values: new object[,]
-                {
+                    { 3, "animated" },
                     { 4, "comedy" },
                     { 5, "drama" },
                     { 6, "fantasy" },
@@ -511,7 +521,12 @@ namespace DataAccess.Migrations
                     { 10, "https://www.deviantart.com/spirit--of-adventure/art/The-Last-Crusade-Wallpaper-852714249", "In 1938, after his father Professor Henry Jones, Sr. goes missing while pursuing the Holy Grail, Professor Henry 'Indiana' Jones, Jr. finds himself up against Adolf Hitler's Nazis again to stop them from obtaining its powers.", "8.2", true, "https://m.media-amazon.com/images/I/91uXYJym1dL._AC_SL1500_.jpg", 1989, "Indiana Jones and the Last Crusade", "https://www.youtube.com/watch?v=DKg36LBVgfg" },
                     { 11, "https://images5.alphacoders.com/585/thumb-1920-585645.png", "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.", "8.6", true, "https://alternativemovieposters.com/wp-content/uploads/2020/05/daus_interstellar.jpg", 2014, "Interstellar", "https://www.youtube.com/watch?v=zSWdZVtXT7E" },
                     { 12, "https://c4.wallpaperflare.com/wallpaper/475/754/518/joker-street-the-dark-knight-clown-mask-wallpaper-preview.jpg", "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.", "9.0", false, "https://cdn.shopify.com/s/files/1/0071/5192/products/Screen_Shot_2017-12-06_at_17.45.00_1024x1024.png?v=1512583353", 2008, "The Dark Knight", "https://www.youtube.com/watch?v=EXeTwQWrcwY" },
-                    { 13, "https://images4.alphacoders.com/645/thumb-1920-645704.jpeg", "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.", "8.0", false, "https://alternativemovieposters.com/wp-content/uploads/2018/05/AMP_Her.png", 2013, "Her", "https://www.youtube.com/watch?v=ne6p6MfLBxc" }
+                    { 13, "https://images4.alphacoders.com/645/thumb-1920-645704.jpeg", "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.", "8.0", false, "https://alternativemovieposters.com/wp-content/uploads/2018/05/AMP_Her.png", 2013, "Her", "https://www.youtube.com/watch?v=ne6p6MfLBxc" },
+                    { 14, "https://images.alphacoders.com/204/thumb-1920-204781.jpg", "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.", "8.8", false, "https://i.pinimg.com/736x/2e/0c/ee/2e0ceec2f8bc16b562a8cec2d4d1b86f.jpg", 1999, "Fight Club", "https://www.youtube.com/watch?v=O1nDozs-LxI" },
+                    { 15, "https://c4.wallpaperflare.com/wallpaper/580/168/4/movie-se7en-brad-pitt-wallpaper-preview.jpg", "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.", "8.6", false, "https://i.pinimg.com/originals/9a/6b/92/9a6b929842b8affe801112608266087b.jpg", 1995, "Se7en", "https://www.youtube.com/watch?v=znmZoVkCjpI" },
+                    { 16, "https://www.axn.pl/sites/pl.fern.axn/files/ct_movie_f_primary_image/socialnetwork.jpg", "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.", "7.8", false, "https://i.pinimg.com/originals/df/1b/a2/df1ba2a4e5d4f8a99a323261df3be7ee.jpg", 2010, "The Social Network", "https://www.youtube.com/watch?v=lB95KLmpLR4" },
+                    { 17, "https://www.highonfilms.com/wp-content/uploads/2017/10/zodiac-downey-gyllenhaal.jpg", "Between 1968 and 1983, a San Francisco cartoonist becomes an amateur detective obsessed with tracking down the Zodiac Killer, an unidentified individual who terrorizes Northern California with a killing spree.", "7.7", false, "https://64.media.tumblr.com/0d4d9f32780322b9c0fe71857904d6cf/11a1f8baccb49d40-8b/s540x810/2b46dc8aaa865250e899a5fb42eedf47de4d6823.jpg", 2007, "Zodiac", "https://www.youtube.com/watch?v=yNncHPl1UXg" },
+                    { 18, "https://images.squarespace-cdn.com/content/v1/51b3dc8ee4b051b96ceb10de/911c7616-5036-4b64-9039-77ce53af8f52/limited-edition-poster-art-for-doctor-strange-in-the-multiverse-of-madness-from-artist-matt-ferguson.jpg", "Dr. Stephen Strange casts a forbidden spell that opens the doorway to the multiverse, including alternate versions of himself, whose threat to humanity is too great for the combined forces of Strange, Wong, and Wanda Maximoff.", "7.6", true, "https://alternativemovieposters.com/wp-content/uploads/2019/09/knotek_drstrange.jpg", 2022, "Doctor Strange in the Multiverse of Madness", "https://www.youtube.com/watch?v=aWzlQ2N6qqg" }
                 });
 
             migrationBuilder.InsertData(
@@ -566,7 +581,25 @@ namespace DataAccess.Migrations
                     { 36, 1, 12 },
                     { 37, 5, 12 },
                     { 38, 5, 13 },
-                    { 39, 9, 13 }
+                    { 39, 9, 13 },
+                    { 40, 5, 14 },
+                    { 41, 10, 14 },
+                    { 42, 5, 15 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Movie_Genre",
+                columns: new[] { "Id", "GenreId", "MovieId" },
+                values: new object[,]
+                {
+                    { 43, 10, 15 },
+                    { 44, 5, 16 },
+                    { 45, 10, 16 },
+                    { 46, 5, 17 },
+                    { 47, 10, 17 },
+                    { 48, 1, 18 },
+                    { 50, 2, 18 },
+                    { 51, 8, 18 }
                 });
 
             migrationBuilder.InsertData(
@@ -576,14 +609,7 @@ namespace DataAccess.Migrations
                 {
                     { 1, 1, 1, 1 },
                     { 2, 6, 1, 2 },
-                    { 3, 3, 2, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Role_CreativeP_Movie",
-                columns: new[] { "Id", "CreativePersonId", "MovieId", "RoleId" },
-                values: new object[,]
-                {
+                    { 3, 3, 2, 1 },
                     { 4, 9, 2, 1 },
                     { 5, 8, 2, 1 },
                     { 6, 10, 2, 1 },
@@ -614,7 +640,14 @@ namespace DataAccess.Migrations
                     { 31, 13, 5, 2 },
                     { 32, 28, 6, 1 },
                     { 33, 29, 6, 1 },
-                    { 34, 30, 6, 1 },
+                    { 34, 30, 6, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Role_CreativeP_Movie",
+                columns: new[] { "Id", "CreativePersonId", "MovieId", "RoleId" },
+                values: new object[,]
+                {
                     { 35, 31, 6, 1 },
                     { 36, 32, 6, 1 },
                     { 37, 33, 6, 2 },
@@ -625,14 +658,7 @@ namespace DataAccess.Migrations
                     { 42, 32, 7, 1 },
                     { 43, 34, 7, 2 },
                     { 44, 28, 8, 1 },
-                    { 45, 29, 8, 1 }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Role_CreativeP_Movie",
-                columns: new[] { "Id", "CreativePersonId", "MovieId", "RoleId" },
-                values: new object[,]
-                {
+                    { 45, 29, 8, 1 },
                     { 46, 30, 8, 1 },
                     { 47, 31, 8, 1 },
                     { 48, 32, 8, 1 },
@@ -656,7 +682,31 @@ namespace DataAccess.Migrations
                     { 66, 14, 13, 1 },
                     { 67, 21, 13, 1 },
                     { 68, 22, 13, 1 },
-                    { 69, 20, 13, 2 }
+                    { 69, 20, 13, 2 },
+                    { 70, 41, 14, 1 },
+                    { 71, 42, 14, 1 },
+                    { 72, 40, 14, 2 },
+                    { 73, 44, 15, 1 },
+                    { 74, 43, 15, 1 },
+                    { 75, 41, 15, 1 },
+                    { 76, 40, 15, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Role_CreativeP_Movie",
+                columns: new[] { "Id", "CreativePersonId", "MovieId", "RoleId" },
+                values: new object[,]
+                {
+                    { 77, 45, 16, 1 },
+                    { 78, 46, 16, 1 },
+                    { 79, 40, 16, 2 },
+                    { 80, 48, 17, 1 },
+                    { 81, 11, 17, 1 },
+                    { 82, 47, 17, 1 },
+                    { 83, 40, 17, 2 },
+                    { 84, 17, 18, 1 },
+                    { 85, 19, 18, 1 },
+                    { 86, 49, 18, 2 }
                 });
 
             migrationBuilder.CreateIndex(

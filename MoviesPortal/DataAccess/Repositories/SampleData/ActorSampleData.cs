@@ -116,7 +116,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 14,
                 Name = "Scarlett",
                 SurName = "Johansson",
-                PhotographyPath = "https://t1.pixers.pics/img-1fb6f67c/plakaty-scarlett-johansson.jpg?H4sIAAAAAAAAA3WOXW7EIAyEr0MkEhsCAXKDfdsbRATINm1-ELDtqqcvUdXHyg-esTSeD55HtksAF44SEuyr91uAZd2qy2MKef0ORIiBYjPW60YQqzo_Q3LpjKRlONC251RKQQeum_HL1uRu0wd5KyXmESD3XVxf9V1dLoPbM3BkClCDNNp4KYNwWoUptrnYw9vkWy5ePXbxeFC8pvkjUYhUXQQlrTupSGftKuQ9Phr4p-9XQ03B_QaMgbr0dL8xpianjWNojfPB9FzrwD1DFpZZ4GzczCc5Kzu7Rel-kGbqfgDd0lIaLwEAAA==",
+                PhotographyPath = "https://i.pinimg.com/originals/29/f7/b2/29f7b250f36d1758a7015e062c39b180.jpg",
                 DateOfBirth = new DateTime(1984, 11, 22)
             },
             new CreativePersonModel
@@ -220,7 +220,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 27,
                 Name = "Jessica",
                 SurName = "Chastain",
-                PhotographyPath = "https://i.pinimg.com/originals/1c/04/77/1c04773e360349ccd9983973b98e36a2.jpg",
+                PhotographyPath = "https://c4.wallpaperflare.com/wallpaper/728/39/584/women-actress-jessica-chastain-white-coat-wallpaper-preview.jpg",
                 DateOfBirth = new DateTime(1977, 3, 24)
             },
             new CreativePersonModel
@@ -292,7 +292,7 @@ namespace DataAccess.Repositories.SampleData
                 Id = 36,
                 Name = "Steven",
                 SurName = "Spielberg",
-                PhotographyPath = "https://media.news9live.com/h-upload/2022/02/26/245321-steven-spielberg-frank-bullitt-steve-mcqueen-bullitt-warner-bros.webp",
+                PhotographyPath = "https://i.pinimg.com/736x/e2/5a/5c/e25a5c78c5077d6e78793fc720eb78cb.jpg",
                 DateOfBirth = new DateTime(1946,12,18)
             },
             new CreativePersonModel
@@ -318,6 +318,86 @@ namespace DataAccess.Repositories.SampleData
                 SurName = "Connery",
                 PhotographyPath = "https://i.pinimg.com/originals/0e/01/c8/0e01c867c9a1fa680c741f32d1f8878a.jpg",
                 DateOfBirth = new DateTime(1930,8,25)
+            },
+            new CreativePersonModel
+            {
+                Id = 40,
+                Name = "David",
+                SurName = "Fincher",
+                PhotographyPath = "https://i.pinimg.com/originals/ff/e7/09/ffe709086a975b0f38338fe63182a299.png",
+                DateOfBirth = new DateTime(1962,8,28)
+            },
+            new CreativePersonModel
+            {
+                Id = 41,
+                Name = "Brad",
+                SurName = "Pitt",
+                PhotographyPath = "https://bi.im-g.pl/im/cd/52/18/z25503949IH,Brad-Pitt-w-New-York-Times.jpg",
+                DateOfBirth = new DateTime(1963,12,18)
+            },
+            new CreativePersonModel
+            {
+                Id = 42,
+                Name = "Edward",
+                SurName = "Norton",
+                PhotographyPath = "https://www.interviewmagazine.com/wp-content/uploads/2014/10/img-edward-norton_233002559555.jpg",
+                DateOfBirth = new DateTime(1969,8,18)
+            },
+            new CreativePersonModel
+            {
+                Id = 43,
+                Name = "Kevin",
+                SurName = "Spacey",
+                PhotographyPath = "https://i.pinimg.com/originals/a7/32/c0/a732c0f7d2f7c1d60e07b9794811f3e4.jpg",
+                DateOfBirth = new DateTime(1959,7,26)
+            },
+            new CreativePersonModel
+            {
+                Id = 44,
+                Name = "Morgan",
+                SurName = "Freeman",
+                PhotographyPath = "https://i.pinimg.com/564x/9f/76/e8/9f76e87c8d4812916c7aec060a88c469--supporting-actor-morgan-freeman.jpg",
+                DateOfBirth = new DateTime(1937,6,1)
+            },
+            new CreativePersonModel
+            {
+                Id = 45,
+                Name = "Jesse",
+                SurName = "Eisenberg",
+                PhotographyPath = "https://www4.pictures.zimbio.com/gi/Vivarium+Photocall+vnyP7s1-p9zx.jpg",
+                DateOfBirth = new DateTime(1983,10,5)
+            },
+            new CreativePersonModel
+            {
+                Id = 46,
+                Name = "Andrew",
+                SurName = "Garfield",
+                PhotographyPath = "https://data.whicdn.com/images/4749775/original.jpg",
+                DateOfBirth = new DateTime(1983,8,20)
+            },
+            new CreativePersonModel
+            {
+                Id = 47,
+                Name = "Jake",
+                SurName = "Gyllenhaal",
+                PhotographyPath = "https://i.pinimg.com/originals/00/be/20/00be20ddd9db763008a37e6c54e7a801.jpg",
+                DateOfBirth = new DateTime(1980,12,19)
+            },
+            new CreativePersonModel
+            {
+                Id = 48,
+                Name = "Mark",
+                SurName = "Ruffalo",
+                PhotographyPath = "https://i.pinimg.com/550x/e0/3b/17/e03b17c2cbb0f2ad648db40ca5eba9dd.jpg",
+                DateOfBirth = new DateTime(1967,11,22)
+            },
+            new CreativePersonModel
+            {
+                Id = 49,
+                Name = "Sam",
+                SurName = "Raimi",
+                PhotographyPath = "https://cdn.gracza.pl/galeria/mdb/o/542286000.jpg",
+                DateOfBirth = new DateTime(1959,10,23)
             }
         };
       
