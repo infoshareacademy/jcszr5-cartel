@@ -2,11 +2,19 @@
 @using DataAccess.Models.EntityAssigments
 @using DataAccess.Repositories
 @model MoviesPortalWebApp.Models.MovieVM
+@using Microsoft.AspNetCore.Identity;
+
+@inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
 
 @{
     ViewData["Title"] = "Details";
     var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
     var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
+    var listFavourities = Model.UserFavourities.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
+    var fMovieId = Model.UserFavourities.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+
+    
+   // var fMovieId = listFavourities.Select(x => x.Id);
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -116,14 +124,18 @@
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
-            // w tym miejscu musi sprawdzać czy film jest już dodany do listy ulubionych czy też nies
-            <a class="heart" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i> ADD TO WATCHLIST</a>
 
-@*            <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i> REMOVE FROM WATCHLIST</a>
-*@
-
+            if(listFavourities.Count > 0)
+            {
+                <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@fMovieId.Id"><i class="fa fa-heart"></i> REMOVE FROM WATCHLIST</a>
+            } 
+            else
+            {
+                <a class="heart" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i> ADD TO WATCHLIST</a>
+            }
         }
-    </dl>
+
+        </dl>
 </div>
 <div>
     <a asp-action="IndexUser">Back to List</a>

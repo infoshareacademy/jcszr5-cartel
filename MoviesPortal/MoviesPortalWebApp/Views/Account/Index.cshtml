@@ -22,12 +22,12 @@
         <tr>
            
             <td>
-                @Html.DisplayFor(modelItem => item.Movie.Title)
+           
+                <a class="heart" asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@item.MovieId">@item.Movie.Title</a>
             </td>
         
-            <td>
+            <td>             
               
-                @*@Html.ActionLink("Delete", "Delete", new {  id=item.Id  })*@
                  <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@item.Id">REMOVE FROM WATCHLIST</a>
           
             </td>

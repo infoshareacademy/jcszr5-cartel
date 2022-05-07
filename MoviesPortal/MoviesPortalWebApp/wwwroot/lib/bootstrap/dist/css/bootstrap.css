@@ -3327,10 +3327,10 @@ textarea.form-control-lg {
   background-color: transparent;
 }
 
-.btn-outline-danger {
-  color: #dc3545;
-  border-color: #dc3545;
-}
+/*.btn-outline-danger {
+    color: #FFFFFF;
+    border-color: #FF5900;
+}*/
 .btn-outline-danger:hover {
   color: #fff;
   background-color: #dc3545;
