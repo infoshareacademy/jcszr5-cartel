@@ -1,11 +1,14 @@
-﻿@model MoviesPortalWebApp.Models.MovieVM
+﻿@using System.Security.Claims
+@using DataAccess.Models.EntityAssigments
+@using DataAccess.Repositories
+@model MoviesPortalWebApp.Models.MovieVM
 
 @{
     ViewData["Title"] = "Details";
     var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
     var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
 
@@ -62,7 +65,7 @@
         </dt>
         <dd class = "col-sm-10">           
                 @string.Join(", ", Model.MovieGenres.Select(g => g.Genre.Genre))
-        </dd>      
+        </dd>
 
         <dt class = "col-sm-2">
             @if(directors.Count == 1)
@@ -112,10 +115,13 @@
         </dd>
 
         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
-        { 
-                <div class="heart">
-                    <i class="fa fa-heart-o"><a class="favourites" href="">ADD TO WATCHLIST</a></i>
-                </div>
+        {
+            // w tym miejscu musi sprawdzać czy film jest już dodany do listy ulubionych czy też nies
+            <a class="heart" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i> ADD TO WATCHLIST</a>
+
+@*            <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i> REMOVE FROM WATCHLIST</a>
+*@
+
         }
     </dl>
 </div>
