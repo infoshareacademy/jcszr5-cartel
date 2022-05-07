@@ -579,3 +579,84 @@ div.desc {
 .movieBox {
     padding: 120px 50px 200px 50px;
 }
+
+
+/* Login panel */
+.loginBackgound {
+    background-image: url(../images/3.jpg);
+    filter: brightness(130%);
+    height: 100vh;
+    width: 100vw;
+}
+
+.loginPanel {
+    padding: 2px;
+    margin: 30px;
+    position: absolute;
+    width: 500px;
+    height: 240px;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background: black;
+    opacity: 0.8;
+    border-radius: 15px;
+    color: white;
+}
+
+
+
+.form-group {
+    width: 400px;
+    margin: 10px 50px 10px 50px;
+}
+
+.rowLogin {
+    margin: 0;
+}
+
+.form-control {
+    background-color: white;
+    opacity: 1;
+    padding: 10px;
+}
+
+/* Register panel */
+.registerBackgound {
+    background-image: url(../images/4.jfif);
+    filter: brightness(130%);
+    height: 90vh;
+    width: 100vw;
+}
+
+.registerPanel {
+    padding: 2px;
+    margin: 30px;
+    position: absolute;
+    width: 500px;
+    height: 440px;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    background: black;
+    opacity: 0.8;
+    border-radius: 15px;
+    color: white;
+}
+
+
+
+.form-group {
+    width: 400px;
+    margin: 10px 50px 10px 50px;
+}
+
+.rowRegister {
+    margin: 0;
+}
+
+.form-control {
+    background-color: white;
+    opacity: 1;
+    padding: 10px;
+}
