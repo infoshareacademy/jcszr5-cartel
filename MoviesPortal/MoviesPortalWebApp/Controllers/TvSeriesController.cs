@@ -36,6 +36,12 @@ namespace MoviesPortalWebApp.Controllers
             var tvSeries = _mapper.Map<List<TvSeriesVM>>(result);
             return View(tvSeries);
         }
+        public async Task<ActionResult> IndexAdmin()
+        {
+            var result = await _tvSeriesService.GetAll();
+            var tvSeries = _mapper.Map<List<TvSeriesVM>>(result);
+            return View(tvSeries);
+        }
 
         // GET: TvSeriesController/Details/5
         public async Task<ActionResult> Details(int id)
@@ -159,10 +165,7 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<ActionResult> ListEpisodes(int id)
         {
             var season = await _seasonService.GetSeasonById(id);
-
-
-            //var result = await _episodeService.GetAllEpisodes();
-            //var episodes = result.Where(e => e.Season.Id == seasonId);
+            
             var episodes = season.Episodes.ToList();
             var episodesMapped = _mapper.Map<List<EpisodeVM>>(episodes);
 
