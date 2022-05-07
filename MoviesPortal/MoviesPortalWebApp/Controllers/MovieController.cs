@@ -26,16 +26,22 @@ namespace MoviesPortalWebApp.Controllers
         #region User
 
         #region User movies list
-        public async Task<IActionResult> IndexUser(string searchString)
+        public async Task<IActionResult> IndexUser(string genre, string searchString)
         {
             //var model = await _movieService.GetAllMoviesAsync();
+            
             var model = from m in _context.Movies select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
                 model = model.Where(s => s.Title.Contains(searchString));
             }
-
+            if (!string.IsNullOrEmpty(genre))
+            {
+                model = model.Where(g => g.Genres.All(g => g.Genre == genre));
+            }
+            
+            
             var movies = _mapper.Map<IList<MovieVM>>(model);
             return View(movies);
         }

@@ -2,11 +2,14 @@
 
 @{
     ViewData["Title"] = "Index";
+    
 }
 
 <h1>List of movies</h1><br /><br />
 
 <form asp-controller="Movie" asp-action="IndexUser">
+    
+    
     <div class="col-sm-2">
         <input type="text" class="form-control" name="SearchString" /><input type="submit" class="btn btn-outline-light" value="Search!" />
         
