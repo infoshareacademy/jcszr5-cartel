@@ -1789,7 +1789,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 9,
-                            BackgroundPoster = "https://c4.wallpaperflare.com/wallpaper/835/919/581/action-adventure-ark-fantasy-wallpaper-preview.jpg",
+                            BackgroundPoster = "https://images2.alphacoders.com/865/thumb-1920-86520.jpg",
                             Description = "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler's Nazis can obtain its awesome powers.",
                             ImdbRatio = "8.4",
                             IsForKids = true,
@@ -1801,7 +1801,7 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 10,
-                            BackgroundPoster = "https://vistapointe.net/images/indiana-jones-and-the-last-crusade-2.jpg",
+                            BackgroundPoster = "https://wallpapercave.com/wp/wp4119239.jpg",
                             Description = "In 1938, after his father Professor Henry Jones, Sr. goes missing while pursuing the Holy Grail, Professor Henry 'Indiana' Jones, Jr. finds himself up against Adolf Hitler's Nazis again to stop them from obtaining its powers.",
                             ImdbRatio = "8.2",
                             IsForKids = true,

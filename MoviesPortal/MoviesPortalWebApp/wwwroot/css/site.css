@@ -28,6 +28,7 @@ body {
 
 * {
     box-sizing: border-box;
+    color: #FFFFFF;
 }
 
 /*html, body {
@@ -745,3 +746,15 @@ div.desc {
     color: white;
 }
 
+
+#AdminForms{
+    padding-top: 3rem;
+}
+
+#AdminFormsTV {
+    padding-top: 5.5rem;
+}
+
+.registerSucces{
+    padding-top: 14rem;
+}

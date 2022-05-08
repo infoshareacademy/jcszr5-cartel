@@ -10,10 +10,11 @@
 <form asp-controller="Movie" asp-action="IndexUser">
     
     
-    <div class="col-sm-2">
-        <input type="text" class="form-control" name="SearchString" /><input type="submit" class="btn btn-outline-light" value="Search!" />
-        
-    </div>    
+    <div class="row">
+        <div class="col-sm-7">
+            <input style="margin-left: 20rem; width: 40%; display: inline-block; background-color: #000000;" type="text" class="form-control col-sm" placecholder="Search" name="SearchString" /><input type="submit" class="btn btn-outline-light col-sm-1" value="Search!" />
+
+        </div>
 </form>
 
 <section id="top_movies text-light" class="clearfix">
