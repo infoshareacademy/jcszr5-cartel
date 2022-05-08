@@ -39,11 +39,13 @@
             }
 </strong>
 <p class="inline"
+<strong>
          @if(directors.Count == 1)
             {
                 <span>
                  <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="vanila">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a> 
-                 </span>
+                
+             </span>
             }
             else if(directors.Count > 1)
             {
@@ -57,6 +59,7 @@
 
                 </p>
             }
+            </strong>
             </p>
           
 
