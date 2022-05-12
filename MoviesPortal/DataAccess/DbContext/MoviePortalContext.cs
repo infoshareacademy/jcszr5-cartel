@@ -1,5 +1,6 @@
 ﻿using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
+using DataAccess.Repositories.EntityConfigurations;
 using DataAccess.Repositories.SampleData;
 using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -44,6 +45,8 @@ namespace DataAccess.Repositories
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            new SeasonEntityConfiguration().Configure(modelBuilder.Entity<SeasonModel>());
 
             var role_CreativeP_Movie = modelBuilder.Entity<RoleCreativeMovie>();
             role_CreativeP_Movie.HasKey(k => new { k.Id });            
@@ -114,10 +117,7 @@ namespace DataAccess.Repositories
             episodeModel.Property(x => x.Title).HasColumnName("Title").HasMaxLength(50);
             episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(1000);
 
-            var seasonModel = modelBuilder.Entity<SeasonModel>();
-            seasonModel.HasKey(x => x.Id);
-            seasonModel.Property(x => x.Id).HasColumnName("Id");
-            seasonModel.HasMany(x => x.Episodes).WithOne(x => x.Season);
+            
 
             var tvSeriesModel = modelBuilder.Entity<TvSeriesModel>();
             tvSeriesModel.HasKey(x => x.Id);
