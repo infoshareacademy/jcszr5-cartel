@@ -1,4 +1,5 @@
-﻿using DataAccess.Models;
+﻿using DataAccess.EntityConfigurations;
+using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.EntityConfigurations;
 using DataAccess.Repositories.SampleData;
@@ -47,6 +48,8 @@ namespace DataAccess.Repositories
             base.OnModelCreating(modelBuilder);
 
             new SeasonEntityConfiguration().Configure(modelBuilder.Entity<SeasonModel>());
+            new EpisodeEntityConfiguration().Configure(modelBuilder.Entity<EpisodeModel>());
+            new TvSeriesEntityConfiguration().Configure(modelBuilder.Entity<TvSeriesModel>());
 
             var role_CreativeP_Movie = modelBuilder.Entity<RoleCreativeMovie>();
             role_CreativeP_Movie.HasKey(k => new { k.Id });            
@@ -111,27 +114,11 @@ namespace DataAccess.Repositories
             genreModel.Property(x => x.Genre).HasMaxLength(20);
 
 
-            var episodeModel = modelBuilder.Entity<EpisodeModel>();
-            episodeModel.HasKey(x => x.Id);
-            episodeModel.Property(x => x.Id).HasColumnName("Id");
-            episodeModel.Property(x => x.Title).HasColumnName("Title").HasMaxLength(50);
-            episodeModel.Property(x => x.Description).HasColumnName("Description").HasMaxLength(1000);
+            
 
             
 
-            var tvSeriesModel = modelBuilder.Entity<TvSeriesModel>();
-            tvSeriesModel.HasKey(x => x.Id);
-            tvSeriesModel.Property(x => x.Id).HasColumnName("Id").IsRequired();
-            tvSeriesModel.Property(p => p.Title).IsRequired().HasMaxLength(50);
-            tvSeriesModel.Property(p => p.Description).IsRequired().HasMaxLength(1000).HasDefaultValue("Nie dodano jeszcze żadnego opisu.");
-            tvSeriesModel.Property(p => p.StartYear).HasColumnName("Start_Year");
-            tvSeriesModel.Property(p => p.EndYear).HasColumnName("End_Year");            
-            tvSeriesModel.HasMany(p => p.Genres)
-                .WithMany(p => p.TvSeries)
-                .UsingEntity<TvSeriesGenre>(
-                    j => j.HasOne(mg => mg.Genre).WithMany(g => g.TvSeriesGenres).HasForeignKey("GenreId"),
-                    j => j.HasOne(mg => mg.TvSeries).WithMany(g => g.TvSeriesGenres).HasForeignKey("TvSeriesId"));
-            tvSeriesModel.HasMany(x => x.Seasons).WithOne(x => x.TvSeries);
+            
 
 
 
