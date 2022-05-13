@@ -102,7 +102,7 @@ namespace MoviesPortalWebApp.Controllers
         {
             MovieModel movie = new MovieModel();
             List<MovieGenre> movieGenres = new List<MovieGenre>();
-            List<RoleCreativeMovie> movieActorsRole = new List<RoleCreativeMovie>();
+            List<Movie_CreativeP_Role> movieActorsRole = new List<Movie_CreativeP_Role>();
 
             movie.Title = model.Title;
             movie.Description = model.Description;
@@ -128,12 +128,12 @@ namespace MoviesPortalWebApp.Controllers
             {
                 foreach (var actorId in model.ActorsIds)
                 {
-                    movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = actorId, MovieId = model.Id, RoleId = 1 });
+                    movieActorsRole.Add(new Movie_CreativeP_Role { CreativePersonId = actorId, MovieId = model.Id, RoleId = 1 });
                 }
 
                 foreach (var drId in model.DirectorsIds)
                 {
-                    movieActorsRole.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
+                    movieActorsRole.Add(new Movie_CreativeP_Role { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                 }
 
                 movie.RoleCreativeMovie = movieActorsRole;
@@ -200,8 +200,8 @@ namespace MoviesPortalWebApp.Controllers
         {
             MovieModel newMovie = new MovieModel();
             List<MovieGenre> movieGenres = new List<MovieGenre>();
-            List<RoleCreativeMovie> movieCP = new List<RoleCreativeMovie>();
-            List<RoleCreativeMovie> movieD = new List<RoleCreativeMovie>();
+            List<Movie_CreativeP_Role> movieCP = new List<Movie_CreativeP_Role>();
+            List<Movie_CreativeP_Role> movieD = new List<Movie_CreativeP_Role>();
 
 
             if (model.Id > 0)
@@ -241,16 +241,16 @@ namespace MoviesPortalWebApp.Controllers
                 if (model.ActorsIds.Length > 0)
                 {
 
-                    movieCP = new List<RoleCreativeMovie>();
+                    movieCP = new List<Movie_CreativeP_Role>();
 
                     foreach (var actId in model.ActorsIds)
                     {
-                        movieCP.Add(new RoleCreativeMovie { CreativePersonId = actId, MovieId = model.Id, RoleId = 1 });
+                        movieCP.Add(new Movie_CreativeP_Role { CreativePersonId = actId, MovieId = model.Id, RoleId = 1 });
                     }
 
                     foreach (var drId in model.DirectorsIds)
                     {
-                        movieCP.Add(new RoleCreativeMovie { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
+                        movieCP.Add(new Movie_CreativeP_Role { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                     }
 
                     newMovie.RoleCreativeMovie = movieCP;

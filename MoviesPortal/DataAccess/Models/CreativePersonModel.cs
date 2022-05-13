@@ -20,7 +20,7 @@ namespace DataAccess.Models
         [DataType(DataType.Date)]
         public DateTime? DateOfBirth { get; set; }
               
-        public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
+        public virtual ICollection<Movie_CreativeP_Role> RoleCreativeMovie { get; set; }
         public virtual ICollection<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
 
 
