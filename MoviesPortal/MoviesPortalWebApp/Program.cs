@@ -1,5 +1,6 @@
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
+using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
@@ -30,7 +31,7 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Authentication and authorization
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<DataAccess.Repositories.MoviePortalContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MoviePortalContext>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddAuthentication(options =>

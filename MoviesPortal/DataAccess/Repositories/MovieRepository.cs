@@ -1,4 +1,5 @@
-﻿using DataAccess.Models;
+﻿using DataAccess.DbContext;
+using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace DataAccess.Repositories
                 .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
                 .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .Include(cr => cr.RoleCreativeMovie).ThenInclude(cr => cr.Role)
-                .Include(r => r.UserFavourities).ThenInclude(r => r.ApplicationUser)
+                .Include(r => r.UserFavoriteMovies).ThenInclude(r => r.ApplicationUser)
                 .ToArrayAsync();
             return result;
         }
@@ -64,7 +65,7 @@ namespace DataAccess.Repositories
                 .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
                 .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .Include(r => r.RoleCreativeMovie).ThenInclude( r => r.Role)
-                 .Include(r => r.UserFavourities).ThenInclude(r => r.ApplicationUser)
+                 .Include(r => r.UserFavoriteMovies).ThenInclude(r => r.ApplicationUser)
                 .FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }

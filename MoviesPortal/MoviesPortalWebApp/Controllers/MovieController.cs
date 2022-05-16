@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BusinessLogic.Services;
+using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
-using DataAccess.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.Models;

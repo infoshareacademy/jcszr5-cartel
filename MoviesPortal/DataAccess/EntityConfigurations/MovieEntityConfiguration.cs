@@ -28,8 +28,8 @@ namespace DataAccess.EntityConfigurations
             builder.HasMany(p => p.Genres)
                 .WithMany(p => p.Movies)
                 .UsingEntity<MovieGenre>(
-                    j => j.HasOne(mg => mg.Genre).WithMany(g => g.MovieGenres).HasForeignKey("GenreId"),
-                    j => j.HasOne(mg => mg.Movie).WithMany(g => g.MovieGenres).HasForeignKey("MovieId"));
+                    j => j.HasOne(mg => mg.Genre).WithMany(mg => mg.MovieGenres).HasForeignKey("GenreId"),
+                    j => j.HasOne(mg => mg.Movie).WithMany(mg => mg.MovieGenres).HasForeignKey("MovieId"));
 
             builder.HasData(MovieSampleData.sampleMovies);
         }

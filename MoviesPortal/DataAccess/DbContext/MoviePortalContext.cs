@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
-namespace DataAccess.Repositories
+namespace DataAccess.DbContext
 {
     public class MoviePortalContext : IdentityDbContext<ApplicationUser>
     {
@@ -30,13 +30,14 @@ namespace DataAccess.Repositories
         public DbSet<RoleModel> Roles { get; set; }
 
         //Assigment tables (for many-to-many relations)
-        
+
         public DbSet<MovieGenre> Movie_Genre { get; set; }
-        
+
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
         public DbSet<Movie_CreativeP_Role> Role_CreativeP_Movie { get; set; }
         public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
-        public DbSet<UserFavourities> UserFavourities { get; set; }
+        public DbSet<UserFavoriteMovies> UserFavoriteMovies { get; set; }
+        public DbSet<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -63,7 +64,9 @@ namespace DataAccess.Repositories
 
             new CreativePersonEntityConfiguration().Configure(modelBuilder.Entity<CreativePersonModel>());
 
-            new UserFavouritiesEntityConfiguration().Configure(modelBuilder.Entity<UserFavourities>());
+            new UserFavoriteMoviesEntityConfiguration().Configure(modelBuilder.Entity<UserFavoriteMovies>());
+
+            new UserFavoriteTvSeriesEntityConfiguration().Configure(modelBuilder.Entity<UserFavoriteTvSeries>());
 
             new MovieGenreEntityConfiguration().Configure(modelBuilder.Entity<MovieGenre>());
 

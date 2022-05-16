@@ -32,7 +32,7 @@ namespace MoviesPortalWebApp.Models
         public List<SelectListItem> selectedDirectors { get; set; }
         public int[] DirectorsIds { get; set; }
 
-        public List<UserFavourities> UserFavourities { get; set; }
+        public List<UserFavoriteMovies> UserFavourities { get; set; }
 
     }
 }
