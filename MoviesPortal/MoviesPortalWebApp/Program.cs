@@ -17,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MoviePortalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
-builder.Services.AddTransient<ITvSeriesRepository, TvSeriesRepository>();
+builder.Services.AddTransient</*ITvSeriesRepository,*/ TvSeriesRepository>();
 builder.Services.AddTransient<IEpisodeRepository, EpisodeRepository>();
 builder.Services.AddTransient<IEpisodeService, EpisodeService>();
 builder.Services.AddTransient<ISeasonRepository, SeasonRepository>();

@@ -33,8 +33,8 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<ActionResult> Index(string searchString)
         {
 
-            //var result = await _tvSeriesService.GetAll();
-            var model = from m in _context.TvSeries select m;
+            var model = await _tvSeriesService.GetAll();
+            //var model = from m in _context.TvSeries select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
