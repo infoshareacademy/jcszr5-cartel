@@ -28,9 +28,9 @@ namespace MoviesPortalWebApp.Controllers
         #region User movies list
         public async Task<IActionResult> IndexUser(string genre, string searchString)
         {
-            //var model = await _movieService.GetAllMoviesAsync();
+            var model = _movieService.GetAllMovies();
             
-            var model = from m in _context.Movies select m;
+            //var model = from m in _context.Movies select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -63,7 +63,7 @@ namespace MoviesPortalWebApp.Controllers
         #region Admin movies list
         public async Task<IActionResult> Index()
         {
-            var model = await _movieService.GetAllMoviesAsync();
+            var model =  _movieService.GetAllMovies();
             var movies = _mapper.Map<IList<MovieVM>>(model);
             return View(movies);
         }

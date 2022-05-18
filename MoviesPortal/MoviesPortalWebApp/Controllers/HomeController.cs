@@ -25,7 +25,7 @@ namespace MoviesPortalWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await _movieService.GetAllMoviesAsync();
+            var model =  _movieService.GetAllMovies();
             var movies = _mapper.Map<IList<MovieVM>>(model);
             return View(movies);
         }

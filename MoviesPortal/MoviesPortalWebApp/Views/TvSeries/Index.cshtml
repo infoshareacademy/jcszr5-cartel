@@ -43,7 +43,7 @@
                 <h2>@Html.DisplayFor(modelItem => item.Title)</h2><br><br>
                 <p>@item.Description</p><br>
                 <p>Start Year: @item.StartYear , Ended: @item.EndYear</p><br>                
-                <p> @string.Join(", ", item.TvSeriesGenres.Select(g => g.Genre.Genre))</p>
+                <p> @string.Join(", ", item.Genres.Select(g => g.Genre))</p>
                 @{
                 var seasons = item.Seasons.ToList();
                 }

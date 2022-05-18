@@ -48,14 +48,14 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<MovieModel>> GetAllMoviesAsync()
+        public IQueryable<MovieModel> GetAllMovies()
         {
-            var result = await _context.Movies
-                .Include(g => g.MovieGenres).ThenInclude(g => g.Genre)
+            var result = _context.Movies
+                .Include(g => g.Genres)
                 .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .Include(cr => cr.RoleCreativeMovie).ThenInclude(cr => cr.Role)
                 .Include(r => r.UserFavoriteMovies).ThenInclude(r => r.ApplicationUser)
-                .ToArrayAsync();
+                ;
             return result;
         }
 

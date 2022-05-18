@@ -12,7 +12,7 @@ namespace DataAccess.Repositories
         public Task Create(MovieModel dbMovieModel);
         public Task DeleteMovieByIdAsync(int id);
         public Task Edit(int id, MovieModel dbMovieModel);
-        public Task<ICollection<MovieModel>> GetAllMoviesAsync();
+        public IQueryable<MovieModel> GetAllMovies();
         public Task<MovieModel> GetMovieIdByAsync(int? id);
     }
 }

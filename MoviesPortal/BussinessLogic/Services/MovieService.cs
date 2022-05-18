@@ -8,7 +8,7 @@ namespace BusinessLogic.Services
 {
     public interface IMovieService 
     {
-        public Task<ICollection<MovieModel>> GetAllMoviesAsync();
+        public IQueryable<MovieModel> GetAllMovies();
 
         public Task<MovieModel> GetMovieIdByAsync(int? id);
 
@@ -28,9 +28,9 @@ namespace BusinessLogic.Services
             _context = context;
         }
 
-        public async Task<ICollection<MovieModel>> GetAllMoviesAsync()
+        public IQueryable<MovieModel> GetAllMovies()
         {
-            var movies = await _movieRepository.GetAllMoviesAsync();
+            var movies = _movieRepository.GetAllMovies();
             return movies;
         }
 
