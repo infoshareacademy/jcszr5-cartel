@@ -22,8 +22,8 @@ namespace DataAccess.Models
 
         public bool IsForKids { get; set; }
         public virtual ICollection<MovieGenre> MovieGenres { get; set; }
-        public virtual ICollection<RoleCreativeMovie> RoleCreativeMovie { get; set; }
-        public List<UserFavourities> UserFavourities { get; set; }
+        public virtual ICollection<Movie_CreativeP_Role> RoleCreativeMovie { get; set; }
+        public List<UserFavoriteMovies> UserFavoriteMovies { get; set; }
 
     }
 }

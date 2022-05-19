@@ -1,9 +1,9 @@
 ﻿using AutoMapper;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
+using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
-using DataAccess.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -33,8 +33,8 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<ActionResult> Index(string searchString)
         {
 
-            //var result = await _tvSeriesService.GetAll();
-            var model = from m in _context.TvSeries select m;
+            var model = await _tvSeriesService.GetAll();
+            //var model = from m in _context.TvSeries select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {

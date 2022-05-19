@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Models.EntityAssigments
 {
-    public class RoleCreativeMovie
+    public class Movie_CreativeP_Role
     {
         public int Id { get; set; }
         public int MovieId { get; set; }

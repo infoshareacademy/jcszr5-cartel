@@ -7,11 +7,8 @@
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
 
 @{
-    ViewData["Title"] = "Details";
-    var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
-    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
-    var listFavourities = Model.UserFavourities.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
-    var fMovieId = Model.UserFavourities.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+    ViewData["Title"] = "DetailsUser";
+    
 
     
    // var fMovieId = listFavourities.Select(x => x.Id);
@@ -19,15 +16,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
-     
+@{
+    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
+    var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
+    var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+}
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
  <div class="main-informations">
-     <div class="genre">@string.Join(" | ", @Model.MovieGenres.Select(g => g.Genre.Genre)).ToUpper()</div>
+     <div class="genre">@string.Join(" | ", @Model.Genres.Select(g => g.Genre)).ToUpper()</div>
 
      <div class="Title">@Model.Title.ToUpper()</div>
 
 <p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
+@{var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();  }  
+
 <strong>
       @if(directors.Count == 1)
             {

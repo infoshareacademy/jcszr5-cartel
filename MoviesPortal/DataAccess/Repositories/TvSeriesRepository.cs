@@ -1,4 +1,5 @@
-﻿using DataAccess.Models;
+﻿using DataAccess.DbContext;
+using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public class TvSeriesRepository : ITvSeriesRepository
+    public class TvSeriesRepository //: ITvSeriesRepository
     {
         private readonly MoviePortalContext _context;
 
@@ -49,16 +50,15 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<ICollection<TvSeriesModel>> GetAll() => await _context.TvSeries
-            .Include(g =>  g.TvSeriesGenres).ThenInclude(g => g.Genre)
-            .Include(s => s.Seasons)
-            .ToArrayAsync();
-        
+        public IQueryable<TvSeriesModel> GetAll() => _context.TvSeries
+            .Include(g => g.Genres)
+            .Include(s => s.Seasons);
+
 
         public async Task<TvSeriesModel> GetById(int id)
         {
             var tvSeries = await _context.TvSeries
-                .Include(g => g.TvSeriesGenres).ThenInclude(g => g.Genre)
+                .Include(g => g.Genres)
                 .Include(c => c.TvSeries_CreativeP_Role).ThenInclude(c => c.CreativePerson)
                 .Include(r => r.TvSeries_CreativeP_Role).ThenInclude(r => r.Role)
                 .Include(s => s.Seasons).ThenInclude(s => s.Episodes)

@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Services;
-using DataAccess.Repositories;
+using DataAccess.DbContext;
 using Microsoft.AspNetCore.Mvc;
 using MoviesPortalWebApp.Models;
 using System.Diagnostics;
@@ -25,7 +25,7 @@ namespace MoviesPortalWebApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var model = await _movieService.GetAllMoviesAsync();
+            var model =  _movieService.GetAllMovies();
             var movies = _mapper.Map<IList<MovieVM>>(model);
             return View(movies);
         }

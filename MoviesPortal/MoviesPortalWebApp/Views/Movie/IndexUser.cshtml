@@ -26,11 +26,10 @@
             @foreach(var item in Model)
             {
                 <div class="gallery">
-                    <a href='@Url.Action("DetailsUser", "Movie", new {  id=item.Id  })'>
-                        <img src="@item.PosterPath" alt="@item.Title">                   
-                    </a>
-               <div class="desc">@item.Title</div>
-               </div>
+                    <a asp-action="DetailsUser" asp-route-id="@item.Id"><img src="@item.PosterPath" alt="@item.Title"></a>
+                    
+                    <div class="desc">@item.Title</div>
+                </div>
             }
         </section>
         </div>

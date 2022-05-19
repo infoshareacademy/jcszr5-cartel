@@ -1,6 +1,6 @@
-﻿using DataAccess.Models;
+﻿using DataAccess.DbContext;
+using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
-using DataAccess.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -31,7 +31,7 @@ namespace MoviesPortalWebApp.Controllers
 
         public async Task<IActionResult> Index(string id)
         {
-            var movies = from m in _context.UserFavourities.Include(x => x.Movie)
+            var movies = from m in _context.UserFavoriteMovies.Include(x => x.Movie)
                          select m;
             movies = movies.Where(s => s.UserId == id);
             
@@ -41,13 +41,13 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<IActionResult> AddMovieToFavourities(int? id)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var fMovie = new UserFavourities();
+            var fMovie = new UserFavoriteMovies();
             var movie = await _context.Movies.FirstOrDefaultAsync(x => x.Id == id);
 
             fMovie.UserId = userId;
             fMovie.MovieId = movie.Id;
 
-            _context.UserFavourities.Add(fMovie);
+            _context.UserFavoriteMovies.Add(fMovie);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("IndexUser", "Movie");
@@ -55,8 +55,8 @@ namespace MoviesPortalWebApp.Controllers
 
         public async Task<IActionResult> RemoveMovieToFavourities(int? id)
         {
-            var movie = _context.UserFavourities.FirstOrDefault(x => x.Id == id);
-            _context.UserFavourities.Remove(movie);
+            var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.Id == id);
+            _context.UserFavoriteMovies.Remove(movie);
             await _context.SaveChangesAsync();
 
             return RedirectToAction("IndexUser", "Movie");

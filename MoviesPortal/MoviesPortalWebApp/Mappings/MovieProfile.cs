@@ -16,7 +16,7 @@ namespace MoviesPortalWebApp.Mappings
             CreateMap<GenreModel, GenreVM>();
             CreateMap<CreativePersonModel, CreativePersonVM>().ReverseMap();
             CreateMap<RoleModel, RoleVM>();
-            CreateMap<RoleCreativeMovie, RoleCreativeMovieVM>();
+            CreateMap<Movie_CreativeP_Role, RoleCreativeMovieVM>().ReverseMap();
             //CreateMap<MovieCreativePerson, MovieCreativePersonVM>();
             CreateMap<CreativePersonModel, CreativePersonVM>();
         }

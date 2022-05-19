@@ -1,8 +1,10 @@
 ﻿using BusinessLogic.Interfaces;
 using DataAccess.Models;
+using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +13,9 @@ namespace BusinessLogic.Services
 {
     public class TvSeriesService : ITvSeriesService
     {
-        private readonly ITvSeriesRepository tvSeriesRepository;        
+        private readonly TvSeriesRepository tvSeriesRepository;        
 
-        public TvSeriesService(ITvSeriesRepository tvSeriesRepository)
+        public TvSeriesService(TvSeriesRepository tvSeriesRepository)
         {
             this.tvSeriesRepository = tvSeriesRepository;            
         }
@@ -33,9 +35,9 @@ namespace BusinessLogic.Services
             await tvSeriesRepository.Edit(id, tvSeries);
         }
 
-        public async Task<ICollection<TvSeriesModel>> GetAll()
+        public async Task<IQueryable<TvSeriesModel>> GetAll()
         {
-            return await tvSeriesRepository.GetAll();
+            return tvSeriesRepository.GetAll();
         }
 
         public async Task<TvSeriesModel> GetById(int id)

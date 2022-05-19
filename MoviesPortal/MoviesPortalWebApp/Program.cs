@@ -1,5 +1,6 @@
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
+using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
@@ -16,7 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MoviePortalContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection")));
-builder.Services.AddTransient<ITvSeriesRepository, TvSeriesRepository>();
+builder.Services.AddTransient</*ITvSeriesRepository,*/ TvSeriesRepository>();
 builder.Services.AddTransient<IEpisodeRepository, EpisodeRepository>();
 builder.Services.AddTransient<IEpisodeService, EpisodeService>();
 builder.Services.AddTransient<ISeasonRepository, SeasonRepository>();
@@ -30,7 +31,7 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Authentication and authorization
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<DataAccess.Repositories.MoviePortalContext>();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<MoviePortalContext>();
 builder.Services.AddMemoryCache();
 builder.Services.AddSession();
 builder.Services.AddAuthentication(options =>
