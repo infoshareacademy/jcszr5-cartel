@@ -10,22 +10,40 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @*Nowa czcionka*@
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;900&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
     <header class="fixed-top">
         <nav class="navbar_main">
-            <a class="logo" asp-area="" asp-controller="Home" asp-action="Index"><img class="img-responsive" alt="logo" src="~/images/logo.png"/></a>
-     
-                <a class='icon_menu'><span></span></a>
-                    <ul class='top_menu'>
-             
-                      <li><a class='top_menu__item' asp-controller="Home" asp-action="Index">Home</a></li>
-                      <li><a class='top_menu__item' asp-controller="Movie" asp-action="IndexUser">Movies</a></li>
-                      <li><a class='top_menu__item' asp-controller="TvSeries" asp-action="Index">TvShows</a></li>
-                      <li><a class='top_menu__item' asp-controller="CreativePerson" asp-action="IndexUser">Persons</a></li>
-                      <li><a class='top_menu__item' asp-controller="Account" asp-action="Login">Login</a></li>      
-                    </ul>
+              
+                        <ul class="box-text">
+                            <li><a class='top_menu__item' asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a class='top_menu__item' asp-controller="Movie" asp-action="IndexUser">Movies</a></li>
+                            <li><a class='top_menu__item' asp-controller="TvSeries" asp-action="Index">TvShows</a></li>
+                            <li><a class='top_menu__item' asp-controller="CreativePerson" asp-action="IndexUser">Persons</a></li>
+                            <li><a class='top_menu__item' asp-controller="Account" asp-action="Login">Login</a></li>                           
+                            <li><a class='top_menu__item'><i class="fa fa-search"></i></a></li>                           
+                        </ul>
+                 
+                        <ul class="box-icons">
+                            <li><a class='top_menu__item' asp-controller="Home" asp-action="Index"><i class="fa fa-home"></i></a></li>
+                            <li><a class='top_menu__item' asp-controller="Movie" asp-action="IndexUser"><i class="fa fa-film"></i></a></li>
+                            <li><a class='top_menu__item' asp-controller="TvSeries" asp-action="Index"><i class="fa fa-television"></i></a></li>
+                            <li><a class='top_menu__item' asp-controller="CreativePerson" asp-action="IndexUser"><i class="fa fa-users"></i></a></li>
+                            <li><a class='top_menu__item' asp-controller="Account" asp-action="Login"><i class="fa fa-sign-in"></i></a></li>
+                            <li><a class='top_menu__item'><i class="fa fa-search"></i></a></li>  
+                        </ul>
+                
          </nav>
     </header>
 
@@ -46,13 +64,16 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="jquery.min.js"></script>*@
+   
 
     <script>
-        $('.icon_menu').click(function(){
-          $('body').toggleClass('menu_shown');
-        });
+        //$('.icon_menu').click(function(){
+        //  $('body').toggleClass('menu_shown');
+        //});
+
+        //  $('.icon-1, .icon-2').on('click', function () {
+        //    $('.box').toggleClass('open');
+        //});
 
     </script>
 
