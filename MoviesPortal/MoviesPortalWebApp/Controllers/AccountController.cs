@@ -131,7 +131,15 @@ namespace MoviesPortalWebApp.Controllers
             return View();
         }
 
+        public IActionResult AuthLayout() => View(new RegisterVM());
 
+        public async Task<IActionResult> Admin(string id)
+        {
+            var movies = from m in _context.UserFavoriteMovies.Include(x => x.Movie)
+                         select m;
+            movies = movies.Where(s => s.UserId == id);
 
+            return View(await movies.ToListAsync());
+        }
     }
 }
