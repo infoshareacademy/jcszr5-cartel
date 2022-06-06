@@ -9,7 +9,7 @@
     font-family: 'Poppins', sans-serif;
 }
 
-
+/*
 .loginButton {
     color: white;
     border-color: #FF5900;
@@ -19,6 +19,7 @@
         background-color: #36423d;
         border-color: black;
     }
+*/
 
 h2.movies{
     font-size: 1.5rem;
@@ -266,14 +267,38 @@ div.desc {
     width: 500px;
     height: 240px;
     top: 50%;
-    left: 80%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    background: black;
-    opacity: 0.8;
+    /*background: black;*/
+    /*opacity: 0.4;*/
     border-radius: 15px;
     color: white;
 }
 
+.btn-login {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    /*top: 80%;*/
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;
+}
+
+    .btn-login:hover {
+        color: rgb(19, 17, 18);
+        background: rgba(205, 170, 109, 1);
+    }
 
 
 .form-group {
@@ -300,19 +325,44 @@ div.desc {
 }
 
 .registerPanel {
-    /*padding: 2px;*/
+    padding: 2px;
     margin: 30px;
     position: absolute;
     width: 500px;
-    height: 400px;
+    height: 240px;
     top: 50%;
-    left: 80%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    background: black;
-    opacity: 0.8;
+    /*background: black;*/
+    /*opacity: 0.4;*/
     border-radius: 15px;
     color: white;
 }
+
+.btn-register {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    /*top: %;*/
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;
+}
+
+    .btn-register:hover {
+        color: rgb(19, 17, 18);
+        background: rgba(87, 84, 236, 1);
+    }
 
 
 
@@ -538,7 +588,7 @@ body {
 
     }
 
-        .box-text li .top_menu__item {
+        .box-text li a {
             text-decoration: none;
             padding: 0 15px;
             text-transform: uppercase;
@@ -547,7 +597,7 @@ body {
             font-size: 20px;
         }
 
-            .box-text li .top_menu__item i {
+            .box-text li a i {
                 color: lightgreen;
                 position: fixed;              
                 right: 25px;              
@@ -559,10 +609,25 @@ body {
                 font-size: 24px;
             }
 
-                .box-text li .top_menu__item:hover, .box-text li .top_menu__item i:hover {
-                    color: rgb(19, 17, 18);
-                }
- 
+            .box-text li a:hover,
+            .box-text li .top_menu__item i:hover,
+            .box-text li .top_menu_account i:hover {
+                color: rgb(19, 17, 18);
+            }
+
+
+
+    .box-text li .top_menu_account i {
+        color: lightgreen;
+        position: fixed;
+        right: 65px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: #fff;
+        font-size: 27px;
+    }
 
 .box-icons {
     opacity: 0;
@@ -603,9 +668,11 @@ body {
         .box-icons li {
             display: inline-block;
             margin-top: 20px;
+         
         }
 
-            .box-icons li .top_menu__item {
+            .box-icons li a
+            {
                 text-decoration: none;
                 padding: 0 15px;
                 text-transform: uppercase;
@@ -615,7 +682,7 @@ body {
 
 
 
-                .box-icons li .top_menu__item i:hover {
+                .box-icons li a:hover {
                     color: rgb(19, 17, 18);
                     cursor: pointer;
                 }
@@ -625,6 +692,233 @@ body {
         opacity: 0;
         visibility: hidden;
     }
+
+
+    .form-group {
+        width: 200px;
+        margin-left: 0;
+        transform: translateX(50%);
+       
+    }
+
+
+
 }
 
 
+li.active a {
+    color: rgb(19, 17, 18);
+    /*background-color: rgb(19, 17, 18);*/
+}
+
+
+
+/*login panel*/
+
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');*/
+
+:root {
+    --left-bg-color: rgba(43, 43, 43, 0.6);
+    --right-bg-color: rgba(87, 84, 236, 0.5);
+    --left-btn-hover-color: rgba(230 134 3, 1);
+    --right-btn-hover-color: rgba(87, 84, 236, 1);
+    --hover-width: 75%;
+    --other-width: 25%;
+    --speed: 1000ms;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+h1 {
+    font-size: 4rem;
+    color: #fff;
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translateX(-50%);
+    
+}
+
+
+
+.split.left .btn:hover {
+    background-color: var(--left-btn-hover-color);
+    border-color: var(--left-btn-hover-color);
+}
+
+.split.right .btn:hover {
+    background-color: var(--right-btn-hover-color);
+    border-color: var(--right-btn-hover-color);
+}
+
+.container {
+    /*position: relative;*/
+    width: 100%;
+    height: 100%;
+    background: #333;
+}
+
+.split {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+}
+
+    .split.left {
+        left: 0;
+        background: url('../images/2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+        .split.left::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--left-bg-color);
+        }
+
+    .split.right {
+        right: 0;        
+        background: url('../images/4.jfif');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+
+        .split.right::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: var(--right-bg-color);
+        }
+
+        .split.right,
+        .split.left,
+        .split.right::before,
+        .split.left::before {
+            transition: all var(--speed) ease-in-out;
+        }
+
+
+.split-logout {
+    left: 0;
+    background: url('../images/5.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin: auto;
+    background-position: center;
+}
+
+.logoutPanel {  
+    position: absolute;
+    width: 100%;
+    height: 100%;   
+}
+
+
+.btn-logout {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;
+
+}
+
+    .btn-logout:hover {
+        color: rgb(19, 17, 18);
+        background-color: rgba(188, 100, 254, 1);
+    }
+
+
+
+
+.hover-left .left {
+    width: var(--hover-width);
+}
+
+.hover-left .right {
+    width: var(--other-width);
+}
+
+.hover-right .right {
+    width: var(--hover-width);
+}
+
+.hover-right .left {
+    width: var(--other-width);
+}
+
+@media (max-width: 800px) {
+    h1 {
+        font-size: 2rem;
+        top: 30%;
+    }
+
+ /*   .btn {
+        padding: 1.2rem;
+        width: 12rem;
+    }*/
+}
+
+
+
+/* button serach */
+
+#search {
+    position: absolute;
+    right: 65px;
+    margin-top: 20px;
+    /*opacity: 0;*/
+    visibility: hidden;
+}
+
+
+
+
+
+
+/* admin area*/
+
+.btn {
+    /*position: absolute;*/
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;
+    top: 50%;
+    /*transform: translateX(-50%);*/
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;
+}

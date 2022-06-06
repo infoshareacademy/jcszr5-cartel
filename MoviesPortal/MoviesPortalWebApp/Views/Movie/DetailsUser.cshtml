@@ -16,11 +16,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
+
 @{
     var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
     var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
     var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
 }
+
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
  <div class="main-informations">
@@ -84,6 +86,9 @@
      </p>
 
 
+
+
+
 @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
@@ -97,3 +102,4 @@
             }
         }
 </div>
+

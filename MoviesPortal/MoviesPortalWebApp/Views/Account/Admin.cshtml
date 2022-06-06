@@ -1,0 +1,17 @@
+﻿@model IEnumerable<DataAccess.Models.EntityAssigments.UserFavoriteMovies>
+@{
+    ViewData["Title"] = "Admin";
+}
+
+
+<div class="movieBox"" >
+
+<h1>USER DISPLAY AREA</h1>
+
+<div class="split">
+      
+                 <div class="btn">@Html.ActionLink("Movie", "Index", "Movie")</div>
+                 <div class="btn">@Html.ActionLink("TvSeries", "Index", "TvSeries")</div>
+                 <div class="btn">@Html.ActionLink("Person", "Index", "CreativePerson")</div>
+    </div>
+</div>
