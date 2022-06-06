@@ -28,9 +28,7 @@ namespace MoviesPortalWebApp.Controllers
         #region User movies list
         public async Task<IActionResult> IndexUser(string genre, string searchString)
         {
-            var model = _movieService.GetAllMovies();
-            
-            //var model = from m in _context.Movies select m;
+            var model = _movieService.GetAllMovies();  
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -82,8 +80,8 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<IActionResult> Create(int? Id)
         {
             MovieVM model = new MovieVM();
-            List<int> genresIds = new List<int>();
-            List<int> actorsIds = new List<int>();
+            //List<int> genresIds = new List<int>();
+            //List<int> actorsIds = new List<int>();
 
             var movie = new MovieModel();
             model = _mapper.Map<MovieVM>(movie);

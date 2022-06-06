@@ -12,11 +12,11 @@ namespace MoviesPortalWebApp.Controllers
     {
         private readonly ICreativePersonService _creativePersonService;
         private readonly IMapper _mapper;
-        private readonly IValidator _validator;
+        private readonly ICreativePersonValidator _validator;
 
         private readonly MoviePortalContext _context;
 
-        public CreativePersonController(ICreativePersonService creativePersonService, IMapper mapper, MoviePortalContext context, IValidator validator)
+        public CreativePersonController(ICreativePersonService creativePersonService, IMapper mapper, MoviePortalContext context, ICreativePersonValidator validator)
         {
             _creativePersonService = creativePersonService;
             _mapper = mapper;

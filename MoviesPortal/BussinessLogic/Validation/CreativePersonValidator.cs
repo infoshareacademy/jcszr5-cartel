@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLogic.Validation
 {
-    public class CreativePersonValidator : IValidator
+    public class CreativePersonValidator : ICreativePersonValidator
     {
         private readonly ICreativePersonService _creativePersonService;
         public CreativePersonValidator(ICreativePersonService creativePersonService)
