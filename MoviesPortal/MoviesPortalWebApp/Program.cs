@@ -1,5 +1,6 @@
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
+using BusinessLogic.Validation;
 using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
@@ -27,6 +28,7 @@ builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<ITvSeriesService, TvSeriesService>();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
+builder.Services.AddTransient<IValidator, CreativePersonValidator>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
