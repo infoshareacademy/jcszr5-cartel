@@ -111,6 +111,13 @@ namespace MoviesPortalWebApp.Controllers
             }
 
             var person = _mapper.Map<CreativePersonModel>(creativePersonVM);
+
+            if (await _validator.IsExistInDb(person))
+            {
+                ModelState.AddModelError("", "Current Creative Person with the same date of birth exist in database.");
+                return View(creativePersonVM);
+            }
+
             await _creativePersonService.EditAsync(id, person);
             return RedirectToAction(nameof(Index));
         }
