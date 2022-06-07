@@ -23,8 +23,8 @@ namespace MoviesPortalWebApp.Models.AdvancedViewModels
 
         [Display(Name = "Is for kids?")]
         public bool IsForKids { get; set; }
-        public MultiSelectList Genres { get; set; }
-        public MultiSelectList Actors { get; set; }
-        public MultiSelectList Directors { get; set; }
+        public SelectList Genres { get; set; }
+        public SelectList Actors { get; set; }
+        public SelectList Directors { get; set; }
     }
 }

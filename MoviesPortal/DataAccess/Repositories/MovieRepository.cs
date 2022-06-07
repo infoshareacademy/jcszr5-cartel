@@ -66,6 +66,7 @@ namespace DataAccess.Repositories
                 .Include(cp => cp.RoleCreativeMovie).ThenInclude(cp => cp.CreativePerson)
                 .Include(r => r.RoleCreativeMovie).ThenInclude( r => r.Role)
                 .Include(r => r.UserFavoriteMovies).ThenInclude(r => r.ApplicationUser)
+                .Include(g => g.Genres)
                 .FirstOrDefaultAsync(x => x.Id == id);
             return result;
         }

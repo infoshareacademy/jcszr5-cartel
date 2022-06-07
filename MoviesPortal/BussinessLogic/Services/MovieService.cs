@@ -35,5 +35,9 @@ namespace BusinessLogic.Services
         {
             await _movieRepository.DeleteMovieByIdAsync(id);
         }
+        public async Task CreateNewMovie(MovieModel movie)
+        {
+            await _movieRepository.Create(movie);
+        }
     }
 }

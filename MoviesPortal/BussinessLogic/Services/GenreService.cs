@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using BusinessLogic.Interfaces;
+﻿using BusinessLogic.Interfaces;
 using DataAccess.Models;
-using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
 
 namespace BusinessLogic.Services
@@ -31,6 +29,12 @@ namespace BusinessLogic.Services
         public async Task<ICollection<GenreModel>> GetAllGenres()
         {
             return await _genreRepository.GetAll();
+        }
+
+        public async Task<IList<string>> GetAllGenresAsStrings()
+        {
+            var result = await GetAllGenres();
+            return result.Select(x => x.Genre).ToList();
         }
 
         public async Task<IList<GenreModel>> GetGenres(TvSeriesModel tvSeries)

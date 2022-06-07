@@ -9,6 +9,6 @@ namespace BusinessLogic.Services
         public Task<MovieModel> GetMovieIdByAsync(int? id);
 
         public Task DeleteMovieByIdAsync(int id);
-
+        public Task CreateNewMovie(MovieModel movie);
     }
 }

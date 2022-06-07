@@ -29,6 +29,8 @@ builder.Services.AddTransient<ITvSeriesService, TvSeriesService>();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
+builder.Services.AddTransient<IGenreService, GenreService>();
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
