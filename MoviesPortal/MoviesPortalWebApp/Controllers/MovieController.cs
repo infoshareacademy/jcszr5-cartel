@@ -77,20 +77,22 @@ namespace MoviesPortalWebApp.Controllers
         #endregion
 
         #region Create
-        public async Task<IActionResult> Create(int? Id)
+        public async Task<IActionResult> Create()
         {
-            MovieVM model = new MovieVM();
-            //List<int> genresIds = new List<int>();
-            //List<int> actorsIds = new List<int>();
+            
+            
+            //MovieVM model = new MovieVM();
+            ////List<int> genresIds = new List<int>();
+            ////List<int> actorsIds = new List<int>();
 
-            var movie = new MovieModel();
-            model = _mapper.Map<MovieVM>(movie);
-            model.selectedGenres = _context.Genres
-                .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
-            model.selectedActors = _context.CreativePersons
-               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
-            model.selectedDirectors = _context.CreativePersons
-               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+            //var movie = new MovieModel();
+            //model = _mapper.Map<MovieVM>(movie);
+            //model.selectedGenres = _context.Genres
+            //    .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+            //model.selectedActors = _context.CreativePersons
+            //   .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+            //model.selectedDirectors = _context.CreativePersons
+            //   .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
             return View(model);
         }
