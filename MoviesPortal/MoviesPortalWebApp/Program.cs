@@ -379,6 +379,7 @@ if (!dbContext.TvSeries.Any())
     dbContext.TvSeries_CreativeP_Role.AddRange(creativesForSeries);
     dbContext.SaveChanges();
 }
+
 ApiClient client = new();
-var result =await client.GetThorMovie();
+var result = await client.FindMoviesByTitle("thor", 1, false);
 app.Run();
