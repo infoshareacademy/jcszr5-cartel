@@ -1,3 +1,4 @@
+using BusinessLogic.ApiHandler;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using BusinessLogic.Validation;
@@ -378,4 +379,6 @@ if (!dbContext.TvSeries.Any())
     dbContext.TvSeries_CreativeP_Role.AddRange(creativesForSeries);
     dbContext.SaveChanges();
 }
+ApiClient client = new();
+var result =await client.GetThorMovie();
 app.Run();
