@@ -382,5 +382,5 @@ if (!dbContext.TvSeries.Any())
 }
 
 ApiClient client = new();
-var result = await client.GetProviders(284053, ProviderPicker.PL);
+var result = await client.GetPersons(284053);
 app.Run();

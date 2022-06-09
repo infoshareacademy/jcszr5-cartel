@@ -61,5 +61,29 @@ namespace BusinessLogic.ApiHandler
                    _ => throw new NotImplementedException(),
                };
         }
+        public async Task<List<Movie>> GetTrendingMoviesOfTheDay()
+        {
+            var result = await _baseUrl
+                .AppendPathSegment("trending")
+                .AppendPathSegment("movie")
+                .AppendPathSegment("day")
+                .SetQueryParams(_apiKey)
+                .GetStringAsync();
+            var searchResult = JsonConvert.DeserializeObject<MoviesSearchResult>(result);
+            return searchResult.results;
+        }
+        public async Task<PersonsRoot> GetPersons(int movieId)
+        {
+            var result = await _baseUrl
+                .AppendPathSegment("movie")
+                .AppendPathSegment(movieId)
+                .AppendPathSegment("credits")
+                .SetQueryParams(_apiKey, "language=en-US")
+                .GetStringAsync();
+            var persons = JsonConvert.DeserializeObject<PersonsRoot>(result);
+            var cast = persons.Cast.Take(12).ToList();
+            var crews = persons.Crew.Where(d => d.Job == "Director").ToList();
+            return new PersonsRoot() {Cast = cast, Crew = crews};
+        }
     }
 }
