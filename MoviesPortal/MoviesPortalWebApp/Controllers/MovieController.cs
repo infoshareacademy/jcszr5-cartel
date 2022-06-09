@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLogic.ApiHandler;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using DataAccess.Models;
@@ -15,7 +16,7 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMapper _mapper;
         private readonly IGenreService _genreService;
         private readonly ICreativePersonService _creativePersonService;
-
+        private ApiClient client = new();
 
 
         public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService)
@@ -45,7 +46,10 @@ namespace MoviesPortalWebApp.Controllers
 
 
             var movies = _mapper.Map<IList<MovieVM>>(model);
-            return View(movies);
+            var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
+            var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
+            var newMovies = movies.Concat(moviesMapped).ToList();
+            return View(newMovies);
         }
         #endregion
 
