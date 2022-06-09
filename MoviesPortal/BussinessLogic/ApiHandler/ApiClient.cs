@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLogic.ApiHandler.ApiModels;
+using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using Flurl;
 using Flurl.Http;
 using Newtonsoft.Json;
@@ -43,6 +44,22 @@ namespace BusinessLogic.ApiHandler
                 .GetStringAsync();
             var searchResult = JsonConvert.DeserializeObject<MoviesSearchResult>(result);
             return searchResult.results;
+        }
+        public async Task<ProvidersStore> GetProviders(int movieId, ProviderPicker country)
+        {
+            var result = await _baseUrl
+                .AppendPathSegment("movie")
+                .AppendPathSegment(movieId.ToString())
+                .AppendPathSegment("watch/providers")
+                .SetQueryParams(_apiKey)
+                .GetStringAsync();
+            var providers = JsonConvert.DeserializeObject<Root>(result);
+            return country switch
+               {
+                   ProviderPicker.PL => providers.Results.PL,
+                   ProviderPicker.US => providers.Results.US,
+                   _ => throw new NotImplementedException(),
+               };
         }
     }
 }

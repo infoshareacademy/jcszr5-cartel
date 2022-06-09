@@ -1,4 +1,5 @@
 using BusinessLogic.ApiHandler;
+using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using BusinessLogic.Validation;
@@ -381,5 +382,5 @@ if (!dbContext.TvSeries.Any())
 }
 
 ApiClient client = new();
-var result = await client.FindMoviesByTitle("thor", 1, false);
+var result = await client.GetProviders(284053, ProviderPicker.PL);
 app.Run();
