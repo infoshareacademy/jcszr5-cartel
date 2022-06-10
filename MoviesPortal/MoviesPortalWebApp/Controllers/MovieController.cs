@@ -56,8 +56,20 @@ namespace MoviesPortalWebApp.Controllers
         #region User movie details
         public async Task<IActionResult> DetailsUser(int id)
         {
-            var model = await _movieService.GetMovieIdByAsync(id);
-            var movie = _mapper.Map<MovieVM>(model);
+            dynamic model;
+
+            if (_movieService.GetAllMovies().Any(m => m.Id == id))
+            {
+                model = await _movieService.GetMovieIdByAsync(id);
+            }
+            else
+            {
+                model = await client.GetMovieDetails(id);
+            }
+
+            MovieVM movie = _mapper.Map<MovieVM>(model);
+            
+
             return View(movie);
         }
         #endregion

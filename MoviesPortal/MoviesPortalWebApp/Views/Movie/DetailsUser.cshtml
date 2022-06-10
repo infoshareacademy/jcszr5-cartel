@@ -1,26 +1,49 @@
 ﻿@using System.Security.Claims
+@using AutoMapper
+@using BusinessLogic.ApiHandler
+@using BusinessLogic.ApiHandler.ApiModels
 @using DataAccess.Models.EntityAssigments
 @using DataAccess.Repositories
 @model MoviesPortalWebApp.Models.MovieVM
 @using Microsoft.AspNetCore.Identity;
+@using MoviesPortalWebApp.AssigmentsVM
 
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
+@inject IMapper _mapper;
 
 @{
     ViewData["Title"] = "DetailsUser";
-    
+    ApiClient client = new();
 
-    
-   // var fMovieId = listFavourities.Select(x => x.Id);
+
+
+    // var fMovieId = listFavourities.Select(x => x.Id);
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 }
 
 @{
-    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
-    var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
-    var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+    List<CreativePersonVM> actorsFromDb = new();
+    List<CreativePersonVM> directorsFromDb = new();
+    PersonsRoot personsFromApi = new(); 
+
+
+    if(!Model.IsApiModel)
+    {
+        actorsFromDb = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").Select(c => c.CreativePerson).ToList();
+        directorsFromDb = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").Select(c => c.CreativePerson).ToList();
+    }
+    else
+    {
+        personsFromApi = await client.GetPersons(Model.Id);
+        var directors = personsFromApi.Crew;
+        directorsFromDb = _mapper.Map<List<CreativePersonVM>>(directors);
+        var actors = personsFromApi.Cast;
+        actorsFromDb = _mapper.Map<List<CreativePersonVM>>(actors);
+    }
+    //var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
+    //var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
 }
 
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
@@ -31,33 +54,33 @@
      <div class="Title">@Model.Title.ToUpper()</div>
 
 <p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
-@{var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();  }  
+@{  }  
 
 <strong>
-      @if(directors.Count == 1)
+      @if(directorsFromDb.Count == 1)
             {
                <p class="inline" id="name">Director:</p>
             }
-            else if(directors.Count > 1)
+            else if(directorsFromDb.Count > 1)
             {
                 <p class="inline" id="name">Directors:</p>
             }
 </strong>
 <p class="inline"
 <strong>
-         @if(directors.Count == 1)
+         @if(directorsFromDb.Count == 1)
             {
                 <span>
-                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="vanila">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a> 
+                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directorsFromDb.Single().Id" class="vanila">@directorsFromDb.Single().Name @directorsFromDb.Single().SurName</a> 
                 
              </span>
             }
-            else if(directors.Count > 1)
+            else if(directorsFromDb.Count > 1)
             {
                 <p>
-                    @foreach (var director in directors)
+                    @foreach (var director in directorsFromDb)
                     {<span>
-                        <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.CreativePersonId" class="vanila">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
+                        <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.Id" class="vanila">@director.Name @director.SurName</a>
                        <span class="vanila"> |</span>
                     </span>
                     }
@@ -72,10 +95,10 @@
 <p class="inline">
 
 <strong>
-      @foreach (var person in cast)
+      @foreach (var person in actorsFromDb)
                     {
                         <span>
-                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.CreativePersonId" class="vanila">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.Id" class="vanila">@person.Name @person.SurName</a>
                        <span class="vanila"> |</span>
                         </span>
                     }
@@ -89,7 +112,7 @@
 
 
 
-@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+@*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
             if(listFavourities.Count > 0)
@@ -100,6 +123,6 @@
             {
                 <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
             }
-        }
+        }*@
 </div>
 

@@ -80,5 +80,7 @@ namespace BusinessLogic.ApiHandler.ApiModels
 
         [JsonPropertyName("vote_count")]
         public int Vote_Count { get; set; }
+
+        public bool IsApiModel { get; set; } = true;
     }
 }

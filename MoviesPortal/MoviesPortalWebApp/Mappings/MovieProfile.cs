@@ -24,7 +24,20 @@ namespace MoviesPortalWebApp.Mappings
             //Api Mappings
 
             CreateMap<Genre, GenreVM>()
-                .ForMember(d => d.Genre, o => o.MapFrom(s => s.Name));
+                .ForMember(d => d.Genre, o => o.MapFrom(s => s.Name)).ReverseMap();
+
+            CreateMap<Cast, CreativePersonVM>()
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name.Split(' ', ' ').First()))
+                .ForMember(d => d.SurName, o => o.MapFrom(s => s.Name.Split(' ', ' ').Last()))
+                .ForMember(d => d.PhotographyPath, o => o.MapFrom(s => s.Profile_Path)).ReverseMap()
+                ;
+                
+
+            CreateMap<Crew, CreativePersonVM>()
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name.Split(' ', ' ').First()))
+                .ForMember(d => d.SurName, o => o.MapFrom(s => s.Name.Split(' ', ' ').Last()))
+                .ForMember(d => d.PhotographyPath, o => o.MapFrom(s => s.Profile_Path)).ReverseMap();
+
 
             CreateMap<Movie, MovieVM>()
                 .ForMember(d => d.Title, o => o.MapFrom(s => s.Title))
@@ -34,7 +47,9 @@ namespace MoviesPortalWebApp.Mappings
                 .ForMember(d => d.BackgroundPoster, o => o.MapFrom(s => "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + s.Backdrop_Path))
                 .ForMember(d => d.ImdbRatio, o => o.MapFrom(s => s.Vote_Average.ToString()))
                 .ForMember(d => d.IsForKids, o => o.MapFrom(s => !s.Adult))
-                .ForMember(d => d.Genres, o => o.MapFrom(s => s.Genres));
+                .ForMember(d => d.Genres, o => o.MapFrom(s => s.Genres)).ReverseMap()
+                ;
+
                 
                 
         }
