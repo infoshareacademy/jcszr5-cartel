@@ -12,6 +12,7 @@ using DataAccess.Repositories.SampleData;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesPortalWebApp.ServicesForControllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,6 +34,8 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
 builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<ApiClient>();
+builder.Services.AddScoped<PersonsAgregator>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 

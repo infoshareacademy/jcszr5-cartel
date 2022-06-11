@@ -7,6 +7,7 @@ using DataAccess.Models.EntityAssigments;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.Models;
+using MoviesPortalWebApp.ServicesForControllers;
 
 namespace MoviesPortalWebApp.Controllers
 {
@@ -16,16 +17,18 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMapper _mapper;
         private readonly IGenreService _genreService;
         private readonly ICreativePersonService _creativePersonService;
+        private readonly PersonsAgregator _personAgregator;
         private ApiClient client = new();
 
 
-        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator)
         {
             _movieService = movieService;
             _mapper = mapper;
 
             _genreService = genreService;
             _creativePersonService = creativePersonService;
+            _personAgregator = personAgregator;
         }
 
         #region User
@@ -68,7 +71,8 @@ namespace MoviesPortalWebApp.Controllers
             }
 
             MovieVM movie = _mapper.Map<MovieVM>(model);
-            
+            ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
+            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
 
             return View(movie);
         }
