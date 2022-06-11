@@ -1,0 +1,82 @@
+﻿@model MoviesPortalWebApp.Models.TvSeriesVM
+
+@{
+    ViewData["Title"] = "Details";
+    var series = Model;
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>About series</h4>
+    <hr />
+    <dl class="row" style="color:darkgray">
+        
+        
+        <dt class = "col-sm-2">
+            <h3>Title</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            <h3>@series.Title</h3>
+        </dd>
+        <dt class = "col-sm-2">
+            <h3>Description</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            <p>@series.Description</p>
+        </dd>
+        <dt class = "col-sm-2">
+            <h3>Timeline</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            <p>From: @series.StartYear <br />To: @series.EndYear</p>
+        </dd>        
+        <dt class = "col-sm-2">
+            <h3>Directors</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                var directors = series.TvSeries_CreativeP_Role.Where(c => c.Role.RoleName == "Director").Select(c => c.CreativePerson).ToList();                
+            }
+            @foreach(var item in directors )
+            {    
+                <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@item.Id" ><p>@item.Name @item.SurName</p></a>
+            }
+        </dd>
+        <dt class = "col-sm-2">
+            <h3>Cast</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                var actors = series.TvSeries_CreativeP_Role.Where(c => c.Role.RoleName == "Actor").Select(c => c.CreativePerson).ToList();                
+            }
+            @foreach(var item in actors )
+            {                
+                <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@item.Id" ><p>@item.Name @item.SurName</p></a>
+            }
+        </dd> 
+        <dt class = "col-sm-2">
+            <h3>Seasons</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            @{
+                var seasons = series.Seasons.ToList();
+             }
+            @foreach(var season in seasons)
+            {
+                <a asp-controller="TvSeries" asp-action="ListEpisodes" asp-route-id="@season.Id" >@season.SeasonNumber  </a>
+            }
+        </dd>
+        </dd> 
+        <dt class = "col-sm-2">
+            <h3>IMDB Ratio</h3>
+        </dt>
+        <dd class = "col-sm-10">
+            <p>@series.ImdbRatio</p>
+        </dd>
+    </dl>
+</div>
+<div>
+    
+    <a asp-action="Index" class="btn btn-dark">Back</a>
+</div>

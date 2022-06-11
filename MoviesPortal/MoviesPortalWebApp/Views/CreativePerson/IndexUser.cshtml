@@ -1,0 +1,24 @@
+﻿@model IEnumerable<MoviesPortalWebApp.Models.CreativePersonVM>
+
+@{
+    ViewData["Title"] = "IndexUser";
+}
+
+<section id="top_movies text-light" class="clearfix">
+    <div class="wrapper text-light">  
+        <div class="movieBox">
+            <section class="moviePerson">
+
+            @foreach(var item in Model)
+            {
+                <div class="personGallery">
+                    <a href='@Url.Action("DetailsUser", "CreativePerson", new {  id=item.Id  })'>
+                        <img src="@item.PhotographyPath" alt="@item.Name">                   
+                    </a>
+               <div class="desc">@item.Name @item.SurName</div>
+               </div>
+            }
+        </section>
+        </div>
+    </div>
+</section>

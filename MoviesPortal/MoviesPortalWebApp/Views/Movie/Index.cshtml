@@ -1,0 +1,62 @@
+﻿@model IEnumerable<MoviesPortalWebApp.Models.MovieVM>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p id="AdminForms">
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table whiteText">
+    <thead>
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductionYear)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>            
+            <th>
+                @Html.DisplayNameFor(model => model.ImdbRatio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsForKids)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+          
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductionYear)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>    
+            <td>
+                @Html.DisplayFor(modelItem => item.ImdbRatio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsForKids)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new {  id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

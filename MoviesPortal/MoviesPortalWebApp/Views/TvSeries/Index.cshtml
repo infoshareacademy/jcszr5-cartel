@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MoviesPortalWebApp.Models.TvSeriesVM>
+@using BusinessLogic.Services;
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Tv Series</h1><br /><br />
+<form asp-controller="TvSeries" asp-action="Index">
+    
+    
+    <div class="col-sm-2">
+        <input type="text" class="form-control" name="SearchString" /><input type="submit" class="btn btn-outline-light" value="Search!" />
+        
+    </div>    
+</form>
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th>
+                
+            </th>
+            
+            <th>
+                
+            </th>
+            <th>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>             
+            </td>
+            <td>             
+            </td>
+            <td style="color:darkgray">
+                <h2>@Html.DisplayFor(modelItem => item.Title)</h2><br><br>
+                <p>@item.Description</p><br>
+                <p>Start Year: @item.StartYear , Ended: @item.EndYear</p><br>                
+                <p> @string.Join(", ", item.Genres.Select(g => g.Genre))</p>
+                @{
+                var seasons = item.Seasons.ToList();
+                }
+                @foreach(var season in seasons)
+                {
+                <a asp-controller="TvSeries" asp-action="ListEpisodes" asp-route-id="@season.Id" >@season.SeasonNumber  </a>
+                }
+                
+
+            </td>
+            
+            <td>
+                <div class="col-md-6">
+                        <a asp-action="Details" asp-route-id="@item.Id"><img src="@item.PosterPath" width="270px"  alt="@item.Title "></a>
+               </div> 
+            </td>
+            <td>
+                <div>
+                    <p>Watch trailer:</p><br>
+                    <a href="@item.TrailerUrl">@item.TrailerUrl</a>
+               </div> 
+                
+            </td>
+            <td>              
+            </td>
+            <td>              
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

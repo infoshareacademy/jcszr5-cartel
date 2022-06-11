@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MoviesPortalWebApp.Models.EpisodeVM>
+ 
+
+@{
+    ViewData["Title"] = "ListEpisodes";
+}
+
+<h1>Episodes of season </h1>
+
+<p>
+ 
+</p>
+<table class="table">
+    <thead>
+        <tr style="color:darkgray">
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 1;
+        }
+        @foreach (var item in Model) {
+        
+    <tr style="color:darkgray">            
+            <td>
+              @index . @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>                
+            </td>
+        </tr>
+         index++;
+        }       
+    </tbody>
+</table>
+<div>
+    
+    <a asp-action="Index" class="btn btn-dark" >Back</a>
+</div>

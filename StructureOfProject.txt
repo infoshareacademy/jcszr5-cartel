@@ -1,0 +1,117 @@
+[Structure of project: TEAM CARTEL's MOVIE PORTAL]
+
+
+#  Application start
+[Display Main Menu]
+
+	== MAIN MENU ==
+	
+	1. Log in to your account
+	2. Create new account
+	3. Log in as admin  [This is subject to change since it should be possible only for existing admin to assign other user as admin ]
+	4. Exit app
+
+
+	#  If input == 1 display Login Page 
+	[Display Login Page]
+
+		== LOGIN PAGE ==
+
+	[Step 1] Ask user to enter user name
+		* verify if user is in DB, if yes continue to Step 2, else back to Step 1
+	[Step 2] Ask user enter user password
+		* verify if password is correct, if yes continue to Step 3, else repeat Step 2
+		
+		* At any time user should be able to cancel login process and return to Main Menu i.e. by typing 'cancel'
+
+	[Step 3] USER MENU PAGE should be displayed
+
+
+	#   If input == 2 display Create New User Page
+
+		== CREATE NEW USER PAGE ==
+
+	[Step 1] Ask user to enter user name
+		* verify if correct and in DB, if yes continue to Step 2, else back to Step 1
+	[Step 2] Ask user enter user password
+		* verify if meets requirements, if yes continue to Step 3, else repeat Step 2
+		
+		*At any time user should be able to cancel login process and return to Main Menu i.e. by typing 'cancel'
+		
+	[Step 3] Create user of User class and assign name and pasword within class constructor
+	[Step 4] Add user to users list 
+		* User class has property 'Role' - {user, admin} by default created user's role should  be set as 'user' (only existing admin can upgrade the user to admin)
+	[Step 5] Save user to DB
+	[Step 6] Return to Main Menu.
+		* newly created user is moved back to Main Menu and can now choose 1. to login to created account
+	
+	
+#   After successful login to regular user account - user.Role == 'user'
+[Display user Main Menu]
+
+    == USER MAIN MENU ==
+	
+	1. Browse movies
+	2. Search movies database
+	3. For Kids
+	4. Logout    * this should return to MAIN MENU
+	
+	
+	#   If input == 1 display Browse Movies Page    
+	[Display user Main Menu]
+
+		== BROWSE MOVIES ==
+		 
+		1. By Title
+		2. By Genre
+		3. By Actor
+		4. Back to menu    * this should return to USER MAIN MENU
+		
+		[ Q: What is the difference between Browse Movies Page ans Search Movies Page? Don't they do the same thing? Maybe just limit browse page to Favourites + Genre]
+		
+		
+	#   If input == 2 display Search Movies Page
+	[Display user Main Menu]
+
+		== SEARCH MOVIES ==
+		1. By Title
+		2. By Genre
+		3. By Actor
+		4. Back to menu    * this should return to USER MAIN MENU
+
+	
+#   After successful login to admin account - user.Role == 'admin'
+[Display admin Main Menu]
+    == ADMIN MAIN MENU ==
+	
+	1. Movies database tasks
+	2. Actor/Director database tasks
+	3. Users database tasks
+	4. Logout    * this should return to MAIN MENU
+	
+
+	#   If input == 1 display Movies Database Page
+		== MOVIES DATABASE PAGE ==
+		1. Add Movies
+		2. Edit Movies
+		3. Delete Movie
+		4. Back to menu    * this should return to ADMIN MAIN MENU
+	
+		
+	#   If input == 2 display Films Database Page
+		== ACTORS/DIRECTORS DATABASE PAGE ==
+		1. Add Actor/Director
+		2. Edit Actor/Director
+		3. Delete Actor/Director
+		4. Back to menu    * this should return to ADMIN MAIN MENU
+	
+
+	#   If input == 3 display Users database tasks Page
+		== USERS DATABASE PAGE ==
+		1. Upgrade user to admin    *if decided by team to do so
+		2. Upgrade user Premium user
+		3. Remove user
+		4. Back to menu    * this should return to ADMIN MAIN MENU
+	
+
+

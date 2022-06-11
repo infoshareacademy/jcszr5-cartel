@@ -1,0 +1,118 @@
+﻿@model MoviesPortalWebApp.Models.MovieVM
+
+@{
+    ViewData["Title"] = "Details";
+    var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
+    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="row">       
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductionYear)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProductionYear)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PosterPath)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PosterPath)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TrailerUrl)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TrailerUrl)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IsForKids)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IsForKids)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ImdbRatio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ImdbRatio)/10
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+        <dd class = "col-sm-10">           
+                @string.Join(", ", Model.Genres.Select(g => g.Genre))
+        </dd>      
+
+        <dt class = "col-sm-2">
+            @if(directors.Count == 1)
+            {
+                <p>Director: </p>
+            }
+            else if(directors.Count > 1)
+            {
+                <p>Directors: </p>
+            }
+        </dt>
+        <dd class = "col-sm-10">
+
+            @if(directors.Count == 1)
+            {
+                 <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@directors.Single().CreativePersonId" class="custom-link">@directors.Single().CreativePerson.Name @directors.Single().CreativePerson.SurName</a>
+            }
+            else if(directors.Count > 1)
+            {
+                <p>
+                    @foreach (var director in directors)
+                    {
+                        <span>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@director.CreativePersonId" class="custom-link">@director.CreativePerson.Name @director.CreativePerson.SurName</a>
+                       </span>
+                    }
+
+                </p>
+            }
+           
+        </dd>
+
+        <dt class = "col-sm-2">
+            <p>Cast: </p>
+        </dt>
+
+        <dd class = "col-sm-10">
+                <p>
+                    @foreach (var person in cast)
+                    {
+                        <span>
+                            <a asp-controller="CreativePerson" asp-action="DetailsUser" asp-route-id="@person.CreativePersonId" class="custom-link">@person.CreativePerson.Name @person.CreativePerson.SurName</a>
+                       </span>
+                    }
+
+                </p>
+        </dd>
+
+        
+
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new {  id = Model.Id  }) |
+    <a asp-action="IndexUser">Back to List</a>
+</div>

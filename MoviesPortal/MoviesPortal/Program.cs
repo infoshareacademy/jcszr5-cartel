@@ -1,17 +1,12 @@
 
 ﻿using MoviesPortal;
 using MoviesPortal.BusinessLayer;
+using MoviesPortal.DataLayer;
 using MoviesPortal.Menu;
+using MoviesPortal.UserService;
 
- IMenu adminMenu = new AdminMenu();
- IMenu userMenu = new UserMenu();
-
-adminMenu.InitializeMenu();
-
-var _iOHelper = new IOHelper();
-
-
-LoginPanel loginPanel = new LoginPanel();
-loginPanel.ChooseOption();
-
-
+MovieStoreService database = new();
+CreativePersonAgency agency = new();
+database.LoadMoviesFromJson(); //załaduj bazę filmów
+//agency.LoadCreativePersonsFromJson(); // załaduj bazę aktorów/reżyserów
+LoginPanel.MainPanel();
