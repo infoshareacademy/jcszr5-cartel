@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
+using BusinessLogic.ApiHandler;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
-using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.Models;
+using MoviesPortalWebApp.ServicesForControllers;
 
 namespace MoviesPortalWebApp.Controllers
 {
@@ -13,14 +15,20 @@ namespace MoviesPortalWebApp.Controllers
     {
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
+        private readonly IGenreService _genreService;
+        private readonly ICreativePersonService _creativePersonService;
+        private readonly PersonsAgregator _personAgregator;
+        private ApiClient client = new();
 
-        private readonly MoviePortalContext _context;
 
-        public MovieController(IMovieService movieService, IMapper mapper, MoviePortalContext context)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator)
         {
             _movieService = movieService;
             _mapper = mapper;
-            _context = context;
+
+            _genreService = genreService;
+            _creativePersonService = creativePersonService;
+            _personAgregator = personAgregator;
         }
 
         #region User
@@ -29,8 +37,6 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<IActionResult> IndexUser(string genre, string searchString)
         {
             var model = _movieService.GetAllMovies();
-            
-            //var model = from m in _context.Movies select m;
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -40,18 +46,34 @@ namespace MoviesPortalWebApp.Controllers
             {
                 model = model.Where(g => g.Genres.All(g => g.Genre == genre));
             }
-            
-            
+
+
             var movies = _mapper.Map<IList<MovieVM>>(model);
-            return View(movies);
+            var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
+            var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
+            var newMovies = movies.Concat(moviesMapped).ToList();
+            return View(newMovies);
         }
         #endregion
 
         #region User movie details
         public async Task<IActionResult> DetailsUser(int id)
         {
-            var model = await _movieService.GetMovieIdByAsync(id);
-            var movie = _mapper.Map<MovieVM>(model);
+            dynamic model;
+
+            if (_movieService.GetAllMovies().Any(m => m.Id == id))
+            {
+                model = await _movieService.GetMovieIdByAsync(id);
+            }
+            else
+            {
+                model = await client.GetMovieDetails(id);
+            }
+
+            MovieVM movie = _mapper.Map<MovieVM>(model);
+            ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
+            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
+
             return View(movie);
         }
         #endregion
@@ -63,7 +85,7 @@ namespace MoviesPortalWebApp.Controllers
         #region Admin movies list
         public async Task<IActionResult> Index()
         {
-            var model =  _movieService.GetAllMovies();
+            var model = _movieService.GetAllMovies();
             var movies = _mapper.Map<IList<MovieVM>>(model);
             return View(movies);
         }
@@ -79,19 +101,24 @@ namespace MoviesPortalWebApp.Controllers
         #endregion
 
         #region Create
-        public async Task<IActionResult> Create(int? Id)
+        public async Task<IActionResult> Create()
         {
-            MovieVM model = new MovieVM();
+            MovieVM model = new();
+            //model.Genres = await _genreService.GetAllGenresAsStrings();
+
+
             List<int> genresIds = new List<int>();
             List<int> actorsIds = new List<int>();
+            var genres = await _genreService.GetAllGenres();
+            var persons = await _creativePersonService.GetAllCreativePersons();
 
             var movie = new MovieModel();
             model = _mapper.Map<MovieVM>(movie);
-            model.selectedGenres = _context.Genres
-                .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
-            model.selectedActors = _context.CreativePersons
+            model.selectedGenres = genres
+               .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+            model.selectedActors = persons
                .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
-            model.selectedDirectors = _context.CreativePersons
+            model.selectedDirectors = persons
                .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
             return View(model);
@@ -139,9 +166,7 @@ namespace MoviesPortalWebApp.Controllers
                 movie.RoleCreativeMovie = movieActorsRole;
             }
 
-
-            _context.Movies.Add(movie);
-            _context.SaveChanges();
+            await _movieService.CreateNewMovie(movie);
 
             return RedirectToAction("Index");
         }
@@ -155,6 +180,8 @@ namespace MoviesPortalWebApp.Controllers
             List<int> genresIds = new List<int>();
             List<int> actorsIds = new List<int>();
             List<int> directorsIds = new List<int>();
+            var genres = await _genreService.GetAllGenres();
+            var persons = await _creativePersonService.GetAllCreativePersons();
 
             if (Id.HasValue)
             {
@@ -169,13 +196,13 @@ namespace MoviesPortalWebApp.Controllers
                 var vm = _mapper.Map<MovieVM>(movie);
 
                 //bind model 
-                model.selectedGenres = _context.Genres
+                model.selectedGenres = genres
                         .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
 
-                model.selectedActors = _context.CreativePersons
+                model.selectedActors = persons
                         .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
-                model.selectedDirectors = _context.CreativePersons
+                model.selectedDirectors = persons
                         .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
 
 
@@ -198,65 +225,59 @@ namespace MoviesPortalWebApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(MovieVM model)
         {
-            MovieModel newMovie = new MovieModel();
-            List<MovieGenre> movieGenres = new List<MovieGenre>();
-            List<Movie_CreativeP_Role> movieCP = new List<Movie_CreativeP_Role>();
-            List<Movie_CreativeP_Role> movieD = new List<Movie_CreativeP_Role>();
+            MovieModel Movie = await _movieService.GetMovieIdByAsync(model.Id);
+            var oldMovieGenres = Movie.Genres.ToList();
+            var oldMovieActors = Movie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Actor").ToList();
+            var oldMovieDirectors = Movie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Director").ToList();
 
 
             if (model.Id > 0)
             {
-                newMovie = await _movieService.GetMovieIdByAsync(model.Id);
+                //_context.Movie_Genre.RemoveRange(movieGenres);
+                //_context.Role_CreativeP_Movie.RemoveRange(movieActors);
+                //_context.Role_CreativeP_Movie.RemoveRange(movieDirectors);
+                //_context.SaveChanges();
 
-                newMovie.MovieGenres.ToList().ForEach(result => movieGenres.Add(result));
-                newMovie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Actor").ToList().ForEach(result => movieCP.Add(result));
-                newMovie.RoleCreativeMovie.Where(x => x.Role.RoleName == "Director").ToList().ForEach(result => movieD.Add(result));
-
-                _context.Movie_Genre.RemoveRange(movieGenres);
-                _context.Role_CreativeP_Movie.RemoveRange(movieCP);
-                _context.Role_CreativeP_Movie.RemoveRange(movieD);
-                _context.SaveChanges();
-
-                newMovie.Title = model.Title;
-                newMovie.Id = model.Id;
-                newMovie.Description = model.Description;
-                newMovie.ProductionYear = model.ProductionYear;
-                newMovie.PosterPath = model.PosterPath;
-                newMovie.TrailerUrl = model.TrailerUrl;
-                newMovie.IsForKids = model.IsForKids;
+                Movie.Title = model.Title;
+                Movie.Id = model.Id;
+                Movie.Description = model.Description;
+                Movie.ProductionYear = model.ProductionYear;
+                Movie.PosterPath = model.PosterPath;
+                Movie.TrailerUrl = model.TrailerUrl;
+                Movie.IsForKids = model.IsForKids;
 
                 if (model.GenresIds.Length > 0)
                 {
 
-                    movieGenres = new List<MovieGenre>();
+                    List<MovieGenre> movieGenres = new List<MovieGenre>();
 
                     foreach (var genreId in model.GenresIds)
                     {
                         movieGenres.Add(new MovieGenre { GenreId = genreId, MovieId = model.Id });
                     }
 
-                    newMovie.MovieGenres = movieGenres;
+                    Movie.MovieGenres = movieGenres;
                 }
 
                 if (model.ActorsIds.Length > 0)
                 {
 
-                    movieCP = new List<Movie_CreativeP_Role>();
+                    List<Movie_CreativeP_Role> movieActors = new List<Movie_CreativeP_Role>();
 
                     foreach (var actId in model.ActorsIds)
                     {
-                        movieCP.Add(new Movie_CreativeP_Role { CreativePersonId = actId, MovieId = model.Id, RoleId = 1 });
+                        movieActors.Add(new Movie_CreativeP_Role { CreativePersonId = actId, MovieId = model.Id, RoleId = 1 });
                     }
 
                     foreach (var drId in model.DirectorsIds)
                     {
-                        movieCP.Add(new Movie_CreativeP_Role { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
+                        movieActors.Add(new Movie_CreativeP_Role { CreativePersonId = drId, MovieId = model.Id, RoleId = 2 });
                     }
 
-                    newMovie.RoleCreativeMovie = movieCP;
+                    Movie.RoleCreativeMovie = movieActors;
 
                 }
-                _context.SaveChanges();
+                //_context.SaveChanges();
             }
 
             return RedirectToAction("Index");

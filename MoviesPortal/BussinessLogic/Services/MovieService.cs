@@ -6,15 +6,6 @@ using DataAccess.Repositories;
 
 namespace BusinessLogic.Services
 {
-    public interface IMovieService 
-    {
-        public IQueryable<MovieModel> GetAllMovies();
-
-        public Task<MovieModel> GetMovieIdByAsync(int? id);
-
-        public Task DeleteMovieByIdAsync(int id);
-
-    }
 
     public class MovieService : IMovieService
     {
@@ -36,6 +27,9 @@ namespace BusinessLogic.Services
 
         public async Task<MovieModel> GetMovieIdByAsync(int? id)
         {
+            
+            
+            
             var movie = await _movieRepository.GetMovieIdByAsync(id);
             return movie;
         }
@@ -43,6 +37,10 @@ namespace BusinessLogic.Services
         public async Task DeleteMovieByIdAsync(int id)
         {
             await _movieRepository.DeleteMovieByIdAsync(id);
+        }
+        public async Task CreateNewMovie(MovieModel movie)
+        {
+            await _movieRepository.Create(movie);
         }
     }
 }
