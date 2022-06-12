@@ -37,21 +37,19 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<IActionResult> IndexUser(string genre, string searchString)
         {
             var model = _movieService.GetAllMovies();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                model = model.Where(s => s.Title.Contains(searchString));
-            }
-            if (!string.IsNullOrEmpty(genre))
-            {
-                model = model.Where(g => g.Genres.All(g => g.Genre == genre));
-            }
-
-
             var movies = _mapper.Map<IList<MovieVM>>(model);
             var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
             var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
-            var newMovies = movies.Concat(moviesMapped).ToList();
+            var newMovies = movies.Concat(moviesMapped).ToList(); 
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                newMovies = newMovies.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
+            }
+            if (!string.IsNullOrEmpty(genre))
+            {
+                newMovies = newMovies.Where(g => g.Genres.All(g => g.Genre == genre)).ToList();
+            }
             return View(newMovies);
         }
         #endregion
