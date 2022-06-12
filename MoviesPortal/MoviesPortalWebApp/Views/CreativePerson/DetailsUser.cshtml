@@ -2,8 +2,8 @@
 
 @{
     ViewData["Title"] = "DetailsUser";
-    var directors = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").ToList();
-    var cast = Model.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").ToList();
+    var actorInMovies = ViewBag.ActorInMovies;
+    var directorInMovies = ViewBag.DirectorInMovies;
 }
 
 <h1>Details about @Model.Name @Model.SurName</h1>
@@ -24,6 +24,12 @@
             @Html.DisplayFor(model => model.SurName)
         </dd>
         <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Biography)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Biography)
+        </dd>
+        <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.PhotographyPath)
         </dt>
         <dd class = "col-sm-10">
@@ -36,24 +42,24 @@
             @Html.DisplayFor(model => model.DateOfBirth)
         </dd>
 
-        @if(cast.Count > 0)
+        @if(actorInMovies.Count > 0)
         {
             <dt class = "col-sm-2">
                 <p>Actor in movies: </p>
             </dt>
             <dd class = "col-sm-10">
                     <p>
-                        @foreach (var person in cast)
+                        @foreach (var movie in actorInMovies)
                         {
                             <span>
-                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
+                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@movie.Id" class="custom-link">@movie.Title</a>
                            </span>
                         }
                     </p>
             </dd>
         }
 
-        @if(directors.Count > 0)
+        @if(directorInMovies.Count > 0)
         {
            <dt class = "col-sm-2">
             <p>Director in movies: </p>
@@ -61,10 +67,10 @@
 
             <dd class = "col-sm-10">
                     <p>
-                        @foreach (var person in directors)
+                        @foreach (var movie in directorInMovies)
                         {
                             <span>
-                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@person.MovieId" class="custom-link">@person.Movie.Title</a>
+                                <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@movie.Id" class="custom-link">@movie.Title</a>
                            </span>
                         }
 

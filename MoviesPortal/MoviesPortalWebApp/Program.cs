@@ -1,5 +1,8 @@
+using BusinessLogic.ApiHandler;
+using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
+using BusinessLogic.Validation;
 using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
@@ -9,6 +12,7 @@ using DataAccess.Repositories.SampleData;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesPortalWebApp.ServicesForControllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +31,11 @@ builder.Services.AddTransient<IMovieRepository, MovieRepository>();
 builder.Services.AddTransient<ITvSeriesService, TvSeriesService>();
 builder.Services.AddTransient<IMovieService, MovieService>();
 builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
+builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
+builder.Services.AddTransient<IGenreService, GenreService>();
+builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<ApiClient>();
+builder.Services.AddScoped<PersonsAgregator>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -374,4 +383,7 @@ if (!dbContext.TvSeries.Any())
     dbContext.TvSeries_CreativeP_Role.AddRange(creativesForSeries);
     dbContext.SaveChanges();
 }
+
+ApiClient client = new();
+var result = await client.GetPersonsForMovie(284053);
 app.Run();

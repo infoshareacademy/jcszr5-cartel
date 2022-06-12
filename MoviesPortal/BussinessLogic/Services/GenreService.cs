@@ -1,43 +1,56 @@
-﻿using AutoMapper;
-using BusinessLogic.Interfaces;
+﻿using BusinessLogic.Interfaces;
 using DataAccess.Models;
-using DataAccess.Repositories;
 using DataAccess.Repositories.Interfaces;
 
 namespace BusinessLogic.Services
 {
-    
-    public class GenreService 
+
+    public class GenreService : IGenreService
     {
         private readonly IGenreRepository _genreRepository;
-        private readonly ITvSeriesRepository _tvSeriesRepository;
 
-        public GenreService(IGenreRepository genreRepository, IMapper mapper, ITvSeriesRepository tvSeriesRepository)
+        public GenreService(IGenreRepository genreRepository)
         {
             _genreRepository = genreRepository;
-            _tvSeriesRepository = tvSeriesRepository;
         }
 
-        public Task AddNewGenre(GenreModel genre)
+        public async Task AddNewGenre(string genre)
         {
-            throw new NotImplementedException();
+            GenreModel genreModel = new GenreModel();
+            genreModel.Genre = genre;
+            await _genreRepository.Create(genreModel);
         }
 
-        public Task DeleteGenre(int id)
+        public async Task DeleteGenre(int id)
         {
-            throw new NotImplementedException();
+            await _genreRepository.Delete(id);
         }
 
-        public async Task<List<GenreModel>> GetAllGenresForTvSeries(TvSeriesModel tvSeries)
+        public async Task<ICollection<GenreModel>> GetAllGenres()
         {
-            var genres = await _tvSeriesRepository.GetById(tvSeries.Id);
-            
-            return genres.Genres.ToList();
+            return await _genreRepository.GetAll();
         }
 
-        public Task<List<string>> GetGenresFromTvSeries(int id)
+        public async Task<IList<string>> GetAllGenresAsStrings()
         {
-            throw new NotImplementedException();
+            var result = await GetAllGenres();
+            return result.Select(x => x.Genre).ToList();
         }
+
+        public async Task<IList<GenreModel>> GetGenres(TvSeriesModel tvSeries)
+        {
+            var genres = tvSeries.Genres.ToList();
+
+            return genres;
+        }
+
+        public async Task<IList<GenreModel>> GetGenres(MovieModel movie)
+        {
+            var genres = movie.Genres.ToList();
+
+            return genres;
+        }
+
+
     }
 }

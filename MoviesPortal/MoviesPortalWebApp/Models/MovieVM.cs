@@ -17,6 +17,7 @@ namespace MoviesPortalWebApp.Models
         public string? BackgroundPoster { get; set; }
         public string? ImdbRatio { get; set; }
         public bool IsForKids { get; set; }
+        public bool IsApiModel { get; set; }
 
         [Display(Name = "Genres")]
         public virtual IList<GenreVM> Genres { get; set; }

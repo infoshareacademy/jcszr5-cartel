@@ -68,14 +68,14 @@ namespace MoviesPortalWebApp.Controllers
             int numbersOfSeasons = 0;
 
             var series = new TvSeriesModel();
-            model = _mapper.Map<TvSeriesVM>(series);
-            model.selectedGenres = _context.Genres
-                .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
-            model.selectedActors = _context.CreativePersons
-               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
-            model.selectedDirectors = _context.CreativePersons
-               .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
-            model.NumberOfSeasons = numbersOfSeasons;
+            //model = _mapper.Map<TvSeriesVM>(series);
+            //model.selectedGenres = _context.Genres
+            //    .Select(x => new SelectListItem { Text = x.Genre, Value = x.Id.ToString() }).ToList();
+            //model.selectedActors = _context.CreativePersons
+            //   .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+            //model.selectedDirectors = _context.CreativePersons
+            //   .Select(x => new SelectListItem { Text = string.Format("{0} {1}", x.Name, x.SurName), Value = x.Id.ToString() }).ToList();
+            //model.NumberOfSeasons = numbersOfSeasons;
             return View(model);
         }
 
@@ -99,39 +99,39 @@ namespace MoviesPortalWebApp.Controllers
             series.ImdbRatio = model.ImdbRatio; 
             
 
-            if (model.GenresIds.Length > 0)
-            {
+            //if (model.GenresIds.Length > 0)
+            //{
 
-                foreach (var genreId in model.GenresIds)
-                {
-                    tvSeriesGenres.Add(new TvSeriesGenre { GenreId = genreId, TvSeriesId = model.Id });
-                }
+            //    foreach (var genreId in model.GenresIds)
+            //    {
+            //        tvSeriesGenres.Add(new TvSeriesGenre { GenreId = genreId, TvSeriesId = model.Id });
+            //    }
 
-                series.TvSeriesGenres = tvSeriesGenres;
-            }
+            //    series.TvSeriesGenres = tvSeriesGenres;
+            //}
 
-            if (model.ActorsIds.Length > 0)
-            {
-                foreach (var actorId in model.ActorsIds)
-                {
-                    tvSeries_CreativeP_Role.Add(new TvSeries_CreativeP_Role { CreativePersonId = actorId, TvSeriesId = model.Id, RoleId = 1 });
-                }
+            //if (model.ActorsIds.Length > 0)
+            //{
+            //    foreach (var actorId in model.ActorsIds)
+            //    {
+            //        tvSeries_CreativeP_Role.Add(new TvSeries_CreativeP_Role { CreativePersonId = actorId, TvSeriesId = model.Id, RoleId = 1 });
+            //    }
 
-                foreach (var drId in model.DirectorsIds)
-                {
-                    tvSeries_CreativeP_Role.Add(new TvSeries_CreativeP_Role { CreativePersonId = drId, TvSeriesId = model.Id, RoleId = 2 });
-                }
+            //    foreach (var drId in model.DirectorsIds)
+            //    {
+            //        tvSeries_CreativeP_Role.Add(new TvSeries_CreativeP_Role { CreativePersonId = drId, TvSeriesId = model.Id, RoleId = 2 });
+            //    }
 
-                series.TvSeries_CreativeP_Role = tvSeries_CreativeP_Role;
-            }
-            if (model.NumberOfSeasons > 0)
-            {
-                for (int i = 1; i <= model.NumberOfSeasons; i++)
-                {
-                    seasons.Add(new SeasonModel { SeasonNumber = i });
-                }
-                series.Seasons = seasons;
-            }
+            //    series.TvSeries_CreativeP_Role = tvSeries_CreativeP_Role;
+            //}
+            //if (model.NumberOfSeasons > 0)
+            //{
+            //    for (int i = 1; i <= model.NumberOfSeasons; i++)
+            //    {
+            //        seasons.Add(new SeasonModel { SeasonNumber = i });
+            //    }
+            //    series.Seasons = seasons;
+            //}
 
 
             _context.TvSeries.Add(series);

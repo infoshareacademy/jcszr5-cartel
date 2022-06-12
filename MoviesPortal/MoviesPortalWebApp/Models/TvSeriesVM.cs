@@ -18,15 +18,11 @@ namespace MoviesPortalWebApp.Models
         public string? BackgroundPoster { get; set; }
         public string? ImdbRatio { get; set; }
         //public virtual ICollection<SeasonVM> Seasons { get; set; }
-        public virtual ICollection<TvSeries_CreativeP_RoleVM> TvSeries_CreativeP_Role { get; set; }
-        public virtual ICollection<TvSeriesGenreVM> TvSeriesGenres { get; set; }
+        public virtual ICollection<TvSeries_CreativeP_RoleVM> TvSeries_CreativeP_Role { get; set; }        
         public virtual ICollection<SeasonVM> Seasons { get; set; }
-        public int[] GenresIds { get; set; }
-        public int[] ActorsIds { get; set; }
-        public int[] DirectorsIds { get; set; }
-        public List<SelectListItem> selectedGenres { get; set; }
-        public List<SelectListItem> selectedActors { get; set; }
-        public List<SelectListItem> selectedDirectors { get; set; }
+        public List<SelectListItem> GenreList { get; set; }
+        public List<SelectListItem> ActorsList { get; set; }
+        public List<SelectListItem> DirectorsList { get; set; }
         public int NumberOfSeasons { get; set; }
     }
 }

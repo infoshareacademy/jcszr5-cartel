@@ -48,19 +48,7 @@
                 <input asp-for="ImdbRatio" class="form-control" />
                 <span asp-validation-for="ImdbRatio" class="text-danger"></span>
             </div>   
-            <div class="col-md-6 mb-4">
-                <label asp-for="GenresIds" class="control-label"></label>
-                <select asp-for="GenresIds" asp-items="@Model.selectedGenres" class="@*form-control *@selectpicker" data-live-search="true" data-size="10" data-max-options="5"></select>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label asp-for="ActorsIds" class="control-label"></label>
-                <select asp-for="ActorsIds" asp-items="@Model.selectedActors" class="@*form-control *@selectpicker" data-live-search="true" data-size="10" data-max-options="5"></select>
-            </div>
             
-            <div class="col-md-6 mb-4">
-                <label asp-for="DirectorsIds" class="control-label"></label>
-                <select asp-for="DirectorsIds" asp-items="@Model.selectedDirectors" class="@*form-control *@selectpicker" data-live-search="true" data-size="10" data-max-options="5"></select>
-            </div>
             <div class="form-group">
                 <label asp-for="NumberOfSeasons" class="control-label"></label>
                 <input asp-for="NumberOfSeasons" class="form-control" />
