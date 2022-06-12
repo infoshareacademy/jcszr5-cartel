@@ -17,8 +17,9 @@ namespace MoviesPortalWebApp.Mappings
             CreateMap<GenreModel, GenreVM>();
             CreateMap<CreativePersonModel, CreativePersonVM>().ReverseMap();
             CreateMap<RoleModel, RoleVM>();
-            CreateMap<Movie_CreativeP_Role, RoleCreativeMovieVM>().ReverseMap();
-            //CreateMap<MovieCreativePerson, MovieCreativePersonVM>();
+            CreateMap<Movie_CreativeP_Role, RoleCreativeMovieVM>()
+                //.ForMember(d => d.Id, o=>o.MapFrom(s => s.MovieId))
+                .ReverseMap();            
             CreateMap<CreativePersonModel, CreativePersonVM>();
 
             //Api Mappings
@@ -31,7 +32,14 @@ namespace MoviesPortalWebApp.Mappings
                 .ForMember(d => d.SurName, o => o.MapFrom(s => s.Name.Split(' ', ' ').Last()))
                 .ForMember(d => d.PhotographyPath, o => o.MapFrom(s => s.Profile_Path)).ReverseMap()
                 ;
-                
+
+            CreateMap<PersonDetails, CreativePersonVM>()
+                .ForMember(d => d.Name, o => o.MapFrom(s => s.Name.Split(' ', ' ').First()))
+                .ForMember(d => d.SurName, o => o.MapFrom(s => s.Name.Split(' ', ' ').Last()))
+                .ForMember(d => d.PhotographyPath, o => o.MapFrom(s => "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + s.Profile_Path))
+                .ForMember(d => d.DateOfBirth, o => o.MapFrom(s => DateTime.Parse(s.Birthday)))
+                .ForMember(d => d.Biography, o => o.MapFrom(s => s.Biography));
+
 
             CreateMap<Crew, CreativePersonVM>()
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.Name.Split(' ', ' ').First()))

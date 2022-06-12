@@ -32,7 +32,7 @@ namespace MoviesPortalWebApp.ServicesForControllers
             }
             else
             {
-                personsFromApi = await client.GetPersons(movie.Id);
+                personsFromApi = await client.GetPersonsForMovie(movie.Id);
                 var directors = personsFromApi.Crew;
                 directorList = _mapper.Map<List<CreativePersonVM>>(directors);
                 var actors = personsFromApi.Cast;

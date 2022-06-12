@@ -10,7 +10,7 @@ namespace BusinessLogic.Services
 {
     public interface ICreativePersonService
     {
-        public Task<ICollection<CreativePersonModel>> GetAllCreativePersons();
+        public Task<IQueryable<CreativePersonModel>> GetAllCreativePersons();
 
         public Task<CreativePersonModel> GetCreativePersonsById(int id);
 
@@ -32,10 +32,10 @@ namespace BusinessLogic.Services
 
         }
 
-        public async Task<ICollection<CreativePersonModel>> GetAllCreativePersons()
+        public async Task<IQueryable<CreativePersonModel>> GetAllCreativePersons()
         {
             var persons = await _creativePersonRepository.GetAllCreativePersons();
-            return persons;
+            return persons.AsQueryable();
         }
 
         public async Task<CreativePersonModel> GetCreativePersonsById(int id) 

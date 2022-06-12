@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLogic.ApiHandler;
 using BusinessLogic.Services;
 using BusinessLogic.Validation;
 using DataAccess.DbContext;
@@ -13,15 +14,17 @@ namespace MoviesPortalWebApp.Controllers
         private readonly ICreativePersonService _creativePersonService;
         private readonly IMapper _mapper;
         private readonly ICreativePersonValidator _validator;
+        private readonly ApiClient _client;
 
         private readonly MoviePortalContext _context;
 
-        public CreativePersonController(ICreativePersonService creativePersonService, IMapper mapper, MoviePortalContext context, ICreativePersonValidator validator)
+        public CreativePersonController(ICreativePersonService creativePersonService, IMapper mapper, MoviePortalContext context, ICreativePersonValidator validator, ApiClient client)
         {
             _creativePersonService = creativePersonService;
             _mapper = mapper;
             _context = context;
             _validator = validator;
+            _client = client;
         }
 
         #region User
@@ -37,8 +40,33 @@ namespace MoviesPortalWebApp.Controllers
         #region User creative person details
         public async Task<IActionResult> DetailsUser(int id)
         {
-            var model = await _creativePersonService.GetCreativePersonsById(id);
-            var person = _mapper.Map<CreativePersonVM>(model);
+            dynamic model;
+            var persons = await _creativePersonService.GetAllCreativePersons();
+
+            if (persons.Any(p => p.Id == id))
+            {
+                model = await _creativePersonService.GetCreativePersonsById(id);                
+            }
+            else
+            {
+                model = await _client.GetPersonDetails(id);
+            }
+            CreativePersonVM person = _mapper.Map<CreativePersonVM>(model);
+            if (person.IsApiModel)
+            {
+                var root = await _client.GetMoviesForPerson(person.Id);
+
+
+                ViewBag.DirectorInMovies = root.Cast;
+                ViewBag.ActorInMovies = root.Crew;
+            }
+            else
+            {
+                var dirMovies = person.RoleCreativeMovie.Where(d => d.Role.RoleName == "Director").Select(m => m.Movie).ToList();
+                var actMovies = person.RoleCreativeMovie.Where(d => d.Role.RoleName == "Actor").Select(m => m.Movie).ToList();
+                ViewBag.DirectorInMovies = dirMovies;
+                ViewBag.ActorInMovies = actMovies;               
+            }
             return View(person);
         }
         #endregion

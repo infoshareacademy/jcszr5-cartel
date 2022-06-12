@@ -61,6 +61,16 @@ namespace BusinessLogic.ApiHandler
                    _ => throw new NotImplementedException(),
                };
         }
+        public async Task<PersonDetails> GetPersonDetails(int personId)
+        {
+            var result = await _baseUrl
+                .AppendPathSegment("person")
+                .AppendPathSegment(personId.ToString())
+                .SetQueryParams(_apiKey, "language=en-US")
+                .GetStringAsync();
+            var person = JsonConvert.DeserializeObject<PersonDetails>(result);
+            return person;
+        }
         public async Task<List<Movie>> GetTrendingMoviesOfTheDay()
         {
             var result = await _baseUrl
@@ -72,7 +82,7 @@ namespace BusinessLogic.ApiHandler
             var searchResult = JsonConvert.DeserializeObject<MoviesSearchResult>(result);
             return searchResult.results;
         }
-        public async Task<PersonsRoot> GetPersons(int movieId)
+        public async Task<PersonsRoot> GetPersonsForMovie(int movieId)
         {
             var result = await _baseUrl
                 .AppendPathSegment("movie")
@@ -84,6 +94,19 @@ namespace BusinessLogic.ApiHandler
             var cast = persons.Cast.Take(12).ToList();
             var crews = persons.Crew.Where(d => d.Job == "Director").ToList();
             return new PersonsRoot() {Cast = cast, Crew = crews};
+        }
+        public async Task<MoviesForPersonRoot> GetMoviesForPerson(int personId)
+        {
+            var result = await _baseUrl
+                .AppendPathSegment("person")
+                .AppendPathSegment(personId)
+                .AppendPathSegment("movie_credits")
+                .SetQueryParams(_apiKey, "language=en-US")
+                .GetStringAsync();
+            var movies = JsonConvert.DeserializeObject<MoviesForPersonRoot>(result);
+            var actorInMovies = movies.Cast.Take(12).ToList();
+            var directorInMovies = movies.Crew.Take(6).ToList();
+            return new MoviesForPersonRoot() { Cast = actorInMovies, Crew = directorInMovies };
         }
     }
 }
