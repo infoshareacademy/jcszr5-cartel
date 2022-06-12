@@ -57,8 +57,8 @@ namespace MoviesPortalWebApp.Controllers
                 var root = await _client.GetMoviesForPerson(person.Id);
 
 
-                ViewBag.DirectorInMovies = root.Cast;
-                ViewBag.ActorInMovies = root.Crew;
+                ViewBag.DirectorInMovies = root.Crew;
+                ViewBag.ActorInMovies = root.Cast;
             }
             else
             {
