@@ -40,7 +40,7 @@ namespace MoviesPortalWebApp.Controllers
             var movies = _mapper.Map<IList<MovieVM>>(model);
             var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
             var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
-            var newMovies = movies.Concat(moviesMapped).ToList(); 
+            var newMovies = movies.Concat(moviesMapped).DistinctBy(m => m.Title).ToList(); 
 
             if (!String.IsNullOrEmpty(searchString))
             {
