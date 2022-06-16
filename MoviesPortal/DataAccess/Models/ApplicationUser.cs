@@ -10,5 +10,6 @@ namespace DataAccess.Models
         public string FullName { get; set; }
         public List<UserFavoriteMovies> UserFavoriteMovies { get; set; }
         public List<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
+        public List<CommentModel> Comments { get; set; }
     }
 }

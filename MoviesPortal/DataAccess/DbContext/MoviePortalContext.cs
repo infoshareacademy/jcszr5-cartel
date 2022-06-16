@@ -28,6 +28,7 @@ namespace DataAccess.DbContext
         public DbSet<EpisodeModel> Episodes { get; set; }
         public DbSet<GenreModel> Genres { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
 
         //Assigment tables (for many-to-many relations)
 
@@ -71,6 +72,8 @@ namespace DataAccess.DbContext
             new MovieGenreEntityConfiguration().Configure(modelBuilder.Entity<MovieGenre>());
 
             new RoleEntityConfiguration().Configure(modelBuilder.Entity<RoleModel>());
+
+            new CommentEntityConfiguration().Configure(modelBuilder.Entity<CommentModel>());
 
         }
 
