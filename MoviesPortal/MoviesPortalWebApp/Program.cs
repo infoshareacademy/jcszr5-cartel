@@ -34,6 +34,8 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
 builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ApiClient>();
 builder.Services.AddScoped<PersonsAgregator>();
 
@@ -384,6 +386,4 @@ if (!dbContext.TvSeries.Any())
     dbContext.SaveChanges();
 }
 
-ApiClient client = new();
-var result = await client.GetPersonsForMovie(284053);
 app.Run();
