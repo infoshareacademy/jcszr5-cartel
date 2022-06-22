@@ -28,9 +28,9 @@ namespace BusinessLogic.Services
             await _commentRepository.Delete(id);
         }
 
-        public async Task<List<CommentModel>> GetAllComments()
+        public async Task<List<CommentModel>> GetAllComments(int movieId)
         {
-            var comments = await _commentRepository.GetAllComments();
+            var comments = await _commentRepository.GetAllComments(movieId);
             return comments.ToList();
         }
 

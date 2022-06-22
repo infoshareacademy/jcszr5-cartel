@@ -12,7 +12,7 @@ namespace BusinessLogic.Interfaces
         public Task AddComment(CommentModel comment);
         public Task DeleteComment(int id);
         public Task UpdateComment(int id, CommentModel comment);
-        public Task<List<CommentModel>> GetAllComments();
+        public Task<List<CommentModel>> GetAllComments(int movieId);
         public Task<CommentModel> GetComment(int id);
 
     }
