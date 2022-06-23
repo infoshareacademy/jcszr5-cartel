@@ -38,6 +38,7 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ApiClient>();
 builder.Services.AddScoped<PersonsAgregator>();
+builder.Services.AddScoped<CommentsHandler>();
 
 builder.Services.AddAutoMapper(typeof(Program));
 
@@ -377,7 +378,11 @@ var creativesForSeries = new List<TvSeries_CreativeP_Role>()
         },
     };
 
+var comment1 = new CommentModel() { Id = 1, UserId = "2a55e5be-b36b-484e-a63a-a141d8f3c91f", MovieId = 1, CommentContent = "Great production! Greetings from Cambodia xD!", PublishedAt = DateTime.Now };
+var comment2 = new CommentModel() { Id = 2, UserId = "2a55e5be-b36b-484e-a63a-a141d8f3c91f", MovieId = 1, CommentContent = "Great production! Greetings from China, i'm everywhere xD!", PublishedAt = DateTime.Now.AddDays(-5) };
+
 var listOfTvSeries = new List<TvSeriesModel>() { series1, series2 };
+var listOfComments = new List<CommentModel>() { comment1, comment2 };
 
 if (!dbContext.TvSeries.Any())
 {
@@ -386,4 +391,9 @@ if (!dbContext.TvSeries.Any())
     dbContext.SaveChanges();
 }
 
+//if (!dbContext.Comments.Any())
+//{
+//    dbContext.Comments.AddRange(listOfComments);    
+//    dbContext.SaveChanges();
+//}
 app.Run();

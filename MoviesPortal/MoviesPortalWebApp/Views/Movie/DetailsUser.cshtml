@@ -23,7 +23,6 @@
 }
 
 
-
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
  <div class="main-informations">
@@ -86,9 +85,8 @@
          <div class="vanila-ice">@Model.Description</div>
      </p>
 
-
-
-
+     <partial name="_ShowAllComments" />
+     
 
 @*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {

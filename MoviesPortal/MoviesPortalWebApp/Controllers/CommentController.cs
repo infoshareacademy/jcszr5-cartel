@@ -1,37 +1,31 @@
-﻿using BusinessLogic.Interfaces;
+﻿using AutoMapper;
+using BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using MoviesPortalWebApp.Models;
 
 namespace MoviesPortalWebApp.Controllers
 {
     public class CommentController : Controller
     {
         private readonly ICommentService _commentService;
+        private readonly IMapper _mapper;
 
-        public CommentController(ICommentService commentService)
+        public CommentController(ICommentService commentService, IMapper mapper)
         {
             _commentService = commentService;
+            _mapper = mapper;
         }
 
         // GET: CommentController1
         public ActionResult ShowAllComments(int movieId)
         {
             var comments = _commentService.GetAllComments(movieId);
-            return View();
+            var mappedComments = _mapper.Map<CommentVM>(comments);
+            return View(mappedComments);
         }
 
-        // GET: CommentController1/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: CommentController1/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+    
         // POST: CommentController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]

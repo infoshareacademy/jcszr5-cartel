@@ -11,12 +11,12 @@ namespace BusinessLogic.Services
     {
         private readonly IMovieRepository _movieRepository;
 
-        private readonly MoviePortalContext _context;
+        
 
-        public MovieService(IMovieRepository movieRepository, IMapper mapper, MoviePortalContext context)
+        public MovieService(IMovieRepository movieRepository)
         {
             _movieRepository = movieRepository;
-            _context = context;
+            
         }
 
         public IQueryable<MovieModel> GetAllMovies()

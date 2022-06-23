@@ -18,10 +18,11 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IGenreService _genreService;
         private readonly ICreativePersonService _creativePersonService;
         private readonly PersonsAgregator _personAgregator;
+        private readonly CommentsHandler _commentsHandler;
         private ApiClient client = new();
 
 
-        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator, CommentsHandler commentsHandler)
         {
             _movieService = movieService;
             _mapper = mapper;
@@ -29,6 +30,7 @@ namespace MoviesPortalWebApp.Controllers
             _genreService = genreService;
             _creativePersonService = creativePersonService;
             _personAgregator = personAgregator;
+            _commentsHandler = commentsHandler;
         }
 
         #region User
@@ -70,7 +72,8 @@ namespace MoviesPortalWebApp.Controllers
 
             MovieVM movie = _mapper.Map<MovieVM>(model);
             ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
-            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
+            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);            
+            ViewBag.Comments =await _commentsHandler.ShowAllComments(id);
 
             return View(movie);
         }

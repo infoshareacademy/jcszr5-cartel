@@ -1,0 +1,29 @@
+﻿@using BusinessLogic.Services
+@using MoviesPortalWebApp.ServicesForControllers
+@model MoviesPortalWebApp.Models.MovieVM
+@{
+    List<CommentVM> comments = ViewBag.Comments;
+}
+    @foreach (var comment in comments)
+    {
+        
+        <tr>
+            @comment.UserLogin
+
+        </tr>
+        <tr>
+            <td>
+                @comment.CommentContent
+            </td>
+            <td>
+                <p>Published: @comment.PublishedAt</p>
+            </td>
+        </tr>
+        <tr>
+            <a asp-action="Delete" asp-controller="Comment" class="btn btn-outline-danger" asp-route-id="@comment.Id">Delete</a> 
+        </tr>
+
+        
+    }
+
+    

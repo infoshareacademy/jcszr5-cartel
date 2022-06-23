@@ -12,7 +12,7 @@ namespace MoviesPortalWebApp.Mappings
 
         public MovieProfile()
         {
-            CreateMap<MovieModel, MovieVM>();
+            CreateMap<MovieModel, MovieVM>().ReverseMap(); 
             CreateMap<MovieGenre, MovieGenreVM>();
             CreateMap<GenreModel, GenreVM>();
             CreateMap<CreativePersonModel, CreativePersonVM>().ReverseMap();

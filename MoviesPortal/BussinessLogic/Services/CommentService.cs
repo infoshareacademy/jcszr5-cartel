@@ -13,9 +13,9 @@ namespace BusinessLogic.Services
     {
         private readonly ICommentRepository _commentRepository;
 
-        public CommentService(ICommentRepository commentService)
+        public CommentService(ICommentRepository commentrepository)
         {
-            _commentRepository = commentService;
+            _commentRepository = commentrepository;
         }
 
         public async Task AddComment(CommentModel comment)
