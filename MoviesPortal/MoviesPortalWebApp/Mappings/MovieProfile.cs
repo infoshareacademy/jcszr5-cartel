@@ -21,6 +21,8 @@ namespace MoviesPortalWebApp.Mappings
                 //.ForMember(d => d.Id, o=>o.MapFrom(s => s.MovieId))
                 .ReverseMap();            
             CreateMap<CreativePersonModel, CreativePersonVM>();
+            CreateMap<CommentModel, CommentVM>()
+                .ForMember(l => l.UserLogin, o => o.MapFrom(s => s.ApplicationUser.UserName)).ReverseMap();
 
             //Api Mappings
 
