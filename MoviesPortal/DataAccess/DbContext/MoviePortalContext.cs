@@ -2,11 +2,8 @@
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.EntityConfigurations;
-using DataAccess.Repositories.SampleData;
-using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace DataAccess.DbContext
@@ -29,6 +26,7 @@ namespace DataAccess.DbContext
         public DbSet<GenreModel> Genres { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
         public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<SubscriptionModel> Subscriptions { get; set; }
 
         //Assigment tables (for many-to-many relations)
 
@@ -75,6 +73,7 @@ namespace DataAccess.DbContext
 
             new CommentEntityConfiguration().Configure(modelBuilder.Entity<CommentModel>());
 
+            new SubcriptionConfiguration().Configure(modelBuilder.Entity<SubscriptionModel>());
         }
 
     }

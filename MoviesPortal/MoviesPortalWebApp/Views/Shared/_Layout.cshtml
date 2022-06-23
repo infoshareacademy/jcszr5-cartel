@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-       
+
     @*New Font*@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,33 +23,33 @@
 <body>
     <header class="fixed-top">
         <nav class="navbar_main">
-            
+
             <ul class="box-text">
-                           
-              
+
+
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Movie" ? "active" : "")">@Html.ActionLink("Movies", "IndexUser", "Movie")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")">@Html.ActionLink("TvSeries", "Index", "TvSeries")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CreativePerson" ? "active" : "")">@Html.ActionLink("Persons", "IndexUser", "CreativePerson")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "AuthLayout" ? "active" : "")">@Html.ActionLink("Account", "AuthLayout", "Account")</li>
-               
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
-                    {
-                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index", "Account")" class="fa fa-user"></a></li>
-                    } 
-                    else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-                    {
-                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Admin", "Account")" class="fa fa-cog"></a></li>
-                    }
 
-                     <a id='search'>
-                        <input type="text" @*class='top_menu__item'*@ placeholder="Search...">
-                     </a>
-                     <li>
-                         <a class='top_menu__item'>
-                            <i class="fa fa-search"></i
-                         ></a>
-                     </li>
+                @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                {
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index", "Account")" class="fa fa-user"></a></li>
+                }
+                else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Admin", "Account")" class="fa fa-cog"></a></li>
+                }
+
+                <a id='search'>
+                    <input type="text" @*class='top_menu__item'*@ placeholder="Search...">
+                </a>
+                <li>
+                    <a class='top_menu__item'>
+                        <i class="fa fa-search"></i>
+                    </a>
+                </li>
             </ul>
 
             <ul class="box-icons">
@@ -58,16 +58,16 @@
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")"><a href="@Url.Action("Index", "TvSeries")" class="fa fa-television"></a></li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CreativePerson" ? "active" : "")"><a href="@Url.Action("IndexUser", "CreativePerson")" class="fa fa-users"></a></li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")"><a href="@Url.Action("AuthLayout", "Account")" class="fa fa-sign-in"></a></li>
-               
-                    @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
-                    {                       
-                        @*<li><a class='top_menu_account'><i class="fa fa-user"></i></a></li>*@
-                        <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")"><a href="@Url.Action("Index", "Account")" class="fa fa-user"></a></li>
-                    }
-                
+
+                @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+                {
+                    @*<li><a class='top_menu_account'><i class="fa fa-user"></i></a></li>*@
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")"><a href="@Url.Action("Index", "Account")" class="fa fa-user"></a></li>
+                }
+
                 <li><a class='top_menu__item'><i class="fa fa-search"></i></a></li>
             </ul>
-         </nav>
+        </nav>
     </header>
 
     @RenderBody()
@@ -78,6 +78,7 @@
             <div class="sign_up_form">
                 <input type="text" placeholder="First Name">
                 <input type="email" placeholder="Email Address">
+                <input type="tel" placeholder="Mobile no" pattern="[+]{1}[0-9]{2}-[0-9]{9}">
                 <button class="button">Subscribe</button>
             </div>
         </div>
@@ -87,12 +88,12 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-   
+
     <script>
 
         $('.box-text li a').on('click', function() {
             var activeLink = $('active');
-            activeLink.removeClass('active'); 
+            activeLink.removeClass('active');
             $(this).parent().addClass('active');
         });
 
@@ -107,7 +108,7 @@
         });
 
     </script>
-}
+    }
 
 
     @await RenderSectionAsync("Scripts", required: false)

@@ -149,7 +149,9 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 3em;
     }
 
-        #newsletter .sign_up_form input[type="text"], #newsletter .sign_up_form input[type="email"] {
+        #newsletter .sign_up_form input[type="text"],
+        #newsletter .sign_up_form input[type="email"],
+        #newsletter .sign_up_form input[type="tel"]{
             width: 48%;
             margin: 0 .5%;
             height: 3.25em;

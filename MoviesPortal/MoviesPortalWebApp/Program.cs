@@ -1,5 +1,4 @@
 using BusinessLogic.ApiHandler;
-using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using BusinessLogic.Validation;
@@ -34,6 +33,8 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
 builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddTransient<ISubscriptionService, SubscriptionService>();
 builder.Services.AddScoped<ApiClient>();
 builder.Services.AddScoped<PersonsAgregator>();
 
