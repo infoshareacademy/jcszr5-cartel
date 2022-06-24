@@ -1097,3 +1097,22 @@ div.gallery-serach img {
     margin-top: -100px;
    
 }
+
+/* CREATIVE PERSON MODEL */
+
+.cp-biography {    
+    display: flex;
+    height: 70vh;
+}
+
+.cp-photo img {
+    height: 500px;
+    margin: 90px 20px 0 40px;
+}
+
+.cp-details {
+    
+    height: 500px;
+    margin: 100px 80px 0 40px;
+
+}
