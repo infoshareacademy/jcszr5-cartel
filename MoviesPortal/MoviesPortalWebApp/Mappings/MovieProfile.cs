@@ -68,7 +68,9 @@ namespace MoviesPortalWebApp.Mappings
                 .ForMember(d => d.Link, o => o.MapFrom(s => s.Link))
                 .ForMember(d => d.Rent, o => o.MapFrom(s => s.Rent)).ReverseMap();
 
+            CreateMap<Rating, RatingVM>().ReverseMap();
 
+            CreateMap<RatingRoot, RatingRootVM>().ReverseMap();
         }
                
     }

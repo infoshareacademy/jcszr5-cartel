@@ -18,6 +18,9 @@
     List<CreativePersonVM> actors = ViewBag.Actors;
     List<CreativePersonVM> directors = ViewBag.Directors;
     List<ProviderVM> providers = ViewBag.Providers;
+    List<RatingVM> ratings = ViewBag.Ratings;
+    int ratingsNo = @ratings.Count;
+    bool isFav = false;  
 
 }
 
@@ -65,10 +68,10 @@
             </p>
           
             <span class="vanila"> |</span>
-<p class="inline"><strong>Cast:</strong></p>
-<p class="inline">
+            <p class="inline"><strong>Cast:</strong></p>
+            <p class="inline">
 
-<strong>
+            <strong>
       @foreach (var person in actors)
                     {
                         <span>
@@ -76,7 +79,7 @@
                        <span class="vanila"> |</span>
                         </span>
                     }
-</strong>
+      </strong>
       </p>
          <p class="description">
          <div class="vanila-ice">@Model.Description</div>
@@ -85,18 +88,36 @@
 
 
 
-@*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
-            if(listFavourities.Count > 0)
+            if (@Model.Id < 1000)
             {
-                <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@fMovieId.Id"><i class="fa fa-heart"></i></a>
-            } 
+                foreach (var fav in @Model.UserFavoriteMovies)
+                {
+                    if (fav.UserId == @UserManager.GetUserId(User))
+                    {
+                        isFav = true;
+                    }
+                }  
+            }
+
+            @if (isFav == true)
+            {
+                <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i></a>
+            }
             else
             {
                 <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
             }
-        }*@
+
+        }
+        
+
+        
+
+
+      
 </section>
 
 <section class="details">
@@ -120,26 +141,42 @@
                        </div>                     
                  </div>
 
-                 <div class="logo">
-                      <img src="~/images/logo/metacritic.png" alt="" />
-                      <div class="ratings">
-                           @Model.ImdbRatio/10
-                      </div>
-                 </div>
+                 @if(@ratingsNo > 0)
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               @ratings[2].Value.ToString()
+                          </div>
+                     </div>
 
-                 <div class="logo">
-                      <img src="~/images/logo/rotten.png" alt="" />
-                      <div class="ratings">
-                           @Model.ImdbRatio/10
-                      </div>
-                 </div>
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               @ratings[1].Value.ToString()
+                          </div>
+                     </div>                 
+                 } 
+                 else 
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               N/A
+                          </div>
+                     </div>
 
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               N/A
+                          </div>
+                     </div> 
+                 }
              </div>
-
          </div>
 
-         <div class="details-platforms">
-            
+         <div class="details-platforms">            
 
             @if(@providers != null)
             {

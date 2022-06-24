@@ -19,7 +19,6 @@ namespace DataAccess.Models
         public string? TrailerUrl { get; set; }
         public string? BackgroundPoster { get; set; }
         public string? ImdbRatio { get; set; }
-
         public bool IsForKids { get; set; }
         public virtual ICollection<MovieGenre> MovieGenres { get; set; }
         public virtual ICollection<Movie_CreativeP_Role> RoleCreativeMovie { get; set; }

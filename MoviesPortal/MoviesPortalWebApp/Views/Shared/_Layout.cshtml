@@ -29,7 +29,7 @@
               
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")">@Html.ActionLink("Home", "Index", "Home")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Movie" ? "active" : "")">@Html.ActionLink("Movies", "IndexUser", "Movie")</li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")">@Html.ActionLink("TvSeries", "Index", "TvSeries")</li>
+                @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")">@Html.ActionLink("TvSeries", "Index", "TvSeries")</li>*@
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CreativePerson" ? "active" : "")">@Html.ActionLink("Persons", "IndexUser", "CreativePerson")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "AuthLayout" ? "active" : "")">@Html.ActionLink("Account", "AuthLayout", "Account")</li>
                
@@ -55,7 +55,7 @@
             <ul class="box-icons">
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Home" ? "active" : "")"><a href="@Url.Action("Index", "Home")" class="fa fa-home"></a></li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Movie" ? "active" : "")"><a href="@Url.Action("IndexUser", "Movie")" class="fa fa-film"></a></li>
-                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")"><a href="@Url.Action("Index", "TvSeries")" class="fa fa-television"></a></li>
+                @*<li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")"><a href="@Url.Action("Index", "TvSeries")" class="fa fa-television"></a></li>*@
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CreativePerson" ? "active" : "")"><a href="@Url.Action("IndexUser", "CreativePerson")" class="fa fa-users"></a></li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")"><a href="@Url.Action("AuthLayout", "Account")" class="fa fa-sign-in"></a></li>
                

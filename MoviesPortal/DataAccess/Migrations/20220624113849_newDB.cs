@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DataAccess.Migrations
 {
-    public partial class @new : Migration
+    public partial class newDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -231,6 +231,28 @@ namespace DataAccess.Migrations
                     table.PrimaryKey("PK_AspNetUserTokens", x => new { x.UserId, x.LoginProvider, x.Name });
                     table.ForeignKey(
                         name: "FK_AspNetUserTokens_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false),
+                    CommentContent = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    PublishedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_AspNetUsers_UserId",
                         column: x => x.UserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -531,7 +553,7 @@ namespace DataAccess.Migrations
                 values: new object[,]
                 {
                     { 1, "https://c4.wallpaperflare.com/wallpaper/1012/513/237/action-adventure-drama-film-wallpaper-preview.jpg", "A veteran Green Beret is forced by a cruel Sheriff and his deputies to flee into the mountains and wage an escalating one-man war against his pursuers.", "7.7", false, "https://alternativemovieposters.com/wp-content/uploads/2015/03/gabz_firstblood700.jpg", 1982, "Rambo: First Blood", "https://www.youtube.com/watch?v=IAqLKlxY3Eo" },
-                    { 2, "https://images.hdqwalls.com/wallpapers/art-thor-ragnarok-we.jpg", "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.", "7.9", true, "https://alternativemovieposters.com/wp-content/uploads/2020/06/Juan-Ramos_thorragnarok.jpg", 2017, "Thor: Ragnarok", "https://www.youtube.com/watch?v=ue80QwXMRHg" },
+                    { 2, "https://image.tmdb.org/t/p/original//6G2fLCVm9fiLyHvBrccq6GSe2ih.jpg", "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.", "7.9", true, "https://image.tmdb.org/t/p/original/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg", 2017, "Thor: Ragnarok", "https://www.youtube.com/watch?v=ue80QwXMRHg" },
                     { 3, "https://wallpaperaccess.com/full/3528110.jpg", "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.", "7.8", false, "https://alternativemovieposters.com/wp-content/uploads/2019/10/duperray_dunkirk.jpg", 2017, "Dunkirk", "https://www.youtube.com/watch?v=F-eMt3SrfFU" },
                     { 4, "https://blog.hdwallsource.com/wp-content/uploads/2018/05/avengers-infinity-war-thanos-wallpaper-63589-65679-hd-wallpapers.jpg", "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.", "8.4", true, "https://alternativemovieposters.com/wp-content/uploads/2018/05/bergeron_infinity.jpg", 2018, "Avengers: Infinity War", "https://www.youtube.com/watch?v=6ZfuNTqbHE8" },
                     { 5, "https://images7.alphacoders.com/100/1004126.png", "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man.", "7.8", true, "https://alternativemovieposters.com/wp-content/uploads/2016/06/walker_civilwar.jpg", 2016, "Captain America: Civil War", "https://www.youtube.com/watch?v=dKrVegVI0Us" },
@@ -770,6 +792,11 @@ namespace DataAccess.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Episodes_SeasonId",
                 table: "Episodes",
                 column: "SeasonId");
@@ -856,6 +883,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropTable(
                 name: "Episodes");

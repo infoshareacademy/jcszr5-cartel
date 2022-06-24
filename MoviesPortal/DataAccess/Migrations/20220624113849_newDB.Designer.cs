@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
-    [Migration("20220615100233_AddedCommentsTable")]
-    partial class AddedCommentsTable
+    [Migration("20220624113849_newDB")]
+    partial class newDB
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1758,11 +1758,11 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            BackgroundPoster = "https://images.hdqwalls.com/wallpapers/art-thor-ragnarok-we.jpg",
+                            BackgroundPoster = "https://image.tmdb.org/t/p/original//6G2fLCVm9fiLyHvBrccq6GSe2ih.jpg",
                             Description = "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.",
                             ImdbRatio = "7.9",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2020/06/Juan-Ramos_thorragnarok.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg",
                             ProductionYear = 2017,
                             Title = "Thor: Ragnarok",
                             TrailerUrl = "https://www.youtube.com/watch?v=ue80QwXMRHg"
