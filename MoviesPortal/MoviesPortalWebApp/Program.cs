@@ -385,5 +385,5 @@ if (!dbContext.TvSeries.Any())
 }
 
 ApiClient client = new();
-var result = await client.GetRatingForMovie(1285016);
+//var result = await client.FindPersonsByName("pitt",1);
 app.Run();

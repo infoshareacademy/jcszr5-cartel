@@ -55,7 +55,7 @@ namespace BusinessLogic.ApiHandler.ApiModels
         public List<ProductionCountry> Production_Countries { get; set; }
 
         [JsonPropertyName("release_date")]
-        public string Release_Date { get; set; }
+        public string? Release_Date { get; set; }
 
         [JsonPropertyName("revenue")]
         public int Revenue { get; set; }
