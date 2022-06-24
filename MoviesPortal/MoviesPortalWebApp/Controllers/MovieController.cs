@@ -72,6 +72,16 @@ namespace MoviesPortalWebApp.Controllers
             ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
             ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
 
+            if (id > 1000)
+            {
+                var providersStore = await client.GetProviders(id, BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses.ProviderPicker.PL);
+               
+                if (providersStore != null)
+                {
+                    var providers = providersStore.Flatrate;
+                    ViewBag.Providers = _mapper.Map<List<ProviderVM>>(providers);
+                }
+            }                      
             return View(movie);
         }
         #endregion
