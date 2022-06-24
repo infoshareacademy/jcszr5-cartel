@@ -209,14 +209,12 @@ div.desc {
     text-align: center;
 }
 
-.movieBox {
-    padding: 120px 50px 200px 50px;
-}
+
 
 /*Creative Persons*/
 
 .moviePerson {
-    background: black;
+    background: #181818;
     color: #fff;
     display: flex;
     flex-wrap: wrap;
@@ -992,3 +990,29 @@ h1 {
     background-color: transparent;
     border-radius: 15px;
 }
+
+/* ADMIN PANEL */
+
+.movieBox {
+    padding: 120px 50px 200px 50px;
+}
+
+.admin-panel {
+    height: 200px;
+    margin-top: 200px;
+    text-align: center;
+}
+
+    .admin-panel .btn {
+        display: inline-block;
+        margin: 50px;
+        font-size: 30px;
+    }
+
+    .admin-panel .btn a{        
+        text-decoration: none;
+    }
+
+    .admin-panel .btn:hover {
+        background-color: white;
+    }
