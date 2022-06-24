@@ -25,25 +25,32 @@ namespace MoviesPortalWebApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SearchAsync(string queryString)
         {
-            var persons =await _client.FindPersonsByName(queryString, 1);
-            var movies =await _client.FindMoviesByTitle(queryString, 1, false);
-            var MoviesRelatedWithPersons = persons
-                .SelectMany(m => m.Known_For)
-                .Where(t => t.Title != null);
+            if (!String.IsNullOrEmpty(queryString))
+            {
+                var persons = await _client.FindPersonsByName(queryString, 1);
+                var movies = await _client.FindMoviesByTitle(queryString, 1, false);
+                var MoviesRelatedWithPersons = persons
+                    .SelectMany(m => m.Known_For)
+                    .Where(t => t.Title != null);
 
 
-            movies.AddRange(MoviesRelatedWithPersons);
-            var newMovies = movies
-                .Where(t => String.IsNullOrEmpty(t.Release_Date) == false && t.Release_Date.Length > 4)
-                .ToList();
+                movies.AddRange(MoviesRelatedWithPersons);
+                var newMovies = movies
+                    .Where(t => String.IsNullOrEmpty(t.Release_Date) == false && t.Release_Date.Length > 4)
+                    .ToList();
+
+
+                var mappedPersons = _mapper.Map<List<CreativePersonVM>>(persons);
+                var mappedMovies = _mapper.Map<List<MovieVM>>(newMovies);
+
+                SearchResultVM searchResult = new SearchResultVM() { Creatives = mappedPersons, Movies = mappedMovies };
+                return View(searchResult);
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
             
-
-            var mappedPersons = _mapper.Map<List<CreativePersonVM>>(persons);
-            var mappedMovies = _mapper.Map<List<MovieVM>>(newMovies);
-
-            SearchResultVM searchResult = new SearchResultVM() { Creatives = mappedPersons, Movies = mappedMovies};
-            
-            return View(searchResult);
         }
     }
 }
