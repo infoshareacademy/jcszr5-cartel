@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model MovieVM
+@inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
+@{CommentVM comment = new();}
+
+<div class="col-md-4">
+        <form asp-controller="Account" asp-action="AddComment" >
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group" >
+                <label asp-for="@comment.Content" class="control-label"></label>
+                <input asp-for="@comment.Content" class="form-control" />
+                <span asp-validation-for="@comment.Content" class="text-danger"></span>
+                
+                <input asp-for="@comment.MovieId" type="hidden" value="@Model.Id" />
+                <input asp-for="@comment.UserId" type="hidden" value="@UserManager.GetUserId(User)" />
+                
+            </div>                
+            <div class="form-group">
+                <input type="submit" value="Add Comment" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>

@@ -34,7 +34,10 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
 builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ApiClient>();
+builder.Services.AddScoped<CommentsPicker>();
 builder.Services.AddScoped<PersonsAgregator>();
 
 builder.Services.AddAutoMapper(typeof(Program));

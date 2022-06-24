@@ -17,18 +17,21 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMapper _mapper;
         private readonly IGenreService _genreService;
         private readonly ICreativePersonService _creativePersonService;
+        private readonly ICommentService _commentService;
         private readonly PersonsAgregator _personAgregator;
+        private readonly CommentsPicker _commentPicker;
         private ApiClient client = new();
 
 
-        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator, ICommentService commentService, CommentsPicker commentPicker)
         {
             _movieService = movieService;
             _mapper = mapper;
-
             _genreService = genreService;
             _creativePersonService = creativePersonService;
             _personAgregator = personAgregator;
+            _commentService = commentService;
+            _commentPicker = commentPicker;
         }
 
         #region User
@@ -94,7 +97,8 @@ namespace MoviesPortalWebApp.Controllers
                 var omdbRatings = 0;
                 ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
             }
-
+            CommentsPicker commentsPicker = new();
+            movie.Comments =await _commentPicker.GetCommentsAsync(movie.Id);
             return View(movie);
         }
         #endregion
