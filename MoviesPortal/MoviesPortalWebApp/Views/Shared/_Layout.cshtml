@@ -32,7 +32,8 @@
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "TvSeries" ? "active" : "")">@Html.ActionLink("TvSeries", "Index", "TvSeries")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "CreativePerson" ? "active" : "")">@Html.ActionLink("Persons", "IndexUser", "CreativePerson")</li>
                 <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "AuthLayout" ? "active" : "")">@Html.ActionLink("Account", "AuthLayout", "Account")</li>
-               
+                <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Search" ? "active" : "")">@Html.ActionLink("Search", "Index", "Search")</li>
+
                     @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
                     {
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index", "Account")" class="fa fa-user"></a></li>
@@ -42,13 +43,11 @@
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Admin", "Account")" class="fa fa-cog"></a></li>
                     }
 
-                     <a id='search'>
-                        <input type="text" @*class='top_menu__item'*@ placeholder="Search...">
-                     </a>
+                    
                      <li>
                          <a class='top_menu__item'>
-                            <i class="fa fa-search"></i
-                         ></a>
+                            <i class="fa fa-search"></i>
+                            </a>
                      </li>
             </ul>
 
