@@ -508,9 +508,25 @@ div.desc {
     font-size: 3vw;
 }
 
-.bi bi-person-badge{
-    color: white;
+.fa-heart-o {
+    color: grey;
 }
+
+.fa-heart {
+    color: darkgoldenrod;
+}
+
+.fa-heart-o:hover {
+    color: darkgoldenrod;
+}
+
+.fa-heart:hover {
+    color: grey;
+}
+
+    .bi bi-person-badge {
+        color: white;
+    }
 
 
 #AdminForms{
