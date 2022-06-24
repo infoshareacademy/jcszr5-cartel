@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Interfaces;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MoviesPortalWebApp.Models;
@@ -26,19 +27,17 @@ namespace MoviesPortalWebApp.Controllers
         }
 
     
-        // POST: CommentController1/Create
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult AddComment(CommentVM comment, MovieVM movie)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            comment.MovieId = movie.Id;
+            var commentMapped = _mapper.Map<CommentModel>(comment);
+            _commentService.AddComment(commentMapped);
+            
+            return View($"/Views/Movie/DetailsUser/{comment.MovieId}");
+            
         }
 
         // GET: CommentController1/Edit/5

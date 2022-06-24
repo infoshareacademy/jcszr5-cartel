@@ -31,7 +31,9 @@
      <div class="Title">@Model.Title.ToUpper()</div>
 
 <p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
-@{  }  
+    @{
+        var movie = Model; 
+    }  
 
 <strong>
       @if(directors.Count == 1)
@@ -85,7 +87,26 @@
          <div class="vanila-ice">@Model.Description</div>
      </p>
 
-     <partial name="_ShowAllComments" />
+     <partial name="/Views/Comment/_ShowAllComments.cshtml" />
+    @{
+        CommentVM commentVM = new();
+        commentVM.MovieId = Model.Id;
+    }
+    <div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Comment" asp-action="AddComment">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="commentVM.CommentContent" class="control-label"></label>
+                <input asp-for="CommentContent" class="form-control" />
+                <span asp-validation-for="CommentContent" class="text-danger"></span>
+            </div>            
+            <div class="form-group">
+                <input type="submit" value="Add Comment" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
      
 
 @*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))

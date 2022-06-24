@@ -25,8 +25,4 @@
     
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Comment\" />
-  </ItemGroup>
-
 </Project>
