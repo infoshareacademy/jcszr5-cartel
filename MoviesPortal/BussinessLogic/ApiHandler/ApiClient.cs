@@ -108,5 +108,14 @@ namespace BusinessLogic.ApiHandler
             var directorInMovies = movies.Crew.Take(6).ToList();
             return new MoviesForPersonRoot() { Cast = actorInMovies, Crew = directorInMovies };
         }
+        public async Task<RatingRoot> GetRatingForMovie(int movieId)
+        {
+            var result = await _alternateApiUrl
+                .SetQueryParam(_alternateApiKey+"&i=tt"+movieId)                
+                .GetStringAsync();
+            var ratingRoot = JsonConvert.DeserializeObject<RatingRoot>(result);
+            return ratingRoot;
+        }
+        
     }
 }
