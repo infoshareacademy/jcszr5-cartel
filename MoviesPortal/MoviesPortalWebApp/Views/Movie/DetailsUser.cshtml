@@ -11,33 +11,29 @@
 
 @{
     ViewData["Title"] = "DetailsUser";
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     List<CreativePersonVM> actors = ViewBag.Actors;
     List<CreativePersonVM> directors = ViewBag.Directors;
-    
-    //var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
-    //var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+    List<ProviderVM> providers = ViewBag.Providers;
+
 }
-
-
 
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
- <div class="main-informations">
+ <section class="main-informations">
      <div class="genre">@string.Join(" | ", @Model.Genres.Select(g => g.Genre)).ToUpper()</div>
 
      <div class="Title">@Model.Title.ToUpper()</div>
 
 <p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
-@{  }  
 
 <strong>
       @if(directors.Count == 1)
             {
-               <p class="inline" id="name">Director:</p>
+                <p class="inline" id="name">Director:</p>
             }
             else if(directors.Count > 1)
             {
@@ -68,7 +64,7 @@
             </strong>
             </p>
           
-
+            <span class="vanila"> |</span>
 <p class="inline"><strong>Cast:</strong></p>
 <p class="inline">
 
@@ -89,7 +85,6 @@
 
 
 
-
 @*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
@@ -102,5 +97,121 @@
                 <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
             }
         }*@
-</div>
+</section>
+
+<section class="details">
+
+     <div class="details-poster">
+
+        <img src="@Model.PosterPath" alt="@Model.Title">
+                                        
+     </div>
+
+     <div class="details-api">
+         <div class="details-ratings">
+
+             <div class="logo-ratings">
+                 <div class="logo">
+                      <a href='@string.Format("https://www.imdb.com/title/{0}/", @Model.Imdb_Id)'>
+                          <img src="~/images/logo/imdb2.png" alt="" />
+                       </a>
+                       <div class="ratings">
+                                   @Model.ImdbRatio/10
+                       </div>                     
+                 </div>
+
+                 <div class="logo">
+                      <img src="~/images/logo/metacritic.png" alt="" />
+                      <div class="ratings">
+                           @Model.ImdbRatio/10
+                      </div>
+                 </div>
+
+                 <div class="logo">
+                      <img src="~/images/logo/rotten.png" alt="" />
+                      <div class="ratings">
+                           @Model.ImdbRatio/10
+                      </div>
+                 </div>
+
+             </div>
+
+         </div>
+
+         <div class="details-platforms">
+            
+
+            @if(@providers != null)
+            {
+                <strong class="txt-platforms">You can stream this movie on the:</strong>
+                
+                @for(int i=0; i < @providers.Count; i++)
+                {
+
+                    switch (@providers[i].Provider_Name)
+                    {
+                            case "Netflix":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/netflix.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Disney Plus":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/disney.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "UPC TV":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/upc.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "HBO Max":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/hbomax.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Horizon":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/horizon.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Player":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/player.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Amazon Prime Video":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/amazon.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Apple TV Plus":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/apple.png" alt="" />                    
+                            </div>
+                            break;
+
+                            default:
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/not.jpg" alt="" />                              
+                            </div>
+                            break;
+
+                        }
+                    }                
+            }
+            else
+            {
+                <strong class="txt-platforms">This movie is not available to stream in your country :(</strong>
+            }
+         </div>
+     </div>
+     </section>
 

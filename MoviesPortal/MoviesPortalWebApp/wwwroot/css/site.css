@@ -384,24 +384,95 @@ div.desc {
 /* BackgroundPoster */
 
 .BackgroundPoster {
-    height: 90vh;
-    width: 80vw;
+    height: 800px;
+    width: 1400px;
     display: block;
     margin-left: auto;
     margin-right: auto;
 }
 
-/* Stylowanie opisu na obrazku g³ównym*/
 
+.details {
+    height: 550px;
+    width: 1400px;
+    background-color: #111;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.details-poster {
+    float: left;
+}
+
+.details-poster img{
+    margin-top: 25px;
+    margin-left: 25px;
+    height: 500px;
+    width: 320px;
+}
+
+.details-api {
+    float: right;
+    height: 500px;
+    width: 1000px;
+    margin-right: 25px;
+    margin-top: 25px;
+}
+
+.details-ratings {
+    height: 200px;
+    width: 900px;    
+}
+
+.details-platforms {
+    height: 200px;
+    width: 900px;
+
+}
+
+.logo img {
+    height: 100px;
+    width: 100px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 30px
+}
+
+.ratings {
+    width: 150px;
+    height: 100px;
+    margin-left: 10px;
+    margin-top: 50px;
+    float: left;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-platforms img {
+    height: 120px;
+    width: 120px;
+    float: left;
+    margin-top: 50px;
+    margin-left: 30px;
+    margin-right: 20px;
+    border-radius: 15px;
+}
+
+.txt-platforms{
+    font-size:30px;
+    margin-left: 40px;
+
+}
+
+/* Stylowanie opisu na obrazku g?ównym*/
 .main-informations {
     position: absolute;
     color: #fff;
     padding: 25px 25px;
     right: 12%;
     left: 12%;
-    bottom: 12vh;
-    margin-top: 0;
+    bottom: 180px;
     border-radius: 20px;
     background: rgba(0,0,0,0.5);
     display: inline;
@@ -654,8 +725,7 @@ body {
 
     .box-icons {
         opacity: 1;
-        visibility: visible;
-     
+        visibility: visible;     
         position: fixed;
         top: 0px;    
         list-style: none;
