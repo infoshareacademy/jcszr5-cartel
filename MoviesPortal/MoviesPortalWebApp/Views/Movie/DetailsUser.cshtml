@@ -85,9 +85,6 @@
          <div class="vanila-ice">@Model.Description</div>
      </p>
 
-
-
-
         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
@@ -113,11 +110,6 @@
 
         }
         
-
-        
-
-
-      
 </section>
 
 <section class="details">
@@ -141,7 +133,7 @@
                        </div>                     
                  </div>
 
-                 @if(@ratingsNo > 0)
+                 @if(@ratingsNo == 3)
                  {
                      <div class="logo">
                           <img src="~/images/logo/metacritic.png" alt="" />
@@ -157,7 +149,23 @@
                           </div>
                      </div>                 
                  } 
-                 else 
+                 else if(@ratingsNo == 2)
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               @ratings[2].Value.ToString()
+                          </div>
+                     </div>
+
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               @ratings[1].Value.ToString()
+                          </div>
+                     </div>                 
+                 }
+                 else
                  {
                      <div class="logo">
                           <img src="~/images/logo/metacritic.png" alt="" />

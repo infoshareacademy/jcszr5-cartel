@@ -5,49 +5,23 @@
     var actorInMovies = ViewBag.ActorInMovies;
     var directorInMovies = ViewBag.DirectorInMovies;
 }
-
-<h1>Details about @Model.Name @Model.SurName</h1>
-
-<div>    
+<div class="cp-biography">    
     <hr />
-    <dl class="row">       
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.SurName)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SurName)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Biography)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Biography)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhotographyPath)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhotographyPath)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.DateOfBirth)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.DateOfBirth)
-        </dd>
-
+    <div class="cp-photo">
+        <img src="@Model.PhotographyPath" alt="@Model.Name">
+    </div>
+    
+    <div class="cp-details">
+        <h3>@Html.DisplayFor(model => model.Name) @Html.DisplayFor(model => model.SurName) <br></h3>
+        <div class="biography">@Html.DisplayFor(model => model.Biography) <br></div>
+        Born: @Html.DisplayFor(model => model.DateOfBirth) <br>
+        <hr />
         @if(actorInMovies.Count > 0)
         {
-            <dt class = "col-sm-2">
+            <dt class = "col-sm-8">
                 <p>Actor in movies: </p>
             </dt>
-            <dd class = "col-sm-10">
+            <dd class = "col-sm-30">
                     <p>
                         @foreach (var movie in actorInMovies)
                         {
@@ -61,11 +35,11 @@
 
         @if(directorInMovies.Count > 0)
         {
-           <dt class = "col-sm-2">
+           <dt class = "col-sm-8">
             <p>Director in movies: </p>
             </dt>
 
-            <dd class = "col-sm-10">
+            <dd class = "col-sm-30">
                     <p>
                         @foreach (var movie in directorInMovies)
                         {
@@ -77,8 +51,10 @@
                     </p>
             </dd>
         }
-    </dl>
+
+
+    </div>
+    
+   
 </div>
-<div>
-    <a asp-action="IndexUser">Back to List</a>
-</div>
+
