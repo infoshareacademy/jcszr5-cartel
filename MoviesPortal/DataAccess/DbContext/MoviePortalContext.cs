@@ -33,7 +33,6 @@ namespace DataAccess.DbContext
         //Assigment tables (for many-to-many relations)
 
         public DbSet<MovieGenre> Movie_Genre { get; set; }
-
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
         public DbSet<Movie_CreativeP_Role> Role_CreativeP_Movie { get; set; }
         public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.ApiHandler.ApiModels;
+using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using MoviesPortalWebApp.AssigmentsVM;
@@ -51,15 +52,23 @@ namespace MoviesPortalWebApp.Mappings
                 .ForMember(d => d.Title, o => o.MapFrom(s => s.Title))
                 .ForMember(d => d.ProductionYear, o => o.MapFrom(s => s.Release_Date.Substring(0, 4)))
                 .ForMember(d => d.Description, o => o.MapFrom(s => s.Overview))
-                .ForMember(d => d.PosterPath, o => o.MapFrom(s => "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + s.Poster_Path))
-                .ForMember(d => d.BackgroundPoster, o => o.MapFrom(s => "https://image.tmdb.org/t/p/w600_and_h900_bestv2" + s.Backdrop_Path))
+                .ForMember(d => d.PosterPath, o => o.MapFrom(s => "https://image.tmdb.org/t/p/original" + s.Poster_Path))
+                .ForMember(d => d.BackgroundPoster, o => o.MapFrom(s => "https://image.tmdb.org/t/p/original" + s.Backdrop_Path))
                 .ForMember(d => d.ImdbRatio, o => o.MapFrom(s => s.Vote_Average.ToString()))
                 .ForMember(d => d.IsForKids, o => o.MapFrom(s => !s.Adult))
-                .ForMember(d => d.Genres, o => o.MapFrom(s => s.Genres)).ReverseMap()
-                ;
+                .ForMember(d => d.Genres, o => o.MapFrom(s => s.Genres))
+                .ForMember(d => d.Imdb_Id, o => o.MapFrom(s => s.Imdb_Id)).ReverseMap();
 
-                
-                
+            CreateMap<Provider, ProviderVM>().ReverseMap();
+
+
+            CreateMap<ProvidersStore, ProvidersStoreVM>()
+                .ForMember(d => d.Buy, o => o.MapFrom(s => s.Buy))
+                .ForMember(d => d.Flatrate, o => o.MapFrom(s => s.Flatrate))
+                .ForMember(d => d.Link, o => o.MapFrom(s => s.Link))
+                .ForMember(d => d.Rent, o => o.MapFrom(s => s.Rent)).ReverseMap();
+
+
         }
                
     }
