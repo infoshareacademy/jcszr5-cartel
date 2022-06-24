@@ -1,5 +1,7 @@
 ﻿using BusinessLogic.Interfaces;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
+using MoviesPortalWebApp.Models;
 
 namespace MoviesPortalWebApp.Controllers
 {
@@ -11,9 +13,20 @@ namespace MoviesPortalWebApp.Controllers
         {
             _subscriptionService = subscriptionService;
         }
-        public IActionResult CreateSubscription()
-        {
 
+
+        [HttpPost]
+        public async Task<IActionResult> Create(SubscriptionVM model)
+        {
+            SubscriptionModel subscription = new();
+
+            subscription.Id = new Guid();
+            subscription.FirstName = model.FirstName;
+            subscription.Email = model.Email;
+
+            await _subscriptionService.CreateSubscription(subscription);
+
+            return RedirectToAction("Index");
         }
     }
 }

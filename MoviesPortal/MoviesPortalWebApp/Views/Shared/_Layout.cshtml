@@ -1,6 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity;
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,17 +74,21 @@
 
     @RenderBody()
 
-    <section id="newsletter">
+
+
+
+    @*    <section id="newsletter">
         <div class="newsletter_inner">
-            <h2>Get the best Movie &amp; TV Show trailers straight in your inbox each week.</h2>
-            <div class="sign_up_form">
-                <input type="text" placeholder="First Name">
-                <input type="email" placeholder="Email Address">
-                <input type="tel" placeholder="Mobile no" pattern="[+]{1}[0-9]{2}-[0-9]{9}">
-                <button class="button">Subscribe</button>
-            </div>
+        <h2>Get the best Movie &amp; TV Show trailers straight in your inbox each week.</h2>
+        <div class="sign_up_form">
+        <form asp-controller="SubscriptionController" asp-action="Create">
+        <input asp-for="@subscription.FirstName"  placeholder="First Name">
+        <input asp-for="@subscription.Email" placeholder="Email Address">
+        <button class="button">Subscribe</button>
+        </form>
         </div>
-    </section>
+        </div>
+        </section>*@
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -110,7 +116,16 @@
     </script>
     }
 
-
     @await RenderSectionAsync("Scripts", required: false)
+
+    <partial name="_Subscription" />
+
 </body>
 </html>
+
+
+
+
+
+
+

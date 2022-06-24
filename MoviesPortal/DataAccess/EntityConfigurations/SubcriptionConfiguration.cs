@@ -10,6 +10,7 @@ namespace DataAccess.EntityConfigurations
         public void Configure(EntityTypeBuilder<SubscriptionModel> builder)
         {
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.FirstName).HasMaxLength(20);
             builder.Property(x => x.Email).HasMaxLength(100);
         }
     }
