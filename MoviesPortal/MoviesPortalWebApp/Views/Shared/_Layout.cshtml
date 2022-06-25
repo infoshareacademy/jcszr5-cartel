@@ -66,22 +66,6 @@
 
     @RenderBody()
 
-
-
-
-    @*    <section id="newsletter">
-        <div class="newsletter_inner">
-        <h2>Get the best Movie &amp; TV Show trailers straight in your inbox each week.</h2>
-        <div class="sign_up_form">
-        <form asp-controller="SubscriptionController" asp-action="Create">
-        <input asp-for="@subscription.FirstName"  placeholder="First Name">
-        <input asp-for="@subscription.Email" placeholder="Email Address">
-        <button class="button">Subscribe</button>
-        </form>
-        </div>
-        </div>
-        </section>*@
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -110,7 +94,6 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <partial name="_Subscription" />
 
 </body>
 </html>
