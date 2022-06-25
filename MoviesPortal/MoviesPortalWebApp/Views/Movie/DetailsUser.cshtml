@@ -1,6 +1,7 @@
 ﻿@using System.Security.Claims
 @using BusinessLogic.ApiHandler
 @using BusinessLogic.ApiHandler.ApiModels
+@using DataAccess.DbContext
 @using DataAccess.Models.EntityAssigments
 @using DataAccess.Repositories
 @model MoviesPortalWebApp.Models.MovieVM
@@ -8,6 +9,7 @@
 @using MoviesPortalWebApp.AssigmentsVM
 
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
+@inject MoviePortalContext context;
 
 @{
     ViewData["Title"] = "DetailsUser";
@@ -88,25 +90,50 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
-            if (@Model.Id < 1000)
+            if (!Model.IsApiModel)
             {
-                foreach (var fav in @Model.UserFavoriteMovies)
-                {
-                    if (fav.UserId == @UserManager.GetUserId(User))
-                    {
-                        isFav = true;
-                    }
-                }  
+                isFav = Model.UserFavoriteMovies.Any(f => f.UserId == @UserManager.GetUserId(User));                
+            }
+            else
+            {
+                isFav = context.UserFavoriteApiMovies.Any(f => f.UserId == @UserManager.GetUserId(User) && f.MovieId == Model.Id);
             }
 
             @if (isFav == true)
             {
-                <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i></a>
-            }
+                <form asp-controller="Account" asp-action="RemoveMovieToFavourities">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">                        
+                        <input asp-for="@Model.Id" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">                        
+                        <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">
+                        <a class="fav"><input class="btn btn-outline-danger" value="Remove from favs" type="submit"/></a>                        
+                    </div>
+                </form>
+                @*                
+                    <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i></a>
+*@            }
             else
             {
-                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
-            }
+                <form asp-controller="Account" asp-action="AddMovieToFavourities">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">                        
+                        <input asp-for="@Model.Id" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">                        
+                        <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">
+                        <a class="fav"><input class="btn btn-outline-danger" value="Add to favs" type="submit"/></a>                        
+                    </div>
+                </form>               
+@*                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
+*@            }
 
         }
         

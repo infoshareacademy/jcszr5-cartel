@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using BusinessLogic.ApiHandler;
+using BusinessLogic.Services;
 using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
@@ -15,14 +17,18 @@ namespace MoviesPortalWebApp.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly MoviePortalContext _context;
+        private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
+        private readonly ApiClient _client;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MoviePortalContext context, IMapper mapper)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MoviePortalContext context, IMapper mapper, IMovieService movieService, ApiClient client)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
             _mapper = mapper;
+            _movieService = movieService;
+            _client = client;
         }
 
 
@@ -34,34 +40,70 @@ namespace MoviesPortalWebApp.Controllers
 
         public async Task<IActionResult> Index(string id)
         {
-            var movies = from m in _context.UserFavoriteMovies.Include(x => x.Movie)
+            var moviesFromDb = from m in _context.UserFavoriteMovies.Include(x => x.Movie).ToList()
                          select m;
-            movies = movies.Where(s => s.UserId == id);
+            moviesFromDb = moviesFromDb.Where(s => s.UserId == id);
+
+            var moviesFromApi = _context.UserFavoriteApiMovies.Where(s => s.UserId == id);
+
+            var moviesFromApiMapped = _mapper.Map<List<UserFavoriteMovies>>(moviesFromApi);
+
+            var movies = moviesFromDb.Concat(moviesFromApiMapped).ToList();
+
+            foreach (var movie in movies)
+            {
+                if (movie.Movie == null)
+                {
+                    var item =await _client.GetMovieDetails(movie.MovieId);
+                    var itemMapped = _mapper.Map<MovieVM>(item);
+                    var itemMapped2 = _mapper.Map<MovieModel>(itemMapped);
+                    movie.Movie = itemMapped2;
+                }
+            }
             
-            return View(await movies.ToListAsync());
+            return View(movies);
         }
 
-        public async Task<IActionResult> AddMovieToFavourities(int? id)
+        public async Task<IActionResult> AddMovieToFavourities(MovieVM movieVM)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var fMovie = new UserFavoriteMovies();
-            var movie = await _context.Movies.FirstOrDefaultAsync(x => x.Id == id);
-            fMovie.UserId = userId;
-            fMovie.MovieId = movie.Id;
+            var fMovie = new UserFavoriteMovies();            
+            var apiMovie = new UserFavoriteApiMovies();
+            
+            if (movieVM.IsApiModel)
+            {
+                apiMovie.UserId = userId;
+                apiMovie.MovieId = movieVM.Id;
+                _context.UserFavoriteApiMovies.Add(apiMovie);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                fMovie.UserId = userId;
+                fMovie.MovieId = movieVM.Id;
+                _context.UserFavoriteMovies.Add(fMovie);
+                await _context.SaveChangesAsync();
+            }
 
-            _context.UserFavoriteMovies.Add(fMovie);
-            await _context.SaveChangesAsync();
-
-            return RedirectToAction("DetailsUser", "Movie", new { id = movie.Id});
+            return RedirectToAction("DetailsUser", "Movie", new { id = movieVM.Id});
         }
 
-        public async Task<IActionResult> RemoveMovieToFavourities(int? id)
+        public async Task<IActionResult> RemoveMovieToFavourities(MovieVM movieVM)
         {
-            var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.MovieId == id);
-            _context.UserFavoriteMovies.Remove(movie);
-            await _context.SaveChangesAsync();
+            if (movieVM.IsApiModel)
+            {
+                var movie = _context.UserFavoriteApiMovies.FirstOrDefault(x => x.MovieId == movieVM.Id && x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                _context.UserFavoriteApiMovies.Remove(movie);
+                await _context.SaveChangesAsync();
+            }
+            else
+            {
+                var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.MovieId == movieVM.Id && x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                _context.UserFavoriteMovies.Remove(movie);
+                await _context.SaveChangesAsync();
+            }           
 
-            return RedirectToAction("DetailsUser", "Movie", new { id = movie.MovieId });
+            return RedirectToAction("DetailsUser", "Movie", new { id = movieVM.Id });
         }
 
 

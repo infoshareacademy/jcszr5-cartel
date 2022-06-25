@@ -9,6 +9,7 @@ namespace DataAccess.Models
         [Display(Name = "Full name")]
         public string FullName { get; set; }
         public List<UserFavoriteMovies> UserFavoriteMovies { get; set; }
+        public List<UserFavoriteApiMovies> UserFavoriteApiMovies { get; set; }
         public List<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
         public List<CommentModel> Comments { get; set; }
     }
