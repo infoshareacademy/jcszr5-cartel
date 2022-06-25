@@ -1,17 +1,23 @@
 ﻿@model MovieVM
 
+<h2 class="comments-h2"> Comments section: </h2>
 @foreach(var comment in Model.Comments)
 {
-    <section>
-        <p>
-            @comment.PublishedAt
-        </p>
-        <p>
-            @comment.UserName
-        </p>
-        <p>
-            @comment.Content
-        </p>
+    <section class="comments-area">
+
+        <div class="comment">
+            
+            <p>
+                <i class="fa fa-comment"></i>
+                @comment.UserName (@comment.PublishedAt.Substring(0,9))
+            </p>
+            <p>
+                
+                @comment.Content
+            </p>
+        </div>
+
+        
         
     </section>
 }
