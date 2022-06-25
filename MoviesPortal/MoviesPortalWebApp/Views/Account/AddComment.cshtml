@@ -3,12 +3,12 @@
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
 @{CommentVM comment = new();}
 
-<div class="col-md-4">
+<div class="comment-form">
         <form asp-controller="Account" asp-action="AddComment" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
             <div class="form-group" >
-                <label asp-for="@comment.Content" class="control-label"></label>
+                <label asp-for="@comment.Content" class="control-label">What you think about movie?</label>
                 <input asp-for="@comment.Content" class="form-control" />
                 <span asp-validation-for="@comment.Content" class="text-danger"></span>
                 
@@ -17,7 +17,7 @@
                 
             </div>                
             <div class="form-group">
-                <input type="submit" value="Add Comment" class="btn btn-primary" />
+                <input type="submit" value="Add Comment" class="btn-comment" />
             </div>
         </form>
     </div>

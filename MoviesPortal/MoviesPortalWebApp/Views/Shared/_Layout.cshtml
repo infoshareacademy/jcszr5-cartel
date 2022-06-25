@@ -41,7 +41,7 @@
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Admin", "Account")" class="fa fa-cog"></a></li>
                     }
                     
-                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Search" && ViewContext.RouteData.Values["Action"].ToString() == "Index" ? "active" : "")"><a href="@Url.Action("Index", "Search", new {id = @UserManager.GetUserId(User)})" class="fa fa-search"></a></li>
+                    <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Search" ? "active" : "")"><a href="@Url.Action("Index", "Search", new {id = @UserManager.GetUserId(User)})" class="fa fa-search"></a></li>
 
             </ul>
 
@@ -56,7 +56,7 @@
                         <li class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Account" ? "active" : "")"><a href="@Url.Action("Index", "Account", new {id = @UserManager.GetUserId(User)})" class="fa fa-user"></a></li>
                     }
                 
-                <li><a class='top_menu__item'><i class="fa fa-search"></i></a></li>
+                <li><a class="@(ViewContext.RouteData.Values["Controller"].ToString() == "Search" ? "active" : "")"><i class="fa fa-search"></i></a></li>
             </ul>
          </nav>
     </header>
