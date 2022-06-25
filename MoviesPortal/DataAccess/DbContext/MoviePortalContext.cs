@@ -2,11 +2,8 @@
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories.EntityConfigurations;
-using DataAccess.Repositories.SampleData;
-using FluentAssertions.Common;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 
 
 namespace DataAccess.DbContext
@@ -28,16 +25,18 @@ namespace DataAccess.DbContext
         public DbSet<EpisodeModel> Episodes { get; set; }
         public DbSet<GenreModel> Genres { get; set; }
         public DbSet<RoleModel> Roles { get; set; }
+        public DbSet<CommentModel> Comments { get; set; }
+        public DbSet<SubscriptionModel> Subscriptions { get; set; }
 
-        //Assigment tables (for many-to-many relations)
+        //Assigment tables 
 
         public DbSet<MovieGenre> Movie_Genre { get; set; }
-
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
         public DbSet<Movie_CreativeP_Role> Role_CreativeP_Movie { get; set; }
         public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
         public DbSet<UserFavoriteMovies> UserFavoriteMovies { get; set; }
         public DbSet<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
+        public DbSet<UserFavoriteApiMovies> UserFavoriteApiMovies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -72,6 +71,11 @@ namespace DataAccess.DbContext
 
             new RoleEntityConfiguration().Configure(modelBuilder.Entity<RoleModel>());
 
+            new CommentEntityConfiguration().Configure(modelBuilder.Entity<CommentModel>());
+
+            new UserFavoriteApiMoviesEntityConfiguration().Configure(modelBuilder.Entity<UserFavoriteApiMovies>());
+
+            new SubcriptionConfiguration().Configure(modelBuilder.Entity<SubscriptionModel>());
         }
 
     }

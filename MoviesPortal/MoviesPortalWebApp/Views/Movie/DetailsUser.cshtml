@@ -1,6 +1,7 @@
 ﻿@using System.Security.Claims
 @using BusinessLogic.ApiHandler
 @using BusinessLogic.ApiHandler.ApiModels
+@using DataAccess.DbContext
 @using DataAccess.Models.EntityAssigments
 @using DataAccess.Repositories
 @model MoviesPortalWebApp.Models.MovieVM
@@ -8,36 +9,36 @@
 @using MoviesPortalWebApp.AssigmentsVM
 
 @inject UserManager<DataAccess.Models.ApplicationUser> UserManager;
+@inject MoviePortalContext context;
 
 @{
     ViewData["Title"] = "DetailsUser";
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
     List<CreativePersonVM> actors = ViewBag.Actors;
     List<CreativePersonVM> directors = ViewBag.Directors;
-    
-    //var listFavourities = Model.UserFavoriteMovies.Where(u => u.UserId == @UserManager.GetUserId(User)).ToList();
-    //var fMovieId = Model.UserFavoriteMovies.FirstOrDefault(u => u.UserId == @UserManager.GetUserId(User));
+    List<ProviderVM> providers = ViewBag.Providers;
+    List<RatingVM> ratings = ViewBag.Ratings;
+    int ratingsNo = @ratings.Count;
+    bool isFav = false;  
+
 }
-
-
 
 <img class="BackgroundPoster" src="@Model.BackgroundPoster" alt=""/>
 
- <div class="main-informations">
+ <section class="main-informations">
      <div class="genre">@string.Join(" | ", @Model.Genres.Select(g => g.Genre)).ToUpper()</div>
 
      <div class="Title">@Model.Title.ToUpper()</div>
 
 <p class="inline"><strong>@Model.ProductionYear</strong><span class="vanila"> |</span> </p>
-@{  }  
 
 <strong>
       @if(directors.Count == 1)
             {
-               <p class="inline" id="name">Director:</p>
+                <p class="inline" id="name">Director:</p>
             }
             else if(directors.Count > 1)
             {
@@ -68,11 +69,11 @@
             </strong>
             </p>
           
+            <span class="vanila"> |</span>
+            <p class="inline"><strong>Cast:</strong></p>
+            <p class="inline">
 
-<p class="inline"><strong>Cast:</strong></p>
-<p class="inline">
-
-<strong>
+            <strong>
       @foreach (var person in actors)
                     {
                         <span>
@@ -80,27 +81,219 @@
                        <span class="vanila"> |</span>
                         </span>
                     }
-</strong>
+      </strong>
       </p>
          <p class="description">
          <div class="vanila-ice">@Model.Description</div>
      </p>
 
-
-
-
-
-@*@if (User.Identity.IsAuthenticated && User.IsInRole("User"))
+        @if (User.Identity.IsAuthenticated && User.IsInRole("User"))
         {
 
-            if(listFavourities.Count > 0)
+            if (!Model.IsApiModel)
             {
-                <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@fMovieId.Id"><i class="fa fa-heart"></i></a>
-            } 
+                isFav = Model.UserFavoriteMovies.Any(f => f.UserId == @UserManager.GetUserId(User));                
+            }
             else
             {
-                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
+                isFav = context.UserFavoriteApiMovies.Any(f => f.UserId == @UserManager.GetUserId(User) && f.MovieId == Model.Id);
             }
-        }*@
-</div>
+
+            @if (isFav == true)
+            {
+                <form asp-controller="Account" asp-action="RemoveMovieToFavourities">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">                        
+                        <input asp-for="@Model.Id" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">                        
+                        <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">
+                        @*<a class="fav"><input class="btn btn-outline-danger" value="Remove from favs" type="submit"/> <i class="fa fa-heart""></i></a>  *@
+                        <a class="fav"><input type="submit" class="fas fa-heart" value="&#xf004;"></a>
+                    </div>
+                </form>
+                @*                
+                    <a class="fav" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart"></i></a>
+*@            }
+            else
+            {
+                <form asp-controller="Account" asp-action="AddMovieToFavourities">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                    <div class="form-group">                        
+                        <input asp-for="@Model.Id" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">                        
+                        <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
+                    </div>
+                    <div class="form-group">
+                        @*<a class="fav"><input class="btn btn-outline-danger" value="Add to favs" type="submit"/></a>*@
+                        <a class="fav"><input type="submit" class="fas fa-heart-o" value="&#xf08a;"></a>
+                    </div>
+                </form>               
+@*                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>
+*@            }
+
+        }
+        
+</section>
+
+<section class="details">
+
+     <div class="details-poster">
+
+        <img src="@Model.PosterPath" alt="@Model.Title">
+                                        
+     </div>
+
+     <div class="details-api">
+         <div class="details-ratings">
+
+             <div class="logo-ratings">
+                 <div class="logo">
+                      <a href='@string.Format("https://www.imdb.com/title/{0}/", @Model.Imdb_Id)'>
+                          <img src="~/images/logo/imdb2.png" alt="" />
+                       </a>
+                       <div class="ratings">
+                                   @Model.ImdbRatio.Substring(0,3)/10
+                       </div>                     
+                 </div>
+
+                 @if(@ratingsNo == 3)
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               @ratings[2].Value.ToString()
+                          </div>
+                     </div>
+
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               @ratings[1].Value.ToString()
+                          </div>
+                     </div>                 
+                 } 
+                 else if(@ratingsNo == 2)
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               @ratings[2].Value.ToString()
+                          </div>
+                     </div>
+
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               @ratings[1].Value.ToString()
+                          </div>
+                     </div>                 
+                 }
+                 else
+                 {
+                     <div class="logo">
+                          <img src="~/images/logo/metacritic.png" alt="" />
+                          <div class="ratings">
+                               N/A
+                          </div>
+                     </div>
+
+                     <div class="logo">
+                          <img src="~/images/logo/rotten.png" alt="" />
+                          <div class="ratings">
+                               N/A
+                          </div>
+                     </div> 
+                 }
+             </div>
+         </div>
+
+         <div class="details-platforms">            
+
+            @if(@providers != null)
+            {
+                <strong class="txt-platforms">You can stream this movie on the:</strong>
+                
+                @for(int i=0; i < @providers.Count; i++)
+                {
+
+                    switch (@providers[i].Provider_Name)
+                    {
+                            case "Netflix":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/netflix.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Disney Plus":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/disney.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "UPC TV":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/upc.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "HBO Max":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/hbomax.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Horizon":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/horizon.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Player":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/player.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Amazon Prime Video":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/amazon.png" alt="" />                    
+                            </div>
+                            break;
+
+                            case "Apple TV Plus":
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/apple.png" alt="" />                    
+                            </div>
+                            break;
+
+                            default:
+                            <div class="logo-platforms">
+                                <img src="~/images/logo/not.jpg" alt="" />                              
+                            </div>
+                            break;
+
+                        }
+                    }                
+            }
+            else
+            {
+                <strong class="txt-platforms">This movie is not available to stream in your country :(</strong>
+            }
+         </div>
+     </div>
+     </section>
+     
+     <section>
+         <partial name="/Views/Movie/Comments.cshtml" />
+     </section>
+     
+     <section class="addcomment">
+         <partial name="/Views/Account/AddComment.cshtml" />
+     </section>
 

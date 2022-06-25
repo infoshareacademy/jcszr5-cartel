@@ -17,42 +17,38 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMapper _mapper;
         private readonly IGenreService _genreService;
         private readonly ICreativePersonService _creativePersonService;
+        private readonly ICommentService _commentService;
         private readonly PersonsAgregator _personAgregator;
+        private readonly CommentsPicker _commentPicker;
         private ApiClient client = new();
 
 
-        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator, ICommentService commentService, CommentsPicker commentPicker)
         {
             _movieService = movieService;
             _mapper = mapper;
-
             _genreService = genreService;
             _creativePersonService = creativePersonService;
             _personAgregator = personAgregator;
+            _commentService = commentService;
+            _commentPicker = commentPicker;
         }
 
         #region User
 
         #region User movies list
-        public async Task<IActionResult> IndexUser(string genre, string searchString)
+        public async Task<IActionResult> IndexUser(string genre)
         {
             var model = _movieService.GetAllMovies();
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                model = model.Where(s => s.Title.Contains(searchString));
-            }
-            if (!string.IsNullOrEmpty(genre))
-            {
-                model = model.Where(g => g.Genres.All(g => g.Genre == genre));
-            }
-
-
             var movies = _mapper.Map<IList<MovieVM>>(model);
-            var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
+            var moviesFromApi = await client.GetTrendingMoviesOfTheDay();
             var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
-            var newMovies = movies.Concat(moviesMapped).ToList();
-            return View(newMovies);
+            var newMovies = movies.Concat(moviesMapped).DistinctBy(m => m.Title).ToList();
+
+            var newMoviesAndSubscription = new MoviesAndSubscriptionVM();
+            newMoviesAndSubscription.Movies = newMovies;
+
+            return View(newMoviesAndSubscription);
         }
         #endregion
 
@@ -71,9 +67,33 @@ namespace MoviesPortalWebApp.Controllers
             }
 
             MovieVM movie = _mapper.Map<MovieVM>(model);
-            ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
-            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
+            ViewBag.Directors = await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
+            ViewBag.Actors = await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
 
+            if (id > 1000)
+            {
+                var providersStore = await client.GetProviders(id, BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses.ProviderPicker.PL);
+
+                if (providersStore != null)
+                {
+                    var providers = providersStore.Flatrate;
+                    ViewBag.Providers = _mapper.Map<List<ProviderVM>>(providers);
+                }
+
+                var imdb_id = int.Parse(movie.Imdb_Id.Substring(2));
+                var omdb = await client.GetRatingForMovie(imdb_id);
+                var omdbRatings = omdb.Ratings;
+                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
+
+
+            }
+            else
+            {
+                var omdbRatings = 0;
+                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
+            }
+            CommentsPicker commentsPicker = new();
+            movie.Comments =await _commentPicker.GetCommentsAsync(movie.Id);
             return View(movie);
         }
         #endregion

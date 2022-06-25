@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using DataAccess.DbContext;
 using DataAccess.Models;
-using DataAccess.Models.EntityAssigments;
 using DataAccess.Repositories;
 
 namespace BusinessLogic.Services
@@ -27,9 +26,6 @@ namespace BusinessLogic.Services
 
         public async Task<MovieModel> GetMovieIdByAsync(int? id)
         {
-            
-            
-            
             var movie = await _movieRepository.GetMovieIdByAsync(id);
             return movie;
         }

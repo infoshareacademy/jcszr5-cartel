@@ -1,5 +1,4 @@
-﻿using DataAccess.Models;
-using DataAccess.Models.EntityAssigments;
+﻿using DataAccess.Models.EntityAssigments;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using MoviesPortalWebApp.AssigmentsVM;
 using System.ComponentModel.DataAnnotations;
@@ -13,18 +12,19 @@ namespace MoviesPortalWebApp.Models
         public int ProductionYear { get; set; }
         public string Description { get; set; }
         public string? PosterPath { get; set; }
-        public string? TrailerUrl { get; set; }        
+        public string? TrailerUrl { get; set; }
         public string? BackgroundPoster { get; set; }
         public string? ImdbRatio { get; set; }
         public bool IsForKids { get; set; }
         public bool IsApiModel { get; set; }
+        public string Imdb_Id { get; set; }
 
         [Display(Name = "Genres")]
         public virtual IList<GenreVM> Genres { get; set; }
 
         public List<SelectListItem> selectedGenres { get; set; }
         public int[] GenresIds { get; set; }
-       
+
         public virtual IList<RoleCreativeMovieVM> RoleCreativeMovie { get; set; }
 
         public List<SelectListItem> selectedActors { get; set; }
@@ -35,6 +35,7 @@ namespace MoviesPortalWebApp.Models
 
         public List<UserFavoriteMovies> UserFavoriteMovies { get; set; }
         public List<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
+        public List<CommentVM> Comments { get; set; }
 
     }
 }

@@ -1,0 +1,24 @@
+﻿@model SearchQueryVM
+
+    <img class="searchBackground" src="~/images/search.png" alt=""/>
+
+    <div class="search">
+        <div class="col-md-4">
+            <form asp-action="Search">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+                <div class="form-group">
+                    @*<label asp-for="QueryString" class="control-label"></label>*@
+                    <input asp-for="QueryString" class="form-control" />
+                    <span asp-validation-for="QueryString" class="text-danger"></span>
+                </div>            
+
+                <div class="form-group">
+                    <input type="submit" value="Search" class="btn-search" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    
+

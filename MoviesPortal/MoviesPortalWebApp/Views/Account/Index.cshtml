@@ -3,38 +3,20 @@
     ViewData["Title"] = "Index";
 }
 
+<div class="movieBox-favourities" >
 
-<div class="movieBox"" >
+    <h1>List your favourities Movies</h1>
 
-<h1>List you favourities Movies and TVSeries</h1>
-
-<table class="table">
-    <thead>
-        <tr>
-           
-            <th>
-                @Html.DisplayNameFor(model => model.Movie.Title)
-            </th>
-          
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-           
-            <td>
-           
-                <a class="heart" asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@item.MovieId">@item.Movie.Title</a>
-            </td>
-        
-            <td>             
-              
-                 <a class="heart" asp-controller="Account" asp-action="RemoveMovieToFavourities" asp-route-id="@item.Id">REMOVE FROM WATCHLIST</a>
-          
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+    <div class="table">   
+       
+    @foreach (var item in Model) {
+            <tr>
+                <div class="gallery">
+                    <a asp-controller="Movie" asp-action="DetailsUser" asp-route-id="@item.MovieId"><img src="@item.Movie.PosterPath" alt="@item.Movie.Title"></a>
+                    <div class="desc">@item.Movie.Title</div>
+                </div>
+            </tr>
+    }
+       
+    </div>
 </div>

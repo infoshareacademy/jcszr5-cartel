@@ -1,5 +1,4 @@
 using BusinessLogic.ApiHandler;
-using BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses;
 using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using BusinessLogic.Validation;
@@ -12,6 +11,7 @@ using DataAccess.Repositories.SampleData;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using MoviesPortalWebApp.Models;
 using MoviesPortalWebApp.ServicesForControllers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,9 +34,14 @@ builder.Services.AddTransient<ICreativePersonService, CreativePersonService>();
 builder.Services.AddTransient<ICreativePersonValidator, CreativePersonValidator>();
 builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
+builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
+builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICommentService, CommentService>();
 builder.Services.AddScoped<ApiClient>();
+builder.Services.AddScoped<CommentsPicker>();
 builder.Services.AddScoped<PersonsAgregator>();
-
+builder.Services.AddScoped<SubscriptionVM>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Authentication and authorization
@@ -385,5 +390,5 @@ if (!dbContext.TvSeries.Any())
 }
 
 ApiClient client = new();
-var result = await client.GetPersonsForMovie(284053);
+//var result = await client.FindPersonsByName("pitt",1);
 app.Run();
