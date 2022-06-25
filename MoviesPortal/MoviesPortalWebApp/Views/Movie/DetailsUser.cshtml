@@ -111,7 +111,8 @@
                         <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
                     </div>
                     <div class="form-group">
-                        <a class="fav"><input class="btn btn-outline-danger" value="Remove from favs" type="submit"/></a>                        
+                        @*<a class="fav"><input class="btn btn-outline-danger" value="Remove from favs" type="submit"/> <i class="fa fa-heart""></i></a>  *@
+                        <a class="fav"><input type="submit" class="fas fa-heart" value="&#xf004;"></a>
                     </div>
                 </form>
                 @*                
@@ -129,7 +130,8 @@
                         <input asp-for="@Model.IsApiModel" type="hidden" class="form-control" />                        
                     </div>
                     <div class="form-group">
-                        <a class="fav"><input class="btn btn-outline-danger" value="Add to favs" type="submit"/></a>                        
+                        @*<a class="fav"><input class="btn btn-outline-danger" value="Add to favs" type="submit"/></a>*@
+                        <a class="fav"><input type="submit" class="fas fa-heart-o" value="&#xf08a;"></a>
                     </div>
                 </form>               
 @*                <a class="fav" asp-controller="Account" asp-action="AddMovieToFavourities" asp-route-id="@Model.Id"><i class="fa fa-heart-o"></i></a>

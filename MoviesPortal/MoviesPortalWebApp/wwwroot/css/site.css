@@ -605,23 +605,36 @@ div.desc {
 
 .fa-heart-o {
     color: grey;
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: transparent;
+    border: none;
 }
 
 .fa-heart {
     color: darkgoldenrod;
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: transparent;
+    border: none;
 }
 
 .fa-heart-o:hover {
     color: darkgoldenrod;
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: transparent;
+    border: none;
 }
 
 .fa-heart:hover {
     color: grey;
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background-color: transparent;
+    border: none;
 }
 
-    .bi bi-person-badge {
-        color: white;
-    }
+
+.bi bi-person-badge {
+    color: white;
+}
 
 
 #AdminForms{
