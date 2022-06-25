@@ -1,23 +1,25 @@
-﻿@model IEnumerable<MoviesPortalWebApp.Models.MovieVM>
+﻿@model MoviesPortalWebApp.Models.MoviesAndSubscriptionVM
 
 @{
     ViewData["Title"] = "Index";
-    
+
 }
 
 <section id="top_movies text-light" class="clearfix">
-    <div class="wrapper text-light">  
+    <div class="wrapper text-light">
         <div class="movieBox">
             <section class="moviePoster">
-            @foreach(var item in Model)
-            {
-                <div class="gallery">
-                    <a asp-action="DetailsUser" asp-route-id="@item.Id"><img src="@item.PosterPath" alt="@item.Title"></a>
-                    
-                    <div class="desc">@item.Title</div>
-                </div>
-            }
-        </section>
+                @foreach (var item in Model.Movies)
+                {
+                    <div class="gallery">
+                        <a asp-action="DetailsUser" asp-route-id="@item.Id"><img src="@item.PosterPath" alt="@item.Title"></a>
+
+                        <div class="desc">@item.Title</div>
+                    </div>
+                }
+            </section>
         </div>
     </div>
 </section>
+
+<partial name="_Subscription" />

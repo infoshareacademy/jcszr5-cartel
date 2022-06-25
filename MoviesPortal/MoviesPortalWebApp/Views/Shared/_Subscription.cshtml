@@ -1,26 +1,15 @@
-﻿@{
-    SubscriptionVM subscription = new();
-}
+﻿@model MoviesPortalWebApp.Models.MoviesAndSubscriptionVM
 
 <section id="newsletter">
     <div class="newsletter_inner">
         <h2>Get the best Movie &amp; TV Show trailers straight in your inbox each week.</h2>
         <div class="sign_up_form">
             <form asp-controller="Subscription" asp-action="Create">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="@subscription.FirstName" class="control-label"></label>
-                    <input asp-for="@subscription.FirstName" value="Wojtek" class="form-control"/>
-                    <span asp-validation-for="@subscription.FirstName" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="@subscription.Email" class="control-label"></label>
-                    <input asp-for="@subscription.Email" class="form-control">
-                    <span asp-validation-for="@subscription.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
+                <input asp-for="@Model.Subscription.FirstName" placeholder="First Name" />
+                <span asp-validation-for="@Model.Subscription.FirstName" class="text-danger"></span>
+                <input asp-for="@Model.Subscription.Email" placeholder="Email Address">
+                <span asp-validation-for="@Model.Subscription.Email" class="text-danger"></span>
+                <input type="submit" value="Subscribe" class="button" />
             </form>
         </div>
     </div>

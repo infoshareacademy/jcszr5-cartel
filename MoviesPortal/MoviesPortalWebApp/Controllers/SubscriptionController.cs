@@ -16,17 +16,20 @@ namespace MoviesPortalWebApp.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> Create(SubscriptionVM model)
+        public async Task<IActionResult> Create(MoviesAndSubscriptionVM model)
         {
-            SubscriptionModel subscription = new();
+            bool IsAlreadySubscribed = _subscriptionService.GetAllSubscriptions().Any(s => s.Email == model.Subscription.Email);
+            if (!IsAlreadySubscribed)
+            {
+                SubscriptionModel subscription = new();
+                subscription.Id = Guid.NewGuid();
+                subscription.FirstName = model.Subscription.FirstName;
+                subscription.Email = model.Subscription.Email;
 
-            subscription.Id = new Guid();
-            subscription.FirstName = model.FirstName;
-            subscription.Email = model.Email;
+                await _subscriptionService.CreateSubscription(subscription);
+            }
 
-            await _subscriptionService.CreateSubscription(subscription);
-
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

@@ -34,23 +34,18 @@ namespace MoviesPortalWebApp.Controllers
         #region User
 
         #region User movies list
-        public async Task<IActionResult> IndexUser(string genre, string searchString)
+        public async Task<IActionResult> IndexUser(string genre)
         {
             var model = _movieService.GetAllMovies();
             var movies = _mapper.Map<IList<MovieVM>>(model);
-            var moviesFromApi =await client.GetTrendingMoviesOfTheDay();
+            var moviesFromApi = await client.GetTrendingMoviesOfTheDay();
             var moviesMapped = _mapper.Map<IList<MovieVM>>(moviesFromApi);
-            var newMovies = movies.Concat(moviesMapped).DistinctBy(m => m.Title).ToList(); 
+            var newMovies = movies.Concat(moviesMapped).DistinctBy(m => m.Title).ToList();
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                newMovies = newMovies.Where(s => s.Title.ToLower().Contains(searchString.ToLower())).ToList();
-            }
-            if (!string.IsNullOrEmpty(genre))
-            {
-                newMovies = newMovies.Where(g => g.Genres.All(g => g.Genre == genre)).ToList();
-            }
-            return View(newMovies);
+            var newMoviesAndSubscription = new MoviesAndSubscriptionVM();
+            newMoviesAndSubscription.Movies = newMovies;
+
+            return View(newMoviesAndSubscription);
         }
         #endregion
 
@@ -69,13 +64,13 @@ namespace MoviesPortalWebApp.Controllers
             }
 
             MovieVM movie = _mapper.Map<MovieVM>(model);
-            ViewBag.Directors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
-            ViewBag.Actors =await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
+            ViewBag.Directors = await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Crew);
+            ViewBag.Actors = await _personAgregator.GetPersonsForMovie(movie, BusinessLogic.Enums.CastOrCrewPicker.Cast);
 
             if (id > 1000)
             {
                 var providersStore = await client.GetProviders(id, BusinessLogic.ApiHandler.ApiModels.ContentProvidersClasses.ProviderPicker.PL);
-               
+
                 if (providersStore != null)
                 {
                     var providers = providersStore.Flatrate;
@@ -88,8 +83,8 @@ namespace MoviesPortalWebApp.Controllers
                 ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
 
 
-            } 
-            else 
+            }
+            else
             {
                 var omdbRatings = 0;
                 ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
