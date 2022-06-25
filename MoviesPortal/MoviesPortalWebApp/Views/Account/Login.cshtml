@@ -6,42 +6,10 @@
 }
 
 <div class="rowLogin">
-       
-
-            @if(TempData["Error"] != null)
-            {
-                <div class="col-md-12 alert alert-danger">
-                    <span><b>Sorry!</b> - @TempData["Error"] </span>
-                </div>
-            }
-            <div class="loginBackgound">
-
-           
-           <div class="loginPanel">
-          
-                <form asp-action="Login">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-                    <div class="form-group">
-                        <label asp-for="EmailAddress" class="control-label"></label>
-                        <input asp-for="EmailAddress" class="form-control" />
-                        <span asp-validation-for="EmailAddress" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label asp-for="Password" class="control-label"></label>
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
-                    </div>
-
-                    <div class="form-group">
-                        <input class="btn btn-outline-success loginButton my-2 my-sm-0" type="submit" value="Log in" />
-                        <a class="btn btn-outline-primary registerButton my-2 my-sm-0" asp-controller="Home" asp-action="Index">Cancel</a>
-                    </div>
-                </form>
-
+    <div class="loginBackgound">
+        <div class="loginPanel">
+            <h2>Do you know the first rule of fight club?</h2>
+            <a class="btn-login-mistake" asp-controller="Account" asp-action="AuthLayout">Go back</a>
         </div>
-
-       </div>
-
-
+    </div>
 </div>
