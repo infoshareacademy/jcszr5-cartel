@@ -256,9 +256,7 @@ div.desc {
     height: 240px;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    /*background: black;*/
-    /*opacity: 0.4;*/
+    transform: translate(-50%, -50%);   
     border-radius: 15px;
     color: white;
 }
@@ -304,12 +302,43 @@ div.desc {
     padding: 10px;
 }
 
+
+.loginPanel h2 {
+    text-align: center;
+}
+
+.btn-login-mistake {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 50%;    
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;
+    margin-top: 20px;
+}
+
+.btn-login-mistake:hover {
+    color: rgb(255, 255, 255);
+    background: rgba(0,0,0, 0.5);
+}
+
 /* Register panel */
 .registerBackgound {
-    background-image: url(../images/4.jfif);
-    filter: brightness(130%);
-    height: 90vh;
+    background-image: url(../images/loki-you-had-one-job.gif);    
+    height: 100vh;
     width: 100vw;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 .registerPanel {
@@ -368,6 +397,8 @@ div.desc {
     opacity: 1;
     padding: 10px;
 }
+
+
 
 /* BackgroundPoster */
 
@@ -453,7 +484,71 @@ div.desc {
 
 }
 
+.comments-area {    
+    width: 1400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    padding-left: 50px;
+    padding-right: 30px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background-color: black;    
+}
+
+    .comments-area .fa-comment, .comments-area .fa-user {        
+        font-size: 30px;
+        margin-right: 10px;
+        color: darkgoldenrod;
+    }
+
+.comments-h2 {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.addcomment {
+    height: 250px;
+    width: 1400px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px; 
+    text-align: center;
+}
+
+.btn-comment {    
+    text-decoration: none;
+    color: #fff;
+    border: #fff solid 0.2rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    width: 15rem;
+    padding: 1.5rem;
+    background-color: transparent;
+    border-radius: 15px;        
+}
+
+.comment-form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-comment:hover {
+    background-color: darkgoldenrod;
+}
+
+
 /* Stylowanie opisu na obrazku g?ównym*/
+
 .main-informations {
     position: absolute;
     color: #fff;

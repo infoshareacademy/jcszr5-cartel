@@ -28,7 +28,7 @@ namespace DataAccess.DbContext
         public DbSet<CommentModel> Comments { get; set; }
         public DbSet<SubscriptionModel> Subscriptions { get; set; }
 
-        //Assigment tables (for many-to-many relations)
+        //Assigment tables 
 
         public DbSet<MovieGenre> Movie_Genre { get; set; }
         public DbSet<TvSeriesGenre> TvSeries_Genre { get; set; }
@@ -36,6 +36,7 @@ namespace DataAccess.DbContext
         public DbSet<TvSeries_CreativeP_Role> TvSeries_CreativeP_Role { get; set; }
         public DbSet<UserFavoriteMovies> UserFavoriteMovies { get; set; }
         public DbSet<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
+        public DbSet<UserFavoriteApiMovies> UserFavoriteApiMovies { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -71,6 +72,8 @@ namespace DataAccess.DbContext
             new RoleEntityConfiguration().Configure(modelBuilder.Entity<RoleModel>());
 
             new CommentEntityConfiguration().Configure(modelBuilder.Entity<CommentModel>());
+
+            new UserFavoriteApiMoviesEntityConfiguration().Configure(modelBuilder.Entity<UserFavoriteApiMovies>());
 
             new SubcriptionConfiguration().Configure(modelBuilder.Entity<SubscriptionModel>());
         }

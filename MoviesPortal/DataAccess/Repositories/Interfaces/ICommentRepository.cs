@@ -15,7 +15,7 @@ namespace DataAccess.Repositories.Interfaces
         
         Task Edit(int id, CommentModel comment);
         
-        Task<IQueryable<CommentModel>> GetAllComments();
+        Task<IQueryable<CommentModel>> GetAllComments(int movieId);
         
         Task<CommentModel> GetComment(int id);
     }
