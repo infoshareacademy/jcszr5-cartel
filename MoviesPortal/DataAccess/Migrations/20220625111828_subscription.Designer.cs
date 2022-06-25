@@ -12,8 +12,13 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Migrations
 {
     [DbContext(typeof(MoviePortalContext))]
+<<<<<<<< HEAD:MoviesPortal/DataAccess/Migrations/20220625111828_subscription.Designer.cs
     [Migration("20220625111828_subscription")]
     partial class subscription
+========
+    [Migration("20220625095745_newDB")]
+    partial class newDB
+>>>>>>>> Develop:MoviesPortal/DataAccess/Migrations/20220625095745_newDB.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1543,6 +1548,28 @@ namespace DataAccess.Migrations
                     b.ToTable("TvSeries_Genre");
                 });
 
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavoriteApiMovies", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("MovieId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserFavoriteApiMovies");
+                });
+
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavoriteMovies", b =>
                 {
                     b.Property<int>("Id")
@@ -2314,6 +2341,17 @@ namespace DataAccess.Migrations
                     b.Navigation("TvSeries");
                 });
 
+            modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavoriteApiMovies", b =>
+                {
+                    b.HasOne("DataAccess.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany("UserFavoriteApiMovies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
             modelBuilder.Entity("DataAccess.Models.EntityAssigments.UserFavoriteMovies", b =>
                 {
                     b.HasOne("DataAccess.Models.MovieModel", "Movie")
@@ -2428,6 +2466,8 @@ namespace DataAccess.Migrations
             modelBuilder.Entity("DataAccess.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Comments");
+
+                    b.Navigation("UserFavoriteApiMovies");
 
                     b.Navigation("UserFavoriteMovies");
 

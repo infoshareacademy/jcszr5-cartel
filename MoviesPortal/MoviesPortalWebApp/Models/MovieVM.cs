@@ -35,8 +35,7 @@ namespace MoviesPortalWebApp.Models
 
         public List<UserFavoriteMovies> UserFavoriteMovies { get; set; }
         public List<UserFavoriteTvSeries> UserFavoriteTvSeries { get; set; }
-        public string FirstName { get; set; }
-        public string Email { get; set; }
+        public List<CommentVM> Comments { get; set; }
 
     }
 }

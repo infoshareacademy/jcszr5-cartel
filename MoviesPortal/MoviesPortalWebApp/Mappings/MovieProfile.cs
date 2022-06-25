@@ -13,20 +13,28 @@ namespace MoviesPortalWebApp.Mappings
 
         public MovieProfile()
         {
-            CreateMap<MovieModel, MovieVM>();
-            CreateMap<MovieGenre, MovieGenreVM>();
-            CreateMap<GenreModel, GenreVM>();
+            CreateMap<MovieModel, MovieVM>().ReverseMap();
+            CreateMap<MovieGenre, MovieGenreVM>().ReverseMap();
+            CreateMap<GenreModel, GenreVM>().ReverseMap();
             CreateMap<CreativePersonModel, CreativePersonVM>().ReverseMap();
-            CreateMap<RoleModel, RoleVM>();
+            CreateMap<RoleModel, RoleVM>().ReverseMap();
             CreateMap<Movie_CreativeP_Role, RoleCreativeMovieVM>()
                 //.ForMember(d => d.Id, o=>o.MapFrom(s => s.MovieId))
                 .ReverseMap();            
             CreateMap<CreativePersonModel, CreativePersonVM>();
+            CreateMap<CommentVM, CommentModel>()
+                .ForMember(d => d.PublishedAt, o => o.MapFrom(s => DateTime.ParseExact(s.PublishedAt, "MM/dd/yyyy HH:mm", null)))
+                .ForMember(d => d.CommentContent, o => o.MapFrom(s => s.Content))
+                .ForMember(d => d.UserId, o => o.MapFrom(s => s.UserId))
+                .ReverseMap();
 
             //Api Mappings
 
             CreateMap<Genre, GenreVM>()
                 .ForMember(d => d.Genre, o => o.MapFrom(s => s.Name)).ReverseMap();
+
+            CreateMap<UserFavoriteApiMovies, UserFavoriteMovies>().ReverseMap();
+                
 
             CreateMap<Cast, CreativePersonVM>()
                 .ForMember(d => d.Name, o => o.MapFrom(s => s.Name.Split(' ', ' ').First()))

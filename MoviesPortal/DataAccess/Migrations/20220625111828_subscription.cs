@@ -273,6 +273,26 @@ namespace DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserFavoriteApiMovies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    MovieId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserFavoriteApiMovies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserFavoriteApiMovies_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Movie_Genre",
                 columns: table => new
                 {
@@ -860,6 +880,11 @@ namespace DataAccess.Migrations
                 column: "TvSeriesId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserFavoriteApiMovies_UserId",
+                table: "UserFavoriteApiMovies",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserFavoriteMovies_MovieId",
                 table: "UserFavoriteMovies",
                 column: "MovieId");
@@ -917,6 +942,9 @@ namespace DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "TvSeries_Genre");
+
+            migrationBuilder.DropTable(
+                name: "UserFavoriteApiMovies");
 
             migrationBuilder.DropTable(
                 name: "UserFavoriteMovies");
