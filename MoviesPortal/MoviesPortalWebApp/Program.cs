@@ -387,5 +387,5 @@ if (!dbContext.TvSeries.Any())
 }
 
 ApiClient client = new();
-var result = await client.GetPersonsForMovie(284053);
+//var result = await client.FindPersonsByName("pitt",1);
 app.Run();

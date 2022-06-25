@@ -21,6 +21,9 @@ namespace BusinessLogic.ApiHandler.ApiModels
         [JsonProperty("known_for_department")]
         public string Known_For_Department { get; set; }
 
+        [JsonProperty("known_for")]
+        public List<Movie> Known_For { get; set; }
+
         [JsonProperty("name")]
         public string Name { get; set; }
 

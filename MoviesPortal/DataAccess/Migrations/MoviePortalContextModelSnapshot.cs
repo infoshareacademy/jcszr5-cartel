@@ -1748,7 +1748,7 @@ namespace DataAccess.Migrations
                             Description = "A veteran Green Beret is forced by a cruel Sheriff and his deputies to flee into the mountains and wage an escalating one-man war against his pursuers.",
                             ImdbRatio = "7.7",
                             IsForKids = false,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2015/03/gabz_firstblood700.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/a9sa6ERZCpplbPEO7OMWE763CLD.jpg",
                             ProductionYear = 1982,
                             Title = "Rambo: First Blood",
                             TrailerUrl = "https://www.youtube.com/watch?v=IAqLKlxY3Eo"
@@ -1756,11 +1756,11 @@ namespace DataAccess.Migrations
                         new
                         {
                             Id = 2,
-                            BackgroundPoster = "https://images.hdqwalls.com/wallpapers/art-thor-ragnarok-we.jpg",
+                            BackgroundPoster = "https://image.tmdb.org/t/p/original//6G2fLCVm9fiLyHvBrccq6GSe2ih.jpg",
                             Description = "Imprisoned on the planet Sakaar, Thor must race against time to return to Asgard and stop Ragnarök, the destruction of his world, at the hands of the powerful and ruthless villain Hela.",
                             ImdbRatio = "7.9",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2020/06/Juan-Ramos_thorragnarok.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg",
                             ProductionYear = 2017,
                             Title = "Thor: Ragnarok",
                             TrailerUrl = "https://www.youtube.com/watch?v=ue80QwXMRHg"
@@ -1772,7 +1772,7 @@ namespace DataAccess.Migrations
                             Description = "Allied soldiers from Belgium, the British Commonwealth and Empire, and France are surrounded by the German Army and evacuated during a fierce battle in World War II.",
                             ImdbRatio = "7.8",
                             IsForKids = false,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2019/10/duperray_dunkirk.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/ebSnODDg9lbsMIaWg2uAbjn7TO5.jpg",
                             ProductionYear = 2017,
                             Title = "Dunkirk",
                             TrailerUrl = "https://www.youtube.com/watch?v=F-eMt3SrfFU"
@@ -1784,7 +1784,7 @@ namespace DataAccess.Migrations
                             Description = "The Avengers and their allies must be willing to sacrifice all in an attempt to defeat the powerful Thanos before his blitz of devastation and ruin puts an end to the universe.",
                             ImdbRatio = "8.4",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2018/05/bergeron_infinity.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/7WsyChQLEftFiDOVTGkv3hFpyyt.jpg",
                             ProductionYear = 2018,
                             Title = "Avengers: Infinity War",
                             TrailerUrl = "https://www.youtube.com/watch?v=6ZfuNTqbHE8"
@@ -1796,7 +1796,7 @@ namespace DataAccess.Migrations
                             Description = "Political involvement in the Avengers' affairs causes a rift between Captain America and Iron Man.",
                             ImdbRatio = "7.8",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2016/06/walker_civilwar.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg",
                             ProductionYear = 2016,
                             Title = "Captain America: Civil War",
                             TrailerUrl = "https://www.youtube.com/watch?v=dKrVegVI0Us"
@@ -1808,7 +1808,7 @@ namespace DataAccess.Migrations
                             Description = "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle station, while also attempting to rescue Princess Leia from the mysterious Darth Vader.",
                             ImdbRatio = "8.6",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2021/12/AlexHovey_NewHope.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg",
                             ProductionYear = 1977,
                             Title = "Star Wars: Episode IV - New Hope",
                             TrailerUrl = "https://www.youtube.com/watch?v=vZ734NWnAHA"
@@ -1820,7 +1820,7 @@ namespace DataAccess.Migrations
                             Description = "After the Rebels are brutally overpowered by the Empire on the ice planet Hoth, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued across the galaxy by Darth Vader and bounty hunter Boba Fett.",
                             ImdbRatio = "8.7",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2021/12/AlexHovey_Empire.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/2l05cFWJacyIsTpsqSgH0wQXe4V.jpg",
                             ProductionYear = 1980,
                             Title = "Star Wars: Episode V - The Empire Strikes Back",
                             TrailerUrl = "https://www.youtube.com/watch?v=JNwNXF9Y6kY"
@@ -1832,7 +1832,7 @@ namespace DataAccess.Migrations
                             Description = "After a daring mission to rescue Han Solo from Jabba the Hutt, the Rebels dispatch to Endor to destroy the second Death Star. Meanwhile, Luke struggles to help Darth Vader back from the dark side without falling into the Emperor's trap.",
                             ImdbRatio = "8.3",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2021/12/AlexHovey_Jedi.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/1kAbMLKVJz7LGjs8nnp259tffry.jpg",
                             ProductionYear = 1983,
                             Title = "Star Wars: Episode VI - Return of the Jedi",
                             TrailerUrl = "https://www.youtube.com/watch?v=5UfA_aKBGMc"
@@ -1844,7 +1844,7 @@ namespace DataAccess.Migrations
                             Description = "In 1936, archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before Adolf Hitler's Nazis can obtain its awesome powers.",
                             ImdbRatio = "8.4",
                             IsForKids = true,
-                            PosterPath = "https://i.pinimg.com/originals/f2/87/36/f28736d093de503e783c4bf247230cb3.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/ceG9VzoRAVGwivFU403Wc3AHRys.jpg",
                             ProductionYear = 1981,
                             Title = "Raiders of the Lost Ark",
                             TrailerUrl = "https://www.youtube.com/watch?v=0xQSIdSRlAk"
@@ -1856,7 +1856,7 @@ namespace DataAccess.Migrations
                             Description = "In 1938, after his father Professor Henry Jones, Sr. goes missing while pursuing the Holy Grail, Professor Henry 'Indiana' Jones, Jr. finds himself up against Adolf Hitler's Nazis again to stop them from obtaining its powers.",
                             ImdbRatio = "8.2",
                             IsForKids = true,
-                            PosterPath = "https://static.squarespace.com/static/51b3dc8ee4b051b96ceb10de/51ce6099e4b0d911b4489b79/51ce61e9e4b0d911b44a5773/1328897573177/1000w/temple-of-doom-minimalist-print.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/sizg1AU8f8JDZX4QIgE4pjUMBvx.jpg",
                             ProductionYear = 1989,
                             Title = "Indiana Jones and the Last Crusade",
                             TrailerUrl = "https://www.youtube.com/watch?v=DKg36LBVgfg"
@@ -1868,7 +1868,7 @@ namespace DataAccess.Migrations
                             Description = "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival.",
                             ImdbRatio = "8.6",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2020/05/daus_interstellar.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/mS4EvhsrT0SQZOlWrQEzWI5KiUa.jpg",
                             ProductionYear = 2014,
                             Title = "Interstellar",
                             TrailerUrl = "https://www.youtube.com/watch?v=zSWdZVtXT7E"
@@ -1880,7 +1880,7 @@ namespace DataAccess.Migrations
                             Description = "When the menace known as the Joker wreaks havoc and chaos on the people of Gotham, Batman must accept one of the greatest psychological and physical tests of his ability to fight injustice.",
                             ImdbRatio = "9.0",
                             IsForKids = false,
-                            PosterPath = "https://cdn.shopify.com/s/files/1/0071/5192/products/Screen_Shot_2017-12-06_at_17.45.00_1024x1024.png?v=1512583353",
+                            PosterPath = "https://image.tmdb.org/t/p/original/vGYJRor3pCyjbaCpJKC39MpJhIT.jpg",
                             ProductionYear = 2008,
                             Title = "The Dark Knight",
                             TrailerUrl = "https://www.youtube.com/watch?v=EXeTwQWrcwY"
@@ -1892,7 +1892,7 @@ namespace DataAccess.Migrations
                             Description = "In a near future, a lonely writer develops an unlikely relationship with an operating system designed to meet his every need.",
                             ImdbRatio = "8.0",
                             IsForKids = false,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2018/05/AMP_Her.png",
+                            PosterPath = "https://image.tmdb.org/t/p/original/yk4J4aewWYNiBhD49WD7UaBBn37.jpg",
                             ProductionYear = 2013,
                             Title = "Her",
                             TrailerUrl = "https://www.youtube.com/watch?v=ne6p6MfLBxc"
@@ -1904,7 +1904,7 @@ namespace DataAccess.Migrations
                             Description = "An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.",
                             ImdbRatio = "8.8",
                             IsForKids = false,
-                            PosterPath = "https://i.pinimg.com/736x/2e/0c/ee/2e0ceec2f8bc16b562a8cec2d4d1b86f.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/a26cQPRhJPX6GbWfQbvZdrrp9j9.jpg",
                             ProductionYear = 1999,
                             Title = "Fight Club",
                             TrailerUrl = "https://www.youtube.com/watch?v=O1nDozs-LxI"
@@ -1916,7 +1916,7 @@ namespace DataAccess.Migrations
                             Description = "Two detectives, a rookie and a veteran, hunt a serial killer who uses the seven deadly sins as his motives.",
                             ImdbRatio = "8.6",
                             IsForKids = false,
-                            PosterPath = "https://i.pinimg.com/originals/9a/6b/92/9a6b929842b8affe801112608266087b.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/sj8dIprCrqeVdikCsWODyjDjhST.jpg",
                             ProductionYear = 1995,
                             Title = "Se7en",
                             TrailerUrl = "https://www.youtube.com/watch?v=znmZoVkCjpI"
@@ -1928,7 +1928,7 @@ namespace DataAccess.Migrations
                             Description = "As Harvard student Mark Zuckerberg creates the social networking site that would become known as Facebook, he is sued by the twins who claimed he stole their idea, and by the co-founder who was later squeezed out of the business.",
                             ImdbRatio = "7.8",
                             IsForKids = false,
-                            PosterPath = "https://i.pinimg.com/originals/df/1b/a2/df1ba2a4e5d4f8a99a323261df3be7ee.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/jXbqfVHmvCikyTw2Lf5OhKyt9Ym.jpg",
                             ProductionYear = 2010,
                             Title = "The Social Network",
                             TrailerUrl = "https://www.youtube.com/watch?v=lB95KLmpLR4"
@@ -1940,7 +1940,7 @@ namespace DataAccess.Migrations
                             Description = "Between 1968 and 1983, a San Francisco cartoonist becomes an amateur detective obsessed with tracking down the Zodiac Killer, an unidentified individual who terrorizes Northern California with a killing spree.",
                             ImdbRatio = "7.7",
                             IsForKids = false,
-                            PosterPath = "https://64.media.tumblr.com/0d4d9f32780322b9c0fe71857904d6cf/11a1f8baccb49d40-8b/s540x810/2b46dc8aaa865250e899a5fb42eedf47de4d6823.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/kqERBMBQ5L45VmtDiuWmZiAhgzg.jpg",
                             ProductionYear = 2007,
                             Title = "Zodiac",
                             TrailerUrl = "https://www.youtube.com/watch?v=yNncHPl1UXg"
@@ -1952,7 +1952,7 @@ namespace DataAccess.Migrations
                             Description = "Dr. Stephen Strange casts a forbidden spell that opens the doorway to the multiverse, including alternate versions of himself, whose threat to humanity is too great for the combined forces of Strange, Wong, and Wanda Maximoff.",
                             ImdbRatio = "7.6",
                             IsForKids = true,
-                            PosterPath = "https://alternativemovieposters.com/wp-content/uploads/2019/09/knotek_drstrange.jpg",
+                            PosterPath = "https://image.tmdb.org/t/p/original/A7CzMZBitf00BAtb1kJa50pWPgV.jpg",
                             ProductionYear = 2022,
                             Title = "Doctor Strange in the Multiverse of Madness",
                             TrailerUrl = "https://www.youtube.com/watch?v=aWzlQ2N6qqg"

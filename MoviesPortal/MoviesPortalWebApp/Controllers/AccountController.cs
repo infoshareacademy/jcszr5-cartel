@@ -43,23 +43,22 @@ namespace MoviesPortalWebApp.Controllers
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             var fMovie = new UserFavoriteMovies();
             var movie = await _context.Movies.FirstOrDefaultAsync(x => x.Id == id);
-
             fMovie.UserId = userId;
             fMovie.MovieId = movie.Id;
 
             _context.UserFavoriteMovies.Add(fMovie);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("IndexUser", "Movie");
+            return RedirectToAction("DetailsUser", "Movie", new { id = movie.Id});
         }
 
         public async Task<IActionResult> RemoveMovieToFavourities(int? id)
         {
-            var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.Id == id);
+            var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.MovieId == id);
             _context.UserFavoriteMovies.Remove(movie);
             await _context.SaveChangesAsync();
 
-            return RedirectToAction("IndexUser", "Movie");
+            return RedirectToAction("DetailsUser", "Movie", new { id = movie.MovieId });
         }
 
 

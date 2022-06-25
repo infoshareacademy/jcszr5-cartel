@@ -81,7 +81,20 @@ namespace MoviesPortalWebApp.Controllers
                     var providers = providersStore.Flatrate;
                     ViewBag.Providers = _mapper.Map<List<ProviderVM>>(providers);
                 }
-            }                      
+
+                var imdb_id = int.Parse(movie.Imdb_Id.Substring(2));
+                var omdb = await client.GetRatingForMovie(imdb_id);
+                var omdbRatings = omdb.Ratings;
+                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
+
+
+            } 
+            else 
+            {
+                var omdbRatings = 0;
+                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
+            }
+
             return View(movie);
         }
         #endregion

@@ -1,0 +1,17 @@
+﻿@model SearchResultVM
+
+
+<div class="serach-result">
+
+    <h1>
+    Here are Your results:   
+    </h1>
+
+     @foreach(var item in @Model.Movies)
+     {
+         <div class="gallery-serach">
+             <a asp-action="DetailsUser" asp-route-id="@item.Id" asp-controller="Movie"><img src="@item.PosterPath" alt="@item.Title"></a>
+             <div class="desc">@item.Title</div>
+         </div>
+     }
+</div>
