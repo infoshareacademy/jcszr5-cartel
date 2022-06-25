@@ -1,4 +1,5 @@
-﻿using DataAccess.DbContext;
+﻿using AutoMapper;
+using DataAccess.DbContext;
 using DataAccess.Models;
 using DataAccess.Models.EntityAssigments;
 using Microsoft.AspNetCore.Identity;
@@ -14,12 +15,14 @@ namespace MoviesPortalWebApp.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly MoviePortalContext _context;
+        private readonly IMapper _mapper;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MoviePortalContext context)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MoviePortalContext context, IMapper mapper)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _context = context;
+            _mapper = mapper;
         }
 
 
@@ -139,6 +142,15 @@ namespace MoviesPortalWebApp.Controllers
             movies = movies.Where(s => s.UserId == id);
 
             return View(await movies.ToListAsync());
+        }
+
+        public async Task<IActionResult> AddComment(CommentVM comment)
+        {
+            comment.PublishedAt = DateTime.Now.ToString("MM/dd/yyyy HH:mm");
+            var commmentDb = _mapper.Map<CommentModel>(comment);
+            _context.Comments.Add(commmentDb);
+            _context.SaveChanges();
+            return RedirectToAction("DetailsUser","Movie" , new { id = comment.MovieId });
         }
     }
 }

@@ -44,9 +44,9 @@ namespace DataAccess.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IQueryable<CommentModel>> GetAllComments()
+        public async Task<IQueryable<CommentModel>> GetAllComments(int movieId)
         {
-            var comments = _context.Comments.Include(u => u.ApplicationUser);
+            var comments = _context.Comments.Where(c => c.MovieId == movieId).Include(u => u.ApplicationUser);
             return comments;
         }
 

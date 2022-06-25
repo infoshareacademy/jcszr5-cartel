@@ -1,0 +1,17 @@
+﻿@model MovieVM
+
+@foreach(var comment in Model.Comments)
+{
+    <section>
+        <p>
+            @comment.PublishedAt
+        </p>
+        <p>
+            @comment.UserName
+        </p>
+        <p>
+            @comment.Content
+        </p>
+        
+    </section>
+}
