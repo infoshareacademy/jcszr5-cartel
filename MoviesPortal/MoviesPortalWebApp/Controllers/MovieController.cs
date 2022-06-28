@@ -84,7 +84,15 @@ namespace MoviesPortalWebApp.Controllers
                 var omdb = await client.GetRatingForMovie(imdb_id);
                 var omdbRatings = omdb.Ratings;
                 ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
-
+                if (movie.ImdbRatio.Length >= 3)
+                {
+                    var ratio = movie.ImdbRatio.Substring(0, 3);
+                    movie.ImdbRatio = ratio;
+                }
+                else
+                {
+                    movie.ImdbRatio = "N/A";
+                }
 
             }
             else
