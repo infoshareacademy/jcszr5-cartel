@@ -34,7 +34,9 @@ namespace MoviesPortalWebApp.ServicesForControllers
             foreach (var comment in comments)
             {
                 var applicationUser =await _userManager.FindByIdAsync(comment.UserId);
-                comment.UserName = applicationUser.FullName;                
+                comment.UserName = applicationUser.FullName;
+                var date = comment.PublishedAt.Split(' ');
+                comment.PublishedAt = date[0] + " - " + date[1].Substring(0,5);
             }
 
             return comments;
