@@ -9,15 +9,12 @@
             
             <p>
                 <i class="fa fa-comment"></i>
-                @comment.UserName (@comment.PublishedAt.Substring(0,9) - @comment.PublishedAt.Substring(10,5))
+                @comment.UserName (@comment.PublishedAt)
             </p>
             <p>
                 
                 @comment.Content
             </p>
         </div>
-
-        
-        
     </section>
 }
