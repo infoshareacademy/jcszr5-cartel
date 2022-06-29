@@ -38,7 +38,7 @@ builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>()
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<ApiClient>();
+builder.Services.AddSingleton<ApiClient>();
 builder.Services.AddScoped<CommentsPicker>();
 builder.Services.AddScoped<PersonsAgregator>();
 builder.Services.AddScoped<SubscriptionVM>();
