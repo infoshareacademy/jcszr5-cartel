@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.ApiHandler;
+using BusinessLogic.Interfaces;
 using BusinessLogic.Services;
 using DataAccess.DbContext;
 using DataAccess.Models;
@@ -20,8 +21,16 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
         private readonly ApiClient _client;
+        private readonly INewsletterSender _newsletterSender;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, MoviePortalContext context, IMapper mapper, IMovieService movieService, ApiClient client)
+        public AccountController(
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager,
+            MoviePortalContext context,
+            IMapper mapper,
+            IMovieService movieService,
+            ApiClient client,
+            INewsletterSender newsletterSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -29,6 +38,8 @@ namespace MoviesPortalWebApp.Controllers
             _mapper = mapper;
             _movieService = movieService;
             _client = client;
+            _newsletterSender = newsletterSender;
+
         }
 
 
@@ -41,7 +52,7 @@ namespace MoviesPortalWebApp.Controllers
         public async Task<IActionResult> Index(string id)
         {
             var moviesFromDb = from m in _context.UserFavoriteMovies.Include(x => x.Movie).ToList()
-                         select m;
+                               select m;
             moviesFromDb = moviesFromDb.Where(s => s.UserId == id);
 
             var moviesFromApi = _context.UserFavoriteApiMovies.Where(s => s.UserId == id);
@@ -54,22 +65,22 @@ namespace MoviesPortalWebApp.Controllers
             {
                 if (movie.Movie == null)
                 {
-                    var item =await _client.GetMovieDetails(movie.MovieId);
+                    var item = await _client.GetMovieDetails(movie.MovieId);
                     var itemMapped = _mapper.Map<MovieVM>(item);
                     var itemMapped2 = _mapper.Map<MovieModel>(itemMapped);
                     movie.Movie = itemMapped2;
                 }
             }
-            
+
             return View(movies);
         }
 
         public async Task<IActionResult> AddMovieToFavourities(MovieVM movieVM)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-            var fMovie = new UserFavoriteMovies();            
+            var fMovie = new UserFavoriteMovies();
             var apiMovie = new UserFavoriteApiMovies();
-            
+
             if (movieVM.IsApiModel)
             {
                 apiMovie.UserId = userId;
@@ -85,7 +96,7 @@ namespace MoviesPortalWebApp.Controllers
                 await _context.SaveChangesAsync();
             }
 
-            return RedirectToAction("DetailsUser", "Movie", new { id = movieVM.Id});
+            return RedirectToAction("DetailsUser", "Movie", new { id = movieVM.Id });
         }
 
         public async Task<IActionResult> RemoveMovieToFavourities(MovieVM movieVM)
@@ -101,7 +112,7 @@ namespace MoviesPortalWebApp.Controllers
                 var movie = _context.UserFavoriteMovies.FirstOrDefault(x => x.MovieId == movieVM.Id && x.UserId == User.FindFirst(ClaimTypes.NameIdentifier).Value);
                 _context.UserFavoriteMovies.Remove(movie);
                 await _context.SaveChangesAsync();
-            }           
+            }
 
             return RedirectToAction("DetailsUser", "Movie", new { id = movieVM.Id });
         }
@@ -158,7 +169,11 @@ namespace MoviesPortalWebApp.Controllers
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
+            {
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
+
+            }
+            await _newsletterSender.SendWelcomeNotyficationToNewUser(registerVM.EmailAddress, registerVM.FullName);
 
             return View("RegisterCompleted");
         }
@@ -192,7 +207,7 @@ namespace MoviesPortalWebApp.Controllers
             var commmentDb = _mapper.Map<CommentModel>(comment);
             _context.Comments.Add(commmentDb);
             _context.SaveChanges();
-            return RedirectToAction("DetailsUser","Movie" , new { id = comment.MovieId });
+            return RedirectToAction("DetailsUser", "Movie", new { id = comment.MovieId });
         }
     }
 }

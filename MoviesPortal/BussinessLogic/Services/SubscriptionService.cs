@@ -27,5 +27,6 @@ namespace BusinessLogic.Services
         {
             return _subscriptionRepository.GetAllSubscriptionEmails();
         }
+
     }
 }
