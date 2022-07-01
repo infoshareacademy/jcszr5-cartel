@@ -2,7 +2,7 @@
 {
     public interface INewsletterSender
     {
-        public Task SendWelcomeNotyficationToNewUser(string email, string name);
+        public Task SendNotyficationToSingleUser(string email, string name, string message);
 
         public void OnSendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e);
     }

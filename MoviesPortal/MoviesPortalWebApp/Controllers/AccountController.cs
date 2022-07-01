@@ -166,6 +166,9 @@ namespace MoviesPortalWebApp.Controllers
                 Email = registerVM.EmailAddress,
                 UserName = registerVM.EmailAddress
             };
+
+            string message = "You have registered in Cartel MoviePortal, Congratulations!";
+
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
@@ -173,7 +176,7 @@ namespace MoviesPortalWebApp.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
             }
-            await _newsletterSender.SendWelcomeNotyficationToNewUser(registerVM.EmailAddress, registerVM.FullName);
+            await _newsletterSender.SendNotyficationToSingleUser(registerVM.EmailAddress, registerVM.FullName, message);
 
             return View("RegisterCompleted");
         }

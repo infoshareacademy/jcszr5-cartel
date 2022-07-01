@@ -7,8 +7,6 @@ namespace BusinessLogic.Services
 {
     public class NewsletterSender : INewsletterSender
     {
-        private SmtpClient _smtp;
-        private MailMessage _mail;
 
         private string _hostSmtp = "smtp.gmail.com";
         private bool _enableSsl = true;
@@ -18,31 +16,45 @@ namespace BusinessLogic.Services
         private string _senderName = "Zespół Cartel MoviePortal";
 
 
-        public async Task SendWelcomeNotyficationToNewUser(string email, string name)
+        public async Task SendNotyficationToSingleUser(string email, string name, string message)
         {
-            _mail = new MailMessage();
-            _mail.From = new MailAddress(_senderEmail, _senderName);
-            _mail.To.Add(new MailAddress(email));
-            _mail.IsBodyHtml = true;
-            _mail.Subject = $"You have registered in Cartel MoviePortal!";
-            _mail.BodyEncoding = Encoding.UTF8;
-            _mail.SubjectEncoding = Encoding.UTF8;
-            _mail.Body = $"{name}, You have registered in Cartel MoviePortal, Congratulations!";
+            var _mail = PrepareMailMessage(email, name, message)
 
-            _smtp = new SmtpClient
-            {
-                Host = _hostSmtp,
-                EnableSsl = _enableSsl,
-                Port = _port,
-                DeliveryMethod = SmtpDeliveryMethod.Network,
-                UseDefaultCredentials = false,
-                Credentials = new NetworkCredential(_senderEmail, _senderEmailPassword)
-            };
+            var _smtp = GetSmtpClient(_senderEmail, _senderEmailPassword);
 
             _smtp.SendCompleted += OnSendCompleted;
 
             await _smtp.SendMailAsync(_mail);
         }
+
+        public MailMessage PrepareMailMessage(string email, string name, string message)
+        {
+            var mail = new MailMessage();
+            mail.From = new MailAddress(_senderEmail, _senderName);
+            mail.To.Add(new MailAddress(email));
+            mail.IsBodyHtml = true;
+            mail.Subject = $"You have registered in Cartel MoviePortal!";
+            mail.BodyEncoding = Encoding.UTF8;
+            mail.SubjectEncoding = Encoding.UTF8;
+            mail.Body = $"{name}, {message}";
+            return mail;
+        }
+
+
+
+        public SmtpClient GetSmtpClient(string senderEmail, string senderEmailPassword)
+        {
+            return new SmtpClient
+            {
+                Host = "smtp.gmail.com",
+                EnableSsl = true,
+                Port = 587,
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                Credentials = new NetworkCredential(senderEmail, senderEmailPassword)
+            }
+        }
+
 
         public void OnSendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
