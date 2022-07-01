@@ -110,11 +110,19 @@ namespace BusinessLogic.ApiHandler
         }
         public async Task<RatingRoot> GetRatingForMovie(int movieId)
         {
-            var result = await _alternateApiUrl
-                .SetQueryParam(_alternateApiKey+"&i=tt"+movieId)                
+            try
+            {
+                var result = await _alternateApiUrl
+                .SetQueryParam(_alternateApiKey + "&i=tt" + movieId)
                 .GetStringAsync();
-            var ratingRoot = JsonConvert.DeserializeObject<RatingRoot>(result);
-            return ratingRoot;
+                var ratingRoot = JsonConvert.DeserializeObject<RatingRoot>(result);
+                return ratingRoot;
+            }
+            catch (Exception)
+            {
+                return new RatingRoot();
+            }
+            
         }
         public async Task<List<Cast>> FindPersonsByName(string name, int page)
         {

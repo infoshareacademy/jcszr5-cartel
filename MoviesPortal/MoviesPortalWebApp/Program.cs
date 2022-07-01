@@ -36,12 +36,14 @@ builder.Services.AddTransient<IGenreService, GenreService>();
 builder.Services.AddTransient<IGenreRepository, GenreRepository>();
 builder.Services.AddTransient<ISubscriptionRepository, SubscriptionRepository>();
 builder.Services.AddScoped<ISubscriptionService, SubscriptionService>();
+builder.Services.AddTransient<INewsletterSender, NewsletterSender>();
 builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<ICommentService, CommentService>();
-builder.Services.AddScoped<ApiClient>();
+builder.Services.AddSingleton<ApiClient>();
 builder.Services.AddScoped<CommentsPicker>();
 builder.Services.AddScoped<PersonsAgregator>();
 builder.Services.AddScoped<SubscriptionVM>();
+builder.Services.AddScoped<RatingsFormatter>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Authentication and authorization
