@@ -167,7 +167,7 @@ namespace MoviesPortalWebApp.Controllers
                 UserName = registerVM.EmailAddress
             };
 
-            string message = "You have registered in Cartel MoviePortal, Congratulations!";
+            string message = "You have registered in Cartel MoviePortal\n Congratulations!";
 
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
