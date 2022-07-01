@@ -20,10 +20,11 @@ namespace MoviesPortalWebApp.Controllers
         private readonly ICommentService _commentService;
         private readonly PersonsAgregator _personAgregator;
         private readonly CommentsPicker _commentPicker;
+        private readonly RatingsFormatter _ratings;
         private ApiClient client = new();
 
 
-        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator, ICommentService commentService, CommentsPicker commentPicker)
+        public MovieController(IMovieService movieService, IMapper mapper, IGenreService genreService, ICreativePersonService creativePersonService, PersonsAgregator personAgregator, ICommentService commentService, CommentsPicker commentPicker, RatingsFormatter ratings)
         {
             _movieService = movieService;
             _mapper = mapper;
@@ -32,6 +33,7 @@ namespace MoviesPortalWebApp.Controllers
             _personAgregator = personAgregator;
             _commentService = commentService;
             _commentPicker = commentPicker;
+            _ratings = ratings;
         }
 
         #region User
@@ -81,24 +83,14 @@ namespace MoviesPortalWebApp.Controllers
                 }
 
                 var imdb_id = int.Parse(movie.Imdb_Id.Substring(2));
-                var omdb = await client.GetRatingForMovie(imdb_id);
-                var omdbRatings = omdb.Ratings;
-                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
-                if (movie.ImdbRatio.Length >= 3)
-                {
-                    var ratio = movie.ImdbRatio.Substring(0, 3);
-                    movie.ImdbRatio = ratio;
-                }
-                else
-                {
-                    movie.ImdbRatio = "N/A";
-                }
+                
+                ViewBag.Ratings = await _ratings.GetFormattedRatingsForMovieAsync(imdb_id, movie.ImdbRatio);
 
             }
             else
             {
-                var omdbRatings = 0;
-                ViewBag.Ratings = _mapper.Map<List<RatingVM>>(omdbRatings);
+                List<string> ratings = new List<string>() { movie.ImdbRatio, "N/A", "N/A"};
+                ViewBag.Ratings = ratings;
             }
             CommentsPicker commentsPicker = new();
             movie.Comments =await _commentPicker.GetCommentsAsync(movie.Id);
