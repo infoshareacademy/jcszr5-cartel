@@ -41,7 +41,7 @@ namespace DataAccess.DbContext
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Data Source=moviesportal.database.windows.net,1433;Initial Catalog=MoviesPortalDb;User ID=mateuszmiga;Password=1234Qaz@@");
+            optionsBuilder.UseSqlServer("Data Source=moviesportal.database.windows.net,1433;Initial Catalog=MoviesPortalDb;User ID=mateuszmiga;Password=<password>");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
