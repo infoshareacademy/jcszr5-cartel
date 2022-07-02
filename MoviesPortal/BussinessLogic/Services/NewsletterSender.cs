@@ -8,50 +8,64 @@ namespace BusinessLogic.Services
 {
     public class NewsletterSender : INewsletterSender
     {
-        private readonly SubscriptionService _subscriptionService;
+        private readonly ISubscriptionService _subscriptionService;
         private string _senderEmail = "cartel.movieportal@gmail.com";
         private string _senderEmailPassword = "yfzbjzpoltoviqwx";
         private string _senderName = "Zespół Cartel MoviePortal";
         private SmtpClient _smtp;
         private MailMessage _mail;
 
+        public NewsletterSender(ISubscriptionService subscriptionService)
+        {
+            _subscriptionService = subscriptionService;
+        }
 
-        public async Task SendNotyficationToSingleUser(string email, string name, string message)
+        public async Task SendNotyficationToSingleUser(string email, string name, string message, string subject)
         {
             _smtp = GetSmtpClient();
 
             _smtp.SendCompleted += OnSendCompleted;
 
-            _mail = PrepareMailMessage(email, name, message);
+            _mail = PrepareMailMessage(email, name, message, subject);
 
             await _smtp.SendMailAsync(_mail);
 
-            await SendNewsletterToAllSubscribents(message);
         }
 
-        public async Task SendNewsletterToAllSubscribents(string message)
+        public async Task SendNewsletterToAllSubscribents(string message, string subject)
         {
             _smtp = GetSmtpClient();
-            _smtp.SendCompleted += OnSendCompleted;
+            /*            var allSubscriptionsEmails = _subscriptionService.GetAllSubscriptions().Select(s => s.Email);*/
             var allSubscriptions = _subscriptionService.GetAllSubscriptions();
+            /*            string allEmailsJoined = string.Join(";", allSubscriptionsEmails);*/
+
 
             foreach (SubscriptionModel subscription in allSubscriptions)
             {
                 string email = subscription.Email;
                 string name = subscription.FirstName;
-                var mail = PrepareMailMessage(email, name, message);
-                await _smtp.SendMailAsync(_mail);
+                var mail = PrepareMailMessage(email, name, message, subject);
+                await _smtp.SendMailAsync(mail);
             }
+
+            _smtp.SendCompleted += OnSendCompleted;
+
+            var adminNotyficationEmail = PrepareMailMessage(
+                _senderEmail,
+                _senderName,
+                "Newsletter to all subscribed users has been send",
+                "newsletter post confirmation");
+
+            await _smtp.SendMailAsync(adminNotyficationEmail);
         }
 
-
-        public MailMessage PrepareMailMessage(string email, string name, string message)
+        public MailMessage PrepareMailMessage(string email, string name, string message, string subject)
         {
             var mail = new MailMessage();
             mail.From = new MailAddress(_senderEmail, _senderName);
             mail.To.Add(new MailAddress(email));
             mail.IsBodyHtml = true;
-            mail.Subject = $"You have registered in Cartel MoviePortal!";
+            mail.Subject = subject;
             mail.BodyEncoding = Encoding.UTF8;
             mail.SubjectEncoding = Encoding.UTF8;
             mail.Body = $"{name}\n, {message}";
