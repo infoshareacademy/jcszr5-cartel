@@ -21,7 +21,7 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
         private readonly ApiClient _client;
-        private readonly INewsletterSender _newsletterSender;
+        private readonly INewsletterService _newsletterService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -30,7 +30,7 @@ namespace MoviesPortalWebApp.Controllers
             IMapper mapper,
             IMovieService movieService,
             ApiClient client,
-            INewsletterSender newsletterSender)
+            INewsletterService newsletterSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,7 +38,7 @@ namespace MoviesPortalWebApp.Controllers
             _mapper = mapper;
             _movieService = movieService;
             _client = client;
-            _newsletterSender = newsletterSender;
+            _newsletterService = newsletterSender;
 
         }
 
@@ -166,6 +166,10 @@ namespace MoviesPortalWebApp.Controllers
                 Email = registerVM.EmailAddress,
                 UserName = registerVM.EmailAddress
             };
+
+            string subject = "Zarejestrowałeś się w MoviePortal";
+            string message = "You have registered in Cartel MoviePortal\n Congratulations!";
+
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
 
             if (newUserResponse.Succeeded)
@@ -173,7 +177,11 @@ namespace MoviesPortalWebApp.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
             }
-            await _newsletterSender.SendWelcomeNotyficationToNewUser(registerVM.EmailAddress, registerVM.FullName);
+            await _newsletterService.SendNotyficationToSingleUser(
+                registerVM.EmailAddress,
+                registerVM.FullName,
+                message,
+                subject);
 
             return View("RegisterCompleted");
         }

@@ -1,0 +1,17 @@
+﻿@model MoviesPortalWebApp.Models.NewsletterVM
+
+<div style="margin-top:10rem;"></div>
+<section id="newsletterAdmin">
+    <div class="newsletter_inner">
+        <h2>Newsletter content generator:</h2>
+        <div class="sign_up_form">
+            <form asp-controller="Newsletter" asp-action="CreateNewsletterEmail">
+                <input asp-for="NewsletterSubject" placeholder="Subject" />
+                <span asp-validation-for="NewsletterSubject" class="text-danger"></span>
+                <input asp-for="NewsletterContent" placeholder="Newsletter text content">
+                <span asp-validation-for="NewsletterContent" class="text-danger"></span>
+                <input type="submit" value="Send newsletter to all subscribents" class="button" />
+            </form>
+        </div>
+    </div>
+</section>
