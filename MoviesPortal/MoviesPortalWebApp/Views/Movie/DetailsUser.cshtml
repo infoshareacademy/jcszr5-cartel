@@ -20,7 +20,7 @@
     List<CreativePersonVM> actors = ViewBag.Actors;
     List<CreativePersonVM> directors = ViewBag.Directors;
     List<ProviderVM> providers = ViewBag.Providers;
-    List<RatingVM> ratings = ViewBag.Ratings;
+    List<string> ratings = ViewBag.Ratings;
     int ratingsNo = @ratings.Count;
     bool isFav = false;  
 
@@ -162,54 +162,20 @@
                        </div>                     
                  </div>
 
-                 @if(@ratingsNo == 3)
-                 {
-                     <div class="logo">
-                          <img src="~/images/logo/metacritic.png" alt="" />
-                          <div class="ratings">
-                               @ratings[2].Value.ToString()
-                          </div>
-                     </div>
+                 <div class="logo">
+                      <img src="~/images/logo/metacritic.png" alt="" />
+                      <div class="ratings">
+                           @ratings[1]
+                      </div>
+                 </div>
 
-                     <div class="logo">
-                          <img src="~/images/logo/rotten.png" alt="" />
-                          <div class="ratings">
-                               @ratings[1].Value.ToString()
-                          </div>
-                     </div>                 
-                 } 
-                 else if(@ratingsNo == 2)
-                 {
-                     <div class="logo">
-                          <img src="~/images/logo/metacritic.png" alt="" />
-                          <div class="ratings">
-                               @ratings[2].Value.ToString()
-                          </div>
-                     </div>
-
-                     <div class="logo">
-                          <img src="~/images/logo/rotten.png" alt="" />
-                          <div class="ratings">
-                               @ratings[1].Value.ToString()
-                          </div>
-                     </div>                 
-                 }
-                 else
-                 {
-                     <div class="logo">
-                          <img src="~/images/logo/metacritic.png" alt="" />
-                          <div class="ratings">
-                               N/A
-                          </div>
-                     </div>
-
-                     <div class="logo">
-                          <img src="~/images/logo/rotten.png" alt="" />
-                          <div class="ratings">
-                               N/A
-                          </div>
-                     </div> 
-                 }
+                 <div class="logo">
+                      <img src="~/images/logo/rotten.png" alt="" />
+                      <div class="ratings">
+                           @ratings[2]
+                      </div>
+                 </div>                 
+                 
              </div>
          </div>
 

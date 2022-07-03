@@ -43,6 +43,7 @@ builder.Services.AddSingleton<ApiClient>();
 builder.Services.AddScoped<CommentsPicker>();
 builder.Services.AddScoped<PersonsAgregator>();
 builder.Services.AddScoped<SubscriptionVM>();
+builder.Services.AddScoped<RatingsFormatter>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 //Authentication and authorization
