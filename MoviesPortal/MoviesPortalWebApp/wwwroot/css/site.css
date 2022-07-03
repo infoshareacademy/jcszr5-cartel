@@ -164,6 +164,56 @@ h1, h2, h3, h4, h5, h6 {
             margin-top: 3em;
         }
 
+#newsletterAdmin {
+    padding: 3em 0;
+    text-align: center;
+    background: #000000;
+    /*    margin-top: 6rem;*/
+}
+
+    #newsletterAdmin .newsletter_inner {
+        width: 600px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    #newsletterAdmin h2 {
+        font-size: 1.75em;
+        color: #FFFFFF;
+    }
+
+    #newsletterAdmin .sign_up_form {
+        margin-top: 3em;
+    }
+
+        #newsletterAdmin .sign_up_form input[type="text"],
+        #newsletterAdmin .sign_up_form input[type="email"],
+        #newsletterAdmin .sign_up_form input[type="tel"] {
+            width: 90%;
+            margin: 0 .5%;
+            margin-top: 2rem;
+            height: 3.25em;
+            border: none;
+            outline: none;
+            border-radius: .3em;
+            background: #404043;
+            padding: .5em 1.25em;
+            font-size: .8em;
+            color: #FFFFFF;
+        }
+
+        #newsletterAdmin .sign_up_form .button {
+            border: none;
+            outline: none;
+            padding: 1em 4.5em;
+            border-radius: 0.5em;
+            background: #FF5900;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: .9em;
+            margin-top: 3em;
+        }
+
 table .table .whiteText {
     color: #FFFFFF;
 }

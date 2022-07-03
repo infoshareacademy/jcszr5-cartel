@@ -2,7 +2,7 @@
 
 namespace BusinessLogic.Interfaces
 {
-    public interface INewsletterSender
+    public interface INewsletterService
     {
         public Task SendNotyficationToSingleUser(string email, string name, string message, string subject);
 

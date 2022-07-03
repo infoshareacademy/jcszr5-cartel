@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Mvc;
 using MoviesPortalWebApp.Models;
 
 namespace MoviesPortalWebApp.Controllers
 {
     public class NewsletterController : Controller
     {
+        private readonly INewsletterService _newsletterService;
+
+        public NewsletterController(INewsletterService newsletterService)
+        {
+            _newsletterService = newsletterService;
+        }
+
+
+
         #region Email Newsletter
 
         // GET: NewsletterController/Create email newsletter
@@ -17,18 +27,21 @@ namespace MoviesPortalWebApp.Controllers
 
         // POST: NewsletterController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult CreateEmail(IFormCollection collection)
+        /*        [ValidateAntiForgeryToken]*/
+        public async Task<IActionResult> CreateNewsletterEmail(NewsletterVM model)
         {
-            try
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
+                string message = model.NewsletterContent;
+                string subject = model.NewsletterSubject;
+
+                await _newsletterService.SendNewsletterToAllSubscribents(message, subject);
+
+                return RedirectToAction("Admin", "Account");
             }
         }
+
+
+
         #endregion
 
         #region SMS Newsletter
@@ -55,4 +68,7 @@ namespace MoviesPortalWebApp.Controllers
         }
         #endregion
     }
+
+
 }
+

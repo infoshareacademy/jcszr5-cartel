@@ -21,7 +21,7 @@ namespace MoviesPortalWebApp.Controllers
         private readonly IMovieService _movieService;
         private readonly IMapper _mapper;
         private readonly ApiClient _client;
-        private readonly INewsletterSender _newsletterSender;
+        private readonly INewsletterService _newsletterService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -30,7 +30,7 @@ namespace MoviesPortalWebApp.Controllers
             IMapper mapper,
             IMovieService movieService,
             ApiClient client,
-            INewsletterSender newsletterSender)
+            INewsletterService newsletterSender)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -38,7 +38,7 @@ namespace MoviesPortalWebApp.Controllers
             _mapper = mapper;
             _movieService = movieService;
             _client = client;
-            _newsletterSender = newsletterSender;
+            _newsletterService = newsletterSender;
 
         }
 
@@ -177,7 +177,7 @@ namespace MoviesPortalWebApp.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
             }
-            await _newsletterSender.SendNotyficationToSingleUser(
+            await _newsletterService.SendNotyficationToSingleUser(
                 registerVM.EmailAddress,
                 registerVM.FullName,
                 message,

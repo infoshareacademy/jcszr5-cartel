@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BusinessLogic.Services
 {
-    public class NewsletterSender : INewsletterSender
+    public class NewsletterService : INewsletterService
     {
         private readonly ISubscriptionService _subscriptionService;
         private string _senderEmail = "cartel.movieportal@gmail.com";
@@ -15,7 +15,7 @@ namespace BusinessLogic.Services
         private SmtpClient _smtp;
         private MailMessage _mail;
 
-        public NewsletterSender(ISubscriptionService subscriptionService)
+        public NewsletterService(ISubscriptionService subscriptionService)
         {
             _subscriptionService = subscriptionService;
         }
@@ -50,13 +50,14 @@ namespace BusinessLogic.Services
 
             _smtp.SendCompleted += OnSendCompleted;
 
-            var adminNotyficationEmail = PrepareMailMessage(
+
+            _mail = PrepareMailMessage(
                 _senderEmail,
                 _senderName,
                 "Newsletter to all subscribed users has been send",
                 "newsletter post confirmation");
 
-            await _smtp.SendMailAsync(adminNotyficationEmail);
+            await _smtp.SendMailAsync(_mail);
         }
 
         public MailMessage PrepareMailMessage(string email, string name, string message, string subject)
