@@ -204,10 +204,20 @@ h1, h2, h3, h4, h5, h6 {
             color: #FFFFFF;
         }
 
+        #newsletterAdmin .sign_up_form .textarea {
+            height: 12rem;
+            resize: vertical;
+            width: 90%;
+            margin-top: 1rem;
+            color: #ffffff;
+            background: #404043;
+            font-size: small;
+        }
+
         #newsletterAdmin .sign_up_form .button {
             border: none;
             outline: none;
-            padding: 1em 4.5em;
+            padding: 1rem 2rem;
             border-radius: 0.5em;
             background: #FF5900;
             color: #FFFFFF;

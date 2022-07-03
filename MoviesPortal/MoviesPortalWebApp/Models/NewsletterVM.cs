@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace MoviesPortalWebApp.Models
 {
@@ -6,7 +7,7 @@ namespace MoviesPortalWebApp.Models
     {
         public string NewsletterSubject { get; set; }
 
-        [DataType(DataType.MultilineText)]
+        [BindProperty, MaxLength(300)]
         public string NewsletterContent { get; set; }
     }
 }
