@@ -164,6 +164,8 @@ h1, h2, h3, h4, h5, h6 {
             margin-top: 3em;
         }
 
+
+
 #newsletterAdmin {
     padding: 3em 0;
     text-align: center;
@@ -593,7 +595,7 @@ div.desc {
 }
 
 .btn-comment:hover {
-    background-color: darkgoldenrod;
+    background-color: #ff5900;
 }
 
 
@@ -791,7 +793,7 @@ div.desc {
     }
 
         .text a:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #ff5900;
             color: rgba(255, 255, 255, 1);
         }
 
@@ -846,7 +848,7 @@ body {
             .box-text li a:hover,
             .box-text li .top_menu__item i:hover,
             .box-text li .top_menu_account i:hover {
-                color: rgb(19, 17, 18);
+                color: #ff5900;
             }
 
 
@@ -940,7 +942,7 @@ body {
 
 
 li.active a {
-    color: rgb(19, 17, 18);
+    color: #ff5900;
     /*background-color: rgb(19, 17, 18);*/
 }
 
@@ -1293,3 +1295,4 @@ div.gallery-serach img {
     margin: 100px 80px 0 40px;
 
 }
+
