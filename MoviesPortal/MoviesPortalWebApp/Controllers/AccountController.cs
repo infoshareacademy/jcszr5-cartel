@@ -167,7 +167,7 @@ namespace MoviesPortalWebApp.Controllers
                 UserName = registerVM.EmailAddress
             };
 
-            string subject = "Zarejestrowałeś się w MoviePortal";
+            string subject = "Registration in MoviePortal";
             string message = "You have registered in Cartel MoviePortal\n Congratulations!";
 
             var newUserResponse = await _userManager.CreateAsync(newUser, registerVM.Password);
@@ -177,11 +177,12 @@ namespace MoviesPortalWebApp.Controllers
                 await _userManager.AddToRoleAsync(newUser, UserRole.User);
 
             }
-            await _newsletterService.SendNotyficationToSingleUser(
+            await _newsletterService.SendEmailNotyfication(
                 registerVM.EmailAddress,
                 registerVM.FullName,
                 message,
-                subject);
+                subject,
+                false);
 
             return View("RegisterCompleted");
         }

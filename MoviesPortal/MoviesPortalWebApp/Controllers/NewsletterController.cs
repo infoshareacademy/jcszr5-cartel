@@ -34,12 +34,11 @@ namespace MoviesPortalWebApp.Controllers
                 string message = model.NewsletterContent;
                 string subject = model.NewsletterSubject;
 
-                await _newsletterService.SendNewsletterToAllSubscribents(message, subject);
+                await _newsletterService.SendEmailNotyfication("", "", message, subject, true);
 
                 return RedirectToAction("Admin", "Account");
             }
         }
-
 
 
         #endregion
