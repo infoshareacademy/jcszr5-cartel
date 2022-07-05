@@ -8,9 +8,10 @@
             <form asp-controller="Newsletter" asp-action="CreateNewsletterEmail">
                 <input asp-for="NewsletterSubject" placeholder="Subject" />
                 <span asp-validation-for="NewsletterSubject" class="text-danger"></span>
-                <input asp-for="NewsletterContent" placeholder="Newsletter text content">
+ @*               <input asp-for="NewsletterContent" placeholder="Newsletter text content">*@
+                <textarea asp-for="NewsletterContent" placeholder="Newsletter text content" class="textarea"></textarea>
                 <span asp-validation-for="NewsletterContent" class="text-danger"></span>
-                <input type="submit" value="Send newsletter to all subscribents" class="button" />
+                <input type="submit" value="Send newsletter" class="button" />
             </form>
         </div>
     </div>

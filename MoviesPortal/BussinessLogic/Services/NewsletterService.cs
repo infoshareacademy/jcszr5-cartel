@@ -1,5 +1,4 @@
 ﻿using BusinessLogic.Interfaces;
-using DataAccess.Models;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
@@ -20,59 +19,43 @@ namespace BusinessLogic.Services
             _subscriptionService = subscriptionService;
         }
 
-        public async Task SendNotyficationToSingleUser(string email, string name, string message, string subject)
+        public async Task SendEmailNotyfication(string email, string name, string message, string subject, bool iSMultipleEmail)
         {
             _smtp = GetSmtpClient();
 
             _smtp.SendCompleted += OnSendCompleted;
 
-            _mail = PrepareMailMessage(email, name, message, subject);
-
-            await _smtp.SendMailAsync(_mail);
-
-        }
-
-        public async Task SendNewsletterToAllSubscribents(string message, string subject)
-        {
-            _smtp = GetSmtpClient();
-            /*            var allSubscriptionsEmails = _subscriptionService.GetAllSubscriptions().Select(s => s.Email);*/
-            var allSubscriptions = _subscriptionService.GetAllSubscriptions();
-            /*            string allEmailsJoined = string.Join(";", allSubscriptionsEmails);*/
-
-
-            foreach (SubscriptionModel subscription in allSubscriptions)
-            {
-                string email = subscription.Email;
-                string name = subscription.FirstName;
-                var mail = PrepareMailMessage(email, name, message, subject);
-                await _smtp.SendMailAsync(mail);
-            }
-
-            _smtp.SendCompleted += OnSendCompleted;
-
-
-            _mail = PrepareMailMessage(
-                _senderEmail,
-                _senderName,
-                "Newsletter to all subscribed users has been send",
-                "newsletter post confirmation");
+            _mail = PrepareMailMessage(email, name, message, subject, iSMultipleEmail);
 
             await _smtp.SendMailAsync(_mail);
         }
 
-        public MailMessage PrepareMailMessage(string email, string name, string message, string subject)
+        public MailMessage PrepareMailMessage(string email, string name, string message, string subject, bool isMultipleEmail)
         {
             var mail = new MailMessage();
             mail.From = new MailAddress(_senderEmail, _senderName);
-            mail.To.Add(new MailAddress(email));
-            mail.IsBodyHtml = true;
+            var allSubscriptions = _subscriptionService.GetAllSubscriptions();
+            if (isMultipleEmail)
+            {
+                foreach (var subscription in allSubscriptions)
+                {
+                    mail.Bcc.Add(new MailAddress(subscription.Email, subscription.FirstName));
+                    mail.Body = $"Hi there, {message}";
+                }
+            }
+            else
+            {
+                mail.To.Add(new MailAddress(email, name));
+                mail.Body = $"Hello {name}, {message}";
+            }
+
+            /*            mail.IsBodyHtml = true;*/
             mail.Subject = subject;
             mail.BodyEncoding = Encoding.UTF8;
             mail.SubjectEncoding = Encoding.UTF8;
-            mail.Body = $"{name}\n, {message}";
+
             return mail;
         }
-
 
         public SmtpClient GetSmtpClient()
         {
@@ -87,7 +70,6 @@ namespace BusinessLogic.Services
             };
         }
 
-
         public void OnSendCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
         {
             _smtp.Dispose();
@@ -95,3 +77,5 @@ namespace BusinessLogic.Services
         }
     }
 }
+
+

@@ -4,11 +4,9 @@ namespace BusinessLogic.Interfaces
 {
     public interface INewsletterService
     {
-        public Task SendNotyficationToSingleUser(string email, string name, string message, string subject);
+        public Task SendEmailNotyfication(string email, string name, string message, string subject, bool isMultipleEmail);
 
-        public Task SendNewsletterToAllSubscribents(string message, string subject);
-
-        public MailMessage PrepareMailMessage(string email, string name, string message, string subject);
+        public MailMessage PrepareMailMessage(string email, string name, string message, string subject, bool IsMultipleEmail);
 
         public SmtpClient GetSmtpClient();
 
