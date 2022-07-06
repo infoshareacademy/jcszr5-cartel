@@ -1,6 +1,4 @@
 ﻿using BusinessLogic.ApiHandler;
-using BusinessLogic.ApiHandler.ApiModels;
-using MoviesPortalWebApp.Models;
 
 namespace MoviesPortalWebApp.ServicesForControllers
 {
@@ -20,34 +18,42 @@ namespace MoviesPortalWebApp.ServicesForControllers
         {
             var root = await _client.GetRatingForMovie(id);
             var ratingsFromApi = root.Ratings;
-            List<string> ratings =new();
-            
+            List<string> ratings = new();
+
 
             if (imdbRating.Length >= 3)
             {
                 var ratio = imdbRating.Substring(0, 3);
-                ratings.Add(ratio) ;
-            }
-            else
-            {
-                ratings.Add("N/A");
-            }
-            bool IsOnList = ratingsFromApi.Any(r => r.Source.Contains("Metacritic"));
-            if (IsOnList)
-            {
-                ratings.Add(ratingsFromApi.FirstOrDefault(r => r.Source.Contains("Metacritic")).Value);
+                ratings.Add(ratio);
             }
             else
             {
                 ratings.Add("N/A");
             }
 
-            if (ratingsFromApi.Any(r => r.Source.Contains("Rotten")))
+            if (ratingsFromApi != null)
             {
-                ratings.Add(ratingsFromApi.FirstOrDefault(r => r.Source.Contains("Rotten")).Value);
+                if (ratingsFromApi.Any(r => r.Source.Contains("Metacritic")))
+                {
+                    ratings.Add(ratingsFromApi.FirstOrDefault(r => r.Source.Contains("Metacritic")).Value);
+                }
+                else
+                {
+                    ratings.Add("N/A");
+                }
+
+                if (ratingsFromApi.Any(r => r.Source.Contains("Rotten")))
+                {
+                    ratings.Add(ratingsFromApi.FirstOrDefault(r => r.Source.Contains("Rotten")).Value);
+                }
+                else
+                {
+                    ratings.Add("N/A");
+                }
             }
             else
             {
+                ratings.Add("N/A");
                 ratings.Add("N/A");
             }
 

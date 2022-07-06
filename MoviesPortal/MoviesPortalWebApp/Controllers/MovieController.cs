@@ -93,7 +93,7 @@ namespace MoviesPortalWebApp.Controllers
                 ViewBag.Ratings = ratings;
             }
             CommentsPicker commentsPicker = new();
-            movie.Comments =await _commentPicker.GetCommentsAsync(movie.Id);
+            movie.Comments = await _commentPicker.GetCommentsAsync(movie.Id);
             return View(movie);
         }
         #endregion
