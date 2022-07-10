@@ -9,7 +9,7 @@ namespace BusinessLogic.Services
     {
         private readonly ISubscriptionService _subscriptionService;
         private string _senderEmail = "cartel.movieportal@gmail.com";
-        private string _senderEmailPassword = "yfzbjzpoltoviqwx";
+        private string _senderEmailPassword = "yxbvxrwcuzeuvszz";
         private string _senderName = "Zespół Cartel MoviePortal";
         private SmtpClient _smtp;
         private MailMessage _mail;
