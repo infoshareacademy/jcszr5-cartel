@@ -33,15 +33,11 @@ Apllications using API client and MSSQL database. Data comes from: OMDB, TheMovi
 ## Screenshots 📺
 
 <p align="center">
-    <img src="" alt="Screenshot">
+    <img src="https://github.com/infoshareacademy/jcszr5-cartel/blob/master/Logo/screen1.png" alt="Screenshot">
 </p>
 
 <p align="center">
-    <img src="" alt="Screenshot">
-</p>
-
-<p align="center">
-    <img src="" alt="Screenshot">
+    <img src="https://github.com/infoshareacademy/jcszr5-cartel/blob/master/Logo/screen2.png" alt="Screenshot">
 </p>
 
 ## Code Example/Issues 🔍
