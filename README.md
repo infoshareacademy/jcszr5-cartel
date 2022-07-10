@@ -8,18 +8,8 @@ MoviesPortal
 
 <br>
 
-<br>
 
 </h1>
-
-<h4 align="center">Project title</h4>
-
-<p align="center">
-  <a >
-    <img src=""
-         alt="Screenshot">
-  </a>
-</p>
 
 ## Project Overview 🎉
 This app provides information about movies, ratings, actors, directors, and where you can watch selected productions.
@@ -56,20 +46,18 @@ Apllications using API client and MSSQL database. Data comes from: OMDB, TheMovi
 
 ## Code Example/Issues 🔍
 
-## Installation 💾
+## Database Design 📇
 
-## Available scripts
-
-| Command                   | Description                   |     |
-| ------------------------- | ----------------------------- | --- |
-| `npm run start`           | Open local server             |     |
-| `npm run build`           | Create optimized build        |     |
-| `npm run test`            | Run tests                     |     |
-
+## System Architecture🗼
 
 ## Live 📍
 You are welcome to testing and giving feedback!
 
 You can check our app on:  https://moviesportal.azurewebsites.net
 
-## License 🔱
+## Future Additions ✨
+
+## Data provided by ⚡
+- TMDb API - The Movie Database API
+- OMDb API - The Open Movie Database
+
