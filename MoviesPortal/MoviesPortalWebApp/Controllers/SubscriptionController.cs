@@ -31,5 +31,10 @@ namespace MoviesPortalWebApp.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+        //Newsletter
+
+
+
     }
 }

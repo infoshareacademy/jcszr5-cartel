@@ -164,6 +164,68 @@ h1, h2, h3, h4, h5, h6 {
             margin-top: 3em;
         }
 
+
+
+#newsletterAdmin {
+    padding: 3em 0;
+    text-align: center;
+    background: #000000;
+    /*    margin-top: 6rem;*/
+}
+
+    #newsletterAdmin .newsletter_inner {
+        width: 600px;
+        max-width: 90%;
+        margin: 0 auto;
+    }
+
+    #newsletterAdmin h2 {
+        font-size: 1.75em;
+        color: #FFFFFF;
+    }
+
+    #newsletterAdmin .sign_up_form {
+        margin-top: 3em;
+    }
+
+        #newsletterAdmin .sign_up_form input[type="text"],
+        #newsletterAdmin .sign_up_form input[type="email"],
+        #newsletterAdmin .sign_up_form input[type="tel"] {
+            width: 90%;
+            margin: 0 .5%;
+            margin-top: 2rem;
+            height: 3.25em;
+            border: none;
+            outline: none;
+            border-radius: .3em;
+            background: #404043;
+            padding: .5em 1.25em;
+            font-size: .8em;
+            color: #FFFFFF;
+        }
+
+        #newsletterAdmin .sign_up_form .textarea {
+            height: 12rem;
+            resize: vertical;
+            width: 90%;
+            margin-top: 1rem;
+            color: #ffffff;
+            background: #404043;
+            font-size: small;
+        }
+
+        #newsletterAdmin .sign_up_form .button {
+            border: none;
+            outline: none;
+            padding: 1rem 2rem;
+            border-radius: 0.5em;
+            background: #FF5900;
+            color: #FFFFFF;
+            font-weight: 700;
+            font-size: .9em;
+            margin-top: 3em;
+        }
+
 table .table .whiteText {
     color: #FFFFFF;
 }
@@ -543,7 +605,7 @@ div.desc {
 }
 
 .btn-comment:hover {
-    background-color: darkgoldenrod;
+    background-color: #ff5900;
 }
 
 
@@ -741,7 +803,7 @@ div.desc {
     }
 
         .text a:hover {
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: #ff5900;
             color: rgba(255, 255, 255, 1);
         }
 
@@ -796,7 +858,7 @@ body {
             .box-text li a:hover,
             .box-text li .top_menu__item i:hover,
             .box-text li .top_menu_account i:hover {
-                color: rgb(19, 17, 18);
+                color: #ff5900;
             }
 
 
@@ -890,7 +952,7 @@ body {
 
 
 li.active a {
-    color: rgb(19, 17, 18);
+    color: #ff5900;
     /*background-color: rgb(19, 17, 18);*/
 }
 
@@ -1243,3 +1305,4 @@ div.gallery-serach img {
     margin: 100px 80px 0 40px;
 
 }
+
