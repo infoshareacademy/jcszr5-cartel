@@ -44,6 +44,8 @@ Apllications using API client and MSSQL database. Data comes from: OMDB, TheMovi
 
 ## Database Design 📇
 
+![image](https://user-images.githubusercontent.com/45047523/182345225-c6e28e4e-79fa-44cc-a630-e987c63ebfd6.png)
+
 ## System Architecture🗼
 
 ## Live 📍
